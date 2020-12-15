@@ -1,0 +1,48 @@
+<div id="cart-dd" class="cart-dd {% if cart.item_count == 0 %}empty{% endif %}">
+
+  <div class="cart-header"><h2>MY CART</h2> <a class="cart-close js-dd-close">{% include 'icon-close' %}</a></div>
+
+  <div class="col-form {% if cart.item_count == 0 %}hidden{% endif %}"> 
+    <form data-cart-view="data-cart-view">
+      <div class="items">
+        
+        <div rv-each-item="cart.items" class="item">
+          <a class="thumb">
+            <img width="100%" rv-src="item.image | productImageSize 'medium'">
+          </a>
+  
+          <div class="copy">
+            <div class="name" rv-text="item.title"></div>
+            
+            <div class="price"><em class="price" rv-html="item.price | money"></em></div>
+  
+            <div class="qty cart__qty-input">
+              <span class="label">QUANTITY: <span rv-html="item.quantity"></span></span>
+              <a href="#" rv-data-cart-remove="index | plus 1">{% include 'icon-trash' %}</a>
+            </div>
+          </div>
+        </div>
+      </div>
+  
+      <div class="total">
+        <div>Sub-total</div>
+        <span class="cart__subtotal" rv-html="cart.total_price | money"></span>
+      </div>
+  
+      <div class="cart-links">
+        <a href="/cart" class="button no-border"><span>VIEW CART</span></a>
+        <a class="button" href="/checkout"><span>CHECKOUT</span></a>
+      </div>
+  
+    </form>
+  </div>
+  
+
+  <div class="col-empty {% if cart.item_count != 0 %}hidden{% endif %}">
+    <div class="empty_cart">
+      {% include 'icon-empty-cart' %}
+      <p>YOUR CART IS EMPTY</p>
+    </div>
+  </div>
+  
+</div><!--END OF #CART-->

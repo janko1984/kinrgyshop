@@ -1,0 +1,25 @@
+// Bootstrap
+@import "common/variables";
+
+@import "bootstrap/scss/bootstrap";
+
+
+// /** Font Awesome **/
+// @import "~font-awesome/scss/font-awesome.scss";
+
+/** Import theme styles */
+@import "common/reset";
+@import "common/mixins";
+@import "common/global";
+@import "common/typography";
+@import "components/buttons";
+@import "components/comments";
+@import "components/forms";
+@import "components/apps";
+@import "layouts/header";
+@import "layouts/sidebar";
+@import "layouts/footer";
+@import "layouts/pages";
+@import "layouts/posts";
+@import "layouts/cart";
+

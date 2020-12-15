@@ -1,0 +1,265 @@
+.cart-dd {
+  @include transition(all 0.4s $cubic);
+
+  background-color: #f1f1f1;
+  backface-visibility: hidden;
+  max-width: 420px;
+  opacity: 0;
+  padding: 20px;
+  position: absolute;
+  top: 20px;
+  right: 15px;
+  visibility: hidden;
+  width: 100%;
+  height: auto;
+
+  @include media-breakpoint-down(sm) {
+    right: 0;
+  } 
+
+  &::before {
+    content: "";
+    display: block;
+    border-top: 0;
+    border-left: 13px solid transparent;
+    border-right: 13px solid transparent;
+    border-bottom: 10px solid $color-gray-3;
+    position: absolute;
+    right: 10px;
+    top: -10px;
+    width: 0;
+    height: 0;
+
+    @include media-breakpoint-down(sm) {
+      right: 30px;
+    }
+  }
+
+  .cart-header {
+    @include flexbox;
+    @include align-items(center);
+    @include justify-content(space-between);
+
+    padding-bottom: 15px;
+
+    h2 {
+      font-size: 20px;
+      line-height: 1;
+    }
+
+    .cart-close {
+      @include flexbox;
+      @include align-items(center);
+
+      cursor: pointer;
+    }
+  }
+
+  .items {
+    overflow-y: scroll;
+    position: relative;
+    max-height: 55vh;
+    height: 100%;
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+    -webkit-overflow-scrolling: touch;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+
+    @include media-breakpoint-down(md) {
+      padding-bottom: 60px;
+    }
+  }
+
+  .item {
+    @include flexbox;
+
+    background-color: white;
+    border-bottom: 1px solid $color-gray-3;
+    padding: 15px;
+
+    .thumb {
+      max-width: 130px;
+    }
+
+    .copy {
+      @include flexbox;
+      @include flex-direction(column);
+
+      flex: auto;
+      padding-left: 15px;
+
+      .name {
+        font-family: fc;
+        font-size: 20px;
+        line-height: 1.2;
+        margin-bottom: 0.3rem;
+        text-transform: uppercase;
+      }
+
+      .cart__qty-input {
+        @include flexbox;
+        @include align-items(center);
+        @include justify-content(space-between);
+
+        color: $color-gray-4;
+        font-size: 12px;
+        margin-top: auto;
+      }
+    }
+  }
+
+  .total {
+    @include flexbox;
+    @include justify-content(space-between);
+
+    background-color: white;
+    padding: 15px;
+  }
+
+  .cart-links {
+    padding-top: 20px;
+    text-align: right;
+  }
+
+  .empty_cart {
+    padding: 70px 0;
+    text-align: center;
+  
+    p {
+      margin: 50px 0 0;
+    }
+  }
+
+  &.active {
+    opacity: 1;
+    visibility: visible;
+  }
+}
+
+body.cart {
+  .extra-menu__cart {
+    display: none !important;
+  }
+
+  main {
+    padding-bottom: 120px;
+
+    @include media-breakpoint-down(sm) {
+      padding-bottom: 50px;
+    }
+  }
+
+  h1 {
+    font-size: 40px;
+    margin-bottom: 30px;
+  }
+
+  form {
+    .header {
+      padding: 8px 0;
+
+      @include media-breakpoint-down(sm) {
+        display: none;
+      }
+
+      span {
+        color: rgba(51, 51, 51, 0.5);
+        font-size: 10px;
+        letter-spacing: 1px;
+      }
+    }
+
+    .item {
+      border-top: 1px solid $color-blue;
+      padding: 1.5rem 0;
+
+      .thumb {
+        width: 85px;
+        height: 89px;
+
+        img {
+          object-fit: cover;
+          width: 100%;
+          height: 100%;
+        }
+      }
+
+      .name {
+        font-family: fc;
+        font-size: 20px;
+      }
+
+      .control {
+        @include flexbox;
+        @include justify-content(center);
+        
+        @include media-breakpoint-down(sm) {
+          margin-top: 20px;
+        }
+
+        > div {
+          flex: 0 0 36px;
+          height: 36px;
+
+          a {
+            display: block;
+            line-height: 36px;
+            text-align: center;
+            width: 100%;
+            height: 100%;
+          }
+
+          &.qty span {
+            background-color: $color-gray-3;
+            display: block;
+            line-height: 36px;
+            text-align: center;
+            width: 100%;
+            height: 100%;
+          }
+        }
+      }
+
+      .price {
+        line-height: 36px;
+
+        @include media-breakpoint-down(sm) {
+          margin-top: 20px;
+        }
+      }
+
+      .remove-item {
+        line-height: 30px;
+
+        @include media-breakpoint-down(sm) {
+          margin-top: 20px;
+        }
+      }
+
+      &:last-of-type {
+        border-bottom: 1px solid $color-blue;
+      }
+    }
+
+    .total {
+      border-bottom: 1px solid $color-blue;
+      font-family: hk;
+      font-weight: 600;
+      padding-top: 1.5rem;
+      padding-bottom: 1.5rem;
+    }
+  }
+
+  .btns {
+    @include align-items(center);
+
+    padding: 2rem 0;
+
+    @include media-breakpoint-down(sm) {
+      padding: 2rem 20px;
+    }
+  }
+}

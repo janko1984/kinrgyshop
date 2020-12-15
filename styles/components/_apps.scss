@@ -1,0 +1,892 @@
+
+body {
+
+  .product-list .title {
+    color: #1c1e20;
+    font-style: normal;
+    font-weight: 300;
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 23px;
+  }
+
+  .collection-list {
+    padding: 70px 0 0;
+    width: 100%;
+  }
+
+  section > .row-wrapper {
+    padding: 0 40px;
+  }
+
+  .price-color-wrap {
+    @include flexbox();
+
+    // margin-bottom: 11px;
+    margin-bottom: 5px;
+  }
+
+  .price-color-wrap .swatch-color {
+    @include flexbox();
+    @include flex-wrap(wrap);
+
+    width: 80%;
+    margin: 0px;    
+  }
+
+  .price-color-wrap .swatch-color .swatch-element {
+    width: 20px;
+    height: 20px;
+    margin: 2px 7px 0 0px;
+    border: 1px solid white;
+  }
+
+  .price-color-wrap .swatch-color input:checked + label {
+    box-shadow: none;
+  }
+
+  .swatch-size {
+    // margin: 0px 0px 20px;
+    margin: 0px 0px 10px;
+  }
+
+  // .swatch {
+  //   min-height: 30px;
+  // }
+
+  .swatch-size .header {
+    color: #1c1e20;
+    font-size: 14px;
+    // line-height: 25px;
+    line-height: 40px;
+    min-height: 40px;
+    margin: 0 10px 0 0;
+  }
+
+  .swatch-size .swatch-element {
+    margin: 0 4px 0 0;
+  }
+
+  .swatch-size input:checked + label {
+    box-shadow: none;
+  }
+
+  .swatch-size .soldout {
+    pointer-events: none;
+
+    label {
+      position: relative;
+      color: $color-gray;
+    }
+  }
+
+  .collection-list .swatch-size .soldout label::before {
+    top: -3px;
+  }
+
+  .swatch-size .soldout label::before {
+    position: absolute;
+    content: "";
+    width: 100%;
+    height: 2px;
+    left: 0;
+    top: -7px;
+    bottom: 0;
+    right: 0;
+    margin: auto;
+    background: $color-gray;
+  }
+
+  .swatch.swatch-color {
+    margin-left: 24px;
+
+    .header {
+      display: none;
+    }
+  }
+
+
+  form .btn {
+    width: 100%;
+    color: white;
+    font-size: 16px;
+    text-transform: uppercase;
+    height: 48px;
+    display: none;
+    font-weight: 400;
+  }
+
+  .swatch-element {
+    label {
+      width: 20px;
+      height: 20px;
+
+      &::before {
+        width: 12px;
+        height: 12px;
+      }
+
+      &::after {
+        width: 20px;
+        height: 20px;
+      }
+    }
+  }
+
+  .swatch-size {
+
+    label {
+      width: 28px;
+      height: 28px;
+
+      &::after {
+        width: 28px;
+        height: 28px;
+      }
+    }
+  }
+
+  [class*=col-] {
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  .inner-item {
+    position: relative;
+  }
+
+  .input-cart-wrapper {
+    width: 100%;
+  }
+
+  .product-list li {
+    z-index: 1;
+    margin-bottom: 2.0625em;
+    position: relative;
+  }
+
+  .title,
+  .price-color-wrap {
+    z-index: 1;
+    position: relative;
+  }
+
+  form .btn {
+    display: block;
+  }
+}
+
+body.product {
+  section .swatch.swatch-color .header {
+    @include inline-flex();
+
+    label {
+      box-shadow: none;
+      margin-right: 0;
+    }
+  }
+
+  .swatch input:checked + label {
+    box-shadow: none;
+  }
+
+  section .swatch.swatch-color {
+    margin-left: 0;
+  }
+
+  .product-form .swatch .swatch-element.color label {
+    margin-right: 0;
+
+    i {
+      margin-left: 3px;
+    }
+  }
+}
+
+.product-list .swatch .header .current-color {
+  display: none;
+}
+
+.color-list a[data-color=Black],
+.color-list a[data-color=black],
+.by-Color[data-tag="Color_black"] .color-icon,
+.swatch-element.black label::before {
+  background: $color-swatch-black; 
+}
+
+// White
+.color-list a[data-color=White],
+.color-list a[data-color=white],
+.by-Color[data-tag="Color_white"] .color-icon,
+.swatch-element.white label::before {
+  background: $color-swatch-white; 
+  border: 1px solid $color-dark;
+}
+
+.color-list a[data-color=White] {
+  width: 15px;
+  height: 15px;
+  
+  &::after {
+    top: -7px;
+    left: -7px;
+  }
+}
+
+[data-value="Tye Light BlueDye"] label::before {
+  background: #73afef;
+}
+
+// Blue
+[data-value="Light Blue"] label::before,
+[data-value="Tie Light BlueDye"] label::before,
+.color-list a[data-color=Blue],
+.color-list a[data-color=blue],
+.by-Color[data-tag="Blue"] .color-icon,
+.by-Color[data-tag="blue"] .color-icon,
+.swatch-element.blue label::before {
+  background: $color-swatch-blue; 
+}
+
+// Light blue
+.color-list a[data-color="light blue"],
+.color-list a[data-color="Light blue"],
+.color-list a[data-color="Light Blue"],
+.color-list a[data-color=Color_light_blue],
+.by-Color[data-tag="Color_light_blue"] .color-icon,
+.swatch-element.light-blue label::before {
+  background: $color-swatch-light-blue; 
+}
+
+// Dark blue
+.color-list a[data-color="dark blue"],
+.color-list a[data-color="Dark blue"],
+.color-list a[data-color="Dark Blue"],
+.color-list a[data-color=Color_dark_blue],
+.by-Color[data-tag="Color_dark_blue"] .color-icon,
+.swatch-element.dark-blue label::before {
+  background: $color-swatch-dark-blue; 
+}
+
+// Royal blue
+.color-list a[data-color="Royal blue"],
+.color-list a[data-color="royal blue"],
+.color-list a[data-color="Royal Blue"],
+.color-list a[data-color=Color_royal_blue],
+.by-Color[data-tag="Color_royal_blue"] .color-icon,
+.swatch-element.royal label::before {
+  background: $color-swatch-royal-blue; 
+}
+
+// Navy
+.color-list a[data-color=Navy],
+.color-list a[data-color=navy],
+.color-list a[data-color=Color_navy],
+.by-Color[data-tag="Color_navy"] .color-icon, 
+.swatch-element.navy label::before {
+  background: $color-swatch-navy-blue; 
+}
+
+// Pink
+.color-list a[data-color=Pink],
+.color-list a[data-color=pink],
+.color-list a[data-color=Color_pink],
+.by-Color[data-tag="Color_pink"] .color-icon,
+.swatch-element.pink label::before {
+  background: $color-pink; 
+}
+
+// Green
+.color-list a[data-color=Green],
+.color-list a[data-color=green],
+.color-list a[data-color=Color_green],
+.by-Color[data-tag="Color_green"] .color-icon,
+.swatch-element.green label::before {
+  background: $color-swatch-green; 
+}
+
+// Kelly Green
+.color-list a[data-color="kelly green"],
+.color-list a[data-color="Kelly Green"],
+.color-list a[data-color="kelly Green"],
+.color-list a[data-color=Color_kelly-green],
+.by-Color[data-tag="Color_kelly_green"] .color-icon,
+.swatch-element.kelly-green label::before {
+  background: $color-swatch-kelly-green; 
+}
+
+// Forest Green
+.color-list a[data-color="Forest green"],
+.color-list a[data-color="forest green"],
+.color-list a[data-color="Forest Green"],
+.color-list a[data-color=Color_forest-green],
+.by-Color[data-tag="Color_forest_green"] .color-icon,
+.swatch-element.forest-green label::before {
+  background: $color-swatch-forest-green; 
+}
+
+// Charcoal
+.color-list a[data-color="Charcoal"],
+.color-list a[data-color="charcoal"],
+.color-list a[data-color=Color_Charcoal],
+.by-Color[data-tag="Color_charcoal"] .color-icon,
+.swatch-element.charcoal label::before {
+  background: $color-swatch-charcoal; 
+}
+
+// Brown
+.color-list a[data-color="Brown"],
+.color-list a[data-color="brown"],
+.color-list a[data-color=Color_brown],
+.by-Color[data-tag="Color_brown"] .color-icon,
+.swatch-element.brown label::before {
+  background: $color-swatch-brown; 
+}
+
+// Gray / Grey
+.color-list a[data-color=Grey],
+.color-list a[data-color=Gray],
+.color-list a[data-color=grey],
+.color-list a[data-color=gray],
+.color-list a[data-color=Color_grey],
+.color-list a[data-color=Color_gray],
+.by-Color[data-tag="Color_grey"] .color-icon,
+.by-Color[data-tag="Color_gray"] .color-icon,
+.swatch-element.grey label::before,
+.swatch-element.gray label::before {
+  background: $color-swatch-gray;
+}
+
+// Red
+.color-list a[data-color=Red],
+.color-list a[data-color=red],
+.color-list a[data-color=Color_red],
+.by-Color[data-tag="Color_red"] .color-icon,
+.swatch-element.red label::before {
+  background: $color-swatch-red; 
+}
+
+// Tan
+.color-list a[data-color=Tan],
+.color-list a[data-color=tan],
+.color-list a[data-color=Color_tan],
+.by-Color[data-tag="Color_tan"] .color-icon,
+.swatch-element.tan label::before {
+  background: $color-swatch-tan; 
+}
+
+// Gold
+.color-list a[data-color=Gold],
+.color-list a[data-color=gold],
+.color-list a[data-color=Color_gold],
+.by-Color[data-tag="Color_gold"] .color-icon,
+.swatch-element.gold label::before {
+  background: $color-swatch-gold; 
+}
+
+// Khaki
+.color-list a[data-color=Khaki],
+.color-list a[data-color=khaki],
+.color-list a[data-color=Color_khaki],
+.by-Color[data-tag="Color_khaki"] .color-icon,
+.swatch-element.khaki label::before {
+  background: $color-swatch-khaki; 
+}
+
+// Natural
+.color-list a[data-color=Natural],
+.color-list a[data-color=natural],
+.color-list a[data-color=Color_natural],
+.by-Color[data-tag="Color_natural"] .color-icon,
+.swatch-element.natural label::before {
+  background: $color-swatch-natural; 
+  border: 1px solid $color-dark;
+}
+
+// Olive
+.color-list a[data-color=Olive],
+.color-list a[data-color=Ollive],
+.color-list a[data-color=olive],
+.color-list a[data-color=ollive],
+.color-list a[data-color=Color_olive],
+.color-list a[data-color=Color_ollive],
+.by-Color[data-tag="Color_olive"] .color-icon,
+.by-Color[data-tag="Color_ollive"] .color-icon,
+.swatch-element.olive label::before {
+  background: $color-swatch-olive; 
+}
+
+// Yellow
+.color-list a[data-color=Yellow],
+.color-list a[data-color=yellow],
+.color-list a[data-color=Color_yellow],
+.by-Color[data-tag="Color_yellow"] .color-icon,
+.swatch-element.yellow label::before {
+  background: $color-swatch-yellow; 
+}
+
+// Dark Gray/Grey
+.color-list a[data-color="dark grey"],
+.color-list a[data-color="dark gray"],
+.color-list a[data-color="Dark Grey"],
+.color-list a[data-color="Dark Gray"],
+.color-list a[data-color="Dark grey"],
+.color-list a[data-color="Dark gray"],
+.color-list a[data-color=Color_dark_grey],
+.color-list a[data-color=Color_dark_gray],
+.by-Color[data-tag="Color_dark-grey"] .color-icon,
+.by-Color[data-tag="Color_dark-gray"] .color-icon,
+.swatch-element.dark-gray label::before,
+.swatch-element.dark-grey label::before {
+  background: $color-light-gray;
+}
+
+.color-list a[data-color=Purple],
+.color-list a[data-color=purple],
+.color-list a[data-color=Color_purple],
+.by-Color[data-tag="Color_purple"] .color-icon,
+.swatch-element.purple label::before {
+  background: $color-swatch-purple;
+}
+
+.color-list a[data-color="Cloud Burst"],
+.color-list a[data-color="cloud burst"],
+.color-list a[data-color="Cloud burst"],
+.color-list a[data-color=Color_cloud-burst],
+.by-Color[data-tag="Color_cloud-burst"] .color-icon,
+.swatch-element.cloud-burst label::before {
+  background: $color-cloud-burst;
+}
+
+.color-list a[data-color=Orange],
+.color-list a[data-color=orange],
+.color-list a[data-color=Color_orange],
+.by-Color[data-tag="Color_orange"] .color-icon,
+.swatch-element.orange label::before {
+  background: $color-swatch-orange;
+}
+
+.color-list a[data-color=Marron],
+.color-list a[data-color=marron],
+.color-list a[data-color=Color_marron],
+.by-Color[data-tag="Color_maroon"] .color-icon,
+.swatch-element.maroon label::before {
+  background: $color-swatch-maroon;
+}
+
+.color-list a[data-color=Teal],
+.color-list a[data-color=teal],
+.color-list a[data-color=Color_teal],
+.by-Color[data-tag="Color_teal"] .color-icon,
+.swatch-element.teal label::before {
+  background: $color-swatch-teal;
+}
+
+.color-list a[data-color=Turquoise],
+.color-list a[data-color=turquoise],
+.color-list a[data-color=Color_turquoise],
+.swatch-element.turquoise label::before,
+.by-Color[data-tag="Color_turquoise"] .color-icon {
+  background: $color-swatch-turquoise;
+}
+
+.swatch-element {
+  label {
+    // width: 20px;
+    // height: 20px;
+    position: relative;
+    border-radius: 50%;
+    margin-right: 3px;
+    background: transparent;
+
+    @include transition(all 400ms $cubic);
+
+    &::before {
+      position: absolute;
+      content: "";
+      // width: 12px;
+      // height: 12px;
+      border-radius: 50%;
+      margin: auto;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      display: block;
+      transform-origin: center;
+    }
+
+    &::after {
+      position: absolute;
+      content: "";
+      // width: 20px;
+      // height: 20px;
+      border-radius: 50%;
+      transform-origin: center;
+      margin: auto;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      display: block;
+      border: 1px solid $color-dark;
+
+      @include transition(all 400ms $cubic);
+      @include transform(scale(0));
+    }
+  }
+
+  &.active label::after {
+    @include transform(scale(1));
+  }
+}
+
+.swatch-size {
+  @include flexbox();
+  @include justify-content(flex-start);
+  @include align-items(center);
+
+  label {
+    line-height: 28px;
+    padding: 0;
+    font-size: 1em;
+    color: $color-dark;
+
+  }
+}
+
+section.quick-view,
+section .product-list .swatch-size .swatch-element,
+.swatch-size .swatch-element {
+  &.xs-s label,
+  &.x-s label,
+  &.s-m label,
+  // label[for$=xl],
+  &.m-l label {
+    // margin-right: 12px;
+    // width: 100%;
+    width: 45px;
+    // height: 26px;
+    height: 100%;
+
+    &::before,
+    &::after {
+      width: 100%;
+      height: 100%;        
+    }
+
+    &::before {
+      top: -1px;
+      border-radius: 0;
+      left: -4px;
+    }
+  }
+
+
+  label[for=swatch-0-8-9],
+  label[for=swatch-0-9-10],
+  label[for=swatch-0-10-11],
+  label[for=swatch-0-11-12],
+  label[for=swatch-0-12-13],
+  label[for=swatch-0-13-14] {
+    width: 47px;
+    left: -4px;
+
+    &::before,
+    &::after {
+      width: 47px;
+    }
+  }
+
+  label[for$=xl]  {
+    width: 40px;
+    left: -4px;
+
+    &::before,
+    &::after {
+      width: 40px;
+    }
+  }
+
+  // Posters
+  label[for$="27x39"] {
+    width: 70px;
+
+    &::before,
+    &::after {
+      width: 100%;
+    }
+  }
+
+  &.xs-s.soldout label,
+  &.x-s.soldout label,
+  &.s-m.soldout label,
+  &.soldout label[for$=xl],
+  &.m-l.soldout label {
+    &::before {
+      width: 100%;
+      height: 2px;
+    }
+  }
+
+  &.xl label {
+    width: 28px;
+    height: 28px;
+
+    &::before {
+      width: 12px;
+      height: 12px;
+    }
+
+    &::after {
+      width: 28px;
+      height: 28px;
+    }
+  }
+}
+
+// section.quick-view .size-list {
+//   a[data-size="9/10"],
+//   a[data-size="10/11"],
+//   a[data-size="11/12"],
+//   a[data-size="13/14"],
+//   a[data-size="14/15"] {
+//     width: 47px;
+//     left: -4px;
+
+//     &::before,
+//     &::after {
+//       width: 47px;
+//     }
+//   }
+// }
+
+section.quick-view .swatch-element.one-size label,
+.swatch-element.one-size label {
+  width: 80px;
+  height: 28px;
+
+  &::after {
+    width: calc(100% + 10px);
+    height: calc(100% + 10px);
+    left: -5px;
+  }
+}
+
+@media (max-width: 1200px) {
+  #collections-section-two {
+    .col-lg-4:last-child,
+    .col-md-4:last-child,
+    .col-sm-6:last-child,
+    .col-xs-6:last-child {
+      // min-height: 57vw;
+    }
+  }
+
+  #home-section-two {
+    .bottom-lg-spacing {
+      padding-bottom: 40px;
+    }
+  }
+
+  #home-section-two, 
+  #home-section-three, 
+  #home-section-four, 
+  #home-section-five, 
+  #collections-section-two {
+    .price-color-wrap .large {
+      width: auto;
+      // width: 25%;
+      @include inline-flex();
+    }
+
+    .price-color-wrap .swatch-color {
+      // width: 75%;
+      width: auto;
+    }
+  }
+}
+
+@media all and (min-width: 1025px) {
+  .product-list {
+    .item-background {
+      background: white;
+      position: absolute;
+      content: "";
+      top: -30px;
+      // top: 0;
+      left: -30px;
+      // left: 0;
+      bottom: 0;
+      width: calc(100% + 60px);
+      // width: 100%;
+      height: calc(100% + 158px);
+      // height: 100%;
+      opacity: 0;
+      z-index: 0;
+      transition: none;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+    }
+
+    .hover-variants {
+      @include flexbox;
+      @include flex-direction(column);
+      @include justify-content(flex-end);
+      
+      background: white;
+      opacity: 0;
+      bottom: 0;
+      position: absolute;
+      width: 100%;
+      top: 100%;
+      z-index: 5;
+      transition: 200ms all linear, 0ms;
+      overflow: hidden;
+      height: 128px;
+      padding-bottom: 30px;
+    }
+
+    li {
+      overflow: hidden;
+    }
+
+    li:hover {
+      overflow: visible;
+      z-index: 4;
+    }
+
+    li .inner-item:hover {
+      .item-background {
+        opacity: 1;
+      }
+
+      .hover-variants {
+        pointer-events: all;
+        opacity: 1;
+        transition: 200ms all linear, 200ms;
+      }
+    }
+  }
+} // End 1024 Min
+
+@media all and (max-width: 1024px) {
+  .hover-variants {
+    display: none;
+    visibility: hidden;
+  }
+}
+
+@media (max-width: 991px) {
+  #home-section-two, 
+  #home-section-three, 
+  #home-section-four, 
+  #home-section-five {
+    .row-wrapper {
+      padding-left: 15px;
+      padding-right: 15px;
+    }
+  }
+
+  #collections-section-two {
+    // .hover-expanded {
+    //   position: static;
+    //   padding: 0 10px;
+    //   width: 100%;
+    //   background: transparent;
+    //   box-shadow: none;
+    //   // form,
+    //   // .swatch-size {
+    //   //   display: none;
+    //   // }
+    // }
+
+    .product-list .title {
+      margin-bottom: 6px;
+    }
+
+    .collection-list {
+      padding: 40px 15px 0;
+    }
+
+    .row-wrapper {
+      padding: 0;
+    }
+
+    // .col-lg-4,
+    // .col-md-4,
+    // .col-sm-6,
+    // .col-xs-6 {
+    //   min-height: 0;
+    // }
+
+    // .swatch {
+    //   margin-top: 6px;
+    // }
+  }
+}
+
+@media (max-width: 767px) {
+  #collections-section-one {
+    .heading-140 {
+      font-size: 60px;
+    }
+
+    .filter-button-row .filter {
+      border-radius: 22px;
+      font-size: 16px;
+      padding: 6px 25px;
+    }
+  }
+
+  #collections-section-two {
+    form .btn {
+      font-size: 12px;
+    }
+
+    .inner-item {
+      margin: 0;
+      padding: 0 10px;
+    }
+
+    .product-modal-link {
+      width: 48px;
+      height: 40px;
+
+      svg {
+        width: 28px;
+        height: 28px;
+      }
+    }
+
+    .collection-list {
+      padding: 40px 10px 0;
+    }
+
+    .product-list .title {
+      text-align: center;
+      font-size: 16px;
+    }
+
+    .price-color-wrap .swatch .white {
+      label {
+        // border: solid 1px;
+      }
+    }
+
+    .price-color-wrap {
+      display: block;
+
+      .large {
+        width: 100%;
+        text-align: center;
+        font-size: 16px;
+      }
+
+      .swatch {
+        width: 100%;
+        justify-content: center;
+        margin-top: 6px;
+      }
+    }
+  }
+}

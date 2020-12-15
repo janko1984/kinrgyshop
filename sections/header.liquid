@@ -1,0 +1,53 @@
+<div class="container-fluid main-header">
+  
+  <div class="row"> 
+    <div class="col-2 col-md-2 d-lg-none">
+      <i class="hamburger js-menu">
+        <span class="line"></span>
+        <span class="line"></span>
+        <span class="line"></span>
+      </i>
+    </div>
+
+    <div class="col-6 col-md-6 col-lg-4 logo-w">
+      <a href="{{ routes.root_url }}" class="logo-main">LOGO</a>
+    </div>
+
+    <div class="col-lg-6 d-none d-lg-flex align-items-center justify-content-end">
+      {% include 'site-nav' %}
+    </div>
+
+    <div class="col-4 col-md-4 col-lg-2 d-flex">
+      <ul class="extra-menu">
+        <li><a class="js_search" href="#">{% include 'icon-search' %}{% include 'search-drawer' %}</a></li>
+        <li><a class="extra-menu__cart js_cart" href="#"><div id="cartCount">{{ cart.item_count }}</div>{% include 'icon-cart' %}</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-12">
+      {% if template != 'cart' %}
+        {% include 'cart_dropdown' %}
+      {% endif %}
+    </div>
+  </div>
+
+  <div class="row d-lg-none">
+    <section class="mobile-menu">
+      {% include 'site-nav' %}
+    </section>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Header",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Announcement bar"
+    }
+  ]
+}
+{% endschema %} 

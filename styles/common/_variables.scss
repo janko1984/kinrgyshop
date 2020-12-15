@@ -1,0 +1,111 @@
+/** Import Bootstrap functions */
+@import "bootstrap/scss/functions";
+
+/** Bootstrap navbar fix (https://git.io/fADqW) */
+$navbar-dark-toggler-icon-bg: none;
+$navbar-light-toggler-icon-bg: none;
+
+// Grid breakpoints
+//
+// Define the minimum dimensions at which your layout will change,
+// adapting to different screen sizes, for use in media queries.
+
+$grid-breakpoints: (
+  xs: 0,
+  sm: 576px,
+  md: 768px,
+  lg: 1025px,
+  xl: 1300px
+) !default;
+
+$container-max-widths: (
+  sm: 540px,
+  md: 728px,
+  lg: 984px,
+  xl: 1260px
+) !default;
+
+// Colors
+$color-orange: #DE603C;
+$color-orange-l: #F6D0C5;
+$color-star: #F79E1B;
+$color-yellow: #F0D06C;
+$color-green: #45A871;
+$color-blue: #1F4D86;
+$color-blue-2: #8FA6C3;
+$color-blue-3: #D2DBE7;
+$color-dark: #333333;
+$color-gray: #999999;
+$color-gray-2: #D6D6D6;
+$color-gray-3: #EBEBEB;
+$color-gray-4: #C4C4C4;
+
+.white {
+  color: white;
+}
+
+.red {
+  color: $color-orange;
+}
+
+.blue {
+  color: $color-blue;
+}
+
+.green {
+  color: $color-green;
+}
+
+.yellow {
+  color: $color-yellow;
+}
+
+// Extra Swatches
+$color-white: #ffffff;
+$color-gray: #E0E0E0;
+$color-gray-dark: #A0A3A6;
+$color-black: #000;
+$color-dark: #1C1E20;
+$color-nav--light-gray: #D8D8D8;
+$color-light-gray: #807E7E;
+$color-price-gray: #6F7173;
+$cubic: cubic-bezier(0.255, 0.195, 0.135, 0.99);
+$color-pink: #FC0371;
+$color-green: #46EDA4;
+// $color-blue: #9ACAFC;
+$color-blue: #9ACAFC;
+$color-form-gray: #BFBDBD;
+$color-red: #FF0000;
+$color-sold-out: #AAADAF;
+
+$color-swatch-black: #232222;
+$color-swatch-olive: #757501;
+$color-swatch-pink: #FF8FCD;
+$color-swatch-purple: #4E1D92;
+$color-swatch-red: #D13939;
+$color-cloud-burst: #1E2C55;
+$color-swatch-green: #418D13;
+$color-swatch-orange: #F8650E;
+$color-swatch-maroon: #931010;
+$color-swatch-royal-blue: #4169e1;
+$color-swatch-navy-blue: #002366;
+$color-swatch-teal: #008080;
+$color-swatch-yellow: #ffea00;
+
+$color-swatch-blue: #0940AF;
+$color-swatch-light-blue: #B7E9F7;
+$color-swatch-dark-blue: #003366;
+$color-swatch-brown: #814F1D;
+$color-swatch-charcoal: #606060;
+$color-swatch-forest-green: #156518;
+$color-swatch-kelly-green: #86D589;
+$color-swatch-gold: #F6E28A;
+$color-swatch-khaki: #C3B091;
+$color-swatch-natural: #F8f7ED;
+$color-swatch-tan: #D2B48C;
+$color-swatch-white: #F1F1F1;
+$color-swatch-gray: #BABABA;
+$color-swatch-turquoise: #00FFFF;
+
+$cubic: cubic-bezier(0.255, 0.195, 0.135, 0.99);
+$cubic-2: cubic-bezier(0.860, 0, 0.070, 1);

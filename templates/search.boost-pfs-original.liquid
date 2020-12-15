@@ -1,0 +1,36 @@
+{% paginate search.results by 18 %}
+  <section class="serach-results">
+    <div class="container">
+      <div class="col-12">
+        <h2>SEARCH: "{{ search.terms | escape }}"</h2>
+        
+        <div class="item-list">
+          {% if search.performed %}
+            {% for item in search.results %}
+              <div class="item">
+                {% if item.featured_image %}
+                  <a href="{{ item.url | within: collection }}" class="product_image" title="{{ item.title | escape }}">
+                    {{ item.featured_image.src | img_url: '590x660', crop: 'center' | img_tag: item.featured_image.alt }}
+                  </a>
+                {% else %}
+                  <a href="{{ item.url | within: collection }}" class="product_image" title="{{ item.title | escape }}">
+                    <img src="{{ 'default.gif' | asset_img_url : '590x660', crop: 'center' }}">
+                  </a>                
+                {% endif %}
+                  <div class="copy">
+                    <h3>{{ item.title | link_to: item.url }}</h3>
+                    <p>{{ item.price | money }}</p>
+                  </div>
+              </div>
+            {% else %}
+              No results
+            {% endfor %}
+          {% endif %}
+        </div>
+
+        <div class="paginationS">{% if paginate.pages > 1 %}{{ paginate | default_pagination }}{% endif %}</div>
+      </div>
+    </div>
+  </section>
+
+{% endpaginate %}

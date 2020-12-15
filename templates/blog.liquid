@@ -1,19 +1,34 @@
-{% paginate blog.articles by 5 %}
+{% paginate blog.articles by 18 %}
 
-<h1>{{ blog.title }}</h1>
-{% for article in blog.articles %}
-  <div>
-    <h2><a href="{{ article.url }}">{{ article.title }}</a></h2>
-    {{ article.author }} @ {{ article.created_at }}
-    <div>
-      {% if article.excerpt.size > 0 %}
-        {{ article.excerpt }}
-      {% else %}
-        <p>{{ article.content | strip_html | truncatewords: 100 }}</p>
-      {% endif %}
+<section class="serach-results">
+  <div class="container">
+    <div class="col-12">
+      <h1>
+        <div class="top red">LATEST</div>
+        <div class="bottom">NEWS</div>
+      </h1>
+
+      <div class="item-list blog-list">
+      {% for article in blog.articles %}
+        <div class="item">
+          {% if article.image %}
+            <a href="{{ article.url | within: collection }}" class="product_image" title="{{ article.title | escape }}">
+              {{ article.image.src | img_url: '590x660', crop: 'center' | img_tag: article.image.alt }}
+            </a>
+          {% else %}
+            <a href="{{ article.url | within: collection }}" class="product_image" title="{{ article.title | escape }}">
+              <img src="{{ 'default.gif' | asset_img_url : '590x660', crop: 'center' }}">
+            </a>                
+          {% endif %}
+            <div class="copy">
+              <h3>{{ article.title | link_to: article.url }}</h3>
+            </div>
+        </div>
+      {% endfor %}
+      </div>
     </div>
   </div>
-{% endfor %}
+</section>
 
 {% if paginate.pages > 1 %}
   {{ paginate | default_pagination }}

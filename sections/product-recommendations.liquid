@@ -1,0 +1,126 @@
+<div class="product-recommendations" data-product-id="{{ product.id }}" data-limit="12">
+  {%- if recommendations.products_count > 0 -%}
+    <section class="product-slider">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-4 col-lg-4">
+            <h2>
+              <div class="top red">RECOMMENDED</div>
+    
+              <div class="bottom">PRODUCTS</div>
+            </h2>
+          </div>
+    
+          <div class="col-md-3 offset-md-5 col-lg-2 offset-lg-6 slide-control">
+            <a href="#" class="button-arrow prev">{% include 'icon-slider-left' %}</a>
+            <a href="#" class="button-arrow next">{% include 'icon-slider-right' %}</a>
+          </div>
+        </div>
+    
+        <div class="row">
+          <div class="col-md-12 col-lg-12">
+            <div class="">
+              <div class="splide splide-1">
+                <div class="splide__arrows hidden">
+                  <button class="splide__arrow splide__arrow--prev">
+                    Prev
+                  </button>
+                  <button class="splide__arrow splide__arrow--next">
+                    Next
+                  </button>
+                </div>
+    
+                <div class="splide__track">
+                  <ul class="splide__list">
+                    {%- for product in recommendations.products -%}
+                    <li class="splide__slide">
+                      <a href="{{ product.url | within: collection }}">
+                        <figure>
+                          <img src="{{ product.featured_image.src | img_url : '590x660', crop: 'center' }}" alt="{{ pproduct.featured_image.alt | escape }}">
+                        </figure>
+    
+                        <div class="meta">
+                          <div class="left">{{ product.type }}</div>
+                          <div class="right">{% render 'hc-product-rating', product: product %}</div>
+                        </div>
+    
+                        <h3>{{ product.title }}</h3>
+    
+                        <span class="price">{{ product.price | money }}
+                        {% unless product.available %}<br><strong>sold out</strong>{% endunless %}
+                        </span>
+                      </a>
+                    </li>
+                    {% endfor %}
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  {%- endif -%}
+</div>
+
+{% javascript %}
+var loadProductRecommendationsIntoSection = function() {
+  // Look for an element with class 'product-recommendations'
+  var productRecommendationsSection = document.querySelector(".product-recommendations");
+  if (productRecommendationsSection === null) { return; }
+  // Read product id from data attribute
+  var productId = productRecommendationsSection.dataset.productId;
+  // Read limit from data attribute
+  var limit = productRecommendationsSection.dataset.limit;
+  // Build request URL
+  var requestUrl = "/recommendations/products?section_id=product-recommendations&limit="+limit+"&product_id="+productId;
+  // Create request and submit it using Ajax
+  var request = new XMLHttpRequest();
+  request.open("GET", requestUrl);
+  request.onload = function() {
+    if (request.status >= 200 && request.status < 300) {
+      var container = document.createElement("div");
+      container.innerHTML = request.response;
+      productRecommendationsSection.parentElement.innerHTML = container.querySelector(".product-recommendations").innerHTML;
+
+      if (document.querySelector('.splide-1')) {
+        new Splide( '.splide-1', {
+          type   : 'loop',
+          perPage: 4,
+          perMove: 4,
+          gap: 20,
+          speed: 800,
+          easing: 'cubic-bezier(0.255, 0.195, 0.135, 0.99)',
+          //arrows: false,
+          pagination: false,
+          breakpoints: {
+            640: {
+              perPage: 1,
+              perMove: 1,
+            }
+          }
+        } ).mount();
+      }
+      
+      const slideButtons = document.querySelectorAll('.slide-control .button-arrow');
+      slideButtons.forEach(item => {
+        item.addEventListener('click', event => {
+          event.preventDefault();
+          
+          if (item.classList.contains('prev')) {
+            item.closest('.product-slider').querySelector('.splide__arrow--prev').click();
+          }else {
+            item.closest('.product-slider').querySelector('.splide__arrow--next').click();
+          }
+          
+        })
+      });
+    }
+  };
+  request.send();
+};
+
+// Fetching the recommendations on page load
+loadProductRecommendationsIntoSection();
+
+{% endjavascript %}

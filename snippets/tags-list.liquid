@@ -1,0 +1,51 @@
+{% comment %}
+	
+	- checks for certain tags to be displayed
+
+{% endcomment %}
+
+{% for tag in product.tags %}
+
+	{% assign lowercase_tags = tag | downcase %}
+
+	{% if lowercase_tags == 'best seller' %}
+		<span class="product-tag black">BEST SELLER</span>
+	{% endif %}
+
+	{% if lowercase_tags == 'new' %}
+		<span class="product-tag blue">NEW</span>
+	{% endif %}
+
+	{% if lowercase_tags == 'waitlist' %}
+		<span class="product-tag black">WAITLIST</span>
+	{% endif %}
+
+	{% if lowercase_tags == 'sale' %}
+		<span class="product-tag red">SALE</span>
+	{% endif %}
+
+	{% if lowercase_tags == 'pre-sale' or lowercase_tags == 'pre sale' or lowercase_tags == 'presale' %}
+		<span class="product-tag black">PRE-SALE</span>
+	{% endif %}
+
+	{% if lowercase_tags == 'back in stock' %}
+		<span class="product-tag black">BACK IN STOCK</span>
+	{% endif %}
+
+	{% if lowercase_tags == 'trending' %}
+		<span class="product-tag black">TRENDING</span>
+	{% endif %}
+
+	{% if lowercase_tags == 'must have' %}
+		<span class="product-tag black">MUST HAVE</span>
+	{% endif %}
+
+	{% if lowercase_tags == 'few left' %}
+		<span class="product-tag black">FEW LEFT</span>
+	{% endif %}
+
+	{% if lowercase_tags == 'going fast' %}
+		<span class="product-tag black">GOING FAST</span>
+	{% endif %}
+	
+{% endfor %}

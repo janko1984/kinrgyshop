@@ -1,46 +1,84 @@
-{% if cart.item_count > 0 %}
-  <h1>cart</h1>
-  <form action="/cart" method="post" novalidate>
-    <table>
-      <thead>
-        <th colspan="2">Prod</th>
-        <th>Price</th>
-        <th>Qty</th>
-        <th>total</th>
-      </thead>
-      <tbody>
-        {% for item in cart.items %}
-          <tr>
-            <td>
-              <a href="{{ item.url | within: collections.all }}">
-                <img src="{{ item | img_url: 'medium' }}" alt="{{ item.title | escape }}">
-              </a>
-            </td>
-            <td>
-              <a href="{{ item.url }}">{{ item.product.title }}</a>
-              {{ item.variant.title }}
-              <a href="/cart/change?line={{ forloop.index }}&amp;quantity=0">remove</a>
-            </td>
-            <td>{{ item.price | money }}</td>
-            <td>
-              <input type="number" name="updates[]" id="updates_{{ item.key }}" value="{{ item.quantity }}" min="0">
-            </td>
-            <td>
-              {% if item.original_line_price != item.line_price %}{{ item.original_line_price | money }}{% endif %}
-              {{ item.line_price | money }}
-              {% for discount in item.discounts %}{{ discount.title }}{% endfor %}
-            </td>
-          </tr>
-        {% endfor %}
-      </tbody>
-    </table>
-    <div>
-      <p>sub total : {{ cart.total_price | money }}</p>
-      <button type="submit" name="update">Update</button>
-      <button type="submit" name="checkout">Checkout</button>
+<div class="container">
+  <div class="row">
+    <div class="col-md-12 col-lg-8">
+      <h1>MY CART</h1>
     </div>
-  </form>
-{% else %}
-  <h2>cart</h2>
-  Cart is empty
-{% endif %}
+  </div>
+
+  <div class="row">
+    <div class="col-12 col-md-12 col-lg-8">
+      {% if cart.item_count > 0 %}
+
+        <form data-cart-view="data-cart-view">
+          <div class="header row">
+            <div class="col-md-1 offset-md-6">
+              <span>PRICE</span>
+            </div>
+
+            <div class="col-md-2 text-center">
+              <span>QTY</span>
+            </div>
+
+            <div class="col-md-1">
+              <span>TOTAL</span>
+            </div>
+          </div>
+
+          <div class="items">
+            
+            <div rv-each-item="cart.items" class="item row">
+              <a class="col-3 col-md-2">
+                <div class="thumb">
+                  <img rv-src="item.image | productImageSize 'medium'">
+                </div>
+              </a>
+          
+              <div class="name col-9 col-md-3" rv-text="item.title"></div>
+
+              <div class="price col-2 col-md-1 offset-md-1"><em class="price" rv-html="item.price | money"></em></div>
+              
+              <div class="control col-4 offset-1 col-md-2 offset-md-0">
+                <div class="minus">
+                  <a class="externe" href="#" rv-data-cart-update="index | plus 1" rv-data-cart-quantity="item.quantity | minus 1">-</a>
+                </div>
+
+                <div class="qty cart__qty-input">
+                  <span rv-html="item.quantity"></span>
+                </div>
+                
+                <div class="plus">
+                  <a class="externe" href="#" rv-data-cart-update="index | plus 1" rv-data-cart-quantity="item.quantity | plus 1">+</a>
+                </div>
+              </div>
+
+              <div class="price col-2 col-md-1"><em rv-html="item.final_line_price | money"></em></div>
+
+              <a class="col-1 offset-1 col-md-1 offset-md-1 remove-item" href="#" rv-data-cart-remove="index | plus 1">{% include 'icon-trash' %}</a>
+          
+            </div>
+            
+          </div>
+          
+          <div class="total row">
+            <div class="col-md-12 space-between">
+              <div>Subtotal:</div>
+              <div><span class="cart__subtotal" rv-html="cart.total_price | money"></span></div>
+            </div>
+          </div>
+
+          <div class="space-between row btns">
+            <a href="/collections/all" class="link">ContInue shopping</a>
+
+            <a class="button" href="/checkout"><span>CHECKOUT</span></a>
+          </div>
+
+        </form>
+
+      {% else %}
+
+        <p>Your cart is empty</p>
+
+      {% endif %}
+    </div>
+  </div>
+</div>
