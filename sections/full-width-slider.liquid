@@ -1,0 +1,116 @@
+<section class="full-width-slider container-fluid text-light" id="full-width-slider-{{ section.settings.fullslider_id }}">
+  <div class="row">
+    <div class="col-12 slider-one" id="full-width-slider-row-{{ section.settings.fullslider_id }}">
+
+      <div class="slider-one-wrap">
+        <div class="slider-one-content" id="full-width-slider-content-{{ section.settings.fullslider_id }}">
+
+          {% for block in section.blocks %}
+              
+              <div class="slide" data-number="{{ forloop.index0 }}">
+              <div class="background" style="background: url({{ block.settings.fullslider_image | img_url: '1440x' }}) no-repeat center center; background-size: cover;"></div>
+                <div class="row">
+                  <p class="subtitle">{{ block.settings.fullslider_subtitle_one }}</p>
+                  <h1>{{ block.settings.fullslider_heading_one }}</h1>
+
+                  {% if  block.settings.fullslider_heading_two != blank %}
+                    <h1>{{ block.settings.fullslider_heading_two }}</h1>
+                  {% endif %}
+
+                  <div class="button-wrapper">
+                    <a class="regular-button pink" href="{{ block.settings.fullslider_button_url }}" target="_self">
+                      <span class="text">{{ block.settings.fullslider_button_text }}</span>
+                    </a>
+                  </div>
+
+                </div>
+              </div>
+          {% endfor %}
+
+          <div class="box"></div>
+
+        </div>  
+      {% comment %} </div> {% endcomment %}
+      <ul class="dots">
+
+				{% for block in section.blocks %} 
+          {% if  forloop.first == true %}
+            <li>
+              <a href="#" class="active" data-count="{{ forloop.index0 }}"></a>
+            </li>
+          {% else %}
+            <li>
+              <a href="#" data-count="{{ forloop.index0 }}"></a>
+            </li>
+          {% endif %}
+        {% endfor %}
+
+      </ul>
+      </div>
+      
+    </div>
+  </div>
+</section>
+
+{% schema %}
+  {
+    "name": "Full Width Slider",
+    "settings": [
+      {
+        "id": "fullslider_id",
+        "type": "text",
+        "label": "Section ID",
+        "default": "-home",
+        "info": "Please don't change"
+      }
+    ],
+    "blocks": [
+      {
+        "name": "Slide",
+        "type": "section",
+        "settings": [
+          {
+            "id": "fullslider_subtitle_one",
+            "type": "text",
+            "label": "Subtitle",
+            "default": "Subtitle"
+          },
+          {
+            "id": "fullslider_heading_one",
+            "type": "text",
+            "label": "Section Heading",
+            "default": "Heading Line One"
+          },
+          {
+            "id": "fullslider_heading_two",
+            "type": "text",
+            "label": "Heading Line Two",
+            "default": "Heading Line Two"
+          },
+          {
+            "id": "fullslider_image",
+            "type": "image_picker",
+            "label": "Slide Image"
+          },
+          {
+            "id": "fullslider_button_text",
+            "type": "text",
+            "label": "Button Text",
+            "default": "buy now"
+          },
+          {
+            "id": "fullslider_button_url",
+            "type": "url",
+            "label": "Button Url"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

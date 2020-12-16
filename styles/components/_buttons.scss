@@ -1,0 +1,24 @@
+.button-wrapper {
+  @include flexbox();
+}
+
+.regular-button {
+  padding: 21px 70px;
+  border-radius: 4px;
+
+  @include inline-flexbox();
+}
+
+.regular-button,
+.regular-button .text {
+  font-size: 0.875em;
+  line-height: 1.2856em;
+  font-family: $kb;
+  font-weight: 700;
+  color: $color-white;
+  text-transform: uppercase;
+}
+
+.regular-button.pink {
+  background: $color-pink;
+}

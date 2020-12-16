@@ -258,6 +258,259 @@ window.addEventListener("load", function(){
     if (document.querySelector('.announcement-bar') != null || document.querySelector('.announcement-bar') != undefined) {
       announcementBar();
     }
+
+
+
+
+
+
+
+
+// *********************
+// Full Width Slider
+// *********************
+class FullWidthSlider {
+  constructor({slider, rowId, counter, dots}) {
+    this.slider = slider;
+    this.rowId = rowId;
+    this.content = this.slider.querySelector('.slider-one-content');
+    this.slides = this.slider.querySelectorAll('.slide');
+    this.slideWidth = this.slides[0].getBoundingClientRect().width;
+    this.wrapWidth = this.content.getBoundingClientRect().width;
+    this.wrapVal;
+    this.viewWidth = window.innerWidth;
+    this.counter = counter;
+    this.active = 0;
+    this.currentCount = document.querySelector(`#${this.rowId} .current p`);
+    this.totalCount = document.querySelector(`#${this.rowId} .total p`);
+    this.slidePositions;
+
+    this.singleSlideBool = false;
+
+    this.dotLinks;
+    this.dots = dots;
+    if (this.dots) {
+      this.dotLinks  = document.querySelectorAll(`#${this.rowId} .dots a`);
+      this.dotsClick();
+    } else {
+      this.dots = false;
+    }
+
+    // Det total counter value
+    if (this.counter) {
+
+      // If not just one slide
+      if (this.slides.length != 1) {
+
+        // If less than 10
+        if (this.slides.length < 10) {
+          this.totalCount.textContent = '0' + this.slides.length;
+        } else {
+          this.totalCount.textContent = this.slides.length;
+        }
+        } else {
+          // Remove drag
+          this.singleSlideBool = true;
+        }
+    }
+  
+    setTimeout(() => {
+      this.init();
+      this.resize();
+      
+      // If more than one slide - enable drag
+      if (! this.singleSlideBool) {
+        setTimeout(() => {
+          this.move();
+        }, 200)
+      } else {
+        // For regular mouse events
+        this.content.classList.add('normal-cursor');
+      }
+
+    }, 1000)
+  }
+
+  init() {
+    // console.log('a104')
+    this.slidePositions = new Array();
+
+    // Get slide widths
+    this.slides.forEach((slide, index) => {
+      if (index == 0) {
+        this.slidePositions.push(this.slideWidth * index);
+      } else {
+        this.slidePositions.push(-this.slideWidth * index);
+      }
+    })
+  }
+
+  move() {
+    // set width
+    let wrapWidth = this.content.getBoundingClientRect().width;
+
+    let slideWidth = this.slides[0].getBoundingClientRect().width;
+
+    // Find draggable el
+    let dragId = '#' + this.content.id;
+
+    // Set dots vars
+    let dotsBool = this.dots;
+    let dotsList;
+    if (dotsBool) {
+      dotsList = this.dotLinks;
+    }
+
+    // Controls drag of slider
+    let dragEl = Draggable.create(dragId, {
+      type: "x",
+      trigger: dragId,
+      inertia: true,
+      minimumMovement: 1,
+      edgeResistance: 1,
+      dragResistance: 0,
+      zIndexBoost: false,
+      zIndex: 1000,
+      bounds: {
+        minX: 1, 
+        maxX: -this.wrapWidth + (this.slideWidth), 
+        minY: 0, 
+        maxY: 0
+      },
+      onDrag: updateProgress,
+      onThrowUpdate: updateProgress,
+      snap: { 
+        // sx: snap(x)
+        x: (x) => {
+
+          // Next slide
+          let nextSlide = Math.round(x / this.slideWidth) * this.slideWidth;
+
+          // Find closest slide to next slide
+          var closest = this.slidePositions.reduce(function(prev, curr) {
+            return (Math.abs(curr - nextSlide) < Math.abs(prev - nextSlide) ? curr : nextSlide);
+          });
+
+          let nextCount = Number(this.slidePositions.indexOf(closest));
+
+          this.active = nextCount;
+
+          if (this.counter) {
+            // Update Current Count
+            if (nextCount <= 0) {
+              this.currentCount.textContent = '01';  
+            } else if (nextCount != 0) {
+              this.currentCount.textContent = '0' + (nextCount + 1);
+            }
+          }
+
+          // If dots
+          if (dotsBool) {
+            // Remove active
+            dotsList.forEach( a => { a.classList.remove('active') });
+
+            // Switch active
+            if (this.active <= 0) {
+              dotsList[0].classList.add('active')
+            } else if (this.active != 0) {
+              dotsList[this.active].classList.add('active')
+            }
+          }
+          
+          return nextSlide;
+        } 
+      },
+    })[0];
+    this.dragEl = dragEl;
+
+
+    // Animate Slider
+    function updateProgress() {
+      let test = animation.progress(this.x / wrapWidth);
+    }
+
+
+    // Find box el
+    let temp = '#' + this.rowId + ' .box';
+
+    // Move slider
+    const animation = gsap.to(temp, {
+      duration: 0.6,
+      x: `+=${wrapWidth}`, 
+      ease: "power4.easeOut",
+      overwrite: true,
+      paused: true,
+      modifiers: {
+        x: function(x, target) {
+          x = parseInt(x) % wrapWidth;
+            return `${x}px`;
+        }
+      },
+    });
+  }
+
+
+  // On dot click - move the slider
+  dotsClick() {
+    this.changeSlides = event => {
+      event.preventDefault();
+
+      let active = event.target.dataset.count;
+
+      this.active = active;
+
+      this.dotLinks.forEach( (a,index) => {
+        a.classList.remove('active');
+
+        if (index == active) {
+          a.classList.add('active');
+        }
+      })
+
+      // Move the slider - via dots
+      gsap.to(this.content, {
+        duration: 0.4,
+        ease: "power1.inOut",
+        x: this.slidePositions[this.active],
+      })
+    }
+
+
+    this.dotLinks.forEach(a => {
+      a.addEventListener('click', event => { this.changeSlides(event) });
+    })
+  }
+
+  resize() {
+    window.addEventListener("resize", () => { this.resizeSlider() });
+
+    this.resizeSlider = () => {
+      
+      // Re find values
+      this.slideWidth = this.slides[0].getBoundingClientRect().width;
+      this.wrapWidth = this.content.getBoundingClientRect().width;
+      this.init();
+
+      // Keep slider at current slide
+      gsap.to(this.content, {x: this.slidePositions[this.active] + 'px' })
+    }
+  }
+}
+
+
+  // Index
+  if (document.querySelector('body').classList.contains('index')) {
+
+    console.log(document.querySelectorAll('#full-width-slider-row-home .dots a'))
+    // Home Slider
+    let sliderOne = new FullWidthSlider({
+      slider: document.querySelector('#full-width-slider-row-home'),
+      rowId: 'full-width-slider-row-home',
+      counter: false,
+      dots: true,
+    });
+    console.log(sliderOne)
+ }
 });
 
 window.addEventListener('resize', (event) => {

@@ -1,0 +1,92 @@
+<section class="hero-one" id="hero-one-{{ section.settings.hero_id }}">
+
+<div class="background" style="background: url({{ section.settings.hero_background | img_url: '1400x' | width }}) no-repeat center center; background-size: cover;"></div>
+<div class="background-mobile" style="background: url({{ section.settings.hero_background_mobile | img_url: '1400x' | width }}) no-repeat center center; background-size: cover;"></div>
+  <div class="row">
+    <div class="g-4">
+      <p class="subtitle">{{ section.settings.hero_subtitle }}</p>
+      <p class="f-50">{{ section.settings.hero_line_one }}</p>
+      <h1>{{ section.settings.hero_line_two }}</h1>
+      {{ section.settings.hero_subtitle_two}}
+      {{ section.settings.hero_copy }}
+      <div class="button-wrapper">
+        <a href="{{ section.settings.hero_button_url }}" class="regular-button">
+          <span class="text">{{ section.settings.hero_button_copy }}</span>
+          {% comment %} {% include 'icon-button-arrow' %} {% endcomment %}
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+  {
+    "name": "Hero",
+    "settings": [
+      {
+        "id": "hero_id",
+        "type": "text",
+        "label": "Section ID",
+        "default": "hero-one",
+        "info": "Please don't change"
+      },
+      {
+        "id": "hero_subtitle",
+        "type": "html",
+        "label": "Subtitle",
+        "default": "BLACK FRIDAY"
+      },
+      {
+        "id": "hero_line_one",
+        "type": "text",
+        "label": "Heading Line One",
+        "default": "Unlimited"
+      },
+      {
+        "id": "hero_line_two",
+        "type": "text",
+        "label": "Heading Line Two",
+        "default": "Kingry"
+      },
+      {
+        "type": "text",
+        "id": "hero_subtitle_two",
+        "label": "Add copy below",
+        "default": "<p>!For this weekend only!</p>"
+      },
+      {
+        "type": "html",
+        "id": "hero_copy",
+        "label": "Add copy below",
+        "default": "<p>Get 2021 membership for $240 and save almost 40%! + 2020 for free!</p>"
+      },
+      {
+        "id": "hero_button_copy",
+        "type": "text",
+        "label": "Button Copy",
+        "default": "join today"
+      },
+      {
+        "id": "hero_button_url",
+        "type": "url",
+        "label": "Button Url"
+      },
+      {
+        "type": "image_picker",
+        "id": "hero_background",
+        "label": "Background image"
+      },
+      {
+        "type": "image_picker",
+        "id": "hero_background_mobile",
+        "label": "Background image mobile"
+      }
+    ]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

@@ -1,0 +1,82 @@
+<section class="cta shop" id="cta-shop-{{ section.settings.cta_shop_id }}">
+{% include 'icon-lines-one' %}
+  <div class="row row-center">
+    <div class="col-lg-4 col-md-4 offset-lg-1 offset-md-1">
+        <p class="subtitle">{{ section.settings.cta_shop_subtitle }}</p>
+        <h2>{{ section.settings.cta_shop_heading }}</h2>
+        {{ section.settings.cta_shop_copy }}
+
+        <div class="button-wrapper">
+          <a class="regular-button pink" href="{{ section.settings.cta_shop_button_url }}" target="_self">
+            <span class="text">{{ section.settings.cta_shop_button_text }}</span>
+          </a>
+        </div>
+
+    </div>
+    <div class="col-lg-6 col-md-6 offset-lg-1 offset-md-1">
+      <figure>
+        <img 
+          src="{{ section.settings.cta_shop_image | img_url: '576x' | width }}"
+          srcset="{{ section.settings.cta_shop_image | img_url: '1440x' | width }} 1440w,
+          {{ section.settings.cta_shop_image | img_url: '1440x' | width }} 6000w,
+          {{ section.settings.cta_shop_image | img_url: '800x' | width }} 800w"
+          alt="{{ section.settings.cta_shop_image | alt }}" loading="lazy">
+      </figure>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+  {
+    "name": "CTA Shop",
+    "settings": [
+      {
+        "id": "cta_shop_id",
+        "type": "text",
+        "label": "Section ID",
+        "default": "home",
+        "info": "Please don't change"
+      },
+       {
+        "id": "cta_shop_subtitle",
+        "type": "text",
+        "label": "Subtitle",
+        "default": "kinrgy store"
+      },
+      {
+        "id": "cta_shop_heading",
+        "type": "text",
+        "label": "Heading",
+        "default": "heading"
+      },
+      {
+        "type": "html",
+        "id": "cta_shop_copy",
+        "label": "Copy",
+        "default": "<p>Copy</p>"
+      },
+      {
+        "id": "cta_shop_button_text",
+        "type": "text",
+        "label": "Button Text",
+        "default": "shop"
+      },
+      {
+        "id": "cta_shop_button_url",
+        "type": "url",
+        "label": "Button Url"
+      },
+      {
+        "id": "cta_shop_image",
+        "type": "image_picker",
+        "label": "Image"
+      }
+    ]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

@@ -1,5 +1,31 @@
 {
-  "current": "Default",
+  "current": {
+    "sections": {
+      "full-width-slider": {
+        "type": "full-width-slider",
+        "settings": {
+          "fullslider_id": "home",
+          "fullslide_heading_one": "heading",
+          "fullslide_heading_two": "heading"
+        }
+      },
+      "cta-shop": {
+        "type": "cta-shop",
+        "settings": {
+          "cta_shop_id": "home",
+          "cta_shop_subtitle": "subtitle",
+          "cta_shop_heading": "heading",
+          "cta_shop_copy": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce quis ligula id purus maximus sodales. Suspendisse ac congue lectus.</p>",
+          "cta_shop_button_text": "shop",
+          "cta_shop_button_url": "link"
+        }
+      }
+    },
+    "content_for_index": [
+      "full-width-slider",
+      "cta-shop"
+    ]
+  },
   "presets": {
     "Default": {}
   }

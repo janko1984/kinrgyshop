@@ -1,0 +1,70 @@
+@font-face {
+  font-family: 'Klarheit Kurrent Regular';
+  src: url('../assets/KlarheitKurrent-Regular.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'Klarheit Kurrent Bold';
+  src: url('../assets/KlarheitKurrent-Bold.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'GT-Super-Display-Regular';
+  src: url('../assets/GT-Super-Display-Regular.woff2') format('woff2');
+}
+
+.text-light {
+  color: $color-white;
+}
+
+.subtitle {
+  font-size: 0.875em;
+  line-height: 1.714em;
+  text-transform: uppercase;
+  font-family: $kr;
+}
+
+body {
+  font-family: $kr;
+  font-size: 16px;
+  color: $color-dark;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: $gtsr;
+}
+
+h1 {
+  font-size: 3.333em; // 60
+  line-height: 1.15em;
+}
+
+h2 {
+  font-size: 3.125em; // 50
+  line-height: 1.16em;
+}
+
+h3 {
+  font-size: 2.5em; // 40
+  line-height: 1.15em;
+}
+
+h4 {
+  font-size: 2em; // 32
+  line-height: 1.1875em;
+}
+
+h5 {
+  font-size: 1.75em; // 28
+  line-height: 1.214em;
+}
+
+h6 {
+  font-size: 1.375em; // 22
+  line-height: 1.2727em;
+}

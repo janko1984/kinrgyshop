@@ -34,11 +34,13 @@ $color-green: #45A871;
 $color-blue: #1F4D86;
 $color-blue-2: #8FA6C3;
 $color-blue-3: #D2DBE7;
-$color-dark: #333333;
+// $color-dark: #333333;
+$color-dark: #282829;
 $color-gray: #999999;
 $color-gray-2: #D6D6D6;
 $color-gray-3: #EBEBEB;
 $color-gray-4: #C4C4C4;
+$color-white: #ffffff;
 
 .white {
   color: white;
@@ -62,15 +64,16 @@ $color-gray-4: #C4C4C4;
 
 // Extra Swatches
 $color-white: #ffffff;
-$color-gray: #E0E0E0;
-$color-gray-dark: #A0A3A6;
-$color-black: #000;
+// $color-gray: #E0E0E0;
+$color-gray: #F2EDED;
+// $color-gray-dark: #A0A3A6;
+// $color-black: #000;
 $color-dark: #1C1E20;
-$color-nav--light-gray: #D8D8D8;
+// $color-nav--light-gray: #D8D8D8;
 $color-light-gray: #807E7E;
-$color-price-gray: #6F7173;
+// $color-price-gray: #6F7173;
 $cubic: cubic-bezier(0.255, 0.195, 0.135, 0.99);
-$color-pink: #FC0371;
+$color-pink: #A57677;
 $color-green: #46EDA4;
 // $color-blue: #9ACAFC;
 $color-blue: #9ACAFC;
@@ -109,3 +112,8 @@ $color-swatch-turquoise: #00FFFF;
 
 $cubic: cubic-bezier(0.255, 0.195, 0.135, 0.99);
 $cubic-2: cubic-bezier(0.860, 0, 0.070, 1);
+
+
+$kr: 'Klarheit Kurrent Regular';
+$kb: 'Klarheit Kurrent Bold';
+$gtsr: 'GT-Super-Display-Regular';

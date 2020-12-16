@@ -1,0 +1,68 @@
+header,
+section {
+  svg {
+    width: 100%;
+    height: auto;
+  }
+}
+
+section figure {
+  position: relative;
+  width: 100%;
+
+  img {
+    position: absolute;
+  }
+}
+
+.container .row,
+#shopify-section-header {
+  padding-left: 40px;
+  padding-right: 40px;
+}
+
+// *************************
+// Align
+// *************************
+.row-center {
+  @include flexbox();
+  @include align-items(center);
+  @include justify-content(center);
+}
+
+// *************************
+// CTAs
+// *************************
+.cta {
+  padding-top: 120px;
+  padding-bottom: 50px;
+  position: relative;
+  overflow: hidden;
+
+  .subtitle {
+    margin-bottom: 22px;
+  }
+
+  h2 {
+    margin-bottom: 25px;
+  }
+
+  .button-wrapper {
+    margin-top: 38px;
+  }
+}
+
+.cta.shop {
+  figure {
+    padding-bottom: 101%;
+  }
+
+  svg {
+    position: absolute;
+    opacity: 0.15;
+    z-index: 0;
+    top: 0;
+    left: 15.3333%;
+    max-width: 58.3333%;
+  }
+}
