@@ -1,0 +1,70 @@
+{% include 'product-cta-zig-zag' %}
+
+{% schema %}
+  {
+    "name": "Product CTA 1",
+    "settings": [
+      {
+        "type": "select",
+        "id": "product_cta_photo_alignment",
+        "options": [
+            { "value": "left", "label": "Left"},
+            { "value": "right", "label": "Right"}
+        ],
+        "label": "Photo alignment"
+      },
+      {
+        "id": "product_cta_id",
+        "type": "text",
+        "label": "Section ID",
+        "default": "home",
+        "info": "Please don't change"
+      },
+       {
+        "id": "product_cta_subtitle",
+        "type": "text",
+        "label": "Subtitle",
+        "default": "kinrgy store"
+      },
+      {
+        "id": "product_cta_heading",
+        "type": "html",
+        "label": "Heading Line One",
+        "default": "<h2>Heading</h2>"
+      },
+      {
+        "type": "html",
+        "id": "product_cta_copy",
+        "label": "Copy",
+        "default": "<p>Copy</p>"
+      },
+      {
+        "id": "product_cta_button_text",
+        "type": "text",
+        "label": "Button Text",
+        "default": "shop"
+      },
+      {
+        "id": "product_cta_button_url",
+        "type": "url",
+        "label": "Button Url"
+      },
+      {
+        "id": "product_cta_image",
+        "type": "image_picker",
+        "label": "Image"
+      },
+      {
+        "id": "product_cta_product",
+        "type": "product",
+        "label": "Product"
+      }
+    ]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

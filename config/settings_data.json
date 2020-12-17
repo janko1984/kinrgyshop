@@ -3,30 +3,128 @@
     "sections": {
       "full-width-slider": {
         "type": "full-width-slider",
+        "blocks": {
+          "94a7ac19-083d-4114-bc39-5d0819890d14": {
+            "type": "section",
+            "settings": {
+              "fullslider_subtitle_one": "kinrgy partnerships",
+              "fullslider_heading_one": "KINRGY \/ Lululemon",
+              "fullslider_heading_two": "City Sweat Jogger",
+              "fullslider_image": "shopify:\/\/shop_images\/slide_one_bg.jpg",
+              "fullslider_button_text": "buy now"
+            }
+          },
+          "4960856d-5128-4e4a-b44c-2107b10610d5": {
+            "type": "section",
+            "settings": {
+              "fullslider_subtitle_one": "kinrgy partnerships",
+              "fullslider_heading_one": "KINRGY \/ Vejo",
+              "fullslider_heading_two": "City Sweat Jogger",
+              "fullslider_image": "shopify:\/\/shop_images\/slide_one_bg.jpg",
+              "fullslider_button_text": "buy now"
+            }
+          },
+          "53ea5057-92b2-438d-a2a6-54cf01bf8328": {
+            "type": "section",
+            "settings": {
+              "fullslider_subtitle_one": "kinrgy partnerships",
+              "fullslider_heading_one": "KINRGY \/ GURU NANDA",
+              "fullslider_heading_two": "City Sweat Jogger",
+              "fullslider_image": "shopify:\/\/shop_images\/slide_one_bg.jpg",
+              "fullslider_button_text": "buy now"
+            }
+          }
+        },
+        "block_order": [
+          "94a7ac19-083d-4114-bc39-5d0819890d14",
+          "4960856d-5128-4e4a-b44c-2107b10610d5",
+          "53ea5057-92b2-438d-a2a6-54cf01bf8328"
+        ],
         "settings": {
-          "fullslider_id": "home",
-          "fullslide_heading_one": "heading",
-          "fullslide_heading_two": "heading"
+          "fullslider_id": "home"
+        }
+      },
+      "product-cta-one": {
+        "type": "product-cta-one",
+        "settings": {
+          "product_cta_photo_alignment": "left",
+          "product_cta_id": "home",
+          "product_cta_subtitle": "yoga time",
+          "product_cta_heading": "<h2>KINRGY YOGA<\/h2>\n<h2>Mattress<\/h2>",
+          "product_cta_copy": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce quis ligula id purus maximus sodales. Suspendisse ac congue lectus.<\/p>",
+          "product_cta_button_text": "shop now",
+          "product_cta_button_url": "#",
+          "product_cta_image": "shopify:\/\/shop_images\/mattress.jpg",
+          "product_cta_product": "kinrgy-yoga-matt"
+        }
+      },
+      "product-cta-two": {
+        "type": "product-cta-two",
+        "settings": {
+          "product_cta_photo_alignment": "right",
+          "product_cta_id": "home",
+          "product_cta_subtitle": "kinrgy partnerships",
+          "product_cta_heading": "<h2>Vejo \/ KINRGY\nExclusive Portable Blender Device and Starter Kit<\/h2>",
+          "product_cta_copy": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce quis ligula id purus maximus sodales. Suspendisse ac congue lectus.<\/p>",
+          "product_cta_button_text": "shop now",
+          "product_cta_button_url": "#",
+          "product_cta_image": "shopify:\/\/shop_images\/vejo_blender.jpg",
+          "product_cta_product": "vejo-x-kinrgy-exclusive-portable-blender-device-and-starter-kit"
         }
       },
       "cta-shop": {
         "type": "cta-shop",
         "settings": {
           "cta_shop_id": "home",
-          "cta_shop_subtitle": "subtitle",
-          "cta_shop_heading": "heading",
-          "cta_shop_copy": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce quis ligula id purus maximus sodales. Suspendisse ac congue lectus.</p>",
+          "cta_shop_subtitle": "kinrgy store",
+          "cta_shop_heading_line_one": "Gear Up For",
+          "cta_shop_heading_line_two": "KINRGY Exercise",
+          "cta_shop_copy": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce quis ligula id purus maximus sodales. Suspendisse ac congue lectus.<\/p>",
           "cta_shop_button_text": "shop",
-          "cta_shop_button_url": "link"
+          "cta_shop_button_url": "#",
+          "cta_shop_image": "shopify:\/\/shop_images\/home-cta-shop.jpg"
+        }
+      },
+      "membership-cta": {
+        "type": "membership-cta",
+        "settings": {
+          "membership_cta_id": "home",
+          "membership_cta_subtitle": "All Geared Up?",
+          "membership_cta_heading_line_one": "browse",
+          "membership_cta_heading_line_two": "KINRGY",
+          "membership_cta_heading_line_three": "classes",
+          "membership_cta_button_text": "browse now",
+          "membership_cta_image": "shopify:\/\/shop_images\/membership-cta-bg.jpg"
+        }
+      },
+      "collection-featured-slider": {
+        "type": "collection-featured-slider",
+        "settings": {
+          "collection_featured_id": "home",
+          "collection_featured_heading": "Heading"
+        }
+      },
+      "header": {
+        "type": "header",
+        "settings": {
+        }
+      },
+      "footer": {
+        "type": "footer",
+        "settings": {
         }
       }
     },
     "content_for_index": [
       "full-width-slider",
-      "cta-shop"
+      "cta-shop",
+      "product-cta-one",
+      "product-cta-two",
+      "membership-cta"
     ]
   },
   "presets": {
-    "Default": {}
+    "Default": {
+    }
   }
 }

@@ -3,10 +3,21 @@ window.addEventListener("load", function(){
   let scroll;
 
   setTimeout(function(){
-    scroll = new LocomotiveScroll({
-      el: document.querySelector('[data-scroll-container]'),
-      smooth: true,
-    });
+    if (window.innerWidth > 768) {
+      scroll = new LocomotiveScroll({
+        el: document.querySelector('[data-scroll-container]'),
+        smooth: true,
+        lerp: 0.1,
+        smoothMobile: false,
+      })
+    } else if (window.innerWidth < 1025) {
+      scroll = new LocomotiveScroll({
+        el: document.querySelector('[data-scroll-container]'),
+        smooth: false,
+        lerp: 1,
+        smoothMobile: false,
+      })
+    }
 
     scroll.on('scroll', () => {
       const siteHeader = document.querySelector("#shopify-section-header");
@@ -24,7 +35,7 @@ window.addEventListener("load", function(){
         }
       }
     });
-  }, 100);
+  }, 200);
 
   if (document.querySelector('body').classList.contains('index')) {
     // HOME SLIDERs
@@ -146,6 +157,8 @@ window.addEventListener("load", function(){
       $('.col-empty').removeClass('hidden');
       $('.cart-dd').addClass('empty');
     }
+
+    console.log(cart)
   });
 
   // CART DROPDOWN

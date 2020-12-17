@@ -3,6 +3,8 @@ body.index .main-header .site-nav a {
 }
 body.index .logo-main svg path {
   fill: $color-white;
+
+  @include transition(400ms all $cubic);
 }
 
 .full-width-slider {
@@ -15,6 +17,12 @@ body.index .logo-main svg path {
 }
 
 .main-header .site-nav a,
+.main-header .site-nav button {
+  @include transition(400ms all $cubic);
+}
+
+.main-header .site-nav a,
+.main-header .site-nav button,
 .main-header .site-nav span {
   font-size: 0.875em;
   line-height: 1.286em;
@@ -83,6 +91,21 @@ body.index .logo-main svg path {
   }
 }
 
+#shopify-section-header.sticked {
+  box-shadow: 0 1px 0 0 rgba(127, 106, 106, 0.15); 
+  
+  @include transform(translateY(-23px));
+
+  .logo-main svg path {
+    fill: $color-dark;
+  }
+
+  .site-nav a,
+  .site-nav button {
+    color: $color-dark;
+  }
+}
+
 #shopify-section-header {
   .main-header .site-nav__dropdown {
     a {
@@ -124,12 +147,14 @@ body.index .logo-main svg path {
   top: 0;
   left: 0;
   width: 100vw;
-  height: 100px;
+  // height: 100px;
   z-index: 5;
+  padding-top: 33px;
+  padding-bottom: 10px;
 
-  @include media-breakpoint-down(md) {
-    height: 80px;
-  }
+  // @include media-breakpoint-down(md) {
+  //   height: 80px;
+  // }
 
   .logo-w {
     @include flexbox;

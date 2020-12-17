@@ -1,5 +1,13 @@
+body a {
+  text-decoration: none;
+}
+
 .button-wrapper {
   @include flexbox();
+
+  &.align-center {
+    @include justify-content(center);
+  }
 }
 
 .regular-button {

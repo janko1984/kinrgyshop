@@ -1,3 +1,7 @@
+body {
+  overflow-x: hidden;
+}
+
 header,
 section {
   svg {
@@ -6,16 +10,33 @@ section {
   }
 }
 
+section.container .row {
+  padding-left: 40px;
+  padding-right: 40px;
+  margin-left: 0;
+  margin-right: 0;
+}
+
+section.container {
+  padding-left: 0;
+  padding-right: 0;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 section figure {
   position: relative;
   width: 100%;
 
   img {
     position: absolute;
+    display: block;
+    width: 100%;
   }
 }
 
-.container .row,
+// .container-fluid,
+.container,
 #shopify-section-header {
   padding-left: 40px;
   padding-right: 40px;
@@ -34,8 +55,9 @@ section figure {
 // CTAs
 // *************************
 .cta {
-  padding-top: 120px;
-  padding-bottom: 50px;
+  // padding-top: 120px;
+  padding-top: 60px;
+  padding-bottom: 60px;
   position: relative;
   overflow: hidden;
 
@@ -43,8 +65,8 @@ section figure {
     margin-bottom: 22px;
   }
 
-  h2 {
-    margin-bottom: 25px;
+  p {
+    margin-top: 25px;
   }
 
   .button-wrapper {
@@ -53,8 +75,11 @@ section figure {
 }
 
 .cta.shop {
+  padding-top: 120px;
+
   figure {
-    padding-bottom: 101%;
+    // padding-bottom: 101%;
+    padding-bottom: 110.5%;
   }
 
   svg {
@@ -64,5 +89,117 @@ section figure {
     top: 0;
     left: 15.3333%;
     max-width: 58.3333%;
+    pointer-events: none;
+  }
+}
+
+.cta.align-img-left .row {
+  @include flex-direction(row-reverse);
+  @include justify-content(flex-end);
+}
+
+.cta.align-img-left,
+.cta.align-img-right {
+  figure {
+    padding-bottom: 98%;
+  }
+}
+
+.cta.membership {
+  margin-top: 60px;
+  padding-top: 0;
+  padding-bottom: 0;
+  text-align: center;
+  text-transform: uppercase;
+
+  .row {
+    padding: 195px 0;
+    margin-left: 40px;
+    margin-right: 40px;
+    background: $color-dark;
+    position: relative;
+  }
+
+  .background {
+    opacity: 0.9;
+  }
+
+  .button-wrapper {
+    margin-top: 44px;
+  }
+
+  .f-160 {
+    line-height: 0.85em;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  section.container .row {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  .cta.membership {
+    .f-160 {
+      line-height: 1em;
+    }
+
+    .row {
+      padding: 100px 0;
+    }
+  }
+
+  .cta.shop {
+    padding-top: 40px;
+
+    figure {
+      padding-bottom: 112%;
+    }
+
+    .row {
+      @include flex-direction(column-reverse);
+    }
+  }
+
+  .cta.membership {
+    margin-top: 40px;
+
+    .row {
+      margin-left: 20px;
+      margin-right: 20px;
+    }
+  }
+
+  .cta {
+    padding-top: 40px;
+    padding-bottom: 40px;
+
+    .subtitle {
+      margin-top: 0;
+      margin-bottom: 10px;
+    }
+
+    p {
+      margin-top: 10px;
+    }
+
+    .button-wrapper {
+      margin-top: 20px;
+    }
+
+    .row {
+      [class^=col-]:first-of-type {
+        padding-top: 30px;
+      }
+
+      &.row-center {
+        @include align-items(flex-start);
+      }
+    }
+  }
+
+  .cta.align-img-right .row,
+  .cta.align-img-left .row {
+    @include flex-direction(column-reverse);
   }
 }

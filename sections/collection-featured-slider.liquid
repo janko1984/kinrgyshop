@@ -1,0 +1,39 @@
+<section class="collection-featured-slider container-fluid" id="collection-featured-slider-{{ section.settings.collection_featured_id }}">
+  <div class="row row-center">
+    <div class="col-lg-4 col-12">
+       <h2>{{ section.settings.collection_featured_heading }}</h2> 
+    </div>
+  </div>
+</section>
+
+{% schema %}
+  {
+    "name": "Collection Featured Slider",
+    "settings": [
+      {
+        "id": "collection_featured_id",
+        "type": "text",
+        "label": "Section ID",
+        "default": "home",
+        "info": "Please don't change"
+      },
+      {
+        "id": "collection_featured_heading",
+        "type": "text",
+        "label": "Heading",
+        "default": "Heading"
+      },
+      {
+        "type": "collection",
+        "id": "collection_featured_collection",
+        "label": "Collection"
+      }
+    ]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}
