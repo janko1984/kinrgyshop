@@ -56,9 +56,68 @@
       </div>
 
       <div class="boost-pfs-filter-right-col col-9">
+
+        {% comment %} Collection All - Top Cta {% endcomment %}
+        {% if collection.handle == 'all' and collection.metafields.collections.top_cta.background_url != blank %}
+          <div class="inner-cta collection">
+            <a class="absolute-link" href="{{ collection.metafields.collections.top_cta.button_url }}" target="_self"></a>
+            <div class="background-wrapper">
+              <div class="background" style="background: url({{ collection.metafields.collections.top_cta.background_url | file_img_url: '1008x' | width }}) no-repeat center center; background-size: cover;">
+              </div>
+              <div class="button-wrapper">
+                  <a class="regular-button pink" href="{{ collection.metafields.collections.top_cta.button_url }}" target="_self">
+                    <span class="text">{{ collection.metafields.collections.top_cta.button_copy }}</span>
+                  </a>
+                </div>
+            </div>
+            <h3>{{ collection.metafields.collections.top_cta.heading }}</h3>
+          </div>
+        {% endif %}
+        {% comment %} END Collection All - Top Cta {% endcomment %}
+
         <div class="boost-pfs-filter-products boost-pfs-filter-swatch-shape-{{ section.settings.swatches_color_shape}} boost-pfs-filter-product-item-text-alignment-{{ section.settings.text_alignment}}" data-bc-sort="{{ collection.default_sort_by }}">
           {%- for product in collection.products -%}
+            
             {%- include 'boost-pfs-filter-product-item', product: product -%}
+
+            {% if forloop.index0 == 2 %}
+
+              {% if collection.handle == 'all' and collection.metafields.collections.cta_two.background_url != blank %}
+                  <div class="inner-cta collection boost-pfs-filter-grid-width-6 boost-pfs-filter-product-item">
+                    <div class="cta-inner-wrapper">  
+                      <a class="absolute-link" href="{{ collection.metafields.collections.cta_two.button_url }}" target="_self"></a>
+                      <div class="background-wrapper">
+                        <div class="background" style="background: url({{ collection.metafields.collections.cta_two.background_url | file_img_url: '1008x' | width }}) no-repeat center center; background-size: cover;">
+                        </div>
+                        <div class="button-wrapper">
+                            <a class="regular-button pink" href="{{ collection.metafields.collections.cta_two.button_url }}" target="_self">
+                              <span class="text">{{ collection.metafields.collections.cta_two.button_copy }}</span>
+                            </a>
+                          </div>
+                      </div>
+                    </div>
+                  </div>
+                {% endif %}
+
+                {% if collection.handle == 'all' and collection.metafields.collections.cta_three.background_url != blank %}
+                  <div class="inner-cta collection boost-pfs-filter-grid-width-6 boost-pfs-filter-product-item">
+                    <div class="cta-inner-wrapper">  
+                      <a class="absolute-link" href="{{ collection.metafields.collections.cta_three.button_url }}" target="_self"></a>
+                      <div class="background-wrapper">
+                        <div class="background" style="background: url({{ collection.metafields.collections.cta_three.background_url | file_img_url: '1008x' | width }}) no-repeat center center; background-size: cover;">
+                        </div>
+                        <div class="button-wrapper">
+                            <a class="regular-button pink" href="{{ collection.metafields.collections.cta_three.button_url }}" target="_self">
+                              <span class="text">{{ collection.metafields.collections.cta_three.button_copy }}</span>
+                            </a>
+                          </div>
+                      </div>
+                    </div>  
+                  </div>
+                {% endif %}
+
+            {% endif %}
+            
           {%- endfor -%}
         </div>
         <div class="boost-pfs-filter-bottom-pagination boost-pfs-filter-bottom-pagination-default">

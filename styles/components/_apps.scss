@@ -1116,10 +1116,12 @@ section .boost-pfs-container-default {
   }
 
   .boost-pfs-filter-left-col {
-    padding-right: 9px;
+    // padding-right: 10px;
+    padding-right: 0;
   }
   .boost-pfs-filter-right-col {
-    padding-left: 9px;
+    // padding-left: 10px;
+    padding-left: 0;
   }
 
   .row .boost-pfs-filter-option {
@@ -1334,6 +1336,26 @@ button.boost-pfs-filter-clear {
   opacity: 1;
   pointer-events: all;
  }
+
+.row .boost-pfs-filter-option.boost-pfs-filter-has-scrollbar.boost-pfs-filter-option-size .boost-pfs-filter-option-content .boost-pfs-filter-option-content-inner li button .boost-pfs-filter-option-value {
+  margin-left: 0;
+  text-transform: uppercase;
+}
+
+
+// .collection-section {
+//   padding-bottom: 70%;
+//   position: relative;
+
+//   .boost-pfs-container-default.boost-pfs-filter-wrapper-page {
+//     position: absolute;
+//     content: "";
+//     width: 100%;
+//     top: 0;
+//     left: 0;
+//   }
+// }
+
 
 //  .row .boost-pfs-filter-tree-v .boost-pfs-filter-option-collapsed button.boost-pfs-filter-clear {
 //   opacity: 0;
