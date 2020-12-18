@@ -9,7 +9,83 @@
 }
 </style>
 {% endif %}
+
+<section class="collection-header container" id="collection-header-{{ collection.handle }}">
+  {% include 'icon-shape-two' %}
+  <div class="row">
+    <div class="col-12">
+      {% include 'breadcrumbs' %}
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xl-8 col-lg-8 col-md-8 col-sm-12">
+      <h1 class="f-160">{{ collection.handle }} 
+        <span class="circle small">
+        {{ collections[collection.handle].all_products_count }}
+      </span>
+      </h1>
+    </div>
+    <div class="col-xl-4 col-lg-4 col-sm-12">
+
+        {%- comment -%} TOOLBAR {%- endcomment -%}
+        <div class="boost-pfs-filter-default-toolbar">
+          {%- comment -%}
+            <div class="boost-pfs-container-default boost-pfs-filter-default-toolbar-inner">
+              <div class="boost-pfs-filter-toolbar-item boost-pfs-filter-toolbar-type">
+                <div class="boost-pfs-filter-top-display-type">{%- include 'boost-pfs-filter-skeleton', width: 2 -%}</div>
+              </div>
+              <div class="boost-pfs-filter-toolbar-item boost-pfs-filter-toolbar-count">
+                <span class="boost-pfs-filter-total-product">{%- include 'boost-pfs-filter-skeleton', width: 1 -%}</span>
+              </div>
+              {%- endcomment -%}
+              <div class="boost-pfs-filter-toolbar-item boost-pfs-filter-custom-sorting boost-pfs-filter-top-sorting">{%- include 'boost-pfs-filter-skeleton', width: 1 -%}</div>
+            </div>
+        </div>
+        {%- comment -%} END TOOLBAR {%- endcomment -%}
+
+    {% comment %} </div> {% endcomment %}
+  </div>
+</section>
+<section class="collection-section container" id="collection-section-{{ collection.handle }}">
+  <div class="boost-pfs-container-default boost-pfs-filter-wrapper-page">
+    <div class="boost-pfs-filter-wrapper row">
+
+      <div class="boost-pfs-filter-left-col col-3">
+        <div class="boost-pfs-filter-tree boost-pfs-filter-tree-v">{%- include 'boost-pfs-filter-skeleton', type: 'filter-tree' -%}</div>
+        <div class="boost-pfs-filter-refine-by-wrapper-v"></div>
+      </div>
+
+      <div class="boost-pfs-filter-right-col col-9">
+        <div class="boost-pfs-filter-products boost-pfs-filter-swatch-shape-{{ section.settings.swatches_color_shape}} boost-pfs-filter-product-item-text-alignment-{{ section.settings.text_alignment}}" data-bc-sort="{{ collection.default_sort_by }}">
+          {%- for product in collection.products -%}
+            {%- include 'boost-pfs-filter-product-item', product: product -%}
+          {%- endfor -%}
+        </div>
+        <div class="boost-pfs-filter-bottom-pagination boost-pfs-filter-bottom-pagination-default">
+          {%- if paginate.pages > 1 -%}
+            {%- include 'boost-pfs-filter-pagination' -%}
+          {%- endif -%}
+        </div>
+        <div class="boost-pfs-filter-load-more"></div>
+      </div>
+    </div>
+
+    {%- comment -%} start-bc-most-popular-template {%- endcomment -%}
+      <div class="boost-pfs-most-popular-products-wrapper boost-pfs-widget-slider-wrapper">
+        <div class="boost-pfs-most-popular-products boost-pfs-widget-products owl-carousel"></div>
+      </div>
+    {%- comment -%} end-bc-most-popular-template {%- endcomment -%}
+
+    {%- comment -%} start-bc-recently-viewed-template {%- endcomment -%}
+      <div class="boost-pfs-recent-products-wrapper boost-pfs-widget-slider-wrapper">
+        <div class="boost-pfs-recent-products boost-pfs-widget-products owl-carousel"></div>
+      </div>
+    {%- comment -%} end-bc-recently-viewed-template {%- endcomment -%}
+  </div>
+</section>
+
 {%- comment -%} COLLECTION HEADER {%- endcomment -%}
+{%- comment -%}
 <div class="boost-pfs-filter-collection-header-wrapper boost-pfs-filter-collection-image {% if section.settings.show_collection_image and collection.image %}boost-pfs-filter-collection-has-image{% endif %}" {% if section.settings.show_collection_image and collection.image %} style="background-image: url({{ collection.image | img_url: '2048x600', crop: 'top' }});" {% endif %}>
   <div class="boost-pfs-container-default">
     <div class="boost-pfs-section-header">
@@ -26,7 +102,10 @@
     </div>
   </div>
 </div>
+{%- endcomment -%}
 {%- comment -%} END COLLECTION HEADER {%- endcomment -%}
+
+
 {%- comment -%} TOOLBAR TOP MOBILE {%- endcomment -%}
 <div class="boost-pfs-filter-toolbar-top-mobile">
     <div class="boost-pfs-filter-top-sorting boost-pfs-filter-top-sorting-mobile boost-pfs-filter-custom-sorting">{%- include 'boost-pfs-filter-skeleton', type: 'button' -%}</div>
@@ -35,53 +114,7 @@
 {%- comment -%} END TOOLBAR TOP MOBILE {%- endcomment -%}
 
 
-{%- comment -%} TOOLBAR {%- endcomment -%}
-<div class="boost-pfs-filter-default-toolbar">
-    <div class="boost-pfs-container-default boost-pfs-filter-default-toolbar-inner">
-      <div class="boost-pfs-filter-toolbar-item boost-pfs-filter-toolbar-type">
-        <div class="boost-pfs-filter-top-display-type">{%- include 'boost-pfs-filter-skeleton', width: 2 -%}</div>
-      </div>
-      <div class="boost-pfs-filter-toolbar-item boost-pfs-filter-toolbar-count">
-        <span class="boost-pfs-filter-total-product">{%- include 'boost-pfs-filter-skeleton', width: 1 -%}</span>
-      </div>
-      <div class="boost-pfs-filter-toolbar-item boost-pfs-filter-custom-sorting boost-pfs-filter-top-sorting">{%- include 'boost-pfs-filter-skeleton', width: 1 -%}</div>
-    </div>
-</div>
-{%- comment -%} END TOOLBAR {%- endcomment -%}
 
-<div class="boost-pfs-container-default boost-pfs-filter-wrapper-page">
-  <div class="boost-pfs-filter-wrapper">
-    <div class="boost-pfs-filter-left-col">
-      <div class="boost-pfs-filter-refine-by-wrapper-v"></div>
-      <div class="boost-pfs-filter-tree boost-pfs-filter-tree-v">{%- include 'boost-pfs-filter-skeleton', type: 'filter-tree' -%}</div>
-    </div>
-    <div class="boost-pfs-filter-right-col">
-      <div class="boost-pfs-filter-products boost-pfs-filter-swatch-shape-{{ section.settings.swatches_color_shape}} boost-pfs-filter-product-item-text-alignment-{{ section.settings.text_alignment}}" data-bc-sort="{{ collection.default_sort_by }}">
-        {%- for product in collection.products -%}
-          {%- include 'boost-pfs-filter-product-item', product: product -%}
-        {%- endfor -%}
-      </div>
-      <div class="boost-pfs-filter-bottom-pagination boost-pfs-filter-bottom-pagination-default">
-        {%- if paginate.pages > 1 -%}
-          {%- include 'boost-pfs-filter-pagination' -%}
-        {%- endif -%}
-      </div>
-      <div class="boost-pfs-filter-load-more"></div>
-    </div>
-  </div>
-
-  {%- comment -%} start-bc-most-popular-template {%- endcomment -%}
-    <div class="boost-pfs-most-popular-products-wrapper boost-pfs-widget-slider-wrapper">
-      <div class="boost-pfs-most-popular-products boost-pfs-widget-products owl-carousel"></div>
-    </div>
-  {%- comment -%} end-bc-most-popular-template {%- endcomment -%}
-
-  {%- comment -%} start-bc-recently-viewed-template {%- endcomment -%}
-    <div class="boost-pfs-recent-products-wrapper boost-pfs-widget-slider-wrapper">
-      <div class="boost-pfs-recent-products boost-pfs-widget-products owl-carousel"></div>
-    </div>
-  {%- comment -%} end-bc-recently-viewed-template {%- endcomment -%}
-</div>
 {%- endpaginate -%}
 <script>
   // Declare boostPFSThemeConfig variable

@@ -1,11 +1,12 @@
 {% assign col_one_classes = '' %}
 {% assign col_two_classes = '' %}
+{% assign product_ref = all_products[section.settings.product_cta_product] %}
 
 {% if section.settings.product_cta_photo_alignment == "left" %}
-  {% assign col_one_classes = 'col-lg-4 col-md-4 offset-lg-1 offset-md-1 one' %}
-  {% assign col_two_classes = 'col-lg-6 col-md-6 two' %}  
+  {% assign col_one_classes = 'col-lg-4 col-md-4 col-sm-8 offset-lg-1 offset-md-1' %}
+  {% assign col_two_classes = 'col-lg-6 col-md-6' %}  
 {% elsif section.settings.product_cta_photo_alignment == "right" %}
-  {% assign col_one_classes = 'col-lg-4 col-md-4 offset-lg-1 offset-md-1' %}
+  {% assign col_one_classes = 'col-lg-4 col-md-4 col-sm-8 offset-lg-1 offset-md-1' %}
   {% assign col_two_classes = 'col-lg-6 col-md-6 offset-lg-1 offset-md-1' %}
 {% endif %}
 
@@ -19,6 +20,14 @@
           <h2>{{ section.settings.product_cta_heading }}</h2>
         {% else %}
           <h2>{{ section.settings.product_cta_product.title }}</h2>
+        {% endif %}
+
+        {% if product_ref != blank %}
+          <p class="large price">{{- product_ref.price | money | remove: '.00' -}}
+            {% if product_ref.compare_at_price_max > product_ref.price %}
+              <span class="sale">(-{{- product_ref.compare_at_price_max | minus: product_ref.price | times: 1000.0 | divided_by: product_ref.compare_at_price_max | money_without_currency | times: 10 | remove: '.0' -}}%)</span>
+            {% endif %}
+          </p>
         {% endif %}
 
         {{ section.settings.product_cta_copy }}

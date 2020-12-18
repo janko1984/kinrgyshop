@@ -35,7 +35,7 @@ window.addEventListener("load", function(){
         }
       }
     });
-  }, 200);
+  }, 400);
 
   if (document.querySelector('body').classList.contains('index')) {
     // HOME SLIDERs

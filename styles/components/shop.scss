@@ -1,0 +1,65 @@
+.price {
+  font-family: $gtsr;
+}
+
+// ****************************
+// Collections
+// ****************************
+.collection-header {
+  position: relative;
+  padding-top: 58px;
+  padding-bottom: 47px;
+
+  svg {
+    position: absolute;
+    max-width: 882px;
+    margin-left: 28.33333%;
+    top: 0;
+    z-index: 0;
+    opacity: 0.15;
+    pointer-events: none;
+    top: -142px;
+  }
+
+  .f-160 {
+    text-transform: capitalize;
+
+    @include flexbox();
+
+    .circle {
+      margin-left: 13px;
+      top: 30px;
+    }
+  }
+
+  .circle {
+    width: 65px;
+    height: 65px;
+    border-radius: 50%;
+    position: relative;
+    border: 1px solid $color-dark;
+    font-size: 14px;
+    line-height: 18px;
+    font-family: $kb;
+
+    @include inline-flex();
+    @include justify-content(center);
+    @include align-items(center);
+  }
+
+  .row {
+    z-index: 1;
+
+    [class^=col-]:last-of-type {
+      @include flexbox();
+      @include justify-content(flex-start);
+      @include align-items(flex-end);
+    }
+  }
+
+  .boost-pfs-filter-default-toolbar {
+    padding-bottom: 36px;
+  }
+}
+
+

@@ -39,6 +39,12 @@ p {
   line-height: 1.5em;
 }
 
+.large,
+.price {
+  font-size: 1.25em;
+  line-height: 1.3em;
+}
+
 h1,
 h2,
 h3,
@@ -47,7 +53,6 @@ h5,
 h6 {
   font-family: $gtsr;
 }
-
 
 
 h1 {

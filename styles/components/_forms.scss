@@ -1,0 +1,75 @@
+input {
+  font-size: 1em;
+  color: $color-dark;
+  font-family: $kr;
+  // line-height: 1.3125em;
+  line-height: 41px;
+  width: 100%;
+  outline: none;
+
+  @include transition(400ms all $cubic);
+
+  &:focus {
+    outline: none;
+  }
+}
+
+input::placeholder,
+input::moz-placeholder {
+  color: $color-dark;
+
+  @include transition(400ms all $cubic);
+
+  &:focus {
+    opacity: 0;
+  }
+}
+
+.email-and-submit {
+  position: relative;
+  border-bottom: 1px solid $color-dark;
+  padding-bottom: 17px;
+
+  .submit-wrapper {
+    width: 35px;
+    height: 31px;
+    position: absolute;
+    right: 0;
+    top: 0;
+    bottom: 0;
+  }
+
+  input[type="email"] {
+    border: none;
+    width: calc(100% - 45px);
+  }
+
+  input {
+    line-height: 31px;
+  }
+}
+
+.submit-wrapper {
+  position: relative;
+
+  input[type="submit"] {
+    position: absolute;
+    width: 100%;
+    opacity: 0;
+    height: 100%;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 2;
+  }
+
+  svg {
+    pointer-events: none;
+    position: absolute;
+    display: block;
+    margin: auto;
+    top: 0;
+    bottom: 0;
+  }
+}

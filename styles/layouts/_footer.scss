@@ -1,0 +1,43 @@
+footer h3 {
+  font-size: 1.875em;
+  line-height: 1.1666667em;
+  font-family: $gtsr;
+  margin-bottom: 25px;
+}
+
+footer {
+  margin-top: 60px;
+
+  .container {
+    padding-top: 55px;
+  }
+
+  .menu-plain {
+    margin-bottom: 30px;
+  }
+
+  .subfooter-list {
+    padding-top: 44px;
+    padding-bottom: 72px;
+
+    @include flexbox();
+    @include justify-content(space-between);
+
+    a {
+      font-size: 14px;
+    }
+  }
+}
+
+@media screen and (min-width: 1025px) {
+  .subfooter-list li:last-of-type {
+    padding-right: 50px;
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .form-col {
+    order: 4;
+    margin-top: 30px;
+  }
+}

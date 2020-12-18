@@ -6,24 +6,19 @@
 }
 
 .main-header .extra-menu__cart {
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  background: $color-gray;
-  position: relative;
-  margin-left: 40px;
-
   #cartCount {
     position: absolute;
-    font-size: 14px;
+    font-size: 12px;
     font-family: $kb;
-    top: -6px;
-    right: -1px;
+    // top: -6px;
+    // right: -1px;
+    top: -5px;
+    right: -2px;
     width: 22px;
     height: 22px;
     border-radius: 50%;
     color: $color-white;
-    background: $color-dark;
+    background: $color-green;
     text-align: center;
   }
 }

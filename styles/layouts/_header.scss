@@ -17,7 +17,10 @@ body.index .logo-main svg path {
 }
 
 .main-header .site-nav a,
-.main-header .site-nav button {
+.main-header .site-nav button,
+.main-header .site-nav button span {
+  color: $color-dark;
+
   @include transition(400ms all $cubic);
 }
 
@@ -29,6 +32,38 @@ body.index .logo-main svg path {
   font-family: $kb;
   font-weight: normal;
   text-transform: uppercase;
+}
+
+.main-header .extra-menu {
+  margin-left: 40px;
+
+  @include flexbox();
+
+  li,
+  a {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    position: relative;
+
+    @include inline-flexbox();
+  }
+
+  li:first-of-type {
+    margin-right: 10px;
+  }
+
+  a {
+    background: $color-gray;
+    
+    
+    @include justify-content(center);
+    @include align-items(center);
+  }
+
+  svg path {
+    fill: $color-dark;
+  }
 }
 
 // .main-header ul.site-nav {
@@ -92,7 +127,8 @@ body.index .logo-main svg path {
 }
 
 #shopify-section-header.sticked {
-  box-shadow: 0 1px 0 0 rgba(127, 106, 106, 0.15); 
+  box-shadow: 0 1px 0 0 rgba(127, 106, 106, 0.15);
+  background: $color-white;
   
   @include transform(translateY(-23px));
 
@@ -226,43 +262,43 @@ body.index .logo-main svg path {
   }
 
   .extra-menu {
-    position: relative;
+    // position: relative;
 
-    li {
-      display: inline-block;
-      padding: 0 4px;
+    // li {
+      // display: inline-block;
+      // padding: 0 4px;
 
-      a {
-        @include flexbox;
-        @include justify-content(center);
-        @include align-items(center);
+      // a {
+      //   @include flexbox;
+      //   @include justify-content(center);
+      //   @include align-items(center);
 
-        border: 1px solid $color-gray-2;
-        border-radius: 50%;
-        position: relative;
-        width: 55px;
-        height: 55px;
+      //   border: 1px solid $color-gray-2;
+      //   border-radius: 50%;
+      //   position: relative;
+      //   width: 55px;
+      //   height: 55px;
 
-        @include media-breakpoint-down(md) {
-          width: 42px;
-          height: 42px;
+      //   @include media-breakpoint-down(md) {
+      //     width: 42px;
+      //     height: 42px;
 
-          svg {
-            width: 18px;
-          }
-        }
+      //     svg {
+      //       width: 18px;
+      //     }
+      //   }
     
-        #cartCount {
-          font-size: 12px;
-          position: absolute;
-          top: 5px;
-          right: 9px;
+        // #cartCount {
+          // font-size: 12px;
+          // position: absolute;
+          // top: 5px;
+          // right: 9px;
 
-          @include media-breakpoint-down(md) {
-            top: 1px;
-            right: 7px;
-          }
-        }
+          // @include media-breakpoint-down(md) {
+            // top: 1px;
+            // right: 7px;
+          // }
+        // }
 
         .search-bar {
           @include transition(all 0.5s ease);
@@ -303,14 +339,14 @@ body.index .logo-main svg path {
             right: 20px;
           }
         }
-      }
-    }
+      // }
+    // }
   }
 
-  &.sticked {
-    background-color: white;
-    border-bottom: 1px solid $color-gray-2;
-  }
+  // &.sticked {
+  //   background-color: white;
+  //   border-bottom: 1px solid $color-gray-2;
+  // }
 }
 
 .hamburger {

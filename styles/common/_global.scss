@@ -35,6 +35,18 @@ section figure {
   }
 }
 
+nav.breadcrumbs {
+  margin-bottom: 12px;
+  font-size: 12px;
+  line-height: 15px;
+  font-family: $kr;
+  color: $color-dark;
+}
+
+body.collection main {
+  margin-top: 142px;
+}
+
 // .container-fluid,
 .container,
 #shopify-section-header {
@@ -49,6 +61,54 @@ section figure {
   @include flexbox();
   @include align-items(center);
   @include justify-content(center);
+}
+
+// *************************
+// Lists
+// *************************
+.menu-plain {
+  a {
+    font-size: 0.875em;
+    line-height: 1.5em;
+    color: $color-dark;
+    position: relative;
+
+    &::before {
+      background: $color-dark;
+    }
+  }
+}
+
+.menu-plain a,
+.inline-single {
+  @include transition(400ms all $cubic);
+
+  &::before {
+    position: absolute;
+    content: "";
+    width: 100%;
+    left: 0;
+    bottom: 0;
+    transform-origin: left;
+    height: 1px;
+
+    @include transition(400ms all $cubic);
+    @include transform(scaleX(0));
+  }
+
+  &:hover {
+    &::before {
+      @include transform(scaleX(1));
+    }
+  }
+}
+
+.inline-single {
+  color: $color-dark;
+
+  &::before {
+    background: $color-dark;
+  }
 }
 
 // *************************
@@ -67,6 +127,10 @@ section figure {
 
   p {
     margin-top: 25px;
+
+    &.large {
+      margin-top: 2px;
+    }
   }
 
   .button-wrapper {
@@ -168,6 +232,10 @@ section figure {
       margin-left: 20px;
       margin-right: 20px;
     }
+
+    .background {
+      background-position: 100% 100%;
+    }
   }
 
   .cta {
@@ -202,4 +270,4 @@ section figure {
   .cta.align-img-left .row {
     @include flex-direction(column-reverse);
   }
-}
+} // End 768 Max

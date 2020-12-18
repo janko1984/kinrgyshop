@@ -1,0 +1,82 @@
+<footer>
+  <section class="container">
+    <div class="row">
+      <div class="col-xl-4 col-lg-4 col-md-8 col-sm-10 form-col">
+        <h3>{{ settings.footer_title_one }}</h3>
+        <form id="footer-form">
+          <div class="form-wrapper">
+            <div class="form-inner">
+              <div class="form-row email-and-submit">
+
+                <input type="email" placeholder="Your email">
+                <div class="submit-wrapper">
+                  <input type="submit">
+
+                  {% include 'icon-arrow-right' %}
+                </div>
+
+              </div>
+            </div>
+            <div class="form-response"></div>
+
+          </div>
+        </form>
+
+        <script charset="utf-8" type="text/javascript" src="//js.hsforms.net/forms/shell.js"></script>
+        <script>
+          hbspt.forms.create({
+          portalId: "9034159",
+          formId: "7d99bdf2-f713-49ec-9814-78a3a42cf40e"
+        });
+        </script>    
+        
+      </div>
+      <div class="col-xl-2 col-lg-2 col-md-4 col-sm-6 offset-xl-1 offset-lg-1">
+        <h3>{{ settings.footer_title_two }}</h3>
+        <p>{{ linklists.settings.footer_menu_column_two.links }}</p>
+        <p>{{ col_two_menu }}</p>
+        <ul class="menu-plain">
+          {% for link in linklists[settings.footer_menu_column_two].links %}
+            <li>
+              <a href="{{ link.url }}" target="_self">{{ link.title }}</a>
+            </li>
+          {% endfor %}
+        </ul>
+        
+      </div>
+      <div class="col-xl-2 col-lg-2 col-md-4 col-sm-6 offset-xl-1 offset-lg-1">
+        <h3>{{ settings.footer_title_three }}</h3>
+        <ul class="menu-plain">
+          {% for link in linklists[settings.footer_menu_column_three].links %}
+            <li>
+              <a href="{{ link.url }}" target="_self">{{ link.title }}</a>
+            </li>
+          {% endfor %}
+        </ul>
+        
+      </div>
+      <div class="col-xl-2 col-lg-2 col-md-4 col-sm-6 col-xl-offset-1">
+        <h3>{{ settings.footer_title_four }}</h3>
+        <ul class="menu-plain">
+          {% for link in linklists[settings.footer_menu_column_four].links %}
+            <li>
+              <a href="{{ link.url }}" target="_self">{{ link.title }}</a>
+            </li>
+          {% endfor %}
+        </ul>
+        
+      </div>
+
+    </div>
+    <ul class="row subfooter-list">
+      {% if settings.footer_copyright != blank %}
+        <li>
+          <p class="small">{{ settings.footer_copyright }} {{ "today" | date: "%Y" }}.</p>
+        </li>
+      {% endif %}
+      <li>
+        <p class="small">Website by <a href="https://buzzworthystudio.com" target="_blank" class="inline-single">Buzzworthy</a></p>
+      </li>
+    </ul>
+  </section>
+</footer>

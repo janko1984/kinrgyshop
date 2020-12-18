@@ -11,10 +11,12 @@ body a {
 }
 
 .regular-button {
-  padding: 21px 70px;
+  padding: 21px 54px;
   border-radius: 4px;
+  min-width: 210px;
 
   @include inline-flexbox();
+  @include justify-content(center);
 }
 
 .regular-button,
@@ -29,4 +31,8 @@ body a {
 
 .regular-button.pink {
   background: $color-pink;
+}
+
+.regular-button.green {
+  background: $color-green;
 }
