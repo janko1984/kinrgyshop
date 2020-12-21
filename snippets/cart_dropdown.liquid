@@ -15,6 +15,18 @@
             <div class="name" rv-text="item.title"></div>
             
             <div class="price"><em class="price" rv-html="item.price | money"></em></div>
+
+            <div class="control">
+              <div class="minus">
+                <a class="" href="#" rv-data-cart-update="index | plus 1" rv-data-cart-quantity="item.quantity | minus 1">-</a>
+              </div>
+              <div class="qty cart__qty-input">
+                <span rv-html="item.quantity"></span>
+              </div>
+              <div class="plus">
+                <a class="" href="#" rv-data-cart-update="index | plus 1" rv-data-cart-quantity="item.quantity | plus 1">+</a>
+              </div>
+            </div>
   
             <div class="qty cart__qty-input">
               <span class="label">QUANTITY: <span rv-html="item.quantity"></span></span>
