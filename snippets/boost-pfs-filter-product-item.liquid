@@ -84,18 +84,27 @@
         {%- comment -%} PRODUCT LABEL {%- endcomment -%}
         {%- if section.settings.show_sale_label or section.settings.show_sold_out_label or section.settings.show_lable_by_tag -%}
         <div class="boost-pfs-filter-product-item-label">
-          {%- if sold_out and section.settings.show_sold_out_label -%}
-          <span class="soldout boost-pfs-filter-label">
-            {{ sold_out_text }}
-          </span>
-          {%- endif -%}
+
+          {%- comment -%}
+            {%- if sold_out and section.settings.show_sold_out_label -%}
+            <span class="soldout boost-pfs-filter-label">
+              {{ sold_out_text }}
+            </span>
+            {%- endif -%}
+          {%- endcomment -%}
+
           {%- if on_sale and section.settings.show_sale_label -%}
-          <span class="sale boost-pfs-filter-label">
-            {{ sale_text }}
+          <span class="sale red boost-pfs-filter-label">
+            {% if product.compare_at_price_max > product.price %}
+                <span class="sale-percent tag">-{{ product.compare_at_price_max | minus: product.price | times: 1000.0 | divided_by: product.compare_at_price_max | money_without_currency | times: 10 | remove: '.0'}}%</span>
+            {% endif %}
+
+            {% comment %} {{ sale_text }} {% endcomment %}
           </span>
           {%- endif -%}
 
           {%- comment -%} LABEL EXTEND BY TAG: New, Best, Featured {%- endcomment -%}
+          
           {%- if section.settings.show_lable_by_tag -%}
             {%- assign showAll = false -%}
             {%- if showAll -%}
@@ -118,92 +127,113 @@
           {%- endif -%}
         </div>
         {%- endif -%}
+        
 
         <div class="boost-pfs-filter-product-bottom">
-          <a href="{{ product.url | within: collection }}" class="boost-pfs-filter-product-item-title">{{ product.title }}</a>
+          <a href="{{ product.url | within: collection }}" class="boost-pfs-filter-product-item-title product-title">{{ product.title }}</a>
 
-          {%- if section.settings.show_vendor -%}
-            <p class="boost-pfs-filter-product-item-vendor">{{ product.vendor }}</p>
-          {%- endif -%}
+          {% comment %} 
+            {%- if section.settings.show_vendor -%}
+              <p class="boost-pfs-filter-product-item-vendor">{{ product.vendor }}</p>
+            {%- endif -%}
+          {% endcomment %}
 
-          {%- if section.settings.show_product_review -%}
-          <span class="shopify-product-reviews-badge" data-id="{{ product.id }}"></span>
-          {%- endif -%}
+          {% comment %} 
+            {%- if section.settings.show_product_review -%}
+            <span class="shopify-product-reviews-badge" data-id="{{ product.id }}"></span>
+            {%- endif -%}
+          {% endcomment %}
 
           {%- if section.settings.show_price -%}
-            <p class="boost-pfs-filter-product-item-price">
+            <p class="boost-pfs-filter-product-item-price product-price">
               {%- if on_sale -%}
-                <span class="boost-pfs-filter-product-item-sale-price">{{ product.price | money }}</span>
-                <s>{{ product.compare_at_price | money }}</s>
+                <span class="boost-pfs-filter-product-item-sale-price">{{ product.price | money | remove: '.00' }}</span>
+                <span class="sale-wrap"><s>{{ product.compare_at_price | money | remove: '.00' }}</s></span>
               {%- else -%}
                 {%- if product.price_varies -%}
                 <span class="boost-pfs-filter-product-item-price-from-text">{{ section.settings.from }}</span>
                 {%- endif -%}
-                <span class="boost-pfs-filter-product-item-regular-price">{{ product.price | money }}</span>
+                <span class="boost-pfs-filter-product-item-regular-price">{{ product.price | money | remove: '.00' }}</span>
               {%- endif -%}
+            
+
+              {% comment %} Sold Out {% endcomment %}
+              {%- if sold_out and section.settings.show_sold_out_label -%}
+                <span class="soldout boost-pfs-filter-label sold-out tag">
+                  {{ sold_out_text }}
+                </span>
+              {%- endif -%}
+
             </p>
+
+            {%- if product.metafields.stock.restock_message != blank -%}
+              <p class="small back-in-stock-message">{{ product.metafields.stock.restock_message }}</p>
+            {%- endif -%}
+
           {%- endif -%}
 
-          {%- if section.settings.display_item_swatch -%}
-          {%- for product_option in product.options_with_values -%}
-            {%- if product_option.name == 'Color' or product_option.name == 'Colour' -%}
-              {%- assign product_option_count = product_option.values.size -%}
-            {%- endif -%}
-          {%- endfor -%}
-          <ul class="boost-pfs-filter-item-swatch">
-            {%- for option in product.options -%}
-              {%- if option == 'Color' -%}
-                {%- assign index = forloop.index0 -%}
-                {%- assign colorlist = '' -%}
-                {%- assign color = '' -%}
-                {%- assign option_count = 0 -%}
-                {%- for variant in product.variants -%}
-                  {%- capture color -%}
-                    {{ variant.options[index] }}
-                  {%- endcapture -%}
-                  {%- unless colorlist contains color -%}
-                    {%- assign text = color | handleize -%}
-
-                    {%- if option_count < 4 and product_option_count > 0 -%}
-
-                        {%- if section.settings.swatch_color_display_type == 'swatch_color_display_type_image_color' -%}
-                        {%- assign icon-color-swatch = color | split: ' ' | handle | prepend: 'color-' | append: '.png' | file_url -%}
-                        {%- elsif section.settings.swatch_color_display_type == 'swatch_color_display_type_image_product' -%}
-                        {%- assign icon-color-swatch = variant.image.src | product_img_url: '24x' -%}
-                        {%- endif -%}
-
-                      <li>
-                        <div class="tooltip">
-                          {{color}}
-                        </div>
-                        <label data-value="{{ text }}" {%- if variant.image != null -%}  data-img="{{ variant.image.src | product_img_url: '300x' }} 300w"{%- endif -%} style="{% if section.settings.swatch_color_display_type != 'swatch_color_display_type_color' %}background-image: url({{ icon-color-swatch }});{% endif %} background-color: {{ color | split: ' ' | last | handle }};"></label>
-                        {%- assign option_count = option_count | plus : 1 -%}
-                      </li>
-                    {%- endif -%}
-
-                    {%- capture tempList -%}
-                      {{ colorlist | append: color | append: ' ' }}
-                    {%- endcapture -%}
-
-                    {%- assign colorlist = tempList -%}
-                  {%- endunless -%}
-                {%- endfor -%}
-              {%- endif -%}
-            {%- endfor -%}
-
+          {% comment %} 
+            {%- if section.settings.display_item_swatch -%}
             {%- for product_option in product.options_with_values -%}
               {%- if product_option.name == 'Color' or product_option.name == 'Colour' -%}
-                {%- if product_option.values.size > 4 -%}
-                <li class="boost-pfs-filter-item-swatch-more">
-                  <a href="{{ product.url}}" title="More Color">
-                    + {{ product_option.values.size | minus : 4 }}
-                  </a>
-                </li>
-                {%- endif -%}
+                {%- assign product_option_count = product_option.values.size -%}
               {%- endif -%}
             {%- endfor -%}
-          </ul>
-          {%- endif -%}
+            <ul class="boost-pfs-filter-item-swatch">
+              {%- for option in product.options -%}
+                {%- if option == 'Color' -%}
+                  {%- assign index = forloop.index0 -%}
+                  {%- assign colorlist = '' -%}
+                  {%- assign color = '' -%}
+                  {%- assign option_count = 0 -%}
+                  {%- for variant in product.variants -%}
+                    {%- capture color -%}
+                      {{ variant.options[index] }}
+                    {%- endcapture -%}
+                    {%- unless colorlist contains color -%}
+                      {%- assign text = color | handleize -%}
+
+                      {%- if option_count < 4 and product_option_count > 0 -%}
+
+                          {%- if section.settings.swatch_color_display_type == 'swatch_color_display_type_image_color' -%}
+                          {%- assign icon-color-swatch = color | split: ' ' | handle | prepend: 'color-' | append: '.png' | file_url -%}
+                          {%- elsif section.settings.swatch_color_display_type == 'swatch_color_display_type_image_product' -%}
+                          {%- assign icon-color-swatch = variant.image.src | product_img_url: '24x' -%}
+                          {%- endif -%}
+
+                        <li>
+                          <div class="tooltip">
+                            {{color}}
+                          </div>
+                          <label data-value="{{ text }}" {%- if variant.image != null -%}  data-img="{{ variant.image.src | product_img_url: '300x' }} 300w"{%- endif -%} style="{% if section.settings.swatch_color_display_type != 'swatch_color_display_type_color' %}background-image: url({{ icon-color-swatch }});{% endif %} background-color: {{ color | split: ' ' | last | handle }};"></label>
+                          {%- assign option_count = option_count | plus : 1 -%}
+                        </li>
+                      {%- endif -%}
+
+                      {%- capture tempList -%}
+                        {{ colorlist | append: color | append: ' ' }}
+                      {%- endcapture -%}
+
+                      {%- assign colorlist = tempList -%}
+                    {%- endunless -%}
+                  {%- endfor -%}
+                {%- endif -%}
+              {%- endfor -%}
+
+              {%- for product_option in product.options_with_values -%}
+                {%- if product_option.name == 'Color' or product_option.name == 'Colour' -%}
+                  {%- if product_option.values.size > 4 -%}
+                  <li class="boost-pfs-filter-item-swatch-more">
+                    <a href="{{ product.url}}" title="More Color">
+                      + {{ product_option.values.size | minus : 4 }}
+                    </a>
+                  </li>
+                  {%- endif -%}
+                {%- endif -%}
+              {%- endfor -%}
+            </ul>
+            {%- endif -%}
+          {% endcomment %}
         </div>
     </div>
 </div>

@@ -29,6 +29,13 @@ footer {
   }
 }
 
+.hbspt-form {
+  overflow: hidden;
+  height: 2px;
+  margin-top: 1px;
+  border-top: 1px solid $color-dark;
+}
+
 @media screen and (min-width: 1025px) {
   .subfooter-list li:last-of-type {
     padding-right: 50px;
