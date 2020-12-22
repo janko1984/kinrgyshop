@@ -53,6 +53,13 @@
       <div class="boost-pfs-filter-left-col col-3">
         <div class="boost-pfs-filter-tree boost-pfs-filter-tree-v">{%- include 'boost-pfs-filter-skeleton', type: 'filter-tree' -%}</div>
         <div class="boost-pfs-filter-refine-by-wrapper-v"></div>
+
+        {%- comment -%} TOOLBAR TOP MOBILE {%- endcomment -%}
+          <div class="boost-pfs-filter-toolbar-top-mobile">
+              <div class="boost-pfs-filter-top-sorting boost-pfs-filter-top-sorting-mobile boost-pfs-filter-custom-sorting">{%- include 'boost-pfs-filter-skeleton', type: 'button' -%}</div>
+              <div class="boost-pfs-filter-tree-mobile-button">{%- include 'boost-pfs-filter-skeleton', type: 'button' -%}</div>
+          </div>
+          {%- comment -%} END TOOLBAR TOP MOBILE {%- endcomment -%}
       </div>
 
       <div class="boost-pfs-filter-right-col col-9">
@@ -163,14 +170,6 @@
 </div>
 {%- endcomment -%}
 {%- comment -%} END COLLECTION HEADER {%- endcomment -%}
-
-
-{%- comment -%} TOOLBAR TOP MOBILE {%- endcomment -%}
-<div class="boost-pfs-filter-toolbar-top-mobile">
-    <div class="boost-pfs-filter-top-sorting boost-pfs-filter-top-sorting-mobile boost-pfs-filter-custom-sorting">{%- include 'boost-pfs-filter-skeleton', type: 'button' -%}</div>
-    <div class="boost-pfs-filter-tree-mobile-button">{%- include 'boost-pfs-filter-skeleton', type: 'button' -%}</div>
-</div>
-{%- comment -%} END TOOLBAR TOP MOBILE {%- endcomment -%}
 
 
 

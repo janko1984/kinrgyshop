@@ -4,6 +4,8 @@ body {
 
 header,
 section {
+  overflow-x: hidden;
+  
   svg {
     width: 100%;
     height: auto;
