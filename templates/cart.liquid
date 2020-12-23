@@ -1,84 +1,76 @@
-<div class="container">
+<section class="container" id="main-cart-section">
   <div class="row">
-    <div class="col-md-12 col-lg-8">
-      <h1>MY CART</h1>
+    <div class="col-md-12">
+      <h1 class="f-80">CART</h1>
     </div>
   </div>
-
   <div class="row">
-    <div class="col-12 col-md-12 col-lg-8">
-      {% if cart.item_count > 0 %}
+    <div class="col-md-12">
+      
+      <div class="row cart-information">
+        <div class="col-md-8">
+            {% if cart.item_count > 0 %}
 
-        <form data-cart-view="data-cart-view">
-          <div class="header row">
-            <div class="col-md-1 offset-md-6">
-              <span>PRICE</span>
-            </div>
+          <form data-cart-view="data-cart-view" action="cart/update">
+            <div class="items" id="all-cart-items">
 
-            <div class="col-md-2 text-center">
-              <span>QTY</span>
-            </div>
-
-            <div class="col-md-1">
-              <span>TOTAL</span>
-            </div>
-          </div>
-
-          <div class="items">
-            
-            <div rv-each-item="cart.items" class="item row">
-              <a class="col-3 col-md-2">
-                <div class="thumb">
-                  <img rv-src="item.image | productImageSize 'medium'">
-                </div>
-              </a>
-          
-              <div class="name col-9 col-md-3" rv-text="item.title"></div>
-
-              <div class="price col-2 col-md-1 offset-md-1"><em class="price" rv-html="item.price | money"></em></div>
+              <div rv-each-item="cart.items" class="item" rv-data-product-variant-id="item.variant_id" rv-data-product-key="item.product_id">
               
-              <div class="control col-4 offset-1 col-md-2 offset-md-0">
-                <div class="minus">
-                  <a class="externe" href="#" rv-data-cart-update="index | plus 1" rv-data-cart-quantity="item.quantity | minus 1">-</a>
-                </div>
+                <div class="row">
+                    <img rv-src="item.image | productImageSize 'medium'" class="image">
+                    <div class="row product-text">
+                      <div class="titles">
+                        <h2 class="name" rv-text="item.product_title"></h2>
 
-                <div class="qty cart__qty-input">
-                  <span rv-html="item.quantity"></span>
-                </div>
-                
-                <div class="plus">
-                  <a class="externe" href="#" rv-data-cart-update="index | plus 1" rv-data-cart-quantity="item.quantity | plus 1">+</a>
+                        <p class="price" rv-html="item.final_line_price | money"></p>
+                      </div>
+
+                      <div class="quantity">
+                        <div class="control">
+                          <div class="minus">
+                            <a class="externe" href="#" rv-data-cart-update="index | plus 1" rv-data-cart-quantity="item.quantity | minus 1">-</a>
+                          </div>
+
+                          <div class="qty cart__qty-input">
+                            <span rv-html="item.quantity"></span>
+                          </div>
+                          
+                          <div class="plus">
+                            <a class="externe" href="#" rv-data-cart-update="index | plus 1" rv-data-cart-quantity="item.quantity | plus 1">+</a>
+                          </div>
+                      </div> 
+                    </div>
                 </div>
               </div>
-
-              <div class="price col-2 col-md-1"><em rv-html="item.final_line_price | money"></em></div>
-
-              <a class="col-1 offset-1 col-md-1 offset-md-1 remove-item" href="#" rv-data-cart-remove="index | plus 1">{% include 'icon-trash' %}</a>
-          
             </div>
             
-          </div>
-          
-          <div class="total row">
-            <div class="col-md-12 space-between">
-              <div>Subtotal:</div>
-              <div><span class="cart__subtotal" rv-html="cart.total_price | money"></span></div>
+            <div class="total row">
+              <p>Subtotal:</p>
+              <p><span class="cart__subtotal" rv-html="cart.total_price | money"></span></p>
             </div>
+
+            <div class="row button-row">
+              <a href="{{ routes.root_url }}" class="regular-button no-border">Back to shopping</a>
+
+              <a class="regular-button checkout pink" href="/checkout"><span>TO CHECKOUT</span></a>
+            </div>
+
+          </form>
+
+        {% else %}
+          
+          <p>Your cart is empty</p>
+
+        {% endif %}
+        </div>
+        </div>
+        <div class="row col-4 cart-cta">
+          <div class="col-md-12 bg-tan">
+
           </div>
+        </div>
+      </div>
 
-          <div class="space-between row btns">
-            <a href="/collections/all" class="link">ContInue shopping</a>
-
-            <a class="button" href="/checkout"><span>CHECKOUT</span></a>
-          </div>
-
-        </form>
-
-      {% else %}
-
-        <p>Your cart is empty</p>
-
-      {% endif %}
     </div>
   </div>
 </div>

@@ -43,10 +43,20 @@ nav.breadcrumbs {
   line-height: 15px;
   font-family: $kr;
   color: $color-dark;
+
+  a {
+    text-transform: uppercase;
+    color: $color-dark;
+  }
+
+  span:last-of-type {
+    color: rgba($color-dark, 0.5);
+  }
 }
 
+body.product main,
 body.collection main {
-  margin-top: 142px;
+  padding-top: 142px;
 }
 
 // .container-fluid,
@@ -54,6 +64,10 @@ body.collection main {
 #shopify-section-header {
   padding-left: 40px;
   padding-right: 40px;
+}
+
+.bg-tan {
+  background: $color-tan;
 }
 
 // *************************
@@ -81,6 +95,7 @@ body.collection main {
   }
 }
 
+body.product .inline-single,
 .menu-plain a,
 .inline-single {
   @include transition(400ms all $cubic);

@@ -1157,6 +1157,7 @@ section .boost-pfs-container-default {
 }
 
 
+// .boost-pfs-filter-tree-mobile-style2.boost-pfs-filter-tree-v .boost-pfs-filter-option-title-heading[aria-expanded="true"],
 .row .boost-pfs-filter-tree-v .boost-pfs-filter-button[aria-expanded="true"] .boost-pfs-filter-option-title-text {
   &::before {
     @include transform(rotate(270deg));
@@ -1167,6 +1168,7 @@ section .boost-pfs-container-default {
   }
 }
 
+// .boost-pfs-filter-tree-mobile-style2.boost-pfs-filter-tree-v .boost-pfs-filter-option-title-heading[aria-expanded="false"],
 .row .boost-pfs-filter-tree-v .boost-pfs-filter-button[aria-expanded="false"] .boost-pfs-filter-option-title-text {
   &::before {
     @include transform(rotate(0deg));
@@ -1181,11 +1183,13 @@ section .boost-pfs-container-default {
   border: none;
 }
 
+// .boost-pfs-filter-tree-mobile-style2.boost-pfs-filter-tree-v .boost-pfs-filter-option-title-heading::before,
+// .boost-pfs-filter-tree-mobile-style2.boost-pfs-filter-tree-v .boost-pfs-filter-option-title-heading::after,
 .row .boost-pfs-filter-tree-v .boost-pfs-filter-option.boost-pfs-filter-option-collapsed .boost-pfs-filter-option-title-text:before,
 .row .boost-pfs-filter-tree-v .boost-pfs-filter-option.boost-pfs-filter-option-collapsed .boost-pfs-filter-option-title-text:after {
   margin: auto;
 }
-
+// .boost-pfs-filter-tree-mobile-style2.boost-pfs-filter-tree-v .boost-pfs-filter-option-title-heading,
 .row .boost-pfs-filter-tree-v .boost-pfs-filter-option-title-text {
   &::before,
   &::after {
@@ -1382,6 +1386,25 @@ button.boost-pfs-filter-clear {
     background: $color-white;
     border: 1px solid $color-dark;
     border-radius: 3px;
+
+    @include transition(400ms all $cubic);
+
+    &[aria-checked="true"] {
+      color: $color-white;
+      background: $color-dark;
+
+      &:hover  .boost-pfs-filter-option-value {
+        color: $color-white;
+      }
+    }
+
+    &:hover {
+      color: $color-dark;
+
+      .boost-pfs-filter-option-value {
+        color: $color-dark;
+      }
+    }
   }
  }
 
@@ -1443,11 +1466,18 @@ button.boost-pfs-filter-clear {
     }
    }
  }
-
+ 
+ .boost-pfs-filter-wrapper .boost-pfs-filter-left-col .boost-pfs-filter-tree.boost-pfs-filter-tree-mobile-sticky .boost-pfs-filter-option-item.selected .boost-pfs-check-box:before,
  .row .boost-pfs-filter-option.boost-pfs-filter-has-scrollbar .boost-pfs-filter-option-content .boost-pfs-filter-option-content-inner li button[aria-checked="true"] span.boost-pfs-check-box::before {
    opacity: 1;
  }
 
+ .boost-pfs-filter-tree-mobile-sticky .boost-pfs-filter-option-item .boost-pfs-check-box {
+   position: relative;
+ }
+
+//  .boost-pfs-filter-tree-mobile-sticky .boost-pfs-filter-option-item .boost-pfs-filter-option-label .boost-pfs-check-box:before,
+ .boost-pfs-filter-tree-mobile-sticky .boost-pfs-filter-option-item .boost-pfs-check-box:before,
  .row .boost-pfs-filter-option.boost-pfs-filter-option-color ul button .boost-pfs-check-box::before,
  .row .boost-pfs-filter-option-content .boost-pfs-filter-option-item-list.boost-pfs-filter-option-item-list-multiple-list li.selected .boost-pfs-check-box:before {
     content: '';

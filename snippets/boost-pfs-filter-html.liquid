@@ -9,10 +9,10 @@
         <div class="boost-pfs-filter-product-item-label">[[itemLabels]][[itemTagLabels]]</div>
         <div class="boost-pfs-filter-product-bottom">
             <a href="[[itemUrl]]" class="boost-pfs-filter-product-item-title">[[itemTitle]]</a>
-            [[itemVendor]]
+            {% comment %} [[itemVendor]] {% endcomment %}
             [[itemReviewHtml]]
             [[itemPrice]]
-            [[itemColorSwatches]]
+            {% comment %} [[itemColorSwatches]] {% endcomment %}
         </div>
     </div>
 </div>
@@ -26,11 +26,11 @@
     </div>
     <div class="boost-pfs-filter-product-bottom">
         <a href="[[itemUrl]]" class="boost-pfs-filter-product-item-title">[[itemTitle]]</a>
-        [[itemVendor]]
+        {% comment %} [[itemVendor]] {% endcomment %}
         [[itemReviewHtml]]
         [[itemPrice]]
-        <p class="boost-pfs-filter-des">[[itemDescription]]</p>
-        [[itemColorSwatches]]
+        {% comment %} <p class="boost-pfs-filter-des">[[itemDescription]]</p> {% endcomment %}
+        {% comment %} [[itemColorSwatches]] {% endcomment %}
     </div>
 </div>
 {%- when 'productListPlaceholderHtml' -%}
@@ -44,6 +44,7 @@
     <a href="#" class="boost-pfs-filter-product-item-title"><span class="boost-pfs-filter-skeleton-text boost-pfs-filter-skeleton-width4"></span></a>
     <p class="boost-pfs-filter-product-item-vendor"><span class="boost-pfs-filter-skeleton-text boost-pfs-filter-skeleton-width1"></span></p>
     <p class="boost-pfs-filter-product-item-price"><span class="boost-pfs-filter-skeleton-text boost-pfs-filter-skeleton-width2"></span></p>
+    
     <p class="boost-pfs-filter-des">
       <span class="boost-pfs-filter-skeleton-text" style="width: 100%"></span><br />
       <span class="boost-pfs-filter-skeleton-text" style="width: 100%"></span><br />

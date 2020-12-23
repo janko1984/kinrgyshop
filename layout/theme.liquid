@@ -64,6 +64,13 @@
   <!-- main files -->
   {{ 'main.js' | asset_url | script_tag }}
 
+  {% comment %} {% if template | handleize == 'collection' %}
+    <div class="modal-filter">
+      <div class="boost-pfs-filter-tree boost-pfs-filter-tree-v">{%- include 'boost-pfs-filter-skeleton', type: 'filter-tree' -%}</div>
+      <div class="boost-pfs-filter-refine-by-wrapper-v"></div>
+    </div>
+  {% endif %} {% endcomment %}
+
   
 <!--begin-boost-pfs-js-->
   {% include 'boost-pfs' %}

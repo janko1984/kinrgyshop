@@ -29,10 +29,48 @@ body a {
   text-transform: uppercase;
 }
 
+body.cart .regular-button.pink,
 .regular-button.pink {
   background: $color-pink;
 }
 
 .regular-button.green {
   background: $color-green;
+}
+
+.cart-dd,
+body.cart .regular-button,
+body.cart .regular-button.no-border {
+  line-height: 60px;
+  
+  span {
+    line-height: 60px;  
+  }
+}
+
+.cart-dd,
+body.cart .regular-button.no-border {
+  background: $color-tan;
+  padding: 20px 0;
+  color: $color-dark;
+}
+
+body.cart .regular-button,
+body.cart .regular-button.no-border {
+  padding: 0;
+
+  @include align-items(center);
+}
+
+body.product {
+  .regular-button {
+    line-height: 60px;
+    height: 60px;
+    border: none;
+    padding: 0;
+
+    span {
+      line-height: 60px;
+    }
+  }
 }

@@ -94,6 +94,10 @@ h6 {
   line-height: 1.156em;
 }
 
+.f-80 {
+  line-height: 1.625em;
+}
+
 @media screen and (min-width: 1025px) {
   h1,
   .h1 {
@@ -106,6 +110,10 @@ h6 {
 
   .f-160 {
     font-size: 11.12vw;
+  }
+
+  .f-80 {
+    font-size: 5.6vw;
   }
 } // End 1025 Min
 
@@ -121,6 +129,10 @@ h6 {
 
   .f-160 {
     font-size: 11vw;
+  }
+
+  .f-80 {
+    font-size: 5.2vw;
   }
 } // End 1024 Max and 769 Min
 
@@ -145,6 +157,10 @@ h6 {
   .f-160 {
     font-size: 100px;
   }
+
+  .f-80 {
+    font-size: 50px;
+  }
 } // End 768 Max and 577 Min
 
 
@@ -164,5 +180,9 @@ h6 {
 
   .f-160 {
     font-size: 60px;
+  }
+
+  .f-80 {
+    font-size: 30px;
   }
 } // End 576 Max

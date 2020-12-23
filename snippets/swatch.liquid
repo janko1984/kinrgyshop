@@ -41,7 +41,7 @@
   <p><strong>This is case-sensitive!</strong> Do not put in <code>'color'</code> if your product option name is <code>'Color'</code>.</p>
 </div>
 {% else %}
-<div class="swatch clearfix swatch-{{ swatch | handleize }}" data-option-index="{{ option_index }}">
+<div class="swatch clearfix swatch-{{ swatch | handleize }}" data-option-index="{{ option_index }}" id="swatchSelect">
 
   {% assign values = '' %}
   {% for variant in product.variants %}
@@ -54,9 +54,11 @@
       {% assign values = values | join: ',' %}
       {% assign values = values | append: ',' | append: value %}
       {% assign values = values | split: ',' %}
+      
       {% if forloop.first == true %}
-        <div class="header">{{ swatch }}: <i class="current-color">{{ value }}</i></div>
-      {% endif %}
+        <div class="header hidden-item" id="productCurrentSwatch">{{ swatch }}: <i class="current-color">{{ value }}</i></div>
+      {% endif %} 
+      
       <div data-value="{{ value | escape }}" class="swatch-element {% if forloop.first == true %} first active {% endif %} {% if is_color %}color {% endif %}{{ value | handle }} {% if variant.available %}available{% else %}soldout{% endif %}">
         {% if is_color %}
         <!-- <div class="tooltip"></div> -->
@@ -64,7 +66,7 @@
         <input id="swatch-{{ option_index }}-{{ value | handle }}" type="radio" name="option-{{ option_index }}" value="{{ value | escape }}"{% if forloop.first %} checked{% endif %} {% unless variant.available %}disabled{% endunless %} />
         {% if is_color %}
         <label data-src="{{image | img_url: '448x556'}}" for="swatch-{{ option_index }}-{{ value | handle }}">
-          <img class="crossed-out" src="{{ 'soldout.png' | asset_url }}" />
+          {% comment %} <img class="crossed-out" src="{{ 'soldout.png' | asset_url }}" /> {% endcomment %}
         </label>
         {% else %}
         <label for="swatch-{{ option_index }}-{{ value | handle }}">

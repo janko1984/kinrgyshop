@@ -1,136 +1,177 @@
 {% assign current_variant = product.selected_or_first_available_variant %}
 
-<section class="product-section-one">
-  <div class="row-wrapper">
-    <div class="row">
-      <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+{% include 'icon-product' %}
+
+<section class="product-section-one container">
+  <div class="row">
+    <div class="col-md-12">
+      {% include 'breadcrumbs' %}
+    </div>
+  </div>
+  <div class="row">
+  
+    {% comment %} <div class="row"> {% endcomment %}
+      <div class="col-lg-5 offset-lg-1 col-md-5 offset-md-1 col-sm-5 col-xs-12">
 
         {% if product.images.size > 1 %}
-        <div class="row">
-
-          <div class="col-xs-2 thumbs-wrapper">
-            <div class="thumbs">
+        {% comment %} <div class="row"> {% endcomment %}
+            <ul class="desktop-product-image-list">
               {% for image in product.images %}
-              <div class="item">
-                <img class="product-single__thumbnail-image" src="{{ image.src | img_url: 'x375' }}"
-                  alt="{{ image.alt | escape }}">
-              </div>
+                <li>
+                  <figure>
+                    <img 
+                      src="{{ image.src | img_url: '576x' | width }}"
+                      srcset="{{ image.src | img_url: '1440x' | width }} 1440w,
+                      {{ image.src | img_url: '1440x' | width }} 2000w,
+                      {{ image.src | img_url: '800x' | width }} 800w"
+                      alt="{{ image.alt | escape }}" loading="lazy">
+                  </figure>
+                </li>
               {% endfor %}
-            </div>
-          </div>
-
-          <div class="col-xs-10">
-            <div class="product-detail-slider">
-              {% for image in product.images %}
-              <div class="item">
-                <img class="product-single__thumbnail-image"
-                  src="{{ image.src | img_url: '900x1400', crop: 'center' }}" alt="{{ image.alt | escape }}">
-              </div>
-              {% endfor %}
-            </div>
-          </div>
-
-        </div>
+            </ul>
 
         {% else %}
-          <div class="row single-image">
-            <div class="col-xs-12">
+          <div class="row singe-image">
 
               {% for image in product.images %}
-              <div class="item">
-                <img class="product-single__thumbnail-image"
-                    src="{{ image.src | img_url: '900x1400', crop: 'center' }}" alt="{{ image.alt | escape }}">
-              </div>
+                <figure class="desktop-product-single-image">
+                    <img 
+                      src="{{ image.src | img_url: '576x' | width }}"
+                      srcset="{{ image.src | img_url: '1440x' | width }} 1440w,
+                      {{ image.src | img_url: '1440x' | width }} 2000w,
+                      {{ image.src | img_url: '800x' | width }} 800w"
+                      alt="{{ image.alt | escape }}" loading="lazy">
+                  </figure>
               {% endfor %}
 
-            </div>
           </div>
 
         {% endif %}
       </div>
 
-      <div
-        class="col-lg-5 col-lg-offset-1 col-md-5 col-md-offset-1 col-sm-5 col-sm-offset-1 col-xs-12 col-xs-offset-0">
+      <div class="col-lg-4 offset-lg-1 col-md-4 offset-md-1 col-sm-4 offset-sm-1 col-xs-12 col-xs-offset-0" id="pinSection">
         <div class="product-form">
+          <div class="sticky-wrapper" data-scroll-id="product-sticky" data-scroll="" data-scroll-sticky="" data-scroll-target="#pinSection" data-scroll-repeat data-scroll-offset="-95, 95">
+
+            <h2 class="title">{{ product.title }}</h2>
+            
+            <div class="price">
+              {{ product.price | money | remove: '.00' }}
+              {% if product.compare_at_price_max > product.price %}
+                  <span class="sale">-{{ product.compare_at_price_max | minus: product.price | times: 1000.0 | divided_by: product.compare_at_price_max | money_without_currency | times: 10 | remove: '.0'}}%</span>
+              {% endif %}
+            </div>
+
+            <div class="description">
+              {{ product.description }}
+            </div>
+
+            {% form 'product', product, data-product-form: '', data-product-handle: product.handle, data-enable-history-state: 'true' %}
+
+            {% unless product.has_only_default_variant %}
 
 
-          <h2>{{ product.title }}</h2>
+            {% for option in product.options_with_values %}
+              {% if option.name == 'Color' %}
 
-          <div class="price">{{ product.price | money }} </div>
+                <label class="variant-title">Color</label>
 
-          <div class="description">
-            <p>{{ product.description | truncate: 84 }} <a class="scroll underlined" href="description"><span
-                  class="text">Detailed description</span></a></p>
-          </div>
+                {% include 'swatch' with 'Color' %}
+              {% endif %}
+            {% endfor %}
 
-          {% form 'product', product, data-product-form: '', data-product-handle: product.handle, data-enable-history-state: 'true' %}
-          {% unless product.has_only_default_variant %}
+            {% comment %} <input type="hidden-item" id="productColorHiddenValue" name="properties[size]" value="red" /> {% endcomment %}
 
-          {% for option in product.options_with_values %}
-          {% if option.name == 'Color' %}
-          {% include 'swatch' with 'Color' %}
-          {% endif %}
-          {% endfor %}
+            {% for option in product.options_with_values %}
+              {% if option.name == 'Size' %}
 
-          {% for option in product.options_with_values %}
-          {% if option.name == 'Size' %}
-          <div class="js {{ option.name }}">
+                <ul class="with-size-guide">
+                  <li>
+                      <label class="variant-title">Size</label>
+                      <div class="js {{ option.name }}">
 
-            {% if forloop.index > 0 %}
-            <select class="select-{{ option.name }}" id="Option{{ option.position }}-{{ value }}"
-              name="options[{{ option.name }}]" value="{{ value }}" {% if option.selected_value == value %}
-              checked{% endif %}>
-              {% for value in option.values %}
-              <option for="Option{{ option.position }}-{{ value }}" value="{{ value }}">{{ value }}</option>
+                      {% if forloop.index > 0 %}
+                        <select class="select-{{ option.name }}" id="productSize"
+                          name="options[{{ option.name }}]" 
+                          value="{{ value }}" 
+                          {% if option.selected_value == value %} checked{% endif %}>
+                          {% for value in option.values %}
+                            <option for="Option{{ option.position }}-{{ value }}" 
+                              value="{{ value }}">{{ value }}</option>
+                          {% endfor %}
+                        </select>
+                      {% endif %}
+                    </div>
+                  </li>
+
+                  {% if option.name == 'Size' && forloop.first == true %}
+                    <li class="size-guide">
+                      <p><a href="#" class="inline-single js-modal-button" target="_self">Size Guide</a></p>
+                    </li>
+                  {% endif %}
+              </ul>
+            {%endif%}
+
+            {% endfor %}
+            {% endunless %}
+
+            <label class="variant-title">Quantity</label>
+            <select class="select-qty" id="productQuantity">
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+            </select>
+
+            <select class="selected-option" name="id" id="masterSelect" style="display: none">
+              {% for variant in product.variants %}
+              <option {% if variant == current_variant %}selected="selected" {% endif %}
+                {% unless variant.available %}disabled="disabled" {% endunless %} value="{{ variant.id }}"
+                data-option="{{ variant.title }}" data-inventory="{{ variant.inventory_quantity }}"
+
+                {% if variant.option1 != blank %}
+                  data-variant-one="{{ variant.option1 }}"  
+                {% endif %}
+
+                {% if variant.option2 != blank %}
+                  data-variant-two="{{ variant.option2 }}"  
+                {% endif %}
+
+                >{{ variant.title }}
+              </option>
               {% endfor %}
             </select>
+
+            {% if current_variant.available %}
+            <div class="cart-button-wrapper" data-text="add to bag">
+            {% else %}
+              <div class="cart-button-wrapper" data-text="sold out">
             {% endif %}
-          </div>
-          {%endif%}
+                <button class="btn button regular-button pink submit" data-text="add to bag"
+                  {% unless current_variant.available %}disabled="disabled" {% endunless %}>
 
-          {% endfor %}
-          {% endunless %}
+                  <span data-submit-button-text>
+                    {% if current_variant.available %}
+                      Add to cart
+                    {% else %}
+                    sold out
+                    {% endif %}
+                  </span>
+                </button>
+              </div>
+              <!-- <div class="size-guide"><a class="underlined" href="#"><span class="text">Size Guide</span></a></div> -->
+              {% endform %}
 
-          <select class="select-qty">
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-            <option value="5">5</option>
-          </select>
-
-          <select class="selected-option" name="id" style="display: none">
-            {% for variant in product.variants %}
-            <option {% if variant == current_variant %}selected="selected" {% endif %}
-              {% unless variant.available %}disabled="disabled" {% endunless %} value="{{ variant.id }}"
-              option="{{ variant.title }}">
-              {{ variant.title }}
-            </option>
-            {% endfor %}
-          </select>
-
-          {% if current_variant.available %}
-          <div class="cart-button-wrapper" data-text="add to bag">
-          {% else %}
-            <div class="cart-button-wrapper" data-text="sold out">
-          {% endif %}
-              <button class="btn button submit" data-text="add to bag"
-                {% unless current_variant.available %}disabled="disabled" {% endunless %}>
-
-                <span data-submit-button-text>
-                  {% if current_variant.available %}
-                  {{ 'add_to_cart' }}
-                  {% else %}
-                  {{ 'sold_out' }}
-                  {% endif %}
-                </span>
-              </button>
             </div>
-            <!-- <div class="size-guide"><a class="underlined" href="#"><span class="text">Size Guide</span></a></div> -->
-            {% endform %}
-
+            </div>
           </div>
         </div>
-      </div>
-    </div>
+      {% comment %} </div> {% endcomment %}
+    {% comment %} </div> {% endcomment %}
 </section>
+
+{% comment %} Material and care  {% endcomment %}
+{% if product.metafields.products.material_care.show_section == true %}
+  {% section 'material-and-care' %}
+{% endif %}
