@@ -5,6 +5,7 @@
     <div class="col-form {% if cart.item_count == 0 %}hidden{% endif %}"> 
       <form data-cart-view="data-cart-view">
         <div class="items-and-price-wrap">
+
           <div class="items">
             
             <div rv-each-item="cart.items" class="item" data-product-id={{ item.id }}>

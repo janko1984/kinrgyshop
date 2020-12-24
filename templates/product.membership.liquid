@@ -172,6 +172,24 @@
               <option value="5">5</option>
             </select>
 
+      
+              
+            {% comment %} <span id="ProductPrice">{{ product.price | money }}</span> {% endcomment %}
+            {% comment %} <input name="selling_plan" value="{{ product.selling_plan_groups.selling_plans[0].id }}"> {% endcomment %}
+            <select name="selling_plan">
+  {% for variant in product.variants %}
+    <optgroup label="{{ variant.title }}">
+      {% for allocation in variant.selling_plan_allocations %}
+        <option value="{{ allocation.selling_plan.id }}">
+          {{ allocation.selling_plan.name }}
+        </option>
+      {% endfor %}
+    </optgroup>
+  {% endfor %}
+</select>
+
+
+
             <select class="selected-option" name="id" id="masterSelect" style="display: none">
               {% for variant in product.variants %}
               <option {% if variant == current_variant %}selected="selected" {% endif %}
@@ -191,22 +209,7 @@
               {% endfor %}
             </select>
 
-            {% if product.requires_selling_plan == true %}
-
-            {% comment %} <select name="selling_plan">
-            {% for group in product.selling_plan_groups %}
-{% for selling_plan in group.selling_plans %}
-                <option value="{{ selling_plan.id }}">
-    {{ selling_plan.name }}</option>
-    {% endfor %} 
-    {% endfor %} 
-    </select> {% endcomment %}
-
-            
-
-              whirlselector:{% render 'paywhirl-plan-selector', product: product %}
-               
-            {% endif %}
+            whirlselector:{% render 'paywhirl-plan-selector', product: product %}
 
             {% if current_variant.available %}
             <div class="cart-button-wrapper" data-text="add to bag">

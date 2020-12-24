@@ -1617,6 +1617,46 @@ body.product {
 }
 
 body.product {
+  .slider-row-wrapper {
+    // .slider-one-wrap {
+    //   padding-bottom: 114%;
+    // }
+
+    .slider-one-content {
+      cursor: pointer;
+      overflow: hidden;
+      display: -moz-flex;
+      display: flex;
+      flex-wrap: nowrap;
+      position: absolute;
+    }
+  }
+
+  .slide,
+  .slide .row {
+    width: 83.33333vw;
+  }
+
+  .slide .row {
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  .slide img {
+    width: 80vw;
+    pointer-events: none;
+  }
+
+  .slider-count {
+    margin-top: 20px;
+    margin-bottom: 20px;
+
+    @include flexbox();
+    @include align-items(flex-end);
+  }
+}
+
+body.product {
   .swatch-color {
     margin-bottom: 27px;
     
@@ -2270,7 +2310,23 @@ figure.desktop-product-single-image,
   .cart-dd .cart-row {
     max-width: 100%;
   }
+
+  .desktop-product-image-list {
+    display: none;
+    visibility: hidden;
+  }
+
+  .material-and-care [class^=col-]:last-of-type {
+    margin-top: 30px;
+  }
 } // End 768 Max
+
+@media (min-width: 767px) {
+  .mobile-image-slider {
+    display: none;
+    visibility: hidden;
+  }
+}
 
 @media (max-width: 767px) {
   .boost-pfs-filter-tree-mobile-sticky {
@@ -2563,6 +2619,11 @@ figure.desktop-product-single-image,
   } 
 } // End 767px Max
 
+@media (max-width: 768px) and (min-width: 577px) {
+  body.product .slider-row-wrapper .slider-one-wrap {
+    padding-bottom: 114%;
+  }
+}
 @media (max-width: 576px) {
   .inner-cta.collection.boost-pfs-filter-product-item .background {
     padding-bottom: 180%;
@@ -2621,6 +2682,32 @@ figure.desktop-product-single-image,
       margin-bottom: 20px;
     }
   }
+
+  body.product .slider-row-wrapper .slider-one-wrap {
+    padding-bottom: 117%;
+  }
+
+  .material-and-care {
+    padding-top: 40px;
+    padding-bottom: 40px;
+
+    .care-icons {
+      @include flex-wrap(wrap);
+
+      li {
+        margin-bottom: 30px;
+      }
+    }
+  }
+
+  body.product .title {
+    font-size: 2em;
+    line-height: 1.25em;
+  }
+
+  body.product .product-section-one {
+    padding-bottom: 50px;
+  }
 } // End 576 Max
 
 @media (max-width: 450px) {
@@ -2639,5 +2726,10 @@ figure.desktop-product-single-image,
     .boost-pfs-quickview-slider {
       position: absolute;
     }
+  }
+}
+@media (max-width: 350px) {
+  body.product .slider-row-wrapper .slider-one-wrap {
+    padding-bottom: 121%;
   }
 }

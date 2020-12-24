@@ -24,6 +24,33 @@ body.index {
 
 .main-header .site-nav {
   position: relative;
+
+  .site-nav--active {
+    position: relative;
+
+    &::before {
+      position: absolute;
+      content: "";
+      width: 29px;
+      height: 29px;
+      top: 0;
+      left: 0;
+      right: 0;
+      display: block;
+      margin-left: auto; 
+      margin-right: auto; 
+      background: url('https://cdn.shopify.com/s/files/1/0522/1918/3297/files/icon-current-page.svg?v=1608845179') no-repeat center center;
+      background-size: contain;
+      transform-origin: center;
+
+      @include transition(400ms all $cubic);
+      @include transform(scale(1) translate(0, -35px));
+    }
+  }
+}
+
+.sticked .main-header .site-nav .site-nav--active::before {
+  @include transform(scale(0.66) translate(0, -38px));
 }
 
 .main-header .site-nav a,
@@ -75,6 +102,10 @@ body.index {
     @include align-items(center);
   }
 
+  svg {
+    pointer-events: none;
+  }
+
   svg path {
     fill: $color-dark;
   }
@@ -84,28 +115,52 @@ body.index {
 //   width: calc(100% - 50px);
 // }
 
+.main-header .site-nav--has-dropdown {
+  position: relative;
+
+  button.site-nav__link {
+    pointer-events: none;
+  }
+
+  &.active-hover .site-nav__dropdown {
+    opacity: 1;
+    pointer-events: all;
+
+    ul {
+      transform: translate(0, 33px);
+    }
+  }
+}
+
 .main-header button.site-nav__link {
   background: none;
   color: $color-white;
   border: none;
+  line-height: 50px;
 }
+
 .main-header .site-nav__dropdown {
   position: absolute;
-  width: 50%;
-  transform: translate(-25%, 0);
+  width: 280%;
+  max-width: 447px;
+  transform: translate(-61%, 10px);
   pointer-events: none;
   opacity: 0;
+  top: 20px;
+
+  @include transition(200ms all $cubic);
 
   ul {
-    transform: translate(-28.5%, 25px);
-    // left: 50%;
+    transform: translate(0, 25px);
     background: $color-white;
     color: $color-dark;
     padding: 21px 30px;
     width: 140%;
     position: relative;
+    max-width: 447px;
+    box-shadow: 0 8px 30px 0 rgba(0, 0, 0, 0.1);
 
-
+    @include transition(200ms all $cubic);
     @include flexbox();
     @include justify-content(flex-start);
     @include align-items(flex-start);
@@ -266,7 +321,8 @@ body.index {
     // margin-right: -30px;
     li {
       display: inline-block;
-      padding: 0 17.5px;
+      // padding: 0 17.5px;
+      margin: 0 17.5px;
 
       &:last-of-type {
         padding-right: 0;
@@ -525,5 +581,28 @@ body.index {
   #shopify-section-header .container-fluid {
     margin-left: 0;
     margin-right: 0;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  #shopify-section-header .logo-main,
+  #shopify-section-header .logo-main svg {
+    width: 100%;
+    min-width: 150px;
+    max-width: 200px;
+  }
+
+  #shopify-section-header .mobile-nav-buttons,
+  .logo-w {
+    width: 50%;
+    max-width: 50%;
+    flex: 0 0 50%;
+  }
+}
+
+@media screen and (max-width: 576px) {
+  #shopify-section-header {
+    padding-left: 20px;
+    padding-right: 20px;
   }
 }

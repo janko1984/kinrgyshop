@@ -15,7 +15,9 @@
   <!-- Cart API -->
   {{ '//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js' | script_tag }}
   {{ 'option_selection.js' | shopify_asset_url | script_tag }}
-  {{ 'rivets-cart.min.js' | asset_url | script_tag }}
+  {% comment %} {{ 'rivets-cart.min.js' | asset_url | script_tag }} {% endcomment %}
+  {{ 'https://cdnjs.cloudflare.com/ajax/libs/shopify-cartjs/1.1.0/rivets-cart.min.js'  | script_tag }}
+  {% comment %} {{ 'https://cdnjs.cloudflare.com/ajax/libs/shopify-cartjs/1.1.0/cart.min.js' | asset_url | script_tag }} {% endcomment %}
   
   {{ 'locomotive-scroll.min.css' | asset_url | stylesheet_tag }}
   {{ 'theme.css' | asset_url | stylesheet_tag }}
@@ -73,9 +75,11 @@
 
 
   {% section 'general-modal' %}
+  {% include 'search-drawer' %}
   
 <!--begin-boost-pfs-js-->
   {% include 'boost-pfs' %}
 <!--end-boost-pfs-js-->
+  {% render 'paywhirl-main' %}
 </body>
 </html>

@@ -99,6 +99,7 @@ h6 {
 }
 
 @media screen and (min-width: 1025px) {
+  .search-row input,
   h1,
   .h1 {
     font-size: 4.17vw;
@@ -118,6 +119,7 @@ h6 {
 } // End 1025 Min
 
 @media screen and (max-width: 1024px) and (min-width: 769px) {
+  .search-row input,
   h1,
   .h1 {
     font-size: 3.9vw;
@@ -141,6 +143,7 @@ h6 {
 } // End 768 Max
 
 @media screen and (max-width: 768px) and (min-width: 577px) {
+  .search-row input,
   h1,
   .h1 {
     font-size: 40px;
@@ -165,6 +168,7 @@ h6 {
 
 
 @media screen and (max-width: 576px) {
+  .search-row input,
   h1,
   .h1 {
     font-size: 32px;

@@ -1,3 +1,4 @@
+
 // SMOOTH SCROLL
 let scroll;
 
@@ -137,13 +138,6 @@ window.addEventListener("DOMContentLoaded", function(){
     // });
   }
 
-  if (document.body.classList.contains('product')) {
-    let productJS = new GeneralProduct();
-
-    console.log(productJS)
-
-    tooltips();
-  }
 
   if (document.body.classList.contains('collection')) {
     // AJAX LOAD MORE
@@ -290,25 +284,118 @@ window.addEventListener("DOMContentLoaded", function(){
   });
 
   // SEARCH
-  const search = document.querySelector('.js_search');
+  const search = document.querySelector('.main-header .js_search');
+  let closeSearch = document.querySelector('.js-close-search');
   const inputCheck = document.querySelector('.search-form__input');
   const submitCheck = document.querySelector('.search-form__submit');
   const bodyTag = document.querySelector('body');
 
-  document.onclick = function(event) {
-    //console.log(clickCounter);
-    let isClickOnIcon = search.contains(event.target);
-    let isClickOnInput = inputCheck.contains(event.target);
-    let isClickOnSubmit = submitCheck.contains(event.target);
+  search.addEventListener('click', (event) => {
+    event.preventDefault();
 
-    if (isClickOnIcon || isClickOnInput || isClickOnSubmit ) {
-      search.classList.add('active');
-      bodyTag.classList.add('active-search');
-    }else{
-      search.classList.remove('active');
-      bodyTag.classList.remove('active-search');
+    let searchModal = document.querySelector('#SearchDrawer');
+    console.log(searchModal)
+    searchModal.classList.add('active');
+
+    gsap.to(searchModal, {
+      alpha: 1,
+      duration: 0.4,
+      ease: "power1.inOut",
+      onComplete: () => {
+        inputCheck.focus();
+      }
+    })
+  })
+
+  inputCheck.addEventListener('focus', event => {
+    event.target.parentElement.classList.add('focused');
+  })
+
+  inputCheck.addEventListener('blur', event => {
+    event.target.parentElement.classList.add('focused');
+  })
+
+  closeSearch.addEventListener('click', event => {
+    event.preventDefault();
+
+    let searchModal = event.target.closest('.bws-modal.active');
+    gsap.to(searchModal, {
+      alpha: 0,
+      duration: 0.4,
+      ease: "power1.inOut",
+      onComplete: () => {
+        searchModal.classList.remove('active');
+      }
+    })
+  })
+
+  // document.onclick = function(event) {
+  //   //console.log(clickCounter);
+  //   let isClickOnIcon = search.contains(event.target);
+  //   let isClickOnInput = inputCheck.contains(event.target);
+  //   let isClickOnSubmit = submitCheck.contains(event.target);
+
+  //   if (isClickOnIcon || isClickOnInput || isClickOnSubmit ) {
+  //     search.classList.add('active');
+  //     bodyTag.classList.add('active-search');
+  //   }else{
+  //     search.classList.remove('active');
+  //     bodyTag.classList.remove('active-search');
+  //   }
+  // };
+
+  // document.addEventListener('mousemove', (event) => {
+  //   console.log(event.pageY)
+  // })
+
+  function subNavHover() {
+    if (document.querySelectorAll('#shopify-section-header .site-nav--has-dropdown').length != 0) {
+      let liWithSubMenu = document.querySelectorAll('#shopify-section-header .site-nav--has-dropdown');
+      let liSubMenu = document.querySelectorAll('#shopify-section-header .site-nav__dropdown ul');
+      let header = document.querySelector('#shopify-section-header');
+
+      liWithSubMenu.forEach(li => {
+        li.addEventListener('mouseenter', (event) => {
+          event.target.classList.add('active-hover');
+          let subMenu = event.target.querySelector('.site-nav__dropdown');
+          subMenu.classList.add('active');
+        })
+
+        li.addEventListener('mouseleave', (event) => {
+          
+          // If leaving the top of the li - header sticked or not
+          if ( ! header.classList.contains('sticked')) {
+            if (event.pageY <= 35) {
+              event.target.classList.remove('active-hover')
+            }
+          } else if (header.classList.contains('sticked')) {
+            if (event.pageY <= 10) {
+              event.target.classList.remove('active-hover')
+            }
+          } 
+
+          // Out left
+          if (event.pageX < event.target.getBoundingClientRect().left) {
+            event.target.classList.remove('active-hover')
+          } 
+
+          // Out right
+          if (event.pageX > (event.target.getBoundingClientRect().right - 0.5)) {
+            event.target.classList.remove('active-hover')
+          }
+        })
+      })
+
+      // Leaving sub menu
+      liSubMenu.forEach(menu => {
+        menu.addEventListener('mouseleave', (event) => {
+          event.target.closest('.site-nav--has-dropdown').classList.remove('active-hover');
+          event.target.classList.remove('active');
+        })
+      })
     }
-  };
+  }
+  subNavHover();
 
   // ACCORDION
   // const accordion = {
@@ -631,6 +718,22 @@ class FullWidthSlider {
     });
     console.log(sliderOne)
  }
+
+ // Product
+ if (document.body.classList.contains('product')) {
+  let productJS = new GeneralProduct();
+
+  tooltips();
+
+//   // Mobile Product Slider
+//   let productSliderOne = new FullWidthSlider({
+//     slider: document.querySelector('#product-slider-one'),
+//     rowId: 'product-section-top',
+//     counter: true,
+//     dots: false,
+//   });
+//   console.log(productSliderOne)
+}
 });
 
 // window.addEventListener('resize', (event) => {
@@ -859,35 +962,50 @@ class GeneralProduct {
   }
 
   buttonSubmit() {
-    this.buttons.forEach(button => {
-      button.addEventListener('click', event => {
-        event.preventDefault();
+    // if (! document.body.classList.contains('product-membership')) {
+      this.buttons.forEach(button => {
+        button.addEventListener('click', event => {
+          event.preventDefault();
 
-        let id = this.master.value;
-        let quantity = this.quantity.value;
-        let size, color;
-        
-        if (this.size != null) {
-          size = this.size.value;
-        } else {
-          size = "";
-        }
+          let id = this.master.value;
+          let quantity = this.quantity.value;
+          let size, color, sellingPlan;
+          
+          if (this.size != null) {
+            size = this.size.value;
+          } else if (this.size == null){
+            size = "";
+          }
 
-        if (this.colorSwatch != null) {
-          color = this.currentSwatch;
-        } else {
-          color = "";
-        }
+          if (this.colorSwatch != null) {
+            color = this.currentSwatch;
+          } else if (this.colorSwatch == null) {
+            color = "";
+          }
 
-        console.log('s',size)
-        console.log('c',color)
+          if (document.querySelector('.paywhirl-plan-selector-plan select') != null) {
+            sellingPlan = document.querySelector('.paywhirl-plan-selector-plan select').value;
+            console.log('hi',sellingPlan.value)
+          } else {
+            sellingPlan = "";
+          }
 
-        CartJS.addItem(id, quantity, {
-          "size": size,
-          "color": color
-        }, {})
+
+          if (sellingPlan != null) {
+            CartJS.addItem(id, 1, {
+              "size": size,
+              "color": color,
+              "selling_plan": sellingPlan
+            }, { })
+          } 
+          else if (sellingPlan == null){
+            CartJS.addItem(id, 1, {
+            "size": size,
+            "color": color
+          }, { })
+          }
+        })
       })
-    })
   }
 
   // Make buttons - sold out
@@ -1101,6 +1219,7 @@ class Modal {
   setTimeout(() => {
     modalButton.timedModalCta()
   }, 1000);
+
 */
 
 
