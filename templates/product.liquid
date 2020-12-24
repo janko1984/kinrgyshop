@@ -106,7 +106,7 @@
 
                   {% if option.name == 'Size' && forloop.first == true %}
                     <li class="size-guide">
-                      <p><a href="#" class="inline-single js-modal-button" target="_self">Size Guide</a></p>
+                      <p><a href="#" class="inline-single js-modal-button" target="_self" data-modal-id="general-modal" data-content="{{ product.metafields.products.size_guide_modal_id }}">Size Guide</a></p>
                     </li>
                   {% endif %}
               </ul>
@@ -175,3 +175,14 @@
 {% if product.metafields.products.material_care.show_section == true %}
   {% section 'material-and-care' %}
 {% endif %}
+
+{% comment %} Modal Content - Metafields {% endcomment %}
+<div class="modal-content-wrapper" id="modal-content-wrapper-product">
+  
+  {% if product.metafields.products.size_guide_modal_id != blank %}
+    <div id="{{ product.metafields.products.size_guide_modal_id }}">
+        {{ product.metafields.products.size_guide }}
+    </div>
+  {% endif %}
+
+</div>

@@ -2236,6 +2236,207 @@ body.product .inline-single:hover::before,
   line-height: 0.85em;
 }
 
+#shopify-section-general-modal {
+  position: fixed;
+  width: 100vw;
+  min-height: 100vh;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 0;
+  pointer-events: none;
+  z-index: 14;
+  background: rgba(40, 40, 41, 0.5);
+  opacity: 0;
+}
+#shopify-section-general-modal.active {
+  pointer-events: all;
+}
+#shopify-section-general-modal .bws-modal {
+  padding-left: 0;
+  padding-right: 0;
+  opacity: 0;
+  transform: translate(0, -20px);
+}
+#shopify-section-general-modal .content-row {
+  height: auto;
+  position: relative;
+  max-height: 80vh;
+  min-height: 100vh;
+}
+#shopify-section-general-modal > .row,
+#shopify-section-general-modal .content-row {
+  display: -moz-flex;
+  display: flex;
+  -moz-justify-content: center;
+  justify-content: center;
+  -moz-align-items: center;
+  align-items: center;
+}
+#shopify-section-general-modal .content-col-wrapper {
+  position: relative;
+  width: 100%;
+  max-width: 1360px;
+  display: -moz-flex;
+  display: flex;
+  -moz-justify-content: center;
+  justify-content: center;
+}
+#shopify-section-general-modal .content-col-wrapper.cta-width {
+  max-width: 440px;
+}
+#shopify-section-general-modal .content-col-wrapper.cta-width .content-col {
+  padding-top: 0;
+  padding-left: 0;
+  padding-right: 0;
+}
+#shopify-section-general-modal .content-col-wrapper.cta-width .cta-content [class^=col-] {
+  padding-top: 20px;
+  padding-left: 30px;
+  padding-right: 30px;
+  display: -moz-flex;
+  display: flex;
+  -moz-flex-direction: column;
+  flex-direction: column;
+}
+#shopify-section-general-modal img {
+  display: block;
+  width: 100%;
+}
+#shopify-section-general-modal .content-col {
+  background: #fff;
+  width: 100%;
+  padding: 30px;
+  overflow-y: scroll;
+  text-align: left;
+  max-height: 80vh;
+  position: relative;
+}
+#shopify-section-general-modal .content-col .row {
+  margin-left: 0;
+  margin-right: 0;
+}
+#shopify-section-general-modal .close-row {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+#shopify-section-general-modal .close-row [class^=col-] {
+  padding: 0;
+  display: -moz-flex;
+  display: flex;
+  -moz-justify-content: flex-end;
+  justify-content: flex-end;
+}
+#shopify-section-general-modal .close-row [class^=col-] a {
+  width: 48px;
+  height: 48px;
+  background: #ffffff;
+  border: 1px solid #1C1E20;
+  z-index: 2;
+  top: -20px;
+  position: relative;
+  border-radius: 50%;
+}
+#shopify-section-general-modal .close-row [class^=col-] svg {
+  width: 15px;
+  height: 15px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  display: block;
+  margin: auto;
+}
+#shopify-section-general-modal .close-row [class^=col-] a,
+#shopify-section-general-modal .close-row [class^=col-] svg {
+  transform-origin: center;
+  transition: 400ms all cubic-bezier(0.255, 0.195, 0.135, 0.99);
+}
+#shopify-section-general-modal .close-row [class^=col-] a:hover {
+  cursor: pointer;
+}
+#shopify-section-general-modal .close-row [class^=col-] a:hover svg {
+  transform: rotate(90deg);
+}
+#shopify-section-general-modal .close-row [class^=col-] .close-modal {
+  transform-origin: center;
+  position: absolute;
+  transition: 400ms all cubic-bezier(0.255, 0.195, 0.135, 0.99);
+}
+#shopify-section-general-modal .close-row [class^=col-] .close-modal svg {
+  pointer-events: none;
+}
+#shopify-section-general-modal .close-row [class^=col-] .close-modal:hover {
+  transform: rotate(90deg);
+}
+#shopify-section-general-modal .content-col h1,
+#shopify-section-general-modal .content-col h2,
+#shopify-section-general-modal .content-col h3,
+#shopify-section-general-modal .content-col h4,
+#shopify-section-general-modal .content-col h5,
+#shopify-section-general-modal .content-col h6,
+#shopify-section-general-modal .content-col p {
+  margin-bottom: 30px;
+}
+#shopify-section-general-modal .content-col-wrapper.cta-width .content-col h1,
+#shopify-section-general-modal .content-col-wrapper.cta-width .content-col h2,
+#shopify-section-general-modal .content-col-wrapper.cta-width .content-col h3,
+#shopify-section-general-modal .content-col-wrapper.cta-width .content-col h4,
+#shopify-section-general-modal .content-col-wrapper.cta-width .content-col h5,
+#shopify-section-general-modal .content-col-wrapper.cta-width .content-col h6,
+#shopify-section-general-modal .content-col-wrapper.cta-width .content-col p {
+  margin-bottom: 20px;
+}
+
+.of-h {
+  overflow: hidden;
+}
+
+.modal-content-wrapper {
+  display: none;
+  visibility: hidden;
+}
+
+.size-list {
+  display: -moz-flex;
+  display: flex;
+  -moz-flex-direction: column;
+  flex-direction: column;
+  -moz-align-items: center;
+  align-items: center;
+  -moz-justify-content: center;
+  justify-content: center;
+}
+.size-list li {
+  font-size: 14px;
+  line-height: 50px;
+  font-family: "Klarheit Kurrent Regular";
+  color: #1C1E20;
+  width: 100%;
+  text-align: center;
+  border-right: 1px solid rgba(28, 30, 32, 0.15);
+}
+.size-list li.heading {
+  font-family: "Klarheit Kurrent Regular";
+  background: #1C1E20;
+  color: #ffffff;
+}
+.size-list li:nth-of-type(odd) {
+  background: #F2EDED;
+}
+.size-list li:nth-of-type(odd).heading {
+  background: #1C1E20;
+  color: #ffffff;
+  font-family: "Klarheit Kurrent Regular";
+}
+
+.bws-modal .size-list:last-of-type li {
+  border-right: 1px solid transparent;
+}
+
 @media screen and (max-width: 768px) {
   section.container .row {
     padding-left: 20px;
@@ -2297,6 +2498,27 @@ body.product .inline-single:hover::before,
 .cta.align-img-left .row {
     -moz-flex-direction: column-reverse;
     flex-direction: column-reverse;
+  }
+}
+@media screen and (max-width: 576px) {
+  .bws-modal .content-col-wrapper,
+#shopify-section-general-modal .content-col-wrapper {
+    max-width: 83.3333333vw;
+  }
+
+  .bws-modal .content-col-wrapper.cta-width,
+#shopify-section-general-modal .content-col-wrapper.cta-width {
+    max-width: 83.3333333vw;
+  }
+
+  .size-list {
+    margin-bottom: 30px;
+  }
+  .size-list li {
+    border-right: 1px solid transparent;
+  }
+  .size-list li:last-of-type {
+    border-bottom: 1px solid rgba(28, 30, 32, 0.15);
   }
 }
 @font-face {
@@ -3536,6 +3758,7 @@ body.collection .boost-pfs-filter-grid-width-6 .cta-inner-wrapper .background-wr
   justify-content: space-between;
 }
 
+.cart-dd .title-and-price .price,
 .cart-dd .price {
   font-size: 14px;
   line-height: 20px;

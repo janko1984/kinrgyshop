@@ -58,6 +58,10 @@ window.addEventListener("DOMContentLoaded", function(){
     
   // }, 100);
 
+  if (document.querySelectorAll('.js-modal-button').length > 0) {
+    let modalButton = new Modal();
+  }
+
 
   if (document.querySelector('body').classList.contains('index')) {
     // HOME SLIDERs
@@ -674,7 +678,7 @@ class GeneralProduct {
 
     this.quantity = document.querySelector('#productQuantity');
     this.master = document.querySelector('#masterSelect');
-    this.buttons = document.querySelectorAll('form .regular-button');
+    this.buttons = document.querySelectorAll('body.product .product-section-one form .regular-button');
 
     this.buttonSubmit();
 
@@ -930,3 +934,173 @@ function tooltips() {
     })
   }
 }
+
+// *********************
+// Modals
+// *********************
+class Modal {
+  constructor() {
+    this.buttons = document.querySelectorAll('.js-modal-button');
+    this.close = document.querySelectorAll('.bws-modal .js-close-modal');
+    this.modalCopy = document.querySelector('#modal-content-wrapper-product');
+    this.init();
+  }
+
+  init() {
+    this.buttons.forEach(button => {
+      button.addEventListener('click', event => {
+        this.openModal(event);
+      });
+    })
+
+    this.close.forEach(close => {
+      close.addEventListener('click', event => {
+        this.closeModal(event)
+      })
+    })
+  }
+
+  openModal(event, _contentId, _modalId, _copyId) {
+    let contentId, modalId;
+
+    if (event != undefined) {
+      event.preventDefault();
+    
+      // Find modal and content id's
+      contentId = event.target.dataset.content;
+      modalId = event.target.dataset.modalId;
+    } else if (event == undefined) {
+      contentId = _contentId;
+      modalId = _modalId;
+    }
+
+    console.log(contentId, modalId)
+    
+    document.body.classList.add('of-h');
+    document.documentElement.classList.add('of-h');
+
+    // If general modal
+    if (modalId == 'general-modal') {
+      modalId = 'shopify-section-general-modal';
+    } else if (modalId == 'cta-modal') {
+      modalId = 'shopify-section-general-modal';
+    }
+
+    // Make the modal active
+    let modal = document.querySelector(`#${ modalId }`);
+    modal.classList.add('active')
+
+    let tl = gsap.timeline();
+    tl.to(modal, {
+      duration: 0.3,
+      ease: 'power1.inOut',
+      alpha: 1
+    })
+    tl.to(modal.children[0], {
+      duration: 0.3,
+      ease: 'power1.inOut',
+      y: 0,
+      alpha: 1
+    })
+
+
+    // Find the modal content div - clone it
+    let copy;
+
+    console.log('a',_copyId, contentId)
+
+    if (event != undefined) {
+      copy = this.modalCopy.querySelector(`#${ contentId }`);
+    }
+    else if (event == undefined) {
+      copy = document.querySelector(`#${ _copyId + ' #' + contentId}`);
+    }
+
+    console.log(_copyId, copy)
+
+    let cloneCopy = copy.children[0].cloneNode(true);
+
+    // Find modal content
+    // let modalContent = modal.querySelector('.content-col .content');
+    let modalContent = modal.querySelector('.content-col');
+    let modalContentDiv = modal.querySelector('.content-col #modal-content-space');
+
+    // Remove current content placeholder div
+    modalContentDiv.remove();
+
+    // Go over children and clone them - then ad to modal
+    cloneCopy.children.forEach(div => {
+      let currentChild = div.cloneNode(true);
+      console.log(currentChild)
+      modalContent.append(currentChild);
+    })
+
+    // Set modal width with classes
+    modalContent.parentElement.classList += ' ' + cloneCopy.dataset.contentWidth; 
+  }
+
+  closeModal(event) {
+    event.preventDefault();
+
+    // Find current modal - make it not active
+    let currentModal = event.target.closest('.bws-modal');
+    // currentModal.parentElement.classList.remove('active');
+
+    // Find content part of modal
+    let content = currentModal.querySelector('.content-col');
+    let contentWrapper = currentModal.querySelector('.content-col-wrapper');
+
+    // Create replacement content div
+    let replacementDiv = document.createElement('div');
+    replacementDiv.setAttribute('class', 'row content');
+    replacementDiv.setAttribute('id', 'modal-content-space');
+
+    let t2 = gsap.timeline();
+    t2.to(currentModal, {
+      duration: 0.3,
+      ease: 'power1.inOut',
+      y: -20,
+      alpha: 0
+    })
+    t2.to(currentModal.parentElement, {
+      duration: 0.3,
+      ease: 'power1.inOut',
+      alpha: 0,
+      onComplete: () => {
+        currentModal.parentElement.classList.remove('active');
+        document.body.classList.remove('of-h');
+        document.documentElement.classList.remove('of-h');
+
+        // Wait - remove modal content
+        setTimeout(() => {
+          content.innerHTML = '';
+          content.append(replacementDiv);
+          contentWrapper.classList = 'content-col-wrapper';
+        }, 410)
+      }
+    })
+  }
+}
+
+/*
+  Modal - setTimeout
+
+  // Add to Modal class
+  modalButton.timedModalCta = (_contentId, _modalId, _copyId) => {
+
+    // Define modal information
+    _contentId = 'size-guide-content';
+    _modalId =  'general-modal';
+    _copyId = 'modal-content-wrapper-product';
+
+    // Pass arguments to function
+    modalButton.openModal(undefined, _contentId, _modalId, _copyId);
+  }
+
+  // On timeout show modal
+  setTimeout(() => {
+    modalButton.timedModalCta()
+  }, 1000);
+*/
+
+

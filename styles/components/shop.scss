@@ -1090,6 +1090,7 @@ body.collection,
   @include justify-content(space-between);
 }
 
+.cart-dd .title-and-price .price,
 .cart-dd .price {
   font-size: 14px;
   line-height: 20px;
