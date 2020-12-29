@@ -1,0 +1,57 @@
+<section class="collection-slider container" id="product-collection-slider">
+  <div class="row">
+    <div class="col-12 slider-one" id="product-slider-related-one">
+
+      <div class="slider-one-wrap">
+        <div class="slider-one-content" id="product-slider-related-content-one">
+
+          {% for product in collections.all.products %}
+              
+              <div class="slide" data-number="{{ forloop.index0 }}">
+                <a href="/products/{{ product.handle }}" target="_self" class="absolute-link" data-clickable="true"></a>
+                <div class="row">
+
+                {% if product.compare_at_price_max > product.price %}
+                  <div class="sale">
+                    <span class="tag">
+                      -{{ product.compare_at_price_max | minus: product.price | times: 1000.0 | divided_by: product.compare_at_price_max | money_without_currency | times: 10 | remove: '.0'}}%
+                    </span>
+                  </div>
+                {% endif %}
+
+                <figure>
+                    <img 
+                      src="{{ product.featured_image | img_url: '576x' | width }}"
+                      srcset="{{ product.featured_image | img_url: '1440x' | width }} 1440w,
+                      {{ product.featured_image | img_url: '1440x' | width }} 2000w,
+                      {{ product.featured_image | img_url: '800x' | width }} 800w"
+                      alt="{{ product.featured_image.alt | escape }}">
+                  </figure>
+                  <p class="product-title">{{ product.title }}</p>
+
+              <div class="product-price">
+                <span>{{ product.price | money | remove: '.00' }}</span>
+                {% if product.compare_at_price_max > product.price %}
+                    <span class="sale-wrap">
+                      {% comment %} <s>-{{ product.compare_at_price_max | minus: product.price | times: 1000.0 | divided_by: product.compare_at_price_max | money_without_currency | times: 10 | remove: '.0'}}%</s> {% endcomment %}
+                      <s>{{ product.compare_at_price_max | money | remove: '.0'}}</s>
+                    </span>
+                {% endif %}
+              </div>
+
+                </div>
+              </div>
+          {% endfor %}
+
+          <div class="box"></div>
+
+        </div>  
+      </div>
+      <ul class="dots">
+        {% comment %} Filled by JS {% endcomment %}
+      </ul>
+      {% comment %} </div> {% endcomment %}
+      
+    </div>
+  </div>
+</section>

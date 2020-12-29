@@ -78,7 +78,7 @@
             
       {% else %}
 
-          <div class="row singe-image">
+          <div class="row single-image">
 
             {% for image in product.images %}
               <figure class="desktop-product-single-image">
@@ -247,6 +247,11 @@
     <div id="{{ product.metafields.products.size_guide_modal_id }}">
         {{ product.metafields.products.size_guide }}
     </div>
+
   {% endif %}
 
 </div>
+
+{% comment %} {% assign curent_collection = 'all' %} {% endcomment %}
+{% section 'product-collection-slider' %}
+{% comment %} {% render 'collection-slider' | collection: curent_collection %} {% endcomment %}

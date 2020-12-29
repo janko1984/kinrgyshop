@@ -129,6 +129,7 @@ body.collection main {
   }
 }
 
+.collection-slider,
 .inner-cta {
   .absolute-link {
     position: absolute;
@@ -521,6 +522,7 @@ body .boost-pfs-modal-backdrop .boost-pfs-modal-container .boost-pfs-modal-conte
 }
 
 body.collection,
+.collection-slider,
 .boost-pfs-filter-products,
 .boost-pfs-modal-container {
   .boost-pfs-filter-product-item-price,
@@ -534,6 +536,13 @@ body.collection,
     font-size: 20px;
     line-height: 26px;
     font-family: $gtsr;
+  }
+
+
+  .boost-pfs-filter-products {
+    @include flexbox();
+    @include flex-wrap(wrap);
+    @include flex-direction(row);
   }
 
   .has-bc-swap-image .boost-pfs-filter-product-item-label .soldout{
@@ -591,6 +600,7 @@ body.collection,
 }
 
 body.collection,
+.collection-slider,
 .boost-pfs-filter-products {
   .boost-pfs-filter-product-item-image {
     margin-bottom: 6px;
@@ -1925,6 +1935,31 @@ figure.desktop-product-single-image,
     svg {
       pointer-events: none;
     }
+  }
+}
+
+// Collection Slider
+.collection-slider {
+  .sale {
+    background: $color-green;
+    border-radius: 0px;
+    padding: 3px 5px;
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    z-index: 2;
+
+    .tag {
+      color: $color-white;
+    }
+  } 
+
+  .absolute-link {
+    z-index: 3;
+  }
+
+  figure {
+    z-index: 1;
   }
 }
 
