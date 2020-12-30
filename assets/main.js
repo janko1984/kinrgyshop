@@ -1,4 +1,3 @@
-
 // SMOOTH SCROLL
 let scroll;
 
@@ -429,9 +428,124 @@ window.addEventListener("DOMContentLoaded", function(){
   // accordion.init();
 
   // MENU OPEN
-  document.querySelector('.js-menu').onclick = function() {
-    this.classList.toggle('is-active');
-    document.querySelector('body').classList.toggle('menu-open');
+  // document.querySelector('.js-menu').onclick = function() {
+  //   this.classList.toggle('is-active');
+  //   document.querySelector('body').classList.toggle('menu-open');
+  // }
+
+  // Open and close mobile menu
+  function mobileNavigation() {
+    let trigger = document.querySelector('.main-header .js-menu');
+    // let nav = document.querySelector('#mobile-nav');
+    // let mobileNav = document.querySelector('#shopify-section-mobile-nav');
+    let mobileNav = document.querySelector('#shopify-section-header #mobile-nav');
+    let header = document.querySelector('#shopify-section-header');
+
+    trigger.addEventListener('click', event => {
+      event.preventDefault();
+
+      if (! mobileNav.classList.contains('active')) {
+        
+        mobileNav.classList.add('active');
+        trigger.classList.add('active');
+        header.classList.add('open-mobile-nav');
+        document.body.classList.add('of-h');
+
+        let tl = gsap.timeline();
+        tl.to(mobileNav, {
+          duration: 0.3,
+          ease: 'power1.inOut',
+          alpha: 1
+        })
+        tl.to(mobileNav.children[0], {
+          duration: 0.3,
+          ease: 'power1.inOut',
+          // y: 0,
+          alpha: 1
+        })
+
+      } else if (mobileNav.classList.contains('active')) {
+
+        let tl = gsap.timeline();
+        tl.to(mobileNav.children[0], {
+          duration: 0.3,
+          ease: 'power1.inOut',
+          // y: -20,
+          alpha: 0
+        })
+        tl.to(mobileNav, {
+          duration: 0.3,
+          ease: 'power1.inOut',
+          alpha: 0
+        })
+        
+        mobileNav.classList.remove('active')
+        trigger.classList.remove('active')
+        header.classList.remove('open-mobile-nav');
+        document.body.classList.remove('of-h');
+      }
+    });
+
+    console.log(trigger, mobileNav)
+
+    
+  }
+  mobileNavigation();
+  mobileMenuAccordions();
+
+  // Mobile menu accordion
+  function mobileMenuAccordions() {
+    if (document.querySelectorAll('#mobile-nav li.site-nav--has-dropdown').length > 0) {
+      let acc = document.querySelectorAll('#mobile-nav li.site-nav--has-dropdown button');
+
+      acc.forEach(li => {
+        li.addEventListener('click', event => {
+          let current = event.target;
+
+          // Sub menu li
+          let accLi = Array.from(event.target.nextElementSibling.children[0].children);
+
+          if (! current.classList.contains('active')) {
+            let tl = gsap.timeline();
+        
+            current.classList.add('active')
+
+            tl.to(current.nextElementSibling, {
+              duration: 0.4,
+              height: 'auto',
+              ease: 'power1.inOut',
+            })
+            tl.to(accLi, {
+              duration: 0.4,
+              alpha: 1,
+              ease: 'power1.in',
+              stagger: 0.1,
+            },'-=0.2')
+          } else if (current.classList.contains('active')) {
+            
+            let tl = gsap.timeline();
+            
+            tl.to(accLi, {
+              duration: 0.4,
+              alpha: 0,
+              ease: 'power1.out',
+              stagger: {
+                each: 0.1,
+                from: "end"
+              }
+            })
+            tl.to(current.nextElementSibling, {
+              duration: 0.4,
+              height: 0,
+              ease: 'power1.inOut',
+              onComplete: () => {
+                current.classList.remove('active')
+              }
+            },'-=0.2')
+          }
+        }) 
+      })
+    }
   }
   
 //   function announcementBar() {
@@ -477,235 +591,6 @@ window.addEventListener("DOMContentLoaded", function(){
 // *********************
 // Full Width Slider
 // *********************
-// class FullWidthSlider {
-//   constructor({slider, rowId, counter, dots}) {
-//     this.slider = slider;
-//     this.rowId = rowId;
-//     this.content = this.slider.querySelector('.slider-one-content');
-//     this.slides = this.slider.querySelectorAll('.slide');
-//     this.slideWidth = this.slides[0].getBoundingClientRect().width;
-//     this.wrapWidth = this.content.getBoundingClientRect().width;
-//     this.wrapVal;
-//     this.viewWidth = window.innerWidth;
-//     this.counter = counter;
-//     this.active = 0;
-//     this.currentCount = document.querySelector(`#${this.rowId} .current p`);
-//     this.totalCount = document.querySelector(`#${this.rowId} .total p`);
-//     this.slidePositions;
-
-//     this.singleSlideBool = false;
-
-//     this.dotLinks;
-//     this.dots = dots;
-//     if (this.dots) {
-//       this.dotLinks  = document.querySelectorAll(`#${this.rowId} .dots a`);
-//       this.dotsClick();
-//     } else {
-//       this.dots = false;
-//     }
-
-//     // Det total counter value
-//     if (this.counter) {
-
-//       // If not just one slide
-//       if (this.slides.length != 1) {
-
-//         // If less than 10
-//         if (this.slides.length < 10) {
-//           this.totalCount.textContent = '0' + this.slides.length;
-//         } else {
-//           this.totalCount.textContent = this.slides.length;
-//         }
-//         } else {
-//           // Remove drag
-//           this.singleSlideBool = true;
-//         }
-//     }
-  
-//     setTimeout(() => {
-//       this.init();
-//       this.resize();
-      
-//       // If more than one slide - enable drag
-//       if (! this.singleSlideBool) {
-//         setTimeout(() => {
-//           this.move();
-//         }, 200)
-//       } else {
-//         // For regular mouse events
-//         this.content.classList.add('normal-cursor');
-//       }
-
-//     }, 1000)
-//   }
-
-//   init() {
-//     // console.log('a104')
-//     this.slidePositions = new Array();
-
-//     // Get slide widths
-//     this.slides.forEach((slide, index) => {
-//       if (index == 0) {
-//         this.slidePositions.push(this.slideWidth * index);
-//       } else {
-//         this.slidePositions.push(-this.slideWidth * index);
-//       }
-//     })
-//   }
-
-//   move() {
-//     // set width
-//     let wrapWidth = this.content.getBoundingClientRect().width;
-
-//     let slideWidth = this.slides[0].getBoundingClientRect().width;
-
-//     // Find draggable el
-//     let dragId = '#' + this.content.id;
-
-//     // Set dots vars
-//     let dotsBool = this.dots;
-//     let dotsList;
-//     if (dotsBool) {
-//       dotsList = this.dotLinks;
-//     }
-
-//     // Controls drag of slider
-//     let dragEl = Draggable.create(dragId, {
-//       type: "x",
-//       trigger: dragId,
-//       inertia: true,
-//       minimumMovement: 1,
-//       edgeResistance: 1,
-//       dragResistance: 0,
-//       zIndexBoost: false,
-//       zIndex: 1000,
-//       bounds: {
-//         minX: 1, 
-//         maxX: -this.wrapWidth + (this.slideWidth), 
-//         minY: 0, 
-//         maxY: 0
-//       },
-//       onDrag: updateProgress,
-//       onThrowUpdate: updateProgress,
-//       snap: { 
-//         // sx: snap(x)
-//         x: (x) => {
-
-//           // Next slide
-//           let nextSlide = Math.round(x / this.slideWidth) * this.slideWidth;
-
-//           // Find closest slide to next slide
-//           var closest = this.slidePositions.reduce(function(prev, curr) {
-//             return (Math.abs(curr - nextSlide) < Math.abs(prev - nextSlide) ? curr : nextSlide);
-//           });
-
-//           let nextCount = Number(this.slidePositions.indexOf(closest));
-
-//           this.active = nextCount;
-
-//           if (this.counter) {
-//             // Update Current Count
-//             if (nextCount <= 0) {
-//               this.currentCount.textContent = '01';  
-//             } else if (nextCount != 0) {
-//               this.currentCount.textContent = '0' + (nextCount + 1);
-//             }
-//           }
-
-//           // If dots
-//           if (dotsBool) {
-//             // Remove active
-//             dotsList.forEach( a => { a.classList.remove('active') });
-
-//             // Switch active
-//             if (this.active <= 0) {
-//               dotsList[0].classList.add('active')
-//             } else if (this.active != 0) {
-//               dotsList[this.active].classList.add('active')
-//             }
-//           }
-          
-//           return nextSlide;
-//         } 
-//       },
-//     })[0];
-//     this.dragEl = dragEl;
-
-
-//     // Animate Slider
-//     function updateProgress() {
-//       let test = animation.progress(this.x / wrapWidth);
-//     }
-
-
-//     // Find box el
-//     let temp = '#' + this.rowId + ' .box';
-
-//     // Move slider
-//     const animation = gsap.to(temp, {
-//       duration: 0.6,
-//       x: `+=${wrapWidth}`, 
-//       ease: "power4.easeOut",
-//       overwrite: true,
-//       paused: true,
-//       modifiers: {
-//         x: function(x, target) {
-//           x = parseInt(x) % wrapWidth;
-//             return `${x}px`;
-//         }
-//       },
-//     });
-//   }
-
-
-//   // On dot click - move the slider
-//   dotsClick() {
-//     this.changeSlides = event => {
-//       event.preventDefault();
-
-//       let active = event.target.dataset.count;
-
-//       this.active = active;
-
-//       this.dotLinks.forEach( (a,index) => {
-//         a.classList.remove('active');
-
-//         if (index == active) {
-//           a.classList.add('active');
-//         }
-//       })
-
-//       // Move the slider - via dots
-//       gsap.to(this.content, {
-//         duration: 0.4,
-//         ease: "power1.inOut",
-//         x: this.slidePositions[this.active],
-//       })
-//     }
-
-
-//     this.dotLinks.forEach(a => {
-//       a.addEventListener('click', event => { this.changeSlides(event) });
-//     })
-//   }
-
-//   resize() {
-//     window.addEventListener("resize", () => { this.resizeSlider() });
-
-//     this.resizeSlider = () => {
-      
-//       // Re find values
-//       this.slideWidth = this.slides[0].getBoundingClientRect().width;
-//       this.wrapWidth = this.content.getBoundingClientRect().width;
-//       this.init();
-
-//       // Keep slider at current slide
-//       gsap.to(this.content, {x: this.slidePositions[this.active] + 'px' })
-//     }
-//   }
-// }
-
-// FULL SLIDER V2
 class FullWidthSlider {
   constructor({slider, rowId, counter, dots}) {
     this.slider = slider;
@@ -806,18 +691,24 @@ class FullWidthSlider {
       maxDuration: 0.6,
    
       minimumMovement: 1,
-      edgeResistance: 1,
+      edgeResistance: 0,
       dragResistance: 0,
       zIndexBoost: false,
       zIndex: 1000,
       bounds: {
-        minX: 1, 
+        minX: 0, 
         maxX: -this.wrapWidth + (this.slideWidth), 
         minY: 0, 
         maxY: 0
       },
       onDrag: updateProgress,
       onThrowUpdate: updateProgress,
+      onMove: function(e) {
+        // Stops drag - left and right ends
+        if (this.x >= 0 || this.x <= this.vars.bounds.maxX) {
+          this.endDrag();
+        }
+      },
       snap: { 
         x: (x) => {
       
@@ -855,7 +746,7 @@ class FullWidthSlider {
             }
           }
 
-          console.log(nextSlide)
+          // console.log(nextSlide)
           
           return nextSlide;
         }
@@ -942,7 +833,7 @@ class FullWidthSlider {
 // Mult iItem Slider
 // *************************
 class MultiItemSlider {
-  constructor({slider, rowId, counter, dots, toSlide}) {
+  constructor({slider, rowId, counter, dots, toSlide, arrows}) {
     this.slider = slider;
     this.rowId = rowId;
     this.content = this.slider.querySelector('.slider-one-content');
@@ -953,14 +844,14 @@ class MultiItemSlider {
     this.viewWidth = window.innerWidth;
     this.counter = counter;
     this.active = 0;
-    this.currentCount = document.querySelector(`#${this.rowId} .current p`);
-    this.totalCount = document.querySelector(`#${this.rowId} .total p`);
+    
     this.slidePositions;
 
     // Device - move slides Object
     this.toSlide = toSlide;
 
-    // this.singleSlideBool = false;
+    // For counter - ?
+    this.singleSlideBool = false;
 
     // Screen Size
     this.screenSize;
@@ -980,7 +871,14 @@ class MultiItemSlider {
       this.screenSize = screenSize;
     }
 
-  
+    // Arrows
+    this.arrows = arrows;
+    this.arrowLinks;
+    if (this.arrows) {
+      this.arrowLinks = document.querySelectorAll('.arrows .arrow');
+      this.arrowClick();
+    }
+
     // Dots
     this.dotLinks;
     this.dots = dots;
@@ -990,22 +888,21 @@ class MultiItemSlider {
       this.dots = false;
     }
 
-    // Get total counter value
+    // Counter
+    this.currentCount;
+    this.totalCount;
     if (this.counter) {
+
+      this.currentCount = document.querySelector(`#${this.rowId} .current p`);
+      this.totalCount = document.querySelector(`#${this.rowId} .total p`);
 
       // If not just one slide
       if (this.slides.length != 1) {
-
-        // If less than 10
-        if (this.slides.length < 10) {
-          this.totalCount.textContent = '0' + this.slides.length;
-        } else {
-          this.totalCount.textContent = this.slides.length;
-        }
-        } else {
-          // Remove drag
-          this.singleSlideBool = true;
-        }
+        
+      } else {
+        // Remove drag
+        this.singleSlideBool = true;
+      }
     }
   
     setTimeout(() => {
@@ -1032,13 +929,13 @@ class MultiItemSlider {
     if (this.dots) {
       
       if (event != null && event.type == "resize") {
-          this.dotLi  = document.querySelectorAll(`#${this.rowId} .dots li`);
-          console.log(this.dotLi)
-          this.dotLi.forEach(li => { li.remove() });
+        this.dotLi  = document.querySelectorAll(`#${this.rowId} .dots li`);
+        
+        this.dotLi.forEach(li => { li.remove() });
 
-          this.dotUl  = document.querySelector(`#${this.rowId} .dots`);
-          // this.dotsClick();
-          this.dotsCreateLi();
+        this.dotUl  = document.querySelector(`#${this.rowId} .dots`);
+        // this.dotsClick();
+        this.dotsCreateLi();
       } else {
         this.dotUl  = document.querySelector(`#${this.rowId} .dots`);
         this.dotsCreateLi();
@@ -1058,10 +955,14 @@ class MultiItemSlider {
       }
       else if (index % this.toSlide[this.screenSize].move == 0) {
         this.slidePositions.push(-this.slideWidth * index);
+        // this.slidePositions.push(this.slideWidth * index);
       }
     })
 
-    console.log(this)
+    // Start Counter
+    if (this.counter) {
+      this.setCounter();
+    }
   }
 
   move() {
@@ -1072,6 +973,8 @@ class MultiItemSlider {
 
     // Find draggable el
     let dragId = '#' + this.content.id;
+
+    let rowId = '#' + this.rowId;
 
     // Set dots vars
     let dotsBool = this.dots;
@@ -1089,13 +992,8 @@ class MultiItemSlider {
       inertia: true,
       maxDuration: 0.6,
       dragClickables: true,
-
-      clickableTest: function(e) {
-        console.log('clcikable',e)
-      },
-   
       minimumMovement: 1,
-      edgeResistance: 1,
+      edgeResistance: 0,
       dragResistance: 0,
       zIndexBoost: false,
       zIndex: 1000,
@@ -1103,10 +1001,16 @@ class MultiItemSlider {
         minX: 1, 
         maxX: -this.wrapWidth + (this.slideWidth), 
         minY: 0, 
-        maxY: 0
+        maxY: 0,
       },
       onDrag: updateProgress,
       onThrowUpdate: updateProgress,
+      onMove: function(e) {
+        // Stops drag - left and right ends
+        if (this.x >= 0 || this.x <= this.vars.bounds.maxX) {
+          this.endDrag();
+        }
+      },
       snap: { 
         x: (x) => {
       
@@ -1143,11 +1047,12 @@ class MultiItemSlider {
 
           if (this.counter) {
             // Update Current Count
-            if (nextCount <= 0) {
-              this.currentCount.textContent = '01';  
-            } else if (nextCount != 0) {
-              this.currentCount.textContent = '0' + (nextCount + 1);
-            }
+            // if (nextCount <= 0) {
+            //   this.currentCount.textContent = '01';  
+            // } else if (nextCount != 0) {
+            //   this.currentCount.textContent = '0' + (nextCount + 1);
+            // }
+            this.updateCounterCurrent();
           }
 
           // If dots
@@ -1162,6 +1067,10 @@ class MultiItemSlider {
             } else if (this.active != 0) {
               this.dotsList[this.active].classList.add('active')
             }
+          }
+
+          if (this.arrows) {
+            this.changeArrowsClasses();
           }
 
           nextSlide = this.slidePositions[this.active];
@@ -1190,7 +1099,7 @@ class MultiItemSlider {
       modifiers: {
         x: function(x, target) {
           x = parseInt(x) % wrapWidth;
-            return `${x}px`;
+          return `${x}px`;
         },
       },
     });
@@ -1222,19 +1131,23 @@ class MultiItemSlider {
       this.active = active;
 
       // Change active class on dot links
-      dotLinks.forEach( (a,index) => {
-        a.classList.remove('active');
-        
-        if (index == active) {
-          a.classList.add('active');
-        }
-      })
+      this.changeDotsToActive();
+
+      if (this.arrows) {
+        this.changeArrowsClasses();
+      }
 
       // Move the slider - via dots
       gsap.to(this.content, {
         duration: 0.4,
         ease: "power1.inOut",
         x: this.slidePositions[this.active],
+        onComplete: () => {
+          if (this.counter) {
+            // Update counter
+            this.updateCounterCurrent();
+          }
+        }
       })
     }
 
@@ -1242,6 +1155,111 @@ class MultiItemSlider {
     dotLinks.forEach(a => {
       a.addEventListener('click', event => { this.changeSlides(event) });
     })
+  }
+
+  changeDotsToActive() {
+    this.dotsList.forEach( (dot, index) => {
+      dot.classList.remove('active');
+
+      if (index == this.active) {
+        dot.classList.add('active');
+      }
+    })
+  }
+
+  // Init counter
+  setCounter() {
+    let count = 0;
+
+    // Per screen size - get total slides
+    this.slides.forEach((slide, index) => {
+      if (index % this.toSlide[this.screenSize].move == 0) {
+        count++;
+      }
+    })
+
+    // Set total count
+    if (count < 10) {
+      this.totalCount.textContent = '0' + count;
+    } else if (count > 10) {
+      this.totalCount.textContent = count;
+    }
+  }
+
+  // Update counter - ot active count
+  updateCounterCurrent() {
+    if (this.active == 0) {
+      this.currentCount.textContent = '01';
+    }
+    else if (this.active + 1 >= 10) {
+      this.currentCount.textContent = (this.active + 1);
+    }
+    else if (this.active + 1 < 10) {
+      this.currentCount.textContent = '0' + (this.active + 1);
+    } 
+  }
+
+  arrowClick() {
+    this.onArrowClick = (event) => {
+      event.preventDefault();
+
+      // let currentDirection;
+
+      if (event.target.classList.contains('prev')) {
+        // currentDirection = 'prev';
+        this.active = this.active - 1;  
+      }
+
+      if (event.target.classList.contains('next')) {
+        if (this.dotsList.length - 1 != this.active) {
+          this.active = this.active + 1;
+        }  
+      }
+
+      this.changeArrowsClasses();
+
+      if (this.dots) {
+        this.changeDotsToActive();
+      }
+      
+      // Move the slider
+      gsap.to(this.content, {
+        duration: 0.4,
+        ease: "power1.inOut",
+        x: this.slidePositions[this.active],
+        onComplete: () => {
+          if (this.counter) {
+            // Update counter
+            this.updateCounterCurrent();
+          }
+        }
+      })
+    }
+
+    this.arrowLinks.forEach(a => {
+      a.addEventListener('click', (event) => {
+        this.onArrowClick(event);
+      })
+    });
+  }
+
+  changeArrowsClasses() {
+    // Prev arrow - disabled on/off
+    if (this.active == 0) {
+      this.arrowLinks[0].classList.add('disabled');
+    } else {
+      this.arrowLinks[0].classList.remove('disabled');
+    }
+
+    // Make next not disabled
+    if (this.dotsList.length - 1 != this.active) {
+      this.arrowLinks[1].classList.remove('disabled');
+    } 
+
+    // Disabled Next
+    if (this.dotsList.length - 1 == this.active) {
+      this.arrowLinks[1].classList.add('disabled');
+    }
   }
 
   dotsCreateLi() {
@@ -1277,11 +1295,7 @@ class MultiItemSlider {
   resize() {
     window.addEventListener("resize", (event) => { this.resizeSlider(event) });
 
-    
-
     this.resizeSlider = (event) => {
-
-      console.log(event)
       
       // Re find values
       this.slideWidth = this.slides[0].getBoundingClientRect().width;
@@ -1290,16 +1304,13 @@ class MultiItemSlider {
 
       // Keep slider at current slide
       gsap.to(this.content, {x: this.slidePositions[this.active] + 'px' })
-
-      // this.screenDetermineScreenSize();
-      // console.log(this.screenSize)
     }
   }
 }
 
 
   // Index
-  if (document.querySelector('body').classList.contains('index')) {
+  if (document.body.classList.contains('index')) {
 
     // Home Slider
     let sliderOne = new FullWidthSlider({
@@ -1308,47 +1319,73 @@ class MultiItemSlider {
       counter: false,
       dots: true,
     });
-    console.log(sliderOne)
+
+    if (document.querySelector('#home-product-collection-slider') != null) {
+      // Product Slider One
+      let sliderFeatured = new MultiItemSlider({
+        slider: document.querySelector('#product-slider-featured-one'),
+        rowId: 'home-product-collection-slider',
+        counter: true,
+        dots: true,
+        arrows: true,
+        toSlide: {
+          desktop: {
+            width: 769,
+            move: 3,
+          },
+          tablet: {
+            width: 768,
+            move: 2,
+          },
+          mobile: {
+            width: 576,
+            move: 1,
+          }
+        }
+      });
+    }
  }
 
  // Product
  if (document.body.classList.contains('product')) {
   let productJS = new GeneralProduct();
 
-  // Product Slider One
-  let sliderOne = new MultiItemSlider({
-    slider: document.querySelector('#product-slider-related-one'),
-    rowId: 'product-collection-slider',
-    counter: false,
-    dots: true,
-    toSlide: {
-      desktop: {
-        width: 769,
-        move: 3,
-      },
-      tablet: {
-        width: 768,
-        move: 2,
-      },
-      mobile: {
-        width: 576,
-        move: 1,
+  if (document.querySelector('#product-collection-slider') != null) {
+    // Related Slider
+    let sliderOne = new MultiItemSlider({
+      slider: document.querySelector('#product-slider-related-one'),
+      rowId: 'product-collection-slider',
+      counter: true,
+      dots: true,
+      arrows: true,
+      toSlide: {
+        desktop: {
+          width: 769,
+          move: 3,
+        },
+        tablet: {
+          width: 768,
+          move: 2,
+        },
+        mobile: {
+          width: 576,
+          move: 1,
+        }
       }
-    }
-  });
-  console.log(sliderOne)
+    });
+  }
 
+  // Material and care 
   tooltips();
 
   // Mobile Product Slider
-  if (document.querySelector('#product-slider-one .slider-one')) {
+  if (document.querySelector('.mobile-image-slider #product-slider-one') != null) {
     let productSliderOne = new FullWidthSlider({
       slider: document.querySelector('#product-slider-one'),
       rowId: 'product-section-top',
       counter: true,
       dots: false,
     });
-    console.log(productSliderOne)
   }
 }
 });

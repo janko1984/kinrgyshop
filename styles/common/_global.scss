@@ -333,6 +333,8 @@ body.product .inline-single,
 // **************
 // MODAL
 // **************
+#mobile-nav,
+// #shopify-section-mobile-nav,
 #SearchDrawer,
 #shopify-section-general-modal {
   position: fixed;
@@ -575,6 +577,17 @@ body.product .inline-single,
 
 .bws-modal .size-list:last-of-type li {
   border-right: 1px solid transparent;
+}
+
+body.index .collection-slider {
+  .slider-one-content {
+    overflow: visible;
+  }
+
+  .slide .row {
+    padding-left: 0;
+    padding-right: 0;
+  }
 }
 
 @media screen and (max-width: 1024px) {

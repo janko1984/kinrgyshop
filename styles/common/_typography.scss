@@ -94,6 +94,10 @@ h6 {
   line-height: 1.156em;
 }
 
+.f-70 {
+  line-height: 1.16em;
+}
+
 .f-80 {
   line-height: 1.625em;
 }
@@ -111,6 +115,10 @@ h6 {
 
   .f-160 {
     font-size: 11.12vw;
+  }
+
+  .f-70 {
+    font-size: 4.865vw;
   }
 
   .f-80 {
@@ -131,6 +139,10 @@ h6 {
 
   .f-160 {
     font-size: 11vw;
+  }
+
+  .f-70 {
+    font-size: 4.465vw;
   }
 
   .f-80 {
@@ -161,6 +173,10 @@ h6 {
     font-size: 100px;
   }
 
+  .f-70 {
+    font-size: 45px;
+  }
+
   .f-80 {
     font-size: 50px;
   }
@@ -175,7 +191,8 @@ h6 {
   }
 
   h2 {
-    font-size: 28px;
+    // font-size: 28px;
+    font-size: 35px;
   }
 
   h3 {
@@ -184,6 +201,11 @@ h6 {
 
   .f-160 {
     font-size: 60px;
+  }
+
+  .f-70 {
+    // font-size: 28px;
+    font-size: 40px;
   }
 
   .f-80 {

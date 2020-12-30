@@ -1963,6 +1963,42 @@ figure.desktop-product-single-image,
   }
 }
 
+#product-section-top .mobile-image-slider {
+  position: relative;
+
+  .slider-row-wrapper {
+    width: 100vw;
+
+    @include flexbox();
+  }
+
+  .slider-row-wrapper .slider-one-wrap {
+    padding-bottom: 0;
+  } 
+
+  .slider-one-content {
+    overflow: visible;
+    position: relative;
+  }
+
+  .slide {
+    position: relative;
+  }
+}
+
+body.product .mobile-image-slider,
+.mobile-image-slider {
+  .slide,
+  .slide .row {
+    width: 90vw;
+
+    img {
+      // width: 100%;
+      width: calc(100% - 20px);
+    }
+  }
+}
+
 @media screen and (min-width: 1200px) {
   .boost-pfs-filter-products .boost-pfs-filter-product-item.bc-al-style4 .boost-pfs-quickview-btn {
     background: $color-green !important;
@@ -2215,9 +2251,21 @@ figure.desktop-product-single-image,
   body.cart .total {
     border-bottom: none;
   }
+
+  #product-section-top .mobile-image-slider {
+    height: 0;
+    overflow: hidden;
+  }
 } // End 768 Min
 
 @media (max-width: 768px) {
+  #product-section-top .mobile-image-slider {
+    width: 100vw;
+    visibility: visible;
+  
+    @include flexbox();
+  }
+
   .boost-pfs-filter-left-col .boost-pfs-filter-top-sorting-mobile .boost-pfs-filter-top-sorting-wrapper {
     margin-right: 0;
     line-height: 30px;
@@ -2654,11 +2702,12 @@ figure.desktop-product-single-image,
   } 
 } // End 767px Max
 
-@media (max-width: 768px) and (min-width: 577px) {
-  body.product .slider-row-wrapper .slider-one-wrap {
-    padding-bottom: 114%;
-  }
-}
+// @media (max-width: 768px) and (min-width: 577px) {
+  // body.product .slider-row-wrapper .slider-one-wrap {
+    // padding-bottom: 114%;
+//   }
+// }
+
 @media (max-width: 576px) {
   .inner-cta.collection.boost-pfs-filter-product-item .background {
     padding-bottom: 180%;
@@ -2718,9 +2767,9 @@ figure.desktop-product-single-image,
     }
   }
 
-  body.product .slider-row-wrapper .slider-one-wrap {
-    padding-bottom: 117%;
-  }
+  // body.product .slider-row-wrapper .slider-one-wrap {
+  //   padding-bottom: 117%;
+  // }
 
   .material-and-care {
     padding-top: 40px;
@@ -2763,8 +2812,8 @@ figure.desktop-product-single-image,
     }
   }
 }
-@media (max-width: 350px) {
-  body.product .slider-row-wrapper .slider-one-wrap {
-    padding-bottom: 121%;
-  }
-}
+// @media (max-width: 350px) {
+//   body.product .slider-row-wrapper .slider-one-wrap {
+//     padding-bottom: 121%;
+//   }
+// }
