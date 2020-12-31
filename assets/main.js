@@ -547,6 +547,70 @@ window.addEventListener("DOMContentLoaded", function(){
       })
     }
   }
+
+  // Add click event for general accordions
+  function generalAccordion() {
+    if (document.querySelectorAll('.accordion-list .accordion-link').length > 0) {
+      let accordionsLinks = document.querySelectorAll('.accordion-list .accordion-link');
+
+      accordionsLinks.forEach(acc => {
+        acc.addEventListener('click', event => { toggleAccordions(event) });
+      })
+    }
+  }
+
+  // Faq page
+  if (document.body.classList.contains('page-faq')) {
+    generalAccordion();
+  }
+
+  // Open and close accordions
+  function toggleAccordions(event) {
+    event.preventDefault();
+
+    let current = event.target;
+
+    console.log(current.nextElementSibling.children)
+    console.log(current.nextElementSibling.children[0])
+
+    if (! current.classList.contains('active')) {
+      current.classList.add('active')
+
+      let tl = gsap.timeline();
+
+      tl.to(current.nextElementSibling, {
+        duration: 0.4,
+        height: 'auto',
+        ease: 'power1.inOut',
+        onComplete: () => {
+          scroll.update();
+        }
+      })
+      tl.to(current.nextElementSibling.children[0], {
+        duration: 0.4,
+        ease: 'power1.in',
+        alpha: 1
+      }, '-=0.3')
+    } else if (current.classList.contains('active')) {
+      
+      let tl = gsap.timeline();
+
+      tl.to(current.nextElementSibling.children[0], {
+        duration: 0.4,
+        ease: 'power1.in',
+        alpha: 0
+      })
+      tl.to(current.nextElementSibling, {
+        duration: 0.4,
+        height: 0,
+        ease: 'power1.out',
+        onComplete: () => {
+          current.classList.remove('active');
+          scroll.update();
+        }
+      }, '-=0.25')
+    }
+  }
   
 //   function announcementBar() {
 // //     if (window.history.length <= 2 && document.querySelector('.announcement-bar') != null) {
