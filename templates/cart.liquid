@@ -24,7 +24,9 @@
 
                         <p class="price" rv-html="item.final_line_price | money"></p>
                       </div>
-                      paywhirl:{% render 'paywhirl-subscriptions-cart-selling-plans', item: item %}
+                      
+                      {% comment %} paywhirl {% endcomment %}
+                      {% render 'paywhirl-subscriptions-cart-selling-plans', item: item %}
 
                       <div class="quantity">
                         <div class="control">

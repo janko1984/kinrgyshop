@@ -19,155 +19,128 @@ window.addEventListener("DOMContentLoaded", function(){
     requestAnimationFrame(loop)
   }
 
-  // setTimeout(function(){
-    if (window.innerWidth > 768) {
-      scroll = new LocomotiveScroll({
-        el: document.querySelector('[data-scroll-container]'),
-        smooth: true,
-        lerp: 0.1,
-        smoothMobile: false,
-      })
-    } else if (window.innerWidth < 1025) {
-      scroll = new LocomotiveScroll({
-        el: document.querySelector('[data-scroll-container]'),
-        smooth: false,
-        lerp: 1,
-        smoothMobile: false,
-      })
-    }
+  // ***********************
+  // Locomotive Scroll
+  // ***********************
+  if (window.innerWidth > 768) {
+    scroll = new LocomotiveScroll({
+      el: document.querySelector('[data-scroll-container]'),
+      smooth: true,
+      lerp: 0.1,
+      smoothMobile: false,
+    })
+  } else if (window.innerWidth < 1025) {
+    scroll = new LocomotiveScroll({
+      el: document.querySelector('[data-scroll-container]'),
+      smooth: false,
+      lerp: 1,
+      smoothMobile: false,
+    })
+  }
 
-    // Sticky Nav
-    loop();
-
-    // scroll.on('scroll', () => {
-    //   const siteHeader = document.querySelector("#shopify-section-header");
-    //   const wrapper = document.querySelector("main");
-      
-    //   if (wrapper.getBoundingClientRect().top < -100){
-    //     siteHeader.classList.add('sticked');
-    //   }
-    //   else {
-    //     siteHeader.classList.remove('sticked');
-        
-    //     // Anouncement Bar - add background to header
-    //     if (siteHeader.classList.contains('sticked')) {
-    //       siteHeader.classList.remove('sticked-announcement');
-    //     }
-    //   }
-    // });
+  // Sticky Nav
+  loop();
     
-  // }, 100);
 
   if (document.querySelectorAll('.js-modal-button').length > 0) {
     let modalButton = new Modal();
   }
 
-
-  if (document.querySelector('body').classList.contains('index')) {
-    // HOME SLIDERs
-    // if (document.querySelector('.splide-1')) {
-    //   new Splide( '.splide-1', {
-    //     type   : 'loop',
-    //     perPage: 4,
-    //     perMove: 4,
-    //     gap: 20,
-    //     speed: 800,
-    //     easing: 'cubic-bezier(0.255, 0.195, 0.135, 0.99)',
-    //     //arrows: false,
-    //     pagination: false,
-    //     breakpoints: {
-    //       640: {
-    //         perPage: 1,
-    //         perMove: 1,
-    //       },
-    //     }
-    //   } ).mount();
-    // }
-
-    // if (document.querySelector('.splide-2')) {
-    //   new Splide( '.splide-2', {
-    //     type   : 'loop',
-    //     perPage: 4,
-    //     perMove: 4,
-    //     gap: 20,
-    //     speed: 800,
-    //     easing: 'cubic-bezier(0.255, 0.195, 0.135, 0.99)',
-    //     //arrows: false,
-    //     pagination: false,
-    //     breakpoints: {
-    //       640: {
-    //         perPage: 1,
-    //         perMove: 1,
-    //       },
-    //     }
-    //   } ).mount();
-    // }
-
-    // if (document.querySelector('.splide-3')) {
-    //   new Splide( '.splide-3', {
-    //     type   : 'loop',
-    //     perPage: 3,
-    //     perMove: 3,
-    //     gap: 20,
-    //     speed: 800,
-    //     easing: 'cubic-bezier(0.255, 0.195, 0.135, 0.99)',
-    //     //arrows: false,
-    //     pagination: false,
-    //     breakpoints: {
-    //       640: {
-    //         perPage: 1,
-    //         perMove: 1,
-    //       },
-    //     }
-    //   } ).mount();
-    // }
-
-    // const slideButtons = document.querySelectorAll('.slide-control .button-arrow');
-    // slideButtons.forEach(item => {
-    //   item.addEventListener('click', event => {
-    //     event.preventDefault();
-        
-    //     if (item.classList.contains('prev')) {
-    //       item.closest('.product-slider').querySelector('.splide__arrow--prev').click();
-    //     }else {
-    //       item.closest('.product-slider').querySelector('.splide__arrow--next').click();
-    //     }
-        
-    //   })
-    // });
-  }
-
-
   if (document.body.classList.contains('collection')) {
     // AJAX LOAD MORE
-    function loadProducts() {
-      let nextUrl = document.querySelector('.collection-product-list .btn-wrapper a').href;
-      document.querySelector('.collection-product-list .btn-wrapper').remove();
-      var xmlhttp = new XMLHttpRequest();
-      xmlhttp.onreadystatechange = function() {
-        if (this.readyState === 4 && this.status === 200) {
-          //console.log(this.responseText);
-          var tmpdiv = document.createElement("div");
-          tmpdiv.innerHTML = this.responseText;
-          var wantedDiv = tmpdiv.querySelector('.collection-product-list').innerHTML;
-          //console.log(wantedDiv);
-          document.querySelector('.master > .collection-product-list').innerHTML += wantedDiv;
-          scroll.update();
-        }
-      };
-      xmlhttp.open('GET', nextUrl);
-      xmlhttp.send();
-    }
+    // function loadProducts() {
+    //   let nextUrl = document.querySelector('.collection-product-list .btn-wrapper a').href;
+    //   document.querySelector('.collection-product-list .btn-wrapper').remove();
+    //   var xmlhttp = new XMLHttpRequest();
+    //   xmlhttp.onreadystatechange = function() {
+    //     if (this.readyState === 4 && this.status === 200) {
+    //       //console.log(this.responseText);
+    //       var tmpdiv = document.createElement("div");
+    //       tmpdiv.innerHTML = this.responseText;
+    //       var wantedDiv = tmpdiv.querySelector('.collection-product-list').innerHTML;
+    //       //console.log(wantedDiv);
+    //       document.querySelector('.master > .collection-product-list').innerHTML += wantedDiv;
+    //       scroll.update();
+    //     }
+    //   };
+    //   xmlhttp.open('GET', nextUrl);
+    //   xmlhttp.send();
+    // }
 
-    // document.addEventListener("click", event => {
+    document.addEventListener("click", event => {
+      console.log(event)
+      console.log(event.target)
 
+      // if (event.target.classList.contains('boost-pfs-quickview-cart-btn')) {
+      //   event.preventDefault();
+      //   event.stopPropagation();
+
+
+      //   let qucikViewForm = document.querySelector('#boost-pfs-quickview-cart-form');
+      //   let productId, color, size, quantity, optionZero, optionZeroInputsChecked, optionOne, optionOneInputsChecked;
+
+
+      //   quantity = document.querySelector('#boost-pfs-quickview-cart-quantity').value;
+
+      //   productId = qucikViewForm.querySelector('#boost-pfs-quickview-variants-selector').value;
+
+      //   if (document.querySelector('#ProductSelect-option-0') != null) {
+      //     optionZero = document.querySelector('#ProductSelect-option-0');
+      //     optionZeroInputsChecked = document.querySelector('#ProductSelect-option-0 input[checked]');
+
+      //     if (optionZero.attributes.name.value == 'color' || optionZero.attributes.name.value == 'Color' && optionZeroInputsChecked.value != null) {
+      //       color = optionZeroInputsChecked.value;
+      //     } else {
+      //       color = '';  
+      //     }
+      //   } else {
+      //     color = '';
+      //   }
+
+      //   if (document.querySelector('#ProductSelect-option-1') != null) {
+      //     optionOne = document.querySelector('#ProductSelect-option-1');
+      //     optionOneInputsChecked = document.querySelector('#ProductSelect-option-1 input[checked]');
+
+      //     if (optionOne.attributes.name.value == 'size' || optionOne.attributes.name.value == 'Size' && optionOneInputsChecked.value != null) {
+      //       size = optionOneInputsChecked.value;
+      //     } else {
+      //       size = '';  
+      //     }
+      //   } else {
+      //     size = '';
+      //   }
+
+        
+        // console.log(optionOne)
+        // console.log(optionOne.attributes.name.value, optionOneInputsChecked)
+
+        // optionTwo = document.querySelector('#ProductSelect-option-1');
+        // optionTwoInputsChecked = document.querySelector('#ProductSelect-option-1 input[checked]');
+
+        // console.log('=============')
+        // console.log(optionTwo)
+        // console.log(optionTwo.attributes.name.value, optionTwoInputsChecked)
+        // console.log('=============')
+        // console.log(productId, color, size, quantity)
+
+        /*
+          color
+          size
+          quantity 
+          id
+
+          check for null
+        */
+      // }
+
+      
     //   let el = document.querySelector('.load-more');
     //   if (el && el.contains(event.target)) {
     //     event.preventDefault();
     //     event.stopPropagation();
     //     loadProducts();
     //   }
-    // });
+    });
 
     // Filter APP Edits 
     let filterButtons = document.querySelectorAll('.boost-pfs-filter-button, .boost-pfs-filter-button span');
@@ -189,7 +162,7 @@ window.addEventListener("DOMContentLoaded", function(){
     const config = { attributes: true, childList: true, subtree: true };
     const callback = function(mutationsList, observer) {
       mutationsList.forEach(mutation => {
-        console.log(mutation)
+        // console.log(mutation)
           // console.log(scroll)
           if (mutation.type == "attributes") {
             scroll.update()
@@ -570,9 +543,6 @@ window.addEventListener("DOMContentLoaded", function(){
 
     let current = event.target;
 
-    console.log(current.nextElementSibling.children)
-    console.log(current.nextElementSibling.children[0])
-
     if (! current.classList.contains('active')) {
       current.classList.add('active')
 
@@ -611,7 +581,124 @@ window.addEventListener("DOMContentLoaded", function(){
       }, '-=0.25')
     }
   }
+
+
+  // *************************
+  // Footer Form - Hubspot
+  // *************************
+
+  // Hubspot Submit - footer
+  function footerHubspotFakeOut() {
+
+  // Hidden hubspot form
+   let hubspot = {
+     form: document.querySelector('.hbspt-form'),
+     iframe: document.querySelector('.hbspt-form iframe'),
+   }
+   hubspot.email = hubspot.iframe.contentWindow.document.querySelector('input[type="email"]')
+   hubspot.submit = hubspot.iframe.contentWindow.document.querySelector('input[type="submit"]')
+   hubspot.innerForm = hubspot.iframe.contentWindow.document.querySelector('form')
+   hubspot.innerFormWrapper = hubspot.iframe.contentWindow.document.querySelector('.hbspt-form')
+
+   // Visible footer form
+   let visibleForm = {
+     form: document.querySelector('#footer-form'),
+     formInner: document.querySelector('#footer-form .form-inner'),
+    //  messages: document.querySelector('#footer-form .form-response p'),
+     email: document.querySelector('#footer-form input[type="email"]'),
+     submit: document.querySelector('#footer-form input[type="submit"]'),
+     success: document.querySelector('#footer-form .form-success'),
+   }
+   
+   // Visible form keyup - make hubspot email value match
+   visibleForm.email.addEventListener('keyup', event => {
+     hubspot.email.value = event.target.value;
+   })
+
+   // VisibleForm submit - then submit hubspot form
+   visibleForm.form.addEventListener('submit', event => {
+    event.preventDefault();
+    hubspot.innerFormWrapper.classList.add('is-submitting')
+    hubspot.submit.click();
+  })
+
+
+   // Mutation observer - target
+   let targetNode = hubspot.innerForm;
+    
+   // Mutation obbserver
+   const config = { attributes: true, childList: true, subtree: true };
+   const callback = function(mutationsList, observer) {
+     mutationsList.forEach(mutation => {
+      //  console.log(mutation)
+
+      // Email error
+      //  if (mutation.type == "childList" && mutation.target.classList.contains('hs_email')) {
+      //     if (mutation.addedNodes.length > 0 && mutation.addedNodes[0].classList.contains('hs-error-msgs')) {
+      //       visibleForm.messages.innerText = mutation.addedNodes[0].innerText;
+      //     }
+      //  }
+      
+      // On submit - wait until form is sent - show success
+      if (mutation.target.nodeName == "FORM" && hubspot.innerFormWrapper.classList.contains('is-submitting')) {
+
+        // Wait for form submit
+        let waitForSumbit = setInterval(() => {
+
+          // If submitted
+          if (hubspot.innerFormWrapper.children[0].classList.contains('submitted-message')) {
+            // Success animation
+            footerFormSuccess(visibleForm);
+
+            // Clear interval
+            clearInterval(waitForSumbit);
+          }
+        }, 1000)
+      }
+     })
+   }
+
+   // Create an observer instance linked to the callback function
+   let observer = new MutationObserver(callback);
+
+   // Start observing the target node for configured mutations
+   observer.observe(targetNode, config);
+  }
   
+  setTimeout(() => {
+    footerHubspotFakeOut();
+  }, 800)
+  
+  // Footer form success animation
+  function footerFormSuccess(formObj) {
+    let form = formObj;
+    let tl = gsap.timeline();
+
+    tl.to(form.formInner, {
+      duration: 0.4,
+      ease: "power.inOut",
+      alpha: 0,
+    })
+    tl.to(form.formInner, {
+      duration: 0.4,
+      ease: "power.inOut",
+      height: 0,
+    }, '-=0.3')
+    tl.to(form.success, {
+      duration: 0.4,
+      ease: "power.inOut",
+      height: 'auto'
+    }, '-=0.5')
+    tl.to(form.success.children[0], {
+      duration: 0.4,
+      ease: "power.inOut",
+      alpha: 1,
+      onComplete: () => {
+        scroll.update();
+      }
+    }, '-=0.2')
+  }
+
 //   function announcementBar() {
 // //     if (window.history.length <= 2 && document.querySelector('.announcement-bar') != null) {
 //       		let announcementBar = document.querySelector('.announcement-bar');

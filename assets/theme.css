@@ -3543,6 +3543,10 @@ body.collection main svg#icon-shape-two-01 {
   margin: 0px 0 0px 0;
 }
 
+.row .boost-pfs-filter-tree-v .boost-pfs-filter-option .boost-pfs-filter-option-title .boost-pfs-filter-clear {
+  padding-bottom: 0;
+}
+
 .boost-pfs-modal-backdrop .boost-pfs-modal-container .boost-pfs-quickview-option-color {
   width: 24px;
   height: 24px;
@@ -4017,8 +4021,16 @@ body.collection .boost-pfs-filter-grid-width-6 .cta-inner-wrapper .background-wr
   position: relative;
 }
 
-.row .boost-pfs-filter-option-content ul.boost-pfs-filter-option-item-list.boost-pfs-filter-option-item-list-multiple-list li {
-  padding-left: 30px;
+.row .boost-pfs-filter-option-content ul.boost-pfs-filter-option-item-list.boost-pfs-filter-option-item-list-multiple-list .boost-pfs-check-box {
+  margin-top: auto;
+  top: 0;
+  bottom: 0;
+  left: 9px;
+  margin-bottom: auto;
+  margin-right: 10px;
+}
+.row .boost-pfs-filter-option-content ul.boost-pfs-filter-option-item-list.boost-pfs-filter-option-item-list-multiple-list .boost-pfs-filter-option-value {
+  margin-bottom: 0;
 }
 
 .boost-pfs-modal-backdrop .boost-pfs-quickview-left,
@@ -5770,6 +5782,28 @@ body.product select:focus {
   outline: none;
 }
 
+footer #footer-form .form-success p,
+footer #footer-form .form-success svg {
+  display: inline-flex;
+}
+footer #footer-form .form-success svg {
+  width: 45px;
+  height: 45px;
+  margin-right: 20px;
+}
+footer #footer-form .form-success {
+  position: relative;
+  height: 0;
+  overflow: hidden;
+}
+footer #footer-form .form-success .inner {
+  opacity: 0;
+  display: -moz-flex;
+  display: flex;
+  -moz-align-items: center;
+  align-items: center;
+}
+
 #preview-bar-iframe {
   display: none !important;
   visibility: hidden;
@@ -7061,29 +7095,47 @@ section .boost-pfs-container-default {
 .row .boost-pfs-filter-option.boost-pfs-filter-option-list ul.boost-pfs-filter-option-item li button,
 .row .boost-pfs-filter-option.boost-pfs-filter-option-list ul.boost-pfs-filter-option-item li button span,
 .row .boost-pfs-filter-option.boost-pfs-filter-option-list ul.boost-pfs-filter-option-item li a span,
+.row .boost-pfs-filter-option.boost-pfs-filter-option-list ul.boost-pfs-filter-option-item li span,
 .row .boost-pfs-filter-option.boost-pfs-filter-option-list ul.boost-pfs-filter-option-item li button .boost-pfs-filter-option-value,
 .row .boost-pfs-filter-option.boost-pfs-filter-has-scrollbar .boost-pfs-filter-option-content .boost-pfs-filter-option-content-inner li button,
 .row .boost-pfs-filter-option.boost-pfs-filter-has-scrollbar .boost-pfs-filter-option-content .boost-pfs-filter-option-content-inner li button span,
 .row .boost-pfs-filter-option.boost-pfs-filter-has-scrollbar .boost-pfs-filter-option-content .boost-pfs-filter-option-content-inner li a span,
+.row .boost-pfs-filter-option.boost-pfs-filter-has-scrollbar .boost-pfs-filter-option-content .boost-pfs-filter-option-content-inner li span,
 .row .boost-pfs-filter-option.boost-pfs-filter-has-scrollbar .boost-pfs-filter-option-content .boost-pfs-filter-option-content-inner li button .boost-pfs-filter-option-value,
 .row .boost-pfs-filter-option-content .boost-pfs-filter-option-item-list.boost-pfs-filter-option-item-list-multiple-list li button,
 .row .boost-pfs-filter-option-content .boost-pfs-filter-option-item-list.boost-pfs-filter-option-item-list-multiple-list li button span,
 .row .boost-pfs-filter-option-content .boost-pfs-filter-option-item-list.boost-pfs-filter-option-item-list-multiple-list li a span,
+.row .boost-pfs-filter-option-content .boost-pfs-filter-option-item-list.boost-pfs-filter-option-item-list-multiple-list li span,
 .row .boost-pfs-filter-option-content .boost-pfs-filter-option-item-list.boost-pfs-filter-option-item-list-multiple-list li button .boost-pfs-filter-option-value {
   line-height: 32px;
   font-size: 14px;
   font-family: "Klarheit Kurrent Regular";
 }
 
+.row .boost-pfs-filter-option-content .boost-pfs-filter-option-item-list .boost-pfs-filter-option-item button, .boost-pfs-filter-option-content .boost-pfs-filter-option-item-list .boost-pfs-filter-option-item a {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+.row .boost-pfs-filter-option-content .boost-pfs-filter-option-item-list .boost-pfs-filter-option-item button span, .boost-pfs-filter-option-content .boost-pfs-filter-option-item-list .boost-pfs-filter-option-item a span {
+  line-height: 32px;
+  font-size: 14px;
+  font-family: "Klarheit Kurrent Regular";
+}
+
+.row .boost-pfs-filter-option.boost-pfs-filter-has-scrollbar .boost-pfs-filter-option-content .boost-pfs-filter-option-content-inner li button .boost-pfs-filter-option-value {
+  display: inline-block;
+}
+
 .row .boost-pfs-filter-option.boost-pfs-filter-has-scrollbar .boost-pfs-filter-option-content .boost-pfs-filter-option-content-inner li button .boost-pfs-check-box,
 .row .boost-pfs-filter-option.boost-pfs-filter-has-scrollbar .boost-pfs-filter-option-content .boost-pfs-filter-option-content-inner li a .boost-pfs-check-box {
   position: relative;
-  top: 3px;
 }
 
-.row .boost-pfs-filter-option.boost-pfs-filter-has-scrollbar .boost-pfs-filter-option-content .boost-pfs-filter-option-content-inner li button .boost-pfs-filter-option-value,
-.row .boost-pfs-filter-option.boost-pfs-filter-has-scrollbar .boost-pfs-filter-option-content .boost-pfs-filter-option-content-inner li a .boost-pfs-filter-option-value {
-  margin-left: 6px;
+.row .boost-pfs-filter-option.boost-pfs-filter-has-scrollbar .boost-pfs-filter-option-content .boost-pfs-filter-option-content-inner li button {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
 }
 
 .row .boost-pfs-filter-option-content .boost-pfs-filter-option-item-list.boost-pfs-filter-option-item-list-multiple-list li {
@@ -7091,10 +7143,6 @@ section .boost-pfs-container-default {
 }
 .row .boost-pfs-filter-option-content .boost-pfs-filter-option-item-list.boost-pfs-filter-option-item-list-multiple-list li button.boost-pfs-filter-button .boost-pfs-filter-option-value {
   margin-left: 12px;
-}
-
-.row .boost-pfs-filter-option-content .boost-pfs-filter-option-item-list.boost-pfs-filter-option-item-list-multiple-list li .boost-pfs-check-box {
-  top: 9px;
 }
 
 .row .boost-pfs-filter-option-item-list.boost-pfs-filter-option-item-list-multiple-list {
@@ -7129,6 +7177,10 @@ button.boost-pfs-filter-clear {
   margin-bottom: 20px;
 }
 
+.row .boost-pfs-filter-tree-v .boost-pfs-filter-option-box.boost-pfs-filter-option-size button span {
+  width: 100%;
+}
+
 .row .boost-pfs-filter-tree-v .boost-pfs-filter-option .boost-pfs-filter-option-content .boost-pfs-filter-option-item-list-box li button {
   font-size: 14px;
   line-height: 18px;
@@ -7139,6 +7191,10 @@ button.boost-pfs-filter-clear {
   background: #ffffff;
   border: 1px solid #1C1E20;
   border-radius: 3px;
+  position: relative;
+  transition: 400ms all cubic-bezier(0.255, 0.195, 0.135, 0.99);
+}
+.row .boost-pfs-filter-tree-v .boost-pfs-filter-option .boost-pfs-filter-option-content .boost-pfs-filter-option-item-list-box li button span {
   transition: 400ms all cubic-bezier(0.255, 0.195, 0.135, 0.99);
 }
 .row .boost-pfs-filter-tree-v .boost-pfs-filter-option .boost-pfs-filter-option-content .boost-pfs-filter-option-item-list-box li button[aria-checked=true] {
@@ -7150,9 +7206,22 @@ button.boost-pfs-filter-clear {
 }
 .row .boost-pfs-filter-tree-v .boost-pfs-filter-option .boost-pfs-filter-option-content .boost-pfs-filter-option-item-list-box li button:hover {
   color: #1C1E20;
+  background: #1C1E20;
 }
 .row .boost-pfs-filter-tree-v .boost-pfs-filter-option .boost-pfs-filter-option-content .boost-pfs-filter-option-item-list-box li button:hover .boost-pfs-filter-option-value {
-  color: #1C1E20;
+  color: #ffffff;
+}
+.row .boost-pfs-filter-tree-v .boost-pfs-filter-option .boost-pfs-filter-option-content .boost-pfs-filter-option-item-list-box li button .boost-pfs-check-box {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 2;
+  display: block;
+  opacity: 0;
 }
 
 .row .boost-pfs-filter-option.boost-pfs-filter-option-color,
@@ -7166,6 +7235,22 @@ button.boost-pfs-filter-clear {
 
 .row .boost-pfs-filter-option-content .boost-pfs-filter-option-item-list.boost-pfs-filter-option-item-list-swatch.circle-grid li .boost-pfs-filter-option-swatch-image + .boost-pfs-filter-button {
   display: block;
+}
+
+.row .boost-pfs-filter-option-content .boost-pfs-filter-option-item-list.boost-pfs-filter-option-clothing .boost-pfs-check-box,
+.boost-pfs-filter-option-accessories .boost-pfs-check-box {
+  top: 4px;
+}
+
+.row .boost-pfs-filter-option-clothing .boost-pfs-filter-option-item-list.boost-pfs-filter-option-item-list-multiple-list li .boost-pfs-check-box {
+  position: relative;
+}
+
+.row .boost-pfs-filter-option-content .boost-pfs-filter-option-item-list.boost-pfs-filter-option-clothing .boost-pfs-check-box,
+.boost-pfs-filter-option-accessories .boost-pfs-check-box,
+.boost-pfs-filter-option-kinrgy-x-brands .boost-pfs-check-box {
+  margin-right: 10px;
+  position: relative;
 }
 
 .row .boost-pfs-filter-option-content .boost-pfs-filter-option-item-list:not(.boost-pfs-filter-option-item-list-multiple-list) .boost-pfs-check-box {

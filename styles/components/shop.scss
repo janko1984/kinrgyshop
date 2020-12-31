@@ -430,6 +430,10 @@ body.collection main {
   }
 }
 
+.row .boost-pfs-filter-tree-v .boost-pfs-filter-option .boost-pfs-filter-option-title .boost-pfs-filter-clear {
+  padding-bottom: 0;
+}
+
 .boost-pfs-modal-backdrop .boost-pfs-modal-container .boost-pfs-quickview-option-color {
   width: 24px;
   height: 24px;
@@ -871,9 +875,23 @@ body.collection,
   position: relative;
 }
 
-.row .boost-pfs-filter-option-content ul.boost-pfs-filter-option-item-list.boost-pfs-filter-option-item-list-multiple-list li {
+.row .boost-pfs-filter-option-content ul.boost-pfs-filter-option-item-list.boost-pfs-filter-option-item-list-multiple-list {
 // .boost-pfs-filter-option-item-list-multiple-list li {
-  padding-left: 30px;
+  // padding-left: 30px;
+
+  .boost-pfs-check-box {
+    // margin-right: 10px;
+    margin-top: auto;
+    top: 0;
+    bottom: 0;
+    left: 9px;
+    margin-bottom: auto;
+    margin-right: 10px;
+  }
+
+  .boost-pfs-filter-option-value {
+    margin-bottom: 0;
+  }
 }
 
 .boost-pfs-modal-backdrop {

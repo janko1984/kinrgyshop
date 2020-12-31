@@ -173,6 +173,7 @@
 
         {% if active_cart_form %}
         <form id="boost-pfs-quickview-cart-form" action="/cart/add" method="post" enctype="multipart/form-data" class="boost-pfs-quickview-cart-form product-form">
+        {% comment %} <form id="boost-pfs-quickview-cart-form" action="" method="" enctype="multipart/form-data" class="boost-pfs-quickview-cart-form product-form"> {% endcomment %}
           <div id="boost-pfs-quickview-variants-data" style="display:none">
             [
             {% for variant in product.variants %}

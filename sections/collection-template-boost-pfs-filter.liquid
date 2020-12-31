@@ -87,7 +87,7 @@
         {% comment %} END Collection All - Top Cta {% endcomment %}
 
         <div class="boost-pfs-filter-products boost-pfs-filter-swatch-shape-{{ section.settings.swatches_color_shape}} boost-pfs-filter-product-item-text-alignment-{{ section.settings.text_alignment}}" data-bc-sort="{{ collection.default_sort_by }}">
-          {%- for product in collection.products limit: 3 -%}
+          {%- for product in collection.products -%}
             
             {%- include 'boost-pfs-filter-product-item', product: product -%}
 

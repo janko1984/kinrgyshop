@@ -97,3 +97,29 @@ body.product {
     }
   }
 }
+
+footer #footer-form {
+  .form-success p,
+  .form-success svg {
+    @include inline-flex();
+  }
+  
+  .form-success svg {
+    width: 45px;
+    height: 45px;
+    margin-right: 20px;
+  }
+
+  .form-success {
+    position: relative;
+    height: 0;
+    overflow: hidden;
+
+    .inner {
+      opacity: 0;
+      
+      @include flexbox();
+      @include align-items(center);
+    }
+  }
+}
