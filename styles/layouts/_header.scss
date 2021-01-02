@@ -599,7 +599,7 @@ body.index {
     a,
     a span {
       font-family: $kb;
-      font-size: 30px;
+      font-size: 26px;
       // line-height: 1.55em;
       line-height: 46px;
       color: $color-dark;
@@ -645,6 +645,17 @@ body.index {
         color: $color-green;
       }
     }
+
+    .row {
+      padding-left: 40px;
+      padding-right: 30px;
+      margin-left: 0;
+      margin-right: 0;
+    }
+  }
+
+  .shopify-section.sticked #mobile-nav {
+    @include transform(translateY(15px));
   }
 
   .site-nav__dropdown ul {
@@ -681,6 +692,39 @@ body.index {
     height: 24px;
     pointer-events: none;
   }
+
+  .button-wrapper,
+  .regular-button {
+    width: 100%;
+  }
+
+  .regular-button {
+    @include flexbox();
+    @include justify-content(center);
+    @include align-items(center);
+
+    .text {
+      color: $color-white;
+      font-size: 18px;
+    }
+
+    svg {
+      margin-left: 10px;
+      path {
+        fill: $color-white;
+      }
+    }
+  }
+
+  .button-wrapper {
+    margin-top: 30px;
+  }
+}
+
+.boost-pfs-search-suggestion-mobile-top-panel {
+  display: none !important;
+  visibility: hidden !important;
+  pointer-events: none;
 }
 
 #shopify-section-header.open-mobile-nav .main-header {

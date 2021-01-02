@@ -1,74 +1,215 @@
-<section class="container" id="main-cart-section">
-  <div class="row">
+<section class="container" id="main-cart-section"> 
+  <div class="row cart-information">
     <div class="col-md-12">
-      <h1 class="f-80">CART</h1>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-md-12">
-      
-      <div class="row cart-information">
-        <div class="col-md-8">
-            {% if cart.item_count > 0 %}
+      <div class="row">
 
-          <form data-cart-view="data-cart-view" action="cart/update">
-            <div class="items" id="all-cart-items">
+        <div class="col-md-8 cart-content">
+          <h1 class="f-80">CART</h1>
 
-              <div rv-each-item="cart.items" class="item" rv-data-product-variant-id="item.variant_id" rv-data-product-key="item.product_id">
-              
-                <div class="row">
-                    <img rv-src="item.image | productImageSize 'medium'" class="image">
-                    <div class="row product-text">
-                      <div class="titles">
-                        <h2 class="name" rv-text="item.product_title"></h2>
+          {% if cart.item_count > 0 %}
 
-                        <p class="price" rv-html="item.final_line_price | money"></p>
+            <form data-cart-view="data-cart-view" action="cart/update">
+              <div class="items" id="all-cart-items">
+
+                <div rv-each-item="cart.items" class="item" rv-data-product-variant-id="item.variant_id" rv-data-product-key="item.product_id">
+                
+                  <div class="row">
+                      <img rv-src="item.image | productImageSize 'medium'" class="image">
+                      <div class="row product-text">
+                        <div class="titles">
+                          <h2 class="name" rv-text="item.product_title"></h2>
+
+                          <p class="price" rv-html="item.final_line_price | money"></p>
+                        </div>
+                        
+                        {% comment %} paywhirl {% endcomment %}
+                        {% render 'paywhirl-subscriptions-cart-selling-plans', item: item %}
+
+                        <div class="quantity">
+                          <div class="control">
+                            <div class="minus">
+                              <a class="externe" href="#" rv-data-cart-update="index | plus 1" rv-data-cart-quantity="item.quantity | minus 1">-</a>
+                            </div>
+
+                            <div class="qty cart__qty-input">
+                              <span rv-html="item.quantity"></span>
+                            </div>
+                            
+                            <div class="plus">
+                              <a class="externe" href="#" rv-data-cart-update="index | plus 1" rv-data-cart-quantity="item.quantity | plus 1">+</a>
+                            </div>
+                        </div> 
                       </div>
-                      
-                      {% comment %} paywhirl {% endcomment %}
-                      {% render 'paywhirl-subscriptions-cart-selling-plans', item: item %}
-
-                      <div class="quantity">
-                        <div class="control">
-                          <div class="minus">
-                            <a class="externe" href="#" rv-data-cart-update="index | plus 1" rv-data-cart-quantity="item.quantity | minus 1">-</a>
-                          </div>
-
-                          <div class="qty cart__qty-input">
-                            <span rv-html="item.quantity"></span>
-                          </div>
-                          
-                          <div class="plus">
-                            <a class="externe" href="#" rv-data-cart-update="index | plus 1" rv-data-cart-quantity="item.quantity | plus 1">+</a>
-                          </div>
-                      </div> 
-                    </div>
+                  </div>
                 </div>
               </div>
-            </div>
+              
+              <div class="total row">
+                <p>Subtotal:</p>
+                <p><span class="cart__subtotal" rv-html="cart.total_price | money"></span></p>
+              </div>
+
+              <div class="row button-row">
+                <a href="{{ routes.root_url }}" class="regular-button no-border">Back to shopping</a>
+
+                <a class="regular-button checkout pink" href="/checkout"><span>TO CHECKOUT</span></a>
+              </div>
+
+            </form>
+
+          {% else %}
             
-            <div class="total row">
-              <p>Subtotal:</p>
-              <p><span class="cart__subtotal" rv-html="cart.total_price | money"></span></p>
-            </div>
+            <p>Your cart is empty</p>
 
-            <div class="row button-row">
-              <a href="{{ routes.root_url }}" class="regular-button no-border">Back to shopping</a>
+          {% endif %}
 
-              <a class="regular-button checkout pink" href="/checkout"><span>TO CHECKOUT</span></a>
-            </div>
-
-          </form>
-
-        {% else %}
-          
-          <p>Your cart is empty</p>
-
-        {% endif %}
+          </div>
         </div>
-        </div>
-        <div class="row col-4 cart-cta">
+        <div class="row col-4 cart-cta collection-slider">
           <div class="col-md-12 bg-tan">
+
+            <div class="row">
+                <div class="col-12 row-center">
+                  <h3>Before you go</h3>
+                </div>
+            </div>
+            <div class="row">
+
+              <ul class="arrows">
+                <li>
+                  <a href="#" class="arrow prev disabled">
+                    {% include 'icon-arrow-left-arrow' %}
+                  </a>
+                </li>
+                <li>
+                  <a href="#" class="arrow next">
+                    {% include 'icon-arrow-right-arrow' %}
+                  </a>
+                </li>
+              </ul>
+
+              <div class="col-12 slider-one" id="cart-slider">
+                <div class="slider-one-wrap">
+                  <div class="slider-one-content" id="cart-slider-content">
+
+                    
+                    {% for product in collections['all'].products %}
+                        
+                        <div class="slide" data-number="{{ forloop.index0 }}">
+                          
+                          <div class="row">
+
+                          <a href="/products/{{ product.handle }}" target="_self" class="absolute-link" data-clickable="true"></a>
+
+                          {% if product.compare_at_price_max > product.price %}
+                            <div class="sale">
+                              <span class="tag">
+                                -{{ product.compare_at_price_max | minus: product.price | times: 1000.0 | divided_by: product.compare_at_price_max | money_without_currency | times: 10 | remove: '.0'}}%
+                              </span>
+                            </div>
+                          {% endif %}
+
+                          <figure>
+                              <img 
+                                src="{{ product.featured_image | img_url: '576x' | width }}"
+                                srcset="{{ product.featured_image | img_url: '1440x' | width }} 1440w,
+                                {{ product.featured_image | img_url: '1440x' | width }} 2000w,
+                                {{ product.featured_image | img_url: '800x' | width }} 800w"
+                                alt="{{ product.featured_image.alt | escape }}">
+                            </figure>
+                            
+                            <div class="copy">
+                              <p class="product-title">
+                              <a href="/products/{{ product.handle }}" target="_self" data-clickable="true">{{ product.title }}</a>
+                              </p>
+                              <div class="product-price">
+                                <span>{{ product.price | money | remove: '.00' }}</span>
+                                {% if product.compare_at_price_max > product.price %}
+                                    <span class="sale-wrap">
+                                      <s>{{ product.compare_at_price_max | money | remove: '.0'}}</s>
+                                    </span>
+                                {% endif %}
+
+                                {% if product.available == false %}
+                                  <span class="soldout boost-pfs-filter-label sold-out tag">SOLD OUT</span>
+                                {% endif %}
+
+                              </div>
+
+                              <p style="display: none;">{{ product | json }}</p>
+                            
+
+                              <select class="selected-option" name="id" id="masterSelect" style="display: none">
+                                {% for variant in product.variants %}
+                                <option {% if variant == current_variant %}selected="selected" {% endif %}
+                                  {% unless variant.available %}disabled="disabled" {% endunless %} value="{{ variant.id }}"
+                                  data-option="{{ variant.title }}" data-inventory="{{ variant.inventory_quantity }}"
+
+                                  {% comment %} Color {% endcomment %}
+                                    {% if variant.option1 != blank %}
+                                      data-variant-one="{{ variant.option1 }}"  
+                                      data-variant-one-name={{ product.options[0] }} 
+                                    {% endif %}
+
+                                  {% comment %} Size {% endcomment %}
+                                    {% if variant.option2 != blank %}
+                                      data-variant-two="{{ variant.option2 }}"
+                                      data-variant-two-name={{ product.options[1] }}  
+                                    {% endif %}
+
+                                  {% comment %} Selling Plan {% endcomment %}
+                                    {% if product.requires_selling_plan == true %}
+                                      {% for group in product.selling_plan_groups %}
+                                        {% for selling_plan in group.selling_plans %}
+                                            data-selling-plan-{{ forloop.index0 }}="{{ selling_plan.id }}"
+                                        {% endfor %} 
+                                      {% endfor %} 
+                                    {% endif %} 
+                                  
+
+                                  >{{ variant.title }}
+                                </option>
+                                {% endfor %}
+                              </select>
+
+                              {% if product.available != false %}
+                                  <div class="button-wrapper quick-add-wrapper">
+                                    <a href="#" class="regular-button green quick-add">
+                                      <span class="text">QUICK ADD</span>
+                                    </a>
+                                  </div>
+                              {% endif %}
+
+                          </div>
+
+                          </div>
+                        </div>
+                    {% endfor %}
+
+                    <div class="box"></div>
+
+                  </div>  
+                </div>
+
+              {% comment %}
+                <ul class="dots">
+                  Filled by JS 
+                </ul>
+              {% endcomment %}
+                
+              </div>
+
+              <ul class="slider-count">
+                <li class="current">
+                  <p class="small">01</p>
+                </li>
+                <li class="sperator">
+                  <p class="small"> - </p>
+                </li>
+                <li class="total">
+                  <p class="small">01</p>
+                </li>
+              </ul>
 
           </div>
         </div>

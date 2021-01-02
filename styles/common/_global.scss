@@ -12,6 +12,10 @@ section {
   }
 }
 
+.page-wrap {
+  overflow-x: hidden;
+}
+
 section.container .row {
   padding-left: 40px;
   padding-right: 40px;
@@ -334,6 +338,19 @@ body.product .inline-single,
   pointer-events: none;
 }
 
+body.search {
+  .boost-pfs-filter-products {
+    @include flexbox();
+    @include flex-wrap(wrap);
+    @include flex-direction(row);
+  }
+
+  .boost-pfs-quickview-btn {
+    margin-bottom: 0;
+    min-width: 50px;
+  }
+}
+
 // **************
 // MODAL
 // **************
@@ -537,6 +554,11 @@ body.product .inline-single,
   overflow: hidden;
 }
 
+.hidden-el {
+  display: none;
+  visibility: hidden;
+}
+
 .modal-content-wrapper {
 // .modal-content {
   display: none;
@@ -615,6 +637,30 @@ body.search {
     .js-close-search {
       width: 50px;
       height: 50px;
+    }
+  }
+
+  body.cart {
+    .main-header {
+      .row {
+        position: relative;
+        z-index: 8;
+      }
+      
+      .extra-menu li:first-of-type {
+        margin-right: 0;
+      }
+    }
+
+    .cart-cta {
+      display: none;
+      visibility: hidden;
+    }
+
+    .cart-content {
+      width: 100%;
+      flex: 0 0 100%;
+      max-width: 100%
     }
   }
 }
@@ -779,6 +825,10 @@ body.page-legal {
   body.search .boost-pfs-filter-right-col {
     padding-left: 40px;
     padding-right: 40px;
+  }
+
+  .material-and-care {
+    padding-bottom: 40px;
   }
 }
 

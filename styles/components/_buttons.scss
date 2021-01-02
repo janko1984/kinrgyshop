@@ -29,9 +29,29 @@ body a {
   text-transform: uppercase;
 }
 
+.regular-button .text {
+  pointer-events: none;
+}
+
 body.cart .regular-button.pink,
 .regular-button.pink {
   background: $color-pink;
+}
+
+.quick-add-wrapper {
+  z-index: 4;
+  position: relative;
+}
+
+body.cart .regular-button.quick-add,
+.regular-button.quick-add {
+  padding: 13px 40px;
+  min-width: 163px;
+
+  .text {
+    font-size: 14px;
+    line-height: 18px;
+  }
 }
 
 .regular-button.green {
