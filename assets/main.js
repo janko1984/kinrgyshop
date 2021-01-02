@@ -1646,15 +1646,10 @@ function quickAddToCart(event) {
   let options = Array.from(masterSelect.children);
   let quantity = 1;
   let productId, color, size, sellingPlan, firstAvaliableOption;
-  // let optionIndexs = new Array();
   let optionIndex;
 
-  // options.forEach((option,index) => {
-  //   if (! option.hasAttribute('disabled')) {
-  //     optionIndexs.push(index);
-  //   }
-  // })
 
+  // Find first non disabled select option
   for (let a = 0; a < options.length; a++) {
     if (! options[a].hasAttribute('disabled')) {
       optionIndex = a;
@@ -1662,15 +1657,8 @@ function quickAddToCart(event) {
     }
   }
 
-  // firstAvaliableOption = options[optionIndexs[0]];
+  // Get that option
   firstAvaliableOption = options[optionIndex];
-
-  console.log('abc',firstAvaliableOption)
-  console.log('abc',firstAvaliableOption.dataset)
-  // console.log('abc',firstAvaliableOption.dataset.contains('selling-plan'))
-
-  // check for select options
-  // add to cart js 
   
   // Product ID
   productId = firstAvaliableOption.value;
@@ -1696,7 +1684,6 @@ function quickAddToCart(event) {
   } else {
     size = '';
   }
-
   
   // Selling Plan
   if (firstAvaliableOption.hasAttribute('data-selling-plan-0')) {
@@ -1705,17 +1692,15 @@ function quickAddToCart(event) {
     sellingPlan = '';
   }
 
-  console.log('===========')
-  console.log('final pId', productId)
-  console.log('final q', quantity)
-  console.log('final s', size)
-  console.log('final c', color)
-  console.log('final sp', sellingPlan)
-  console.log('===========')
+  // console.log('===========')
+  // console.log('final pId', productId)
+  // console.log('final q', quantity)
+  // console.log('final s', size)
+  // console.log('final c', color)
+  // console.log('final sp', sellingPlan)
+  // console.log('===========')
 
-
-  console.log(masterSelect, event.target, event.target.parentElement)
-
+  // Add to cart
   if (sellingPlan != '') {
     CartJS.addItem(productId, quantity, {
       "size": size,
@@ -1725,9 +1710,9 @@ function quickAddToCart(event) {
   } 
   else if (sellingPlan == ''){
     CartJS.addItem(productId, quantity, {
-    "size": size,
-    "color": color
-  }, { })
+      "size": size,
+      "color": color
+    }, { })
   }
 }
 
