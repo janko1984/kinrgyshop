@@ -18,6 +18,7 @@
     color: $color-white;
     background: $color-green;
     text-align: center;
+    z-index: 2;
 
     @include transition(400ms all $cubic);
 

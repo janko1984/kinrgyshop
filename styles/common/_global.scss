@@ -112,6 +112,7 @@ body.collection main {
   }
 }
 
+footer .inline-single,
 .main-header .site-nav__child-link .site-nav__label,
 body.product .inline-single,
 .menu-plain a,
@@ -646,7 +647,7 @@ body.search {
         position: relative;
         z-index: 8;
       }
-      
+
       .extra-menu li:first-of-type {
         margin-right: 0;
       }

@@ -37,6 +37,16 @@ input::moz-placeholder {
     right: 0;
     top: 0;
     bottom: 0;
+
+    &:hover {
+      svg {
+        @include transform(translateX(5px));
+
+        path {
+          stroke: $color-green;
+        }
+      }
+    }
   }
 
   input[type="email"] {
@@ -46,6 +56,11 @@ input::moz-placeholder {
 
   input {
     line-height: 31px;
+  }
+
+  svg,
+  svg path {
+    @include transition(400ms all $cubic);
   }
 }
 

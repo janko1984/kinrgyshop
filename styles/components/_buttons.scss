@@ -3,6 +3,9 @@ body a {
 }
 
 .button-wrapper {
+  position: relative;
+  overflow: visible;
+
   @include flexbox();
 
   &.align-center {
@@ -14,9 +17,44 @@ body a {
   padding: 21px 54px;
   border-radius: 4px;
   min-width: 210px;
+  position: relative;
 
   @include inline-flexbox();
   @include justify-content(center);
+
+  &::before {
+    content: "";
+    transform-origin: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    border-radius: 3px;
+
+    @include transition(400ms all $cubic)
+  }
+
+  &.pink::before {
+    background: $color-pink;
+  }
+
+  &.pink:hover::before {
+    background: $color-pink-hover;
+  }
+
+  &.green::before {
+    background: $color-green;
+  }
+
+  &.green:hover::before {
+    background: $color-green-hover;
+  }
+
+  &:hover::before {
+    @include transform(scale(1.03, 1.06));
+  }
 }
 
 .regular-button,
@@ -31,6 +69,7 @@ body a {
 
 .regular-button .text {
   pointer-events: none;
+  z-index: 2;
 }
 
 body.cart .regular-button.pink,
@@ -64,8 +103,12 @@ body.cart .regular-button.no-border {
   line-height: 60px;
   
   span {
-    line-height: 60px;  
+    line-height: 60px; 
   }
+}
+
+.cart-dd .regular-button .text {
+  line-height: 50px;
 }
 
 .cart-dd,
@@ -73,6 +116,16 @@ body.cart .regular-button.no-border {
   background: $color-tan;
   padding: 20px 0;
   color: $color-dark;
+}
+
+body.cart .regular-button.no-border {
+  span {
+    color: $color-dark; 
+  }
+
+  &:hover::before {
+    background: #dfd6d6;
+  }
 }
 
 body.cart .regular-button,
@@ -91,6 +144,8 @@ body.product {
 
     span {
       line-height: 60px;
+      position: relative;
+      z-index: 2;
     }
   }
 }

@@ -1604,6 +1604,11 @@ class MultiItemSlider {
       }
     });
 
+    console.log(sliderFeatured)
+    setTimeout(() => {
+      scroll.update()
+    }, 200)
+
     if (document.querySelector('.slider-one') != null) {
       // quickAddFromMultiItemSlider();
       MultiItemSlider.quickAddFromMultiItemSlider = () => {
