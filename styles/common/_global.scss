@@ -822,6 +822,128 @@ body.page-legal {
   }
 }
 
+
+body.page-legal {
+  .legal-content {
+    margin-top: 40px;
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      font-family: $gtsr;
+      line-height: 1.1em;
+    }
+
+    h5 {
+      font-size: 22px;
+    }
+
+    h6 {
+      font-size: 20px;
+    }
+
+    h5,
+    h6 {
+      font-weight: 700;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6,
+    p,
+    ul,
+    ol {
+      margin-bottom: 30px;
+    }
+
+    p,
+    ul,
+    ol {
+      font-family: $kr;
+      font-size: 16px;
+    }
+
+    ul,
+    ol {
+      list-style: none;
+
+      li p {
+        margin-bottom: 10px;
+      }
+
+      li {
+        position: relative;
+      }
+    }
+
+    ul {
+      padding-left: 25px;
+
+      li::before {
+        position: absolute;
+        content: "";
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: $color-dark;
+        top: 8px;
+        left: -25px;
+      }
+    }
+
+    ol {
+      counter-reset: ol-count;
+
+      li {
+        position: relative;
+
+        @include flexbox();
+
+        &::before {
+          position: relative;
+          display: inline-block;
+          content: "0" counter(ol-count) ".";
+          counter-increment: ol-count;
+          font-size: 14px;
+          top: 6px;
+          bottom: 0;
+          color: $color-dark;
+          font-family: $kb;
+          left: 0;
+          padding-right: 15px;
+        }
+      }
+    }
+
+    a {
+      position: relative;
+      z-index: 1;
+      color: $color-dark;
+      text-decoration: none;
+      background-image: linear-gradient( transparent 2px, $color-pink 2px, $color-pink 4px, transparent 4px ), linear-gradient( transparent 2px, $color-dark 2px, $color-dark 4px, transparent 4px );
+      background-size: 0% 6px, 100% 6px;
+      background-position: 0 bottom, 0 bottom;
+      transition: background-size 0.3s ease-in-out;
+      background-repeat: no-repeat;
+      padding-bottom: 4px;
+      border-bottom: 6px solid transparent;
+      word-break: break-word;
+      @include transition(300ms all $cubic);
+
+      &:hover {
+        color: $color-pink;
+        background-size: 100% 6px;
+      }
+    }
+  }
+}
+
 @media screen and (max-width: 1024px) and (min-width: 769px) {
   body.search .boost-pfs-filter-right-col {
     padding-left: 40px;
@@ -930,7 +1052,8 @@ body.page-legal {
     padding-right: 20px;
   }
 
-  body.page-faq  {
+  body.page-faq,
+  body.page-legal  {
     #pinSection {
       order: 2;
     }
@@ -943,9 +1066,15 @@ body.page-legal {
     .legal-content-col {
       order: 1;
     }
+  }
 
+  body.page-faq .legal-content {
+    padding-bottom: 50px;
+  }
+
+  body.page-legal {
     .legal-content {
-      padding-bottom: 50px;
+      padding-bottom: 30px;
     }
   }
 
@@ -955,6 +1084,12 @@ body.page-legal {
 
   .accordion-list .accordion-content .inner-wrapper {
     padding: 0 30px 23px;
+  }
+
+  body.page-legal .legal-content,
+  body.page-legal .legal-content-col .row {
+    padding-left: 0;
+    padding-right: 0;
   }
 } // End 768 Max
 
@@ -985,5 +1120,14 @@ body.page-legal {
 
   .search-row .search-bar__interior {
     max-width: 63.33333%;
+  }
+
+  body.page main, 
+  body.page-faq main, 
+  body.page-legal main, 
+  body.product main, 
+  body.search main, 
+  body.collection main {
+    padding-top: 100px;
   }
 }

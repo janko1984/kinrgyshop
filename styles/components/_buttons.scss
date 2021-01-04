@@ -31,7 +31,7 @@ body a {
     width: 100%;
     height: 100%;
     z-index: 1;
-    border-radius: 3px;
+    border-radius: 4px;
 
     @include transition(400ms all $cubic)
   }
@@ -40,20 +40,8 @@ body a {
     background: $color-pink;
   }
 
-  &.pink:hover::before {
-    background: $color-pink-hover;
-  }
-
   &.green::before {
     background: $color-green;
-  }
-
-  &.green:hover::before {
-    background: $color-green-hover;
-  }
-
-  &:hover::before {
-    @include transform(scale(1.03, 1.06));
   }
 }
 
@@ -146,6 +134,22 @@ body.product {
       line-height: 60px;
       position: relative;
       z-index: 2;
+    }
+  }
+}
+
+@media screen and (min-width: 1025px) {
+  .regular-button {
+    &.green:hover::before {
+      background: $color-green-hover;
+    }
+  
+    &.pink:hover::before {
+      background: $color-pink-hover;
+    }
+  
+    &:hover::before {
+      @include transform(scale(1.03, 1.06));
     }
   }
 }

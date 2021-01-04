@@ -480,7 +480,8 @@ body.index {
 	.line {
 		@include transition(all 0.4s $cubic);
 
-		background-color: $color-dark;
+    background-color: $color-dark;
+    z-index: 1;
 		display: block;
 		margin: 1px 0;
 		width: 18px;
@@ -716,6 +717,7 @@ body.index {
     width: 24px;
     height: 24px;
     pointer-events: none;
+    z-index: 2;
   }
 
   .button-wrapper,
@@ -828,6 +830,11 @@ body.index {
     width: 50%;
     max-width: 50%;
     flex: 0 0 50%;
+  }
+
+  #shopify-section-header {
+    padding-left: 20px;
+    padding-right: 20px;
   }
 }
 
