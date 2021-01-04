@@ -74,7 +74,9 @@ $color-light-gray: #807E7E;
 // $color-price-gray: #6F7173;
 $cubic: cubic-bezier(0.255, 0.195, 0.135, 0.99);
 $color-pink: #A57677;
+$color-pink-hover: #915F60;
 $color-green: #486966;
+$color-green-hover: #35524F;
 // $color-blue: #9ACAFC;
 $color-blue: #9ACAFC;
 $color-form-gray: #BFBDBD;
@@ -111,7 +113,8 @@ $color-swatch-white: #F1F1F1;
 $color-swatch-gray: #BABABA;
 $color-swatch-turquoise: #00FFFF;
 
-$cubic: cubic-bezier(0.255, 0.195, 0.135, 0.99);
+// $cubic: cubic-bezier(0.255, 0.195, 0.135, 0.99);
+$cubic: cubic-bezier(0.165, 0.840, 0.440, 1.000);
 $cubic-2: cubic-bezier(0.860, 0, 0.070, 1);
 
 

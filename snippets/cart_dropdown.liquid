@@ -1,60 +1,86 @@
 <div id="cart-dd" class="cart-dd {% if cart.item_count == 0 %}empty{% endif %}">
+  <div class="cart-row">
+    <div class="cart-header"><h2>CART</h2> <a class="cart-close js-dd-close">{% include 'icon-close-large' %}</a></div>
 
-  <div class="cart-header"><h2>MY CART</h2> <a class="cart-close js-dd-close">{% include 'icon-close' %}</a></div>
+    <div class="col-form {% if cart.item_count == 0 %}hidden{% endif %}"> 
+      <form data-cart-view="data-cart-view">
+        <div class="items-and-price-wrap">
 
-  <div class="col-form {% if cart.item_count == 0 %}hidden{% endif %}"> 
-    <form data-cart-view="data-cart-view">
-      <div class="items">
-        
-        <div rv-each-item="cart.items" class="item">
-          <a class="thumb">
-            <img width="100%" rv-src="item.image | productImageSize 'medium'">
-          </a>
-  
-          <div class="copy">
-            <div class="name" rv-text="item.title"></div>
+          <div class="items">
             
-            <div class="price"><em class="price" rv-html="item.price | money"></em></div>
+            <div rv-each-item="cart.items" class="item" data-product-id={{ item.id }}>
+              <a class="thumb">
+                <img width="100%" rv-src="item.image | productImageSize 'medium'">
+              </a>
+      
+              <div class="copy">
+                <ul class="title-and-price">
+                  <li class="name" rv-text="item.product_title"></li>
+                  <li class="price" rv-html="item.line_price | money Currency.currentCurrency | money_without_trailing_zeros"></li>
+                </ul>
 
-            <div class="control">
-              <div class="minus">
-                <a class="" href="#" rv-data-cart-update="index | plus 1" rv-data-cart-quantity="item.quantity | minus 1">-</a>
+                <ul class="variant-list">
+                  <li rv-hide="item.properties.size | empty">
+                    <p class="cart-display-size variant">Size:  {item.properties.size}</p>
+                  </li>
+                  <li rv-hide="item.properties.color | empty">
+                    <p class="cart-display-color variant">Color:  {item.properties.color}</p>
+                  </li>
+                </ul>
+                              
+                <div class="cart-bottom-info">
+                  
+                  
+                  {% comment %} <div class="left row">
+                  </div> {% endcomment %}
+                 
+
+                    <div class="control">
+                      <div class="minus">
+                        <a  href="#" rv-data-cart-update="index | plus 1" rv-data-cart-quantity="item.quantity | minus 1">-</a>
+                      </div>
+                      <div class="qty cart__qty-input">
+                        <span class="medium-up--hide" rv-html="item.quantity"></span>
+                      </div>
+                      <div class="plus">
+                        <a  href="#" rv-data-cart-update="index | plus 1" rv-data-cart-quantity="item.quantity | plus 1">+</a>
+                      </div>
+                    </div>
+                    
+                  </div>
+
+                </div>
               </div>
-              <div class="qty cart__qty-input">
-                <span rv-html="item.quantity"></span>
-              </div>
-              <div class="plus">
-                <a class="" href="#" rv-data-cart-update="index | plus 1" rv-data-cart-quantity="item.quantity | plus 1">+</a>
-              </div>
-            </div>
-  
-            <div class="qty cart__qty-input">
-              <span class="label">QUANTITY: <span rv-html="item.quantity"></span></span>
-              <a href="#" rv-data-cart-remove="index | plus 1">{% include 'icon-trash' %}</a>
             </div>
           </div>
-        </div>
-      </div>
-  
-      <div class="total">
-        <div>Sub-total</div>
-        <span class="cart__subtotal" rv-html="cart.total_price | money"></span>
-      </div>
-  
-      <div class="cart-links">
-        <a href="/cart" class="button no-border"><span>VIEW CART</span></a>
-        <a class="button" href="/checkout"><span>CHECKOUT</span></a>
-      </div>
-  
-    </form>
-  </div>
-  
 
-  <div class="col-empty {% if cart.item_count != 0 %}hidden{% endif %}">
-    <div class="empty_cart">
-      {% include 'icon-empty-cart' %}
-      <p>YOUR CART IS EMPTY</p>
+          <ul class="total">
+            <li>
+              <p>Subtotal:</p>
+            </li>
+            <li class="cart__subtotal" rv-html="cart.total_price | money"></li>
+            {% comment %} <li class="cart__subtotal" rv-html="cart.total_price | money money_without_decimals"></li> {% endcomment %}
+          </ul>
+
+        
+    
+        <div class="cart-links">
+          <a class="regular-button green" href="/checkout"><span class="text">TO CHECKOUT</span></a>
+          {% comment %} <a href="/cart" class="regular-button no-border"><span>VIEW CART</span></a> {% endcomment %}
+        </div>
+    
+      </form>
     </div>
-  </div>
+
+    
+
+    <div class="col-empty {% if cart.item_count != 0 %}hidden{% endif %}">
+      <div class="empty_cart">
+        {% include 'icon-empty-cart' %}
+        <p class="small">YOUR CART IS EMPTY</p>
+      </div>
+    </div>
   
+  </div>
+</div>  
 </div><!--END OF #CART-->

@@ -1,8 +1,98 @@
-<section class="collection-featured-slider container-fluid" id="collection-featured-slider-{{ section.settings.collection_featured_id }}">
+{% comment %} <section class="collection-featured-slider container-fluid" id="collection-featured-slider-{{ section.settings.collection_featured_id }}">
   <div class="row row-center">
     <div class="col-lg-4 col-12">
        <h2>{{ section.settings.collection_featured_heading }}</h2> 
     </div>
+  </div>
+</section> {% endcomment %}
+
+<section class="collection-slider container" data-collection="{{ section.settings.collection_featured_collection }}" id="{{ section.settings.collection_featured_id }}-product-collection-slider">
+  <div class="row">
+    <div class="col-12 row-center">
+      <h2 class="f-70">{{ section.settings.collection_featured_heading }}</h2>
+    </div>
+  </div>
+  <div class="row">
+
+    <ul class="arrows">
+      <li>
+        <a href="#" class="arrow prev disabled">
+          {% include 'icon-arrow-left-arrow' %}
+        </a>
+      </li>
+      <li>
+        <a href="#" class="arrow next">
+          {% include 'icon-arrow-right-arrow' %}
+        </a>
+      </li>
+    </ul>
+
+    <div class="col-12 slider-one" id="product-slider-featured-one">
+      <div class="slider-one-wrap">
+        <div class="slider-one-content" id="product-slider-featured-content-one">
+
+          {% for product in collections[section.settings.collection_featured_collection].products %}
+              
+              <div class="slide" data-number="{{ forloop.index0 }}">
+                <a href="/products/{{ product.handle }}" target="_self" class="absolute-link" data-clickable="true"></a>
+                <div class="row">
+
+                {% if product.compare_at_price_max > product.price %}
+                  <div class="sale">
+                    <span class="tag">
+                      -{{ product.compare_at_price_max | minus: product.price | times: 1000.0 | divided_by: product.compare_at_price_max | money_without_currency | times: 10 | remove: '.0'}}%
+                    </span>
+                  </div>
+                {% endif %}
+
+                 <figure>
+                    <img 
+                      src="{{ product.featured_image | img_url: '576x' | width }}"
+                      srcset="{{ product.featured_image | img_url: '1440x' | width }} 1440w,
+                      {{ product.featured_image | img_url: '1440x' | width }} 2000w,
+                      {{ product.featured_image | img_url: '800x' | width }} 800w"
+                      alt="{{ product.featured_image.alt | escape }}">
+                  </figure>
+                  
+                  <div class="copy">
+                    <p class="product-title">{{ product.title }}</p>
+                    <div class="product-price">
+                      <span>{{ product.price | money | remove: '.00' }}</span>
+                      {% if product.compare_at_price_max > product.price %}
+                          <span class="sale-wrap">
+                            <s>{{ product.compare_at_price_max | money | remove: '.0'}}</s>
+                          </span>
+                      {% endif %}
+                    </div>
+                </div>
+
+                </div>
+              </div>
+          {% endfor %}
+
+          <div class="box"></div>
+
+        </div>  
+      </div>
+
+      <ul class="dots">
+        {% comment %} Filled by JS {% endcomment %}
+      </ul>
+      
+    </div>
+
+     <ul class="slider-count">
+      <li class="current">
+        <p class="small">01</p>
+      </li>
+      <li class="sperator">
+        <p class="small"> - </p>
+      </li>
+      <li class="total">
+        <p class="small">01</p>
+      </li>
+    </ul>
+
   </div>
 </section>
 

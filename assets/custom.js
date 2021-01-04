@@ -35,6 +35,7 @@ $(document).ready(function () {
     });
   }
 
+  /*
   function productContainer(container) {
     //console.log(container);
     var color = container.find('.swatch-color input:checked').val();
@@ -88,13 +89,14 @@ $(document).ready(function () {
       ajaxCartPDP(qty, productId);
     }
   }
-  $('body.product button.submit').click(function (e) {
-    console.log('clicked desktop button');
-    e.preventDefault();
-    e.stopPropagation();
-    var productWrapper = $('.product-form');
-    productContainer(productWrapper);
-  });
+  */
+  // $('body.product button.submit').click(function (e) {
+  //   console.log('clicked desktop button');
+  //   e.preventDefault();
+  //   e.stopPropagation();
+  //   var productWrapper = $('.product-form');
+  //   productContainer(productWrapper);
+  // });
 
   function updated_text(item, change_value) {
     item.innerHTML = change_value;

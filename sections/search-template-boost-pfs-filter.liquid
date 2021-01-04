@@ -1,4 +1,23 @@
 {% paginate search.results by section.settings.products_per_page %}
+
+<section class="collection-header container" id="collection-header-{{ collection.handle }}">
+  <div class="row">
+    <div class="col-12">
+      {% include 'breadcrumbs' %}
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-12">
+      <h1 class="f-80">Search Results: {{ search.terms | escape }}
+        {% comment %} <span class="circle small">
+          {{ search.results | size  }}
+        </span> {% endcomment %}
+      </h1>
+    </div>
+
+</section>
+
+{% comment %}
 <div class="boost-pfs-filter-collection-header-wrapper boost-pfs-search-form-wrapper">
 	<div class="boost-pfs-search-container boost-pfs-container-default">
 		<h1 class="boost-pfs-search-result-header"></h1>
@@ -8,7 +27,10 @@
 		</form>
 	</div>
 </div>
+{% endcomment %}
+
 {% comment %} SEARCH RESULT TOOLBAR {% endcomment %}
+{% comment %}
 <div class="boost-pfs-search-result-toolbar">
   <div class="boost-pfs-container-default boost-pfs-filter-default-toolbar-inner">
     <div class="boost-pfs-search-result-item">
@@ -25,14 +47,20 @@
     </div>
   </div>
 </div>
+{% endcomment %}
 {% comment %} END SEARCH RESULT TOOLBAR {% endcomment %}
+
 {% comment %} TOOLBAR TOP MOBILE {% endcomment %}
+{% comment %}
 <div class="boost-pfs-filter-toolbar-top-mobile boost-pfs-search-panel-product-show">
 		<div class="boost-pfs-filter-top-sorting boost-pfs-filter-top-sorting-mobile boost-pfs-filter-custom-sorting">{% include 'boost-pfs-filter-skeleton', type: 'button' %}</div>
 		<div class="boost-pfs-filter-tree-mobile-button">{% include 'boost-pfs-filter-skeleton', type: 'button' %}</div>
 </div>
+{% endcomment %}
 {% comment %} END TOOLBAR TOP MOBILE {% endcomment %}
+
 {% comment %} TOOLBAR {% endcomment %}
+{% comment %}
 <div class="boost-pfs-filter-default-toolbar">
 	<div class="boost-pfs-container-default boost-pfs-filter-default-toolbar-inner boost-pfs-search-panel-product-show">
 		<div class="boost-pfs-filter-toolbar-item boost-pfs-filter-toolbar-type">
@@ -42,16 +70,19 @@
 		<div class="boost-pfs-filter-toolbar-item boost-pfs-filter-custom-sorting boost-pfs-filter-top-sorting">{% include 'boost-pfs-filter-skeleton', width: 1 %}</div>
 	</div>
 </div>
+{% endcomment %}
 {% comment %} END TOOLBAR {% endcomment %}
-
+<section class="collection-section container" id="search-results-section">
 <div class="boost-pfs-container-default boost-pfs-filter-wrapper-page">
 	{% assign products_per_page = section.settings.products_per_page %}
 	<div class="boost-pfs-filter-wrapper boost-pfs-search-panel-product-show">
 
+    {% comment %}
 		<div class="boost-pfs-filter-left-col">
 			<div class="boost-pfs-filter-refine-by-wrapper-v"></div>
 			<div class="boost-pfs-filter-tree boost-pfs-filter-tree-v">{% include 'boost-pfs-filter-skeleton', type: 'filter-tree' %}</div>
 		</div>
+    {% endcomment %}
 		<div class="boost-pfs-filter-right-col">
 			<div class="boost-pfs-filter-products">
 				{%- for result in search.results -%}
@@ -79,6 +110,7 @@
 		<div class="boost-pfs-search-result-collection-pagination boost-pfs-filter-bottom-pagination-default">{% include 'boost-pfs-filter-skeleton', width: 4 %}</div>
 	</div>
 	{% comment %} END SEARCH RESULT: COLLECTIONS PANEL {% endcomment %}
+  
 	{% comment %} SEARCH RESULT: PAGES PANEL {% endcomment %}
 	<div class="boost-pfs-search-result-wrap boost-hidden">
 		<div class="boost-pfs-search-result-pages">
@@ -92,6 +124,8 @@
 
 </div>
 {% endpaginate %}
+
+</section>
 <script>
   // Declare boostPFSThemeConfig variable
   var boostPFSThemeConfig = {

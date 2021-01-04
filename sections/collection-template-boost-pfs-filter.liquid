@@ -10,8 +10,9 @@
 </style>
 {% endif %}
 
+{% include 'icon-shape-two' %}
+
 <section class="collection-header container" id="collection-header-{{ collection.handle }}">
-  {% include 'icon-shape-two' %}
   <div class="row">
     <div class="col-12">
       {% include 'breadcrumbs' %}
@@ -46,13 +47,23 @@
     {% comment %} </div> {% endcomment %}
   </div>
 </section>
+
 <section class="collection-section container" id="collection-section-{{ collection.handle }}">
   <div class="boost-pfs-container-default boost-pfs-filter-wrapper-page">
     <div class="boost-pfs-filter-wrapper row">
 
       <div class="boost-pfs-filter-left-col col-3">
+
+        {%- comment -%} TOOLBAR TOP MOBILE {%- endcomment -%}
+          <div class="boost-pfs-filter-toolbar-top-mobile">
+              <div class="boost-pfs-filter-top-sorting boost-pfs-filter-top-sorting-mobile boost-pfs-filter-custom-sorting">{%- include 'boost-pfs-filter-skeleton', type: 'button' -%}</div>
+              <div class="boost-pfs-filter-tree-mobile-button">{%- include 'boost-pfs-filter-skeleton', type: 'button' -%}</div>
+          </div>
+        {%- comment -%} END TOOLBAR TOP MOBILE {%- endcomment -%}
+
         <div class="boost-pfs-filter-tree boost-pfs-filter-tree-v">{%- include 'boost-pfs-filter-skeleton', type: 'filter-tree' -%}</div>
         <div class="boost-pfs-filter-refine-by-wrapper-v"></div>
+
       </div>
 
       <div class="boost-pfs-filter-right-col col-9">
@@ -163,14 +174,6 @@
 </div>
 {%- endcomment -%}
 {%- comment -%} END COLLECTION HEADER {%- endcomment -%}
-
-
-{%- comment -%} TOOLBAR TOP MOBILE {%- endcomment -%}
-<div class="boost-pfs-filter-toolbar-top-mobile">
-    <div class="boost-pfs-filter-top-sorting boost-pfs-filter-top-sorting-mobile boost-pfs-filter-custom-sorting">{%- include 'boost-pfs-filter-skeleton', type: 'button' -%}</div>
-    <div class="boost-pfs-filter-tree-mobile-button">{%- include 'boost-pfs-filter-skeleton', type: 'button' -%}</div>
-</div>
-{%- comment -%} END TOOLBAR TOP MOBILE {%- endcomment -%}
 
 
 

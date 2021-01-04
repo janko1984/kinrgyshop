@@ -166,7 +166,7 @@
 
             </p>
 
-            {%- if product.metafields.stock.restock_message != blank -%}
+            {%- if product.metafields.stock.restock_message != blank and product.available != true -%}
               <p class="small back-in-stock-message">{{ product.metafields.stock.restock_message }}</p>
             {%- endif -%}
 

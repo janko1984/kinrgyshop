@@ -1,5 +1,9 @@
 {
   "current": {
+    "footer_title_three": "Help",
+    "footer_menu_column_three": "footer-help",
+    "footer_title_four": "Connect",
+    "footer_menu_column_four": "footer-social",
     "sections": {
       "full-width-slider": {
         "type": "full-width-slider",
@@ -118,6 +122,7 @@
     "content_for_index": [
       "full-width-slider",
       "cta-shop",
+      "collection-featured-slider",
       "product-cta-one",
       "product-cta-two",
       "membership-cta"

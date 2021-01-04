@@ -7,6 +7,16 @@ body.index .logo-main svg path {
   @include transition(400ms all $cubic);
 }
 
+body.index {
+  .main-header .site-nav button span {
+    color: $color-white;
+  }
+
+  #shopify-section-header.sticked .site-nav button span {
+    color: $color-dark;
+  }
+}
+
 .full-width-slider {
   height: 100vh;
   background: $color-dark;
@@ -14,6 +24,33 @@ body.index .logo-main svg path {
 
 .main-header .site-nav {
   position: relative;
+
+  .site-nav--active {
+    position: relative;
+
+    &::before {
+      position: absolute;
+      content: "";
+      width: 29px;
+      height: 29px;
+      top: 0;
+      left: 0;
+      right: 0;
+      display: block;
+      margin-left: auto; 
+      margin-right: auto; 
+      background: url('https://cdn.shopify.com/s/files/1/0522/1918/3297/files/icon-current-page.svg?v=1608845179') no-repeat center center;
+      background-size: contain;
+      transform-origin: center;
+
+      @include transition(400ms all $cubic);
+      @include transform(scale(1) translate(0, -35px));
+    }
+  }
+}
+
+.sticked .main-header .site-nav .site-nav--active::before {
+  @include transform(scale(0.66) translate(0, -38px));
 }
 
 .main-header .site-nav a,
@@ -39,6 +76,10 @@ body.index .logo-main svg path {
 
   @include flexbox();
 
+  &.mobile {
+    @include justify-content(flex-end);
+  }
+
   li,
   a {
     width: 50px;
@@ -54,11 +95,40 @@ body.index .logo-main svg path {
   }
 
   a {
-    background: $color-gray;
-    
-    
+    position: relative;
+
+    @include transition(400ms all $cubic);
     @include justify-content(center);
     @include align-items(center);
+
+    svg {
+      z-index: 2;
+    }
+
+    &::before {
+      background: $color-gray;
+      transform-origin: center;
+      width: 100%;
+      position: absolute;
+      content: "";
+      height: 100%;
+      border-radius: 50%;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      z-index: 1;
+      
+      @include transition(400ms all $cubic);
+    }
+
+    &:hover::before {
+      @include transform(scale(1.1));
+    }
+  }
+
+  svg {
+    pointer-events: none;
   }
 
   svg path {
@@ -70,28 +140,52 @@ body.index .logo-main svg path {
 //   width: calc(100% - 50px);
 // }
 
+.main-header .site-nav--has-dropdown {
+  position: relative;
+
+  button.site-nav__link {
+    pointer-events: none;
+  }
+
+  &.active-hover .site-nav__dropdown {
+    opacity: 1;
+    pointer-events: all;
+
+    ul {
+      transform: translate(0, 33px);
+    }
+  }
+}
+
 .main-header button.site-nav__link {
   background: none;
   color: $color-white;
   border: none;
+  line-height: 50px;
 }
+
 .main-header .site-nav__dropdown {
   position: absolute;
-  width: 50%;
-  transform: translate(-25%, 0);
+  width: 280%;
+  max-width: 447px;
+  transform: translate(-61%, 10px);
   pointer-events: none;
   opacity: 0;
+  top: 20px;
+
+  @include transition(200ms all $cubic);
 
   ul {
-    transform: translate(-28.5%, 25px);
-    // left: 50%;
+    transform: translate(0, 25px);
     background: $color-white;
     color: $color-dark;
     padding: 21px 30px;
     width: 140%;
     position: relative;
+    max-width: 447px;
+    box-shadow: 0 8px 30px 0 rgba(0, 0, 0, 0.1);
 
-
+    @include transition(200ms all $cubic);
     @include flexbox();
     @include justify-content(flex-start);
     @include align-items(flex-start);
@@ -140,6 +234,10 @@ body.index .logo-main svg path {
   .site-nav button {
     color: $color-dark;
   }
+
+  .cart-dd {
+    @include transform(translate(0, 23px));
+  }
 }
 
 #shopify-section-header {
@@ -171,6 +269,22 @@ body.index .logo-main svg path {
       }
     }
   }
+
+  .mobile-nav-buttons {
+    width: 74.6666%;
+    max-width: 74.6666%;
+    flex: 1 0 74.6666%;
+  }
+}
+
+.main-header.container-fluid {
+  padding-left: 0;
+  padding-right: 0;
+
+  > .row {
+    margin-left: 0;
+    margin-right: 0;
+  }
 }
 
 #shopify-section-header {
@@ -182,7 +296,7 @@ body.index .logo-main svg path {
   position: fixed;
   top: 0;
   left: 0;
-  width: 100vw;
+  width: 100%;
   // height: 100px;
   z-index: 5;
   padding-top: 33px;
@@ -232,7 +346,8 @@ body.index .logo-main svg path {
     // margin-right: -30px;
     li {
       display: inline-block;
-      padding: 0 17.5px;
+      // padding: 0 17.5px;
+      margin: 0 17.5px;
 
       &:last-of-type {
         padding-right: 0;
@@ -254,9 +369,9 @@ body.index .logo-main svg path {
           font-size: 18px;
         }
 
-        &:hover {
-          color: $color-orange;
-        }
+        // &:hover {
+        //   color: $color-orange;
+        // }
       }
     }
   }
@@ -354,105 +469,105 @@ body.index .logo-main svg path {
   @include flex-direction(column);
   @include align-items(center);
   @include justify-content(center);
-  @include transition(all 0.3s ease);
+  @include transition(all 0.4s $cubic);
 
-  border: 1px solid rgba(51, 51, 51, 0.2);
   border-radius: 50%;
   position: relative;
-	width: 42px;
-	height: 42px;
+	// width: 42px;
+	// height: 42px;
 	z-index: 4;
 
 	.line {
-		@include transition(all 0.3s ease-in-out);
+		@include transition(all 0.4s $cubic);
 
 		background-color: $color-dark;
 		display: block;
 		margin: 1px 0;
 		width: 18px;
-		height: 2px;
+    height: 2px;
+    transform-origin: center;
 	}
 
-	&.is-active {
-    @include transform(rotate(45deg));
+	// &.is-active {
+  //   @include transform(rotate(45deg));
     
-    border-color: white;
+  //   border-color: white;
 
-		.line {
-			background-color: white;
-			width: 18px;
+	// 	.line {
+	// 		background-color: white;
+	// 		width: 18px;
 
-			&:nth-child(2) {
-				opacity: 0;
-			}
+	// 		&:nth-child(2) {
+	// 			opacity: 0;
+	// 		}
 
-			&:nth-child(1) {
-				@include transform(translateY(4px));
-			}
+	// 		&:nth-child(1) {
+	// 			@include transform(translateY(4px));
+	// 		}
 
-			&:nth-child(3) {
-				@include transform(translateY(-4px) rotate(90deg));
-			}
-		}
-	}
+	// 		&:nth-child(3) {
+	// 			@include transform(translateY(-4px) rotate(90deg));
+	// 		}
+	// 	}
+	// }
 }
 
-.mobile-menu {
-  @include transition(all 0.4s $cubic);
+// .mobile-menu {
+//   @include transition(all 0.4s $cubic);
 
-  background-color: $color-blue;
-  color: white;
-  padding: 100px 40px;
-  position: fixed;
-  left: -100%;
-  top: 0;
-  width: 100vw;
-  height: 100%;
+//   background-color: $color-blue;
+//   color: white;
+//   padding: 100px 40px;
+//   position: fixed;
+//   left: -100%;
+//   top: 0;
+//   width: 100vw;
+//   height: 100%;
 
-  .site-nav {
-    @include transition(all 0.4s $cubic);
+//   .site-nav {
+//     @include transition(all 0.4s $cubic);
 
-    opacity: 0;
-    position: relative;
-    left: -100%;
-  }
+//     opacity: 0;
+//     position: relative;
+//     left: -100%;
+//   }
 
-  .social {
-    @include transition(all 0.4s $cubic);
+//   .social {
+//     @include transition(all 0.4s $cubic);
 
-    margin-top: 2rem;
-    opacity: 0;
-    position: relative;
-    left: -100%;
-  }
+//     margin-top: 2rem;
+//     opacity: 0;
+//     position: relative;
+//     left: -100%;
+//   }
 
-  .menu-open & {
-    left: 0;
-  }
-}
+//   .menu-open & {
+//     left: 0;
+//   }
+// }
 
-.menu-open {
-  .logo-main {
-    color: white;
+// .menu-open {
+//   .logo-main {
+//     color: white;
 
-    .st0,
-    .st1 {
-      fill: white;
-    }
-  }
+//     .st0,
+//     .st1 {
+//       fill: white;
+//     }
+//   }
 
-  .site-nav {
-    opacity: 1;
-    left: 0;
-    transition-delay: 0.1s;
-  }
+//   .site-nav {
+//     opacity: 1;
+//     left: 0;
+//     transition-delay: 0.1s;
+//   }
 
-  .social {
-    opacity: 1;
-    left: 0;
-    transition-delay: 0.15s;
-  }
-}
+//   .social {
+//     opacity: 1;
+//     left: 0;
+//     transition-delay: 0.15s;
+//   }
+// }
 
 .announcement-bar {
   @include transition(all 0.4s $cubic);
@@ -485,5 +600,240 @@ body.index .logo-main svg path {
   &.active {
     opacity: 1;
     visibility: visible;
+  }
+}
+
+// Mobile Nav
+// #shopify-section-mobile-nav {
+#mobile-nav {
+  z-index: 7;
+  background: $color-white;
+
+  .content-col-wrapper {
+    height: 100vh;
+    padding-top: 141px;
+  }
+
+  .mobile-navigation {
+    @include flexbox();
+    @include align-items(center);
+    @include justify-content(center);
+    @include flex-direction(column);
+
+    button,
+    a,
+    a span {
+      font-family: $kb;
+      font-size: 26px;
+      // line-height: 1.55em;
+      line-height: 46px;
+      color: $color-dark;
+      text-transform: uppercase;
+    }
+
+    button {
+      appearance: none;
+      -webkit-appearance: none;
+      background: transparent;
+      border: none;
+      box-shadow: none;
+
+      &:focus {
+        outline: none;
+      }
+
+      svg {
+        transform-origin: center;
+
+        @include transition(400ms all $cubic);
+
+        polygon {
+          // transform-origin: left;
+          transform-origin: center;
+
+          @include transition(400ms all $cubic);
+        }
+      }
+
+      &.active svg {
+        @include transform(rotate(270deg));
+
+        polygon:last-of-type {
+          @include transform(scaleX(0) rotate(270deg));
+        }
+      }
+    }
+
+    li.site-nav--active {
+      a,
+      a span {
+        color: $color-green;
+      }
+    }
+
+    .row {
+      padding-left: 40px;
+      padding-right: 30px;
+      margin-left: 0;
+      margin-right: 0;
+    }
+  }
+
+  .shopify-section.sticked #mobile-nav {
+    @include transform(translateY(15px));
+  }
+
+  .site-nav__dropdown ul {
+    padding: 10px 0 15px;
+
+    @include flexbox();
+    @include align-items(center);
+    @include justify-content(center);
+    @include flex-direction(column);
+
+    a,
+    a span {
+      font-size: 20px;
+      line-height: 32px;
+    }
+
+    li {
+      opacity: 0;
+    }
+  }
+
+  .site-nav__link span {
+    pointer-events: none;
+  }
+
+  .site-nav__dropdown {
+    overflow: hidden;
+    height: 0;
+    position: relative;
+  }
+
+  svg {
+    width: 24px;
+    height: 24px;
+    pointer-events: none;
+  }
+
+  .button-wrapper,
+  .regular-button {
+    width: 100%;
+  }
+
+  .regular-button {
+    @include flexbox();
+    @include justify-content(center);
+    @include align-items(center);
+
+    .text {
+      color: $color-white;
+      font-size: 18px;
+    }
+
+    svg {
+      margin-left: 10px;
+      path {
+        fill: $color-white;
+      }
+    }
+  }
+
+  .button-wrapper {
+    margin-top: 30px;
+  }
+}
+
+.boost-pfs-search-suggestion-mobile-top-panel {
+  display: none !important;
+  visibility: hidden !important;
+  pointer-events: none;
+}
+
+#shopify-section-header.open-mobile-nav .main-header {
+  .logo-main svg path {
+    fill: $color-dark;
+  }
+}
+
+#shopify-section-header .main-header {
+  z-index: 8;
+  position: relative;
+
+  .hamburger.active .line {
+    &:nth-child(2) {
+      // opacity: 0;
+      @include transform(scaleX(0))
+    }
+
+    &:nth-child(1) {
+      // @include transform(translateY(4px));
+      @include transform(rotate(45deg) translate(2px, 2px));
+    }
+
+    &:nth-child(3) {
+      // @include transform(translateY(-4px) rotate(90deg));
+      @include transform(rotate(-45deg) translate(3px, -3px));
+    }
+  }
+}
+
+@media screen and (min-width: 1025px) {
+  .main-header .site-nav a.site-nav__link--main {
+    position: relative;
+
+    &::before {
+      position: absolute;
+      content: "";
+      width: 100%;
+      height: 1px;
+      background: $color-dark;
+      left: 0;
+      bottom: 0;
+      transform-origin: left;
+
+      @include transition(400ms all $cubic);
+      @include transform(scaleX(0));
+    }
+
+    &:hover::before {
+      @include transform(scaleX(1));
+    }
+  }
+
+  .site-nav__child-link::before {
+    background: transparent;
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  #shopify-section-header .container-fluid {
+    margin-left: 0;
+    margin-right: 0;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  #shopify-section-header .logo-main,
+  #shopify-section-header .logo-main svg {
+    width: 100%;
+    min-width: 150px;
+    max-width: 200px;
+  }
+
+  #shopify-section-header .mobile-nav-buttons,
+  .logo-w {
+    width: 50%;
+    max-width: 50%;
+    flex: 0 0 50%;
+  }
+}
+
+@media screen and (max-width: 576px) {
+  #shopify-section-header {
+    padding-left: 20px;
+    padding-right: 20px;
   }
 }

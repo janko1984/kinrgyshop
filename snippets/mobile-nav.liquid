@@ -1,0 +1,136 @@
+<section class="bws-modal mobile-navigation" id="mobile-nav">
+  <div class="row content-row">
+
+    
+    <div class="content-col-wrapper">
+    
+      {% comment %} <div class="row close-row">
+        <div class="col-12">
+          <a class="js-close-modal close-modal">
+            {% include 'icon-close-large' %}
+            
+          </a>
+        </div>
+      </div> {% endcomment %}
+
+      <div class="row">
+        <div class="col-12">
+
+            <ul class="mobile-navigation">
+
+                {% for link in linklists.main-menu.links %}
+                  {%- assign child_list_handle = link.title | handleize -%}
+
+                  {% comment %}
+                    Check if third-level nav exists on each parent link.
+                  {% endcomment %}
+                  {%- assign three_level_nav = false -%}
+                  {% if link.links != blank %}
+                    {% if link.levels == 2 %}
+                      {%- assign three_level_nav = true -%}
+                    {% endif %}
+                  {% endif %}
+
+                  {% if link.links != blank %}
+                    <li class="site-nav--has-dropdown{% if three_level_nav %} site-nav--has-centered-dropdown{% endif %}{% if link.active %} site-nav--active{% endif %}" data-has-dropdowns>
+                      <button class="site-nav__link site-nav__link--main site-nav__link--button{% if link.child_active %} site-nav__link--active{% endif %} accordion-link" type="button" aria-expanded="false" aria-controls="SiteNavLabel-{{ child_list_handle }}">
+                        <span class="site-nav__label">{{ link.title | escape }}</span>
+                        <span>
+                          {% include 'icon-green-plus' %}
+                        </span>
+                      </button>
+
+                      <div class="site-nav__dropdown{% if three_level_nav %} site-nav__dropdown--centered{% endif %} accordion-content" id="SiteNavLabel-{{ child_list_handle }}">
+                        {% if three_level_nav %}
+                          <div class="site-nav__childlist">
+                            <ul class="site-nav__childlist-grid">
+                              {% if link.links != blank %}
+                                {% for childlink in link.links %}
+                                  <li class="site-nav__childlist-item">
+                                    <a href="{{ childlink.url }}"
+                                      class="site-nav__link site-nav__child-link site-nav__child-link--parent"
+                                      {% if childlink.current %} aria-current="page"{% endif %}
+                                    >
+                                      <span class="site-nav__label">{{ childlink.title | escape }}</span>
+                                    </a>
+
+                                    {% if childlink.links != blank %}
+                                      <ul>
+                                      {% for grandchildlink in childlink.links %}
+                                        <li>
+                                          <a href="{{ grandchildlink.url }}"
+                                          class="site-nav__link site-nav__child-link"
+                                          {% if grandchildlink.current %} aria-current="page"{% endif %}
+                                        >
+                                            <span class="site-nav__label">{{ grandchildlink.title | escape }}</span>
+                                          </a>
+                                        </li>
+                                      {% endfor %}
+                                      </ul>
+                                    {% endif %}
+
+                                  </li>
+                                {% endfor %}
+                              {% endif %}
+                            </ul>
+                          </div>
+
+                        {% else %}
+                          <ul>
+                            {% for childlink in link.links %}
+                              <li>
+                                <a href="{{ childlink.url }}"
+                                class="site-nav__link site-nav__child-link{% if forloop.last %} site-nav__link--last{% endif %}"
+                                {% if childlink.current %} aria-current="page"{% endif %}
+                              >
+                                  {% comment %} {% assign subnav_link = childlink.title | escape %}
+                                  {% case subnav_link %}
+                                    {% when 'Kinrgy x Lululemon' %}
+                                      <i><img src="{{ 'lululemon-logo.png' | asset_url }}" width="45px"></i>
+                                    {% when 'Kinrgy x Vejo' %}
+                                      <i><img src="{{ 'vejo-logo.png' | asset_url }}" width="61px"></i>
+                                    {% when 'Kinrgy x Guru nanda' %}
+                                      <i><img src="{{ 'guru-nanda-logo.png' | asset_url }}" width="59px"></i>
+                                  {% endcase %} {% endcomment %}
+                                  
+                                  <span class="site-nav__label">{{ childlink.title | escape }}</span>
+                                </a>
+                              </li>
+                            {% endfor %}
+                          </ul>
+                        {% endif %}
+                      </div>
+                    </li>
+                  {% else %}
+                    <li {% if link.active %} class="site-nav--active"{% endif %}>
+                      <a href="{{ link.url }}"
+                        class="site-nav__link site-nav__link--main{% if link.active %} site-nav__link--active{% endif %}"
+                        {% if link.current %} aria-current="page"{% endif %}
+                      >
+                        <span class="site-nav__label">{{ link.title | escape }}</span>
+                      </a>
+                    </li>
+                  {% endif %}
+                {% endfor %}
+
+            </ul>
+
+            <div class="button-wrapper">
+              <a class="js_search regular-button green" data-modal-id="SearchDrawer" href="#">
+                <span class="text">Search</span>
+                {% include 'icon-search' %}
+              </a>
+            </div>
+
+        </div>
+      </div>
+
+      {% comment %} <div class="content-col"> {% endcomment %}
+
+        {% comment %} <div class="row content" id="modal-content-space">
+        
+        </div> {% endcomment %}
+      {% comment %} </div> {% endcomment %}
+    </div>
+  </div>
+</section>

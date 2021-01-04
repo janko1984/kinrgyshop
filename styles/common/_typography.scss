@@ -94,7 +94,16 @@ h6 {
   line-height: 1.156em;
 }
 
+.f-70 {
+  line-height: 1.16em;
+}
+
+.f-80 {
+  line-height: 1.625em;
+}
+
 @media screen and (min-width: 1025px) {
+  .search-row input,
   h1,
   .h1 {
     font-size: 4.17vw;
@@ -107,9 +116,18 @@ h6 {
   .f-160 {
     font-size: 11.12vw;
   }
+
+  .f-70 {
+    font-size: 4.865vw;
+  }
+
+  .f-80 {
+    font-size: 5.6vw;
+  }
 } // End 1025 Min
 
 @media screen and (max-width: 1024px) and (min-width: 769px) {
+  .search-row input,
   h1,
   .h1 {
     font-size: 3.9vw;
@@ -122,6 +140,14 @@ h6 {
   .f-160 {
     font-size: 11vw;
   }
+
+  .f-70 {
+    font-size: 4.465vw;
+  }
+
+  .f-80 {
+    font-size: 5.2vw;
+  }
 } // End 1024 Max and 769 Min
 
 @media screen and (max-width: 768px) {
@@ -129,6 +155,7 @@ h6 {
 } // End 768 Max
 
 @media screen and (max-width: 768px) and (min-width: 577px) {
+  .search-row input,
   h1,
   .h1 {
     font-size: 40px;
@@ -138,23 +165,50 @@ h6 {
     font-size: 35px;
   }
 
+  h3 {
+    font-size: 2em;
+  }
+
   .f-160 {
     font-size: 100px;
+  }
+
+  .f-70 {
+    font-size: 45px;
+  }
+
+  .f-80 {
+    font-size: 50px;
   }
 } // End 768 Max and 577 Min
 
 
 @media screen and (max-width: 576px) {
+  .search-row input,
   h1,
   .h1 {
     font-size: 32px;
   }
 
   h2 {
-    font-size: 28px;
+    // font-size: 28px;
+    font-size: 35px;
+  }
+
+  h3 {
+    font-size: 24px;
   }
 
   .f-160 {
     font-size: 60px;
+  }
+
+  .f-70 {
+    // font-size: 28px;
+    font-size: 40px;
+  }
+
+  .f-80 {
+    font-size: 30px;
   }
 } // End 576 Max

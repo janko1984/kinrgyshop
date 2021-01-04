@@ -37,6 +37,16 @@ input::moz-placeholder {
     right: 0;
     top: 0;
     bottom: 0;
+
+    &:hover {
+      svg {
+        @include transform(translateX(5px));
+
+        path {
+          stroke: $color-green;
+        }
+      }
+    }
   }
 
   input[type="email"] {
@@ -46,6 +56,11 @@ input::moz-placeholder {
 
   input {
     line-height: 31px;
+  }
+
+  svg,
+  svg path {
+    @include transition(400ms all $cubic);
   }
 }
 
@@ -71,5 +86,55 @@ input::moz-placeholder {
     margin: auto;
     top: 0;
     bottom: 0;
+  }
+}
+
+body.product {
+  select {
+    min-height: 40px;
+    line-height: 40px;
+    color: $color-dark;
+    border-radius: 3px;
+    border: 1px solid $color-dark;
+    min-width: 74px;
+    background: url('https://cdn.shopify.com/s/files/1/0522/1918/3297/files/icon-select-down.svg?v=1608694525') no-repeat center center;
+    background-size:  6px 5px;
+    background-position: 90% 16px;
+    appearance: none;
+    -webkit-appearance: none;
+    font-size: 14px;
+    line-height: 18px;
+    padding: 0 15px;
+    margin-bottom: 30px;
+
+    &:focus {
+      outline: none;
+    }
+  }
+}
+
+footer #footer-form {
+  .form-success p,
+  .form-success svg {
+    @include inline-flex();
+  }
+  
+  .form-success svg {
+    width: 45px;
+    height: 45px;
+    margin-right: 20px;
+  }
+
+  .form-success {
+    position: relative;
+    height: 0;
+    overflow: hidden;
+
+    .inner {
+      opacity: 0;
+      
+      @include flexbox();
+      @include align-items(center);
+    }
   }
 }
