@@ -17,12 +17,12 @@
     <ul class="arrows">
       <li>
         <a href="#" class="arrow prev disabled">
-          {% include 'icon-arrow-left-arrow' %}
+          {% include 'icon-left-arrow-02' %}
         </a>
       </li>
       <li>
         <a href="#" class="arrow next">
-          {% include 'icon-arrow-right-arrow' %}
+          {% include 'icon-right-arrow-02' %}
         </a>
       </li>
     </ul>
@@ -63,6 +63,11 @@
                             <s>{{ product.compare_at_price_max | money | remove: '.0'}}</s>
                           </span>
                       {% endif %}
+
+                      {% if product.available == false %}
+                        <span class="soldout boost-pfs-filter-label sold-out tag">SOLD OUT</span>
+                      {% endif %}
+
                     </div>
                 </div>
 

@@ -15,18 +15,29 @@
       
               <div class="copy">
                 <ul class="title-and-price">
-                  <li class="name" rv-text="item.product_title"></li>
+                  {% comment %} <li class="name" rv-text="item.product_title"></li> {% endcomment %}
+                  <li>
+                    <p class="name" rv-text="item.product_title"></p>
+                    <ul class="variant-list">
+                      <li rv-hide="item.properties.size | empty">
+                        <p class="cart-display-size variant">Size:  {item.properties.size}</p>
+                      </li>
+                      <li rv-hide="item.properties.color | empty">
+                        <p class="cart-display-color variant">Color:  {item.properties.color}</p>
+                      </li>
+                    </ul>
+                  </li>
                   <li class="price" rv-html="item.line_price | money Currency.currentCurrency | money_without_trailing_zeros"></li>
                 </ul>
 
-                <ul class="variant-list">
+                {% comment %} <ul class="variant-list">
                   <li rv-hide="item.properties.size | empty">
                     <p class="cart-display-size variant">Size:  {item.properties.size}</p>
                   </li>
                   <li rv-hide="item.properties.color | empty">
                     <p class="cart-display-color variant">Color:  {item.properties.color}</p>
                   </li>
-                </ul>
+                </ul> {% endcomment %}
                               
                 <div class="cart-bottom-info">
                   

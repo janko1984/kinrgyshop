@@ -67,7 +67,8 @@ body.product footer {
   }
 }
 
-body.index .cta.membership {
+// body.index .cta.membership {
+body.index #shopify-section-membership-cta {
   position: relative;
   z-index: 2;
 
@@ -122,6 +123,10 @@ body.index footer {
   body.product footer::before {
     max-width: 100%;
   }
+
+  body.index footer .container {
+    padding-top: 0;
+  }
 }
 
 @media screen and (max-width: 576px) {
@@ -130,10 +135,28 @@ body.index footer {
   }
 
   footer .subfooter-list {
-    padding-bottom: 0;
+    padding-bottom: 30px;
+
+    @include flex-direction(column);
+
+    li {
+      margin-bottom: 10px;
+    }
   }
 
   footer {
     margin-top: 0px;
+  }
+
+  footer .container {
+    padding-top: 30px;
+  }
+
+  body.page-faq footer::before, 
+  body.page-legal footer::before, 
+  body.collection footer::before, 
+  body.search footer::before, 
+  body.product footer::before {
+    top: 40px;
   }
 }

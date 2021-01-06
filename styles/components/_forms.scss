@@ -39,6 +39,8 @@ input::moz-placeholder {
     bottom: 0;
 
     &:hover {
+      cursor: pointer;
+      
       svg {
         @include transform(translateX(5px));
 

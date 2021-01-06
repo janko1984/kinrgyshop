@@ -14,13 +14,30 @@
                 <div rv-each-item="cart.items" class="item" rv-data-product-variant-id="item.variant_id" rv-data-product-key="item.product_id">
                 
                   <div class="row">
-                      <img rv-src="item.image | productImageSize 'medium'" class="image">
+                      <div class="image-wrapper">
+                        <img rv-src="item.image | productImageSize 'medium'" class="image">
+                      </div>
                       <div class="row product-text">
                         <div class="titles">
-                          <h2 class="name" rv-text="item.product_title"></h2>
+                          <div class="title-and-properties">
+                            <h2 class="name" rv-text="item.product_title"></h2>
+
+                            {% comment %} Properties List {% endcomment %}
+                            <ul class="item-properties-list" rv-hide="item.properties.size > 0">
+                              <li>
+                                <p rv-hide="item.properties.color | empty" class="property">Color:  { item.properties.color }</p>
+                              </li>
+                              <li>
+                                <p rv-hide="item.properties.size | empty" class="property">Size:  { item.properties.size }</p>
+                              </li>
+                            </ul>
+
+                          </div>
 
                           <p class="price" rv-html="item.final_line_price | money"></p>
                         </div>
+                        
+                        
                         
                         {% comment %} paywhirl {% endcomment %}
                         {% render 'paywhirl-subscriptions-cart-selling-plans', item: item %}
@@ -82,12 +99,12 @@
               <ul class="arrows">
                 <li>
                   <a href="#" class="arrow prev disabled">
-                    {% include 'icon-arrow-left-arrow' %}
+                    {% include 'icon-left-arrow-02' %}
                   </a>
                 </li>
                 <li>
                   <a href="#" class="arrow next">
-                    {% include 'icon-arrow-right-arrow' %}
+                    {% include 'icon-right-arrow-02' %}
                   </a>
                 </li>
               </ul>

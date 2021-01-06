@@ -262,7 +262,7 @@ window.addEventListener("DOMContentLoaded", function(){
   const inputCheck = document.querySelector('.search-form__input');
   const submitCheck = document.querySelector('.search-form__submit');
   const bodyTag = document.querySelector('body');
-  let pfsOverlay;
+  let pfsOverlay, appOverlay;
   // let pfsOverlay
 
   // Wait for app to load
@@ -275,15 +275,21 @@ window.addEventListener("DOMContentLoaded", function(){
     search.addEventListener('click', (event) => {
       event.preventDefault();
 
-      pfsOverlay = document.querySelector('.boost-pfs-search-suggestion-mobile-overlay');
-
+      // Make search drawer active
       let searchModal = document.querySelector('#SearchDrawer');
-      console.log(searchModal)
       searchModal.classList.add('active');
 
+      // Search and filter app overlay
+      appOverlay = document.querySelector('.boost-pfs-search-suggestion-mobile-overlay');
 
-      pfsOverlay.classList.add('hidden-el');
 
+      // Hide search and filter app - if not null
+      if (! document.body.classList.contains('cart') && appOverlay != null) {
+        pfsOverlay = document.querySelector('.boost-pfs-search-suggestion-mobile-overlay');
+        pfsOverlay.classList.add('hidden-el');
+      }
+
+      // Animate in
       gsap.to(searchModal, {
         alpha: 1,
         duration: 0.4,
@@ -311,10 +317,15 @@ window.addEventListener("DOMContentLoaded", function(){
         duration: 0.4,
         ease: "power1.inOut",
         onComplete: () => {
-          document.body.classList.remove('boost-pfs-search-suggestion-mobile-open')
+          document.body.classList.remove('boost-pfs-search-suggestion-mobile-open');
+
+          // unhide search and filter app - if not null
+          if (! document.body.classList.contains('cart') && appOverlay != null) {
+            pfsOverlay.setAttribute('style', '');
+            pfsOverlay.classList.remove('hidden-el');
+          }
+
           searchModal.classList.remove('active');
-          pfsOverlay.setAttribute('style', '');
-          pfsOverlay.classList.remove('hidden-el');
         }
       })
     })
@@ -1540,6 +1551,7 @@ class MultiItemSlider {
  // Product
  if (document.body.classList.contains('product')) {
   let productJS = new GeneralProduct();
+  console.log(productJS)
 
   if (document.querySelector('#product-collection-slider') != null) {
     // Related Slider
@@ -1760,6 +1772,7 @@ class GeneralProduct {
   }
 
   checkInitalValues() {
+
     // If first varriant is sold out
     if (this.master.children[0].hasAttribute('disabled')) {
 
@@ -1775,11 +1788,11 @@ class GeneralProduct {
       }
 
       this.setQuantityOutOfStock();
-      
-      this.setVariantSizeOutOfStock();
 
-      this.buttonsSoldOut(this.buttons)
+      this.buttonsSoldOut(this.buttons);
     }
+
+    this.setVariantSizeOutOfStock();
   }
 
   // Disabled out of stock sizes
@@ -1793,14 +1806,20 @@ class GeneralProduct {
         let sizes = Array.from(this.size.children);
 
         // If not instock and current color
-        if (option.dataset.inventory == 0 && option.dataset.variantTwo == this.currentSwatch) {
+        if (option.dataset.inventory == 0 && option.dataset.variantOne == this.currentSwatch) {
           
           // Find matching sizes and disable
           sizes.forEach(size => {
-            if (size.value == option.dataset.variantOne) {
+            if (size.value == option.dataset.variantTwo) {
               size.setAttribute('disabled', 'disabled');
             } 
           })
+        }
+
+        if (this.size.children[this.size.selectedIndex].hasAttribute('disabled')) {
+          this.buttonsSoldOut(this.buttons)
+        } else if (! this.size.children[this.size.selectedIndex].hasAttribute('disabled')) {
+          this.buttonsAddToCart(this.buttons)
         }
       })
     }
@@ -1813,13 +1832,12 @@ class GeneralProduct {
     if (currentSize != '') {
       currentSize = this.size.value;
     }
-
     
     // Go through master select
     this.master.children.forEach( option => {
       
       // Find current size and color - get inventory
-      if (option.dataset.variantOne === currentSize && option.dataset.variantTwo === this.currentSwatch) {
+      if (option.dataset.variantTwo === currentSize && option.dataset.variantOne === this.currentSwatch) {
         currentInventory = Number(option.dataset.inventory);
       }
     })
@@ -2000,23 +2018,35 @@ class GeneralProduct {
 // **************************
 // Tooltips
 // **************************
+
+// Show and hide tool tips
 function tooltips() {
   if (document.querySelector('#product-material-and-care') != null) {
     let list = document.querySelectorAll('#product-material-and-care .care-icons .tooltip-icon');
+    let listText = document.querySelectorAll('#product-material-and-care .care-icons .tooltip-text');
 
     list.forEach(li => {
-      li.addEventListener('mouseenter', event => {
-        event.target.nextElementSibling.classList.add('active')
-      })
 
-      li.addEventListener('mouseleave', event => {
-        event.target.nextElementSibling.classList.remove('active')
-      })
+      // Desktop mouse enter and leave
+      if (window.innerWidth > 1024) {
+        li.addEventListener('mouseenter', event => {
+          event.target.nextElementSibling.classList.add('active')
+        })
 
+        li.addEventListener('mouseleave', event => {
+          event.target.nextElementSibling.classList.remove('active')
+        })
+      }
+
+      // Add and remove active - for mobile sizes (less than 1024px)
       li.addEventListener('click', event => {
         if ( ! event.target.nextElementSibling.classList.contains('active')) {
+
+          // Remove sibling active class
+          listText.forEach(list => { list.classList.remove('active') });
           event.target.nextElementSibling.classList.add('active')
-        } else if (event.target.nextElementSibling.classList.contains('active')) {
+        } 
+        else if (event.target.nextElementSibling.classList.contains('active')) {
           event.target.nextElementSibling.classList.remove('active')
         }
       })

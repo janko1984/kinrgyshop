@@ -122,9 +122,9 @@ body.index {
       @include transition(400ms all $cubic);
     }
 
-    &:hover::before {
-      @include transform(scale(1.1));
-    }
+    // &:hover::before {
+    //   @include transform(scale(1.1));
+    // }
   }
 
   svg {
@@ -612,13 +612,15 @@ body.index {
 
   .content-col-wrapper {
     height: 100vh;
-    padding-top: 141px;
+    // padding-top: 141px;
+
+    @include align-items(center);
   }
 
   .mobile-navigation {
     @include flexbox();
     @include align-items(center);
-    @include justify-content(center);
+    @include justify-content(center); 
     @include flex-direction(column);
 
     button,
@@ -807,6 +809,10 @@ body.index {
 
   .site-nav__child-link::before {
     background: transparent;
+  }
+
+  .main-header .extra-menu a:hover::before {
+    @include transform(scale(1.1));
   }
 }
 

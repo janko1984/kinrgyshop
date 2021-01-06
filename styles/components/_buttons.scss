@@ -110,10 +110,6 @@ body.cart .regular-button.no-border {
   span {
     color: $color-dark; 
   }
-
-  &:hover::before {
-    background: #dfd6d6;
-  }
 }
 
 body.cart .regular-button,
@@ -151,5 +147,9 @@ body.product {
     &:hover::before {
       @include transform(scale(1.03, 1.06));
     }
+  }
+
+  body.cart .regular-button.no-border:hover::before {
+    background: #dfd6d6;
   }
 }

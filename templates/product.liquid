@@ -10,7 +10,6 @@
   </div>
   <div class="row">
   
-
       <div class="col-lg-5 offset-lg-1 col-md-5 offset-md-1 col-sm-12 col-xs-12">
 
         {% if product.images.size > 1 %}
@@ -30,8 +29,6 @@
               {% endfor %}
             </ul>
 
-
-      
       	{% comment %} Mobile Product images 1  {% endcomment %}
         <div class="mobile-image-slider">
           <div class="slider-row-wrapper">
@@ -152,9 +149,14 @@
                     </div>
                   </li>
 
-                  {% if option.name == 'Size' and forloop.first == true %}
+                  {% if option.name == 'Size'  %}
                     <li class="size-guide">
-                      <p><a href="#" class="inline-single js-modal-button" target="_self" data-modal-id="general-modal" data-content="{{ product.metafields.products.size_guide_modal_id }}">Size Guide</a></p>
+                    {% if product.metafields.products.size_guide_modal_id != blank %}
+                        <p><a href="#" class="inline-single js-modal-button" target="_self" data-modal-id="general-modal" data-content="{{ product.metafields.products.size_guide_modal_id }}">Size Guide</a></p>
+                      {% else %}
+                        <p><a href="#" class="inline-single js-modal-button" target="_self" data-modal-id="general-modal" data-content="size-guide-content-default">Size Guide</a></p>
+                      {% endif %}
+                      
                     </li>
                   {% endif %}
               </ul>
@@ -240,6 +242,9 @@
   {% section 'material-and-care' %}
 {% endif %}
 
+{% comment %} Related Collections {% endcomment %}
+{% section 'product-collection-slider' %}
+
 {% comment %} Modal Content - Metafields {% endcomment %}
 <div class="modal-content-wrapper" id="modal-content-wrapper-product">
   
@@ -247,10 +252,8 @@
     <div id="{{ product.metafields.products.size_guide_modal_id }}">
         {{ product.metafields.products.size_guide }}
     </div>
-
+  {% else %}
+    {% include 'default-size-guide' %}
   {% endif %}
 
 </div>
-
-{% comment %} Related Collections {% endcomment %}
-{% section 'product-collection-slider' %}
