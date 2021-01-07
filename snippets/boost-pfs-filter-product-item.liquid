@@ -71,12 +71,12 @@
                   {{ product.featured_image | img_url: '480x' }} 480w"
               src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
               sizes="{{ sizes }}"
-              data-img-flip ="{{ img_1 | img_url: '360x' }}"
+              data-img-flip ="{{ product.featured_image | img_url: '360x' }}"
               data-img-flip-srcset ="
-                {{ img_1 | img_url: '180x' }} 180w,
-                {{ img_1 | img_url: '260x' }} 260w,
-                {{ img_1 | img_url: '360x' }} 360w,
-                {{ img_1 | img_url: '480x' }} 480w"
+                {{ product.featured_image | img_url: '180x' }} 180w,
+                {{ product.featured_image | img_url: '260x' }} 260w,
+                {{ product.featured_image | img_url: '360x' }} 360w,
+                {{ product.featured_image | img_url: '480x' }} 480w"
               alt="{{ product.featured_image.alt | escape }}" />
           </a>
         </div>

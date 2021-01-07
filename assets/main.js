@@ -193,18 +193,20 @@ window.addEventListener("DOMContentLoaded", function(){
     // }
 
     $('#cartCount').html(cart.item_count);
+      console.log('cart',cart['item_count']);
+
       if (cart['item_count'] > 0) {
 
-        $('#cartCount').removeClass('empty');
-        $('#cartCount').text(cart.item_count);
+        $('.cart-count').removeClass('empty');
+        $('.cart-count').text(cart.item_count);
 
         $('.cart-dd').addClass('active');
         $('.col-form').removeClass('hidden');
         $('.col-empty').addClass('hidden');
         $('.cart-dd').removeClass('empty');
       }else{
-        $('#cartCount').addClass('empty');
-        $('#cartCount').text(cart.item_count);
+        $('.cart-count').addClass('empty');
+        $('.cart-count').text(cart.item_count);
 
         $('.col-form').addClass('hidden');
         $('.col-empty').removeClass('hidden');
@@ -214,6 +216,10 @@ window.addEventListener("DOMContentLoaded", function(){
 
     console.log(cart)
   });
+
+  function isMobile() {
+    return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+  }
 
   // When cart is ready 
   $(document).on('cart.ready', function(event, cart) {
@@ -296,6 +302,10 @@ window.addEventListener("DOMContentLoaded", function(){
         ease: "power1.inOut",
         onComplete: () => {
           inputCheck.focus();
+
+          if (isMobile()) {
+            inputCheck.click();
+          }
         }
       })
     })
@@ -639,14 +649,20 @@ window.addEventListener("DOMContentLoaded", function(){
      submit: document.querySelector('#footer-form input[type="submit"]'),
      success: document.querySelector('#footer-form .form-success'),
    }
+
+   console.log(visibleForm)
+   console.log(hubspot)
    
    // Visible form keyup - make hubspot email value match
    visibleForm.email.addEventListener('keyup', event => {
-     hubspot.email.value = event.target.value;
+    //  hubspot.email.value = event.target.value;
+     hubspot.email.setAttribute('value', event.target.value);
+     console.log(hubspot.email.value, event.target.value)
    })
 
    // VisibleForm submit - then submit hubspot form
    visibleForm.form.addEventListener('submit', event => {
+     console.log('submit vf', event)
     event.preventDefault();
     hubspot.innerFormWrapper.classList.add('is-submitting')
     hubspot.submit.click();
@@ -660,7 +676,7 @@ window.addEventListener("DOMContentLoaded", function(){
    const config = { attributes: true, childList: true, subtree: true };
    const callback = function(mutationsList, observer) {
      mutationsList.forEach(mutation => {
-      //  console.log(mutation)
+       console.log(mutation)
 
       // Email error
       //  if (mutation.type == "childList" && mutation.target.classList.contains('hs_email')) {
@@ -668,6 +684,8 @@ window.addEventListener("DOMContentLoaded", function(){
       //       visibleForm.messages.innerText = mutation.addedNodes[0].innerText;
       //     }
       //  }
+
+      console.log('submit?', mutation.target.nodeName == "FORM", hubspot.innerFormWrapper.classList.contains('is-submitting'))
       
       // On submit - wait until form is sent - show success
       if (mutation.target.nodeName == "FORM" && hubspot.innerFormWrapper.classList.contains('is-submitting')) {
@@ -677,6 +695,7 @@ window.addEventListener("DOMContentLoaded", function(){
 
           // If submitted
           if (hubspot.innerFormWrapper.children[0].classList.contains('submitted-message')) {
+            console.log('should be submitting')
             // Success animation
             footerFormSuccess(visibleForm);
 
@@ -764,8 +783,156 @@ window.addEventListener("DOMContentLoaded", function(){
 
 
 
+// let colors = [
 
+// "WHITE: #FFFFFF",
+// "AZURE:	#F0FFFF",
+// "MINT-CREAM:	#F5FFFA",
+// "SNOW:	#FFFAFA",
+// "IVORY:	#FFFFF0",
+// "GHOST-WHITE:	#F8F8FF",
+// "FLORAL-WHITE:	#FFFAF0",
+// "ALICE-BLUE:	#F0F8FF",
+// "LIGHT-CYAN:	#E0FFFF",
+// "HONEY-DEW:	#F0FFF0",
+// "LIGHT-YELLOW:	#FFFFE0",
+// "SEASHELL:	#FFF5EE",
+// "LAVENDER-BLUSH:	#FFF0F5",
+// "WHITE-SMOKE:	#F5F5F5",
+// "OLD-LACE:	#FDF5E6",
+// "CORN-SILK:	#FFF8DC",
+// "LINEN:	#FAF0E6",
+// "LIGHT-GOLDENROD-YELLOW:	#FAFAD2",
+// "LEMON-CHIFFON:	#FFFACD",
+// "BEIGE:	#F5F5DC",
+// "LAVENDER:	#E6E6FA",
+// "PAPAYAWHIP:	#FFEFD5",
+// "MISTY-ROSE:	#FFE4E1",
+// "ANTIQUE-WHITE:	#FAEBD7",
+// "BLANCHED-ALMOND:	#FFEBCD",
+// "BISQUE:	#FFE4C4",
+// "PALE-TURQUOISE:	#AFEEEE",
+// "MOCCASIN:	#FFE4B5",
+// "GAINSBORO:	#DCDCDC",
+// "PEACH-PUFF:	#FFDAB9",
+// "NAVAJO-WHITE:	#FFDEAD",
+// "PALE-GOLDEN-ROD:	#EEE8AA",
+// "WHEAT:	#F5DEB3",
+// "POWDER-BLUE:	#B0E0E6",
+// "AQUA-MARINE:	#7FFFD4",
+// "LIGHT-GREY:	#D3D3D3",
+// "PINK:	#FFC0CB",
+// "LIGHT-BLUE:	#ADD8E6",
+// "THISTLE:	#D8BFD8",
+// "LIGHT-PINK:	#FFB6C1",
+// "LIGHT-SKY-BLUE:	#87CEFA",
+// "PALE-GREEN:	#98FB98",
+// "LIGHT-STEEL-BLUE:	#B0C4DE",
+// "KHAKI:	#F0D58C",
+// "SKY-BLUE:	#87CEEB",
+// "AQUA:	#00FFFF",
+// "CYAN:	#00FFFF",
+// "SILVER:	#C0C0C0",
+// "PLUM:	#DDA0DD",
+// "GRAY:	#BEBEBE",
+// "LIGHT-GREEN:	#90EE90",
+// "VIOLET:	#EE82EE",
+// "YELLOW:	#FFFF00",
+// "TURQUOISE:	#40E0D0",
+// "BURLYWOOD:	#DEB887",
+// "GREEN-YELLOW:	#ADFF2F",
+// "TAN:	#D2B48C",
+// "MEDIUM-TURQUOISE:	#48D1CC",
+// "LIGHT-SALMON:	#FFA07A",
+// "MEDIUM-AQUAMARINE:	#66CDAA",
+// "DARK-GRAY:	#A9A9A9",
+// "ORCHID:	#DA70D6",
+// "DARK-SEA-GREEN:	#8FBC8F",
+// "DEEP-SKY-BLUE:	#00BFFF",
+// "SANDY-BROWN:	#F4A460",
+// "GOLD:	#FFD700",
+// "MEDIUM-SPRING-GREEN:	#00FA9A",
+// "DARK-KHAKI:	#BDB76B",
+// "CORN-FLOWER-BLUE:	#6495ED",
+// "HOT-PINK:	#FF69B4",
+// "DARK-SALMON:	#E9967A",
+// "DARK-TURQUOISE:	#00CED1",
+// "SPRING-GREEN:	#00FF7F",
+// "LIGHT-CORAL:	#F08080",
+// "ROSY-BROWN:	#BC8F8F",
+// "SALMON:	#FA8072",
+// "CHARTREUSE:	#7FFF00",
+// "MEDIUM-PURPLE:	#9370DB",
+// "LAWN-GREEN:	#7CFC00",
+// "DODGER-BLUE:	#1E90FF",
+// "YELLOW-GREEN:	#9ACD32",
+// "PALE-VIOLET-RED:	#DB7093",
+// "MEDIUM-SLAT-EBLUE:	#7B68EE",
+// "MEDIUM-ORCHID:	#BA55D3",
+// "CORAL:	#FF7F50",
+// "CADET-BLUE:	#5F9EA0",
+// "LIGHT-SEA-GREEN:	#20B2AA",
+// "GOLDENROD:	#DAA520",
+// "ORANGE:	#FFA500",
+// "LIGHT-SLATE-GRAY:	#778899",
+// "FUCHSIA:	#FF00FF",
+// "MAGENTA:	#FF00FF",
+// "MEDIUM-SEA-GREEN:	#3CB371",
+// "PERU:	#CD853F",
+// "STEEL-BLUE:	#4682B4",
+// "ROYAL-BLUE:	#4169E1",
+// "SLATE-GRAY:	#708090",
+// "TOMATO:	#FF6347",
+// "DARK-ORANGE:	#FF8C00",
+// "SLATE-BLUE:	#6A5ACD",
+// "LIME-GREEN:	#32CD32",
+// "LIME:	#00FF00",
+// "INDIAN-RED:	#CD5C5C",
+// "DARK-ORCHID:	#9932CC",
+// "BLUE-VIOLET:	#8A2BE2",
+// "DEEP-PINK:	#FF1493",
+// "DARK-GOLDEN-ROD:	#B8860B",
+// "CHOCOLATE:	#D2691E",
+// "DARK-CYAN:	#008B8B",
+// "DIM-GRAY:	#696969",
+// "OLIVE-DRAB:	#6B8E23",
+// "SEA-GREEN:	#2E8B57",
+// "TEAL:	#008080",
+// "DARK-VIOLET:	#9400D3",
+// "MEDIUM-VIOLET-RED:	#C71585",
+// "ORANGERED:	#FF4500",
+// "OLIVE:	#808000",
+// "SIENNA:	#A0522D",
+// "DARK-SLATE-BLUE:	#483D8B",
+// "DARK-OLIVE-GREEN:	#556B2F",
+// "FOREST-GREEN:	#228B22",
+// "CRIMSON:	#DC143C",
+// "BLUE:	#0000FF",
+// "DARK-MAGENTA:	#8B008B",
+// "DARK-SLATE-GRAY:	#2F4F4F",
+// "SADDLE-BROWN:	#8B4513",
+// "BROWN:	#A52A2A",
+// "FIRE-BRICK:	#B22222",
+// "PURPLE:	#800080",
+// "GREEN:	#008000",
+// "RED:	#FF0000",
+// "MEDIUM-BLUE:	#0000CD",
+// "INDIGO:	#4B0082",
+// "MIDNIGHT-BLUE:	#191970",
+// "DARK-GREEN:	#006400",
+// "DARK-BLUE:	#00008B",
+// "NAVY:	#000080",
+// "DARK-RED:	#8B0000",
+// "MAROON:	#800000",
+// "BLACK:	#000000",
+// ]
+// let colors2 = new Array();
 
+// for (let a = 0; a < colors.length; a++) {
+//   colors2.push(colors[a].toLowerCase())
+// }
+
+// console.table(colors2)
 
 
 
@@ -1981,14 +2148,14 @@ class GeneralProduct {
 
 
           if (sellingPlan != null) {
-            CartJS.addItem(id, 1, {
+            CartJS.addItem(id, quantity, {
               "size": size,
               "color": color,
               "selling_plan": sellingPlan
             }, { })
           } 
           else if (sellingPlan == null){
-            CartJS.addItem(id, 1, {
+            CartJS.addItem(id, quantity, {
             "size": size,
             "color": color
           }, { })

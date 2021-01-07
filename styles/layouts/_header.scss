@@ -12,8 +12,18 @@ body.index {
     color: $color-white;
   }
 
-  #shopify-section-header.sticked .site-nav button span {
-    color: $color-dark;
+  .main-header a.site-nav__link--main::before {
+    background: $color-white;
+  }
+
+  #shopify-section-header.sticked {
+    .main-header a.site-nav__link--main::before {
+      background: $color-dark;
+    }
+
+    .site-nav button span {
+      color: $color-dark;
+    }
   }
 }
 

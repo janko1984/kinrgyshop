@@ -1,5 +1,5 @@
 /** Import Bootstrap functions */
-@import "bootstrap/scss/functions";
+@import 'bootstrap/scss/functions';
 
 /** Bootstrap navbar fix (https://git.io/fADqW) */
 $navbar-dark-toggler-icon-bg: none;
@@ -26,92 +26,261 @@ $container-max-widths: (
 ) !default;
 
 // Colors
-$color-orange: #DE603C;
-$color-orange-l: #F6D0C5;
-$color-star: #F79E1B;
-$color-yellow: #F0D06C;
-$color-green: #45A871;
-$color-blue: #1F4D86;
-$color-blue-2: #8FA6C3;
-$color-blue-3: #D2DBE7;
-// $color-dark: #333333;
-$color-dark: #282829;
-$color-gray: #999999;
+// $color-orange: #DE603C;
+// $color-orange-l: #F6D0C5;
+// $color-star: #F79E1B;
+// $color-yellow: #F0D06C;
+// $color-green: #45A871;
+// $color-blue: #1F4D86;
+// $color-blue-2: #8FA6C3;
+// $color-blue-3: #D2DBE7;
+// $color-gray: #999999;
 $color-gray-2: #D6D6D6;
-$color-gray-3: #EBEBEB;
+// $color-gray-3: #EBEBEB;
 $color-gray-4: #C4C4C4;
-$color-white: #ffffff;
+// $color-white: #ffffff;
 
-.white {
-  color: white;
-}
-
-.red {
-  color: $color-orange;
-}
-
-.blue {
-  color: $color-blue;
-}
-
-.green {
-  color: $color-green;
-}
-
-.yellow {
-  color: $color-yellow;
-}
 
 // Extra Swatches
 $color-white: #ffffff;
-// $color-gray: #E0E0E0;
-$color-gray: #F2EDED;
-// $color-gray-dark: #A0A3A6;
-// $color-black: #000;
 $color-dark: #1C1E20;
-// $color-nav--light-gray: #D8D8D8;
+
+$color-gray: #F2EDED;;
 $color-light-gray: #807E7E;
-// $color-price-gray: #6F7173;
-$cubic: cubic-bezier(0.255, 0.195, 0.135, 0.99);
+$color-form-gray: #BFBDBD;
+
 $color-pink: #A57677;
 $color-pink-hover: #915F60;
+
 $color-green: #486966;
 $color-green-hover: #35524F;
-// $color-blue: #9ACAFC;
+
 $color-blue: #9ACAFC;
-$color-form-gray: #BFBDBD;
+
 $color-red: #FF0000;
 $color-sold-out: #AAADAF;
 $color-tan: #F2EDED;
 
-$color-swatch-black: #232222;
-$color-swatch-olive: #757501;
-$color-swatch-pink: #FF8FCD;
-$color-swatch-purple: #4E1D92;
-$color-swatch-red: #D13939;
-$color-cloud-burst: #1E2C55;
-$color-swatch-green: #418D13;
-$color-swatch-orange: #F8650E;
-$color-swatch-maroon: #931010;
-$color-swatch-royal-blue: #4169e1;
-$color-swatch-navy-blue: #002366;
-$color-swatch-teal: #008080;
-$color-swatch-yellow: #ffea00;
+$cubic: cubic-bezier(0.255, 0.195, 0.135, 0.99);
 
-$color-swatch-blue: #0940AF;
-$color-swatch-light-blue: #B7E9F7;
-$color-swatch-dark-blue: #003366;
-$color-swatch-brown: #814F1D;
-$color-swatch-charcoal: #606060;
-$color-swatch-forest-green: #156518;
-$color-swatch-kelly-green: #86D589;
-$color-swatch-gold: #F6E28A;
-$color-swatch-khaki: #C3B091;
-$color-swatch-natural: #F8f7ED;
-$color-swatch-tan: #D2B48C;
-$color-swatch-white: #F1F1F1;
-$color-swatch-gray: #BABABA;
-$color-swatch-turquoise: #00FFFF;
+// $color-swatch-black: #232222;
+// $color-swatch-olive: #757501;
+// $color-swatch-pink: #FF8FCD;
+// $color-swatch-purple: #4E1D92;
+// $color-swatch-red: #D13939;
+// $color-cloud-burst: #1E2C55;
+// $color-swatch-green: #418D13;
+// $color-swatch-orange: #F8650E;
+// $color-swatch-maroon: #931010;
+// $color-swatch-royal-blue: #4169e1;
+// $color-swatch-navy-blue: #002366;
+// $color-swatch-teal: #008080;
+// $color-swatch-yellow: #ffea00;
+
+// $color-swatch-blue: #0940AF;
+// $color-swatch-light-blue: #B7E9F7;
+// $color-swatch-dark-blue: #003366;
+// $color-swatch-brown: #814F1D;
+// $color-swatch-charcoal: #606060;
+// $color-swatch-forest-green: #156518;
+// $color-swatch-kelly-green: #86D589;
+// $color-swatch-gold: #F6E28A;
+// $color-swatch-khaki: #C3B091;
+// $color-swatch-natural: #F8f7ED;
+// $color-swatch-tan: #D2B48C;
+// $color-swatch-white: #F1F1F1;
+// $color-swatch-gray: #BABABA;
+// $color-swatch-turquoise: #00FFFF;
+
+
+// Basic Swatches
+$swatch-white: #ffffff;
+$swatch-black: #000000;
+
+// Gray / Grey
+$swatch-dark-grey:#3A3A3C;
+$swatch-dark-gray:#3A3A3C;
+// $swatch-gray:	#848484;
+$swatch-gray: #bebebe;
+$swatch-grey:	#848484;
+$swatch-silver: #c0c0c0;
+$swatch-dark-gray: #a9a9a9;
+$swatch-light-grey: #d3d3d3;
+$swatch-slate-gray: #708090;
+$swatch-light-slate-gray: #778899;
+$swatch-dim-gray: #696969;
+$swatch-dark-slate-gray: #2f4f4f;
+
+// Green
+// $swatch-green:	#00FF00;
+$swatch-green:	#008000;
+$swatch-olive: #867750;
+$swatch-deep-teal:	#497983;
+$swatch-teal:	#497983;
+$swatch-light-green: #90ee90;
+$swatch-pale-green: #98fb98;
+$swatch-medium-spring-green: #00fa9a;
+$swatch-aquamarine: #7fffd4;
+$swatch-medium-aquamarine: #66cdaa;
+$swatch-green-yellow: #adff2f;
+$swatch-dark-sea-green: #8fbc8f;
+$swatch-chartreuse: #7fff00;
+$swatch-spring-green: #00ff7f;
+$swatch-lawn-green: #7cfc00;
+$swatch-yellow-green: #9acd32;
+$swatch-light-sea-green: #20b2aa;
+$swatch-olive-drab: #6b8e23;
+$swatch-sea-green: #2e8b57;
+$swatch-teal: #008080;
+$swatch-medium-sea-green: #3cb371;
+$swatch-lime-green: #32cd32;
+$swatch-lime: #00ff00;
+$swatch-dark-cyan: #008b8b;
+$swatch-olive: #808000;
+$swatch-dark-olive-green: #556b2f;
+$swatch-forest-green: #228b22;
+$swatch-dark-green: #006400;
+$swatch-light-cyan: #e0ffff;
+
+// Blue
+$swatch-blue:	#0000FF;
+$swatch-iron-blue: #414E61;
+$swatch-sky-blue: #87ceeb;
+$swatch-aqua: #00ffff;
+$swatch-cyan: #00ffff;
+$swatch-light-sky-blue: #87cefa;
+$swatch-deep-sky-blue: #00bfff;
+$swatch-corn-flower-blue: #6495ed;
+$swatch-light-steel-blue: #b0c4de;
+$swatch-light-blue: #add8e6;
+$swatch-powder-blue: #b0e0e6;
+$swatch-medium-slate-blue: #7b68ee;
+$swatch-dodger-blue: #1e90ff;
+$swatch-steel-blue: #4682b4;
+$swatch-royal-blue: #4169e1;
+$swatch-alice-blue: #f0f8ff;
+$swatch-slate-blue: #6a5acd;
+$swatch-dark-slate-blue: #483d8b;
+$swatch-medium-blue: #0000cd;
+$swatch-indigo: #4b0082;
+$swatch-midnight-blue: #191970;
+$swatch-dark-blue: #00008b;
+$swatch-navy: #000080;
+$swatch-cadet-blue: #5f9ea0;
+$swatch-azure: #f0ffff;
+
+// Red
+$swatch-red: #FF0000;
+$swatch-brick:	#963A15;
+$swatch-fire-brick: #b22222;
+$swatch-dark-red: #8b0000;
+$swatch-maroon: #800000;
+$swatch-crimson: #dc143c;
+$swatch-pale-violet-red: #db7093;
+$swatch-indian-red: #cd5c5c;
+$swatch-medium-violet-red: #c71585;
+$swatch-orangered: #ff4500;
+$swatch-sienna: #a0522d;
+$swatch-dark-magenta: #8b008b;
+$swatch-tomato: #ff6347;
+$swatch-peru: #cd853f;
+$swatch-chocolate: #d2691e;
+$swatch-coral: #ff7f50;
+
+// Pink / Purple
+// $swatch-pink:	#FFCCCC;
+$swatch-pink: #ffc0cb;
+$swatch-mauve:	#DE9285;
+// $swatch-purple:	#9966CC;
+$swatch-purple:	#800080;
+$swatch-violet: #ee82ee;
+$swatch-plum: #dda0dd;
+$swatch-orchid: #da70d6;
+$swatch-hot-pink: #ff69b4;
+$swatch-light-coral: #f08080;
+$swatch-salmon: #fa8072;
+$swatch-light-salmon: #ffa07a;
+$swatch-dark-salmon: #e9967a;
+$swatch-light-pink: #ffb6c1;
+$swatch-fuchsia: #ff00ff;
+$swatch-magenta: #ff00ff;
+$swatch-medium-purple: #9370db;
+$swatch-dark-orchid: #9932cc;
+$swatch-blue-violet: #8a2be2;
+$swatch-deep-pink: #ff1493;
+$swatch-medium-orchid: #ba55d3;
+$swatch-dark-violet: #9400d3;
+$swatch-peach-puff: #ffdab9;
+$swatch-thistle: #d8bfd8;
+$swatch-lavender-blush: #fff0f5;
+$swatch-lavender: #e6e6fa;
+$swatch-misty-rose: #ffe4e1;
+
+// Off white like
+$swatch-oatmeal:#F5F1E6;
+
+// Orange / Browns
+// $swatch-orange:	#FF9900;
+$swatch-orange: #ffa500;
+$swatch-sandy-brown: #f4a460;
+$swatch-rosy-brown: #bc8f8f;
+$swatch-dark-orange: #ff8c00;
+$swatch-saddle-brown: #8b4513;
+
+// $swatch-brown:	#993300;
+$swatch-brown:	#a52a2a;
+$swatch-spiced-bronze: #DC9B59;
+
+// Yellow
+$swatch-yellow:	#FFFF00;
+$swatch-gold: #ffd700;
+$swatch-goldenrod: #daa520;
+$swatch-khaki: #f0d58c;
+$swatch-tan: #d2b48c;
+$swatch-dark-khaki: #bdb76b;
+$swatch-burlywood: #deb887;
+$swatch-light-goldenrod-yellow: #fafad2;
+$swatch-lemon-chiffon: #fffacd;
+$swatch-light-yellow: #ffffe0;
+$swatch-pale-golden-rod: #eee8aa;
+$swatch-dark-golden-rod: #b8860b;
+$swatch-corn-silk: #fff8dc;
+$swatch-beige: #f5f5dc;
+$swatch-wheat: #f5deb3;
+
+
+// Turquoise 
+$swatch-turquoise: #40e0d0;
+$swatch-medium-turquoise: #48d1cc;
+$swatch-dark-turquoise: #00ced1;
+$swatch-pale-turquoise: #afeeee;
+
+
+// NOT ADDED AS SWATCH YET
+
+// Off White
+$swatch-snow: #fffafa;
+$swatch-ivory: #fffff0;
+$swatch-ghost-white: #f8f8ff;
+$swatch-floral-white: #fffaf0;
+$swatch-white-smoke: #f5f5f5;
+$swatch-old-lace: #fdf5e6;
+$swatch-linen: #faf0e6;
+$swatch-mint-cream: #f5fffa;
+$swatch-antique-white: #faebd7;
+$swatch-blanched-almond: #ffebcd;
+$swatch-navajo-white: #ffdead;
+
+
+// Other
+$swatch-honey-dew: #f0fff0;
+$swatch-seashell: #fff5ee;
+$swatch-papayawhip: #ffefd5;
+$swatch-bisque: #ffe4c4;
+$swatch-moccasin: #ffe4b5;
+$swatch-gainsboro: #dcdcdc;
+
+
 
 // $cubic: cubic-bezier(0.255, 0.195, 0.135, 0.99);
 $cubic: cubic-bezier(0.165, 0.840, 0.440, 1.000);

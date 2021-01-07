@@ -11,7 +11,7 @@
       {% include 'site-nav' %}
       <ul class="extra-menu">
         <li><a class="js_search" data-modal-id="SearchDrawer" href="#">{% include 'icon-search' %}</a></li>
-        <li><a class="extra-menu__cart js_cart" href="#"><div id="cartCount">{{ cart.item_count }}</div>{% include 'icon-cart' %}</a></li>
+        <li><a class="extra-menu__cart js_cart" href="#"><div id="cartCount" class="cart-count empty">{{ cart.item_count }}</div>{% include 'icon-cart' %}</a></li>
       </ul>
     </div>
 
@@ -21,7 +21,7 @@
         <span class="line"></span>
         <span class="line"></span>
         <span class="line"></span></a></li>
-        <li><a class="extra-menu__cart js_cart" href="#"><div id="cartCount">{{ cart.item_count }}</div>{% include 'icon-cart' %}</a></li>
+        <li><a class="extra-menu__cart js_cart empty" href="#"><div id="cartCount" class="cart-count empty">{{ cart.item_count }}</div>{% include 'icon-cart' %}</a></li>
       </ul>
     </div>
 

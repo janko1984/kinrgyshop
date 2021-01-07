@@ -1,25 +1,5 @@
 /** Import Bootstrap functions */
 /** Bootstrap navbar fix (https://git.io/fADqW) */
-.white {
-  color: white;
-}
-
-.red {
-  color: #DE603C;
-}
-
-.blue {
-  color: #1F4D86;
-}
-
-.green {
-  color: #45A871;
-}
-
-.yellow {
-  color: #F0D06C;
-}
-
 /*!
  * Bootstrap Grid v4.1.3 (https://getbootstrap.com/)
  * Copyright 2011-2018 The Bootstrap Authors
@@ -2800,23 +2780,30 @@ body.page-legal .legal-content {
   color: #1C1E20;
   font-family: "Klarheit Kurrent Bold";
   position: relative;
-  padding: 21px 30px;
+  padding: 21px 30px 21px 60px;
   width: 100%;
   transition: 400ms all cubic-bezier(0.165, 0.84, 0.44, 1);
 }
 .accordion-list a::before {
-  position: relative;
+  position: absolute;
   content: counter(faq-count) ".";
   counter-increment: faq-count;
   font-size: 16px;
   line-height: 20px;
   font-family: "Klarheit Kurrent Bold";
   color: #1C1E20;
-  margin-right: 10px;
+  left: 31px;
+  top: 18px;
   transition: 400ms all cubic-bezier(0.165, 0.84, 0.44, 1);
 }
 .accordion-list a:hover svg {
   transform: rotate(90deg);
+}
+.accordion-list a.active {
+  color: #486966;
+}
+.accordion-list a.active::before {
+  color: #486966;
 }
 .accordion-list a.active svg {
   transform: rotate(270deg);
@@ -2878,18 +2865,32 @@ body.page-legal .legal-content ul,
 body.page-legal .legal-content ol {
   font-family: "Klarheit Kurrent Regular";
   font-size: 16px;
+  display: block;
+  width: 100%;
+}
+body.page-legal .legal-content b,
+body.page-legal .legal-content strong {
+  font-family: "Klarheit Kurrent Bold";
 }
 body.page-legal .legal-content ul,
 body.page-legal .legal-content ol {
   list-style: none;
+  width: 100%;
+  display: -moz-flex;
+  display: flex;
+  -moz-flex-direction: column;
+  flex-direction: column;
 }
 body.page-legal .legal-content ul li p,
 body.page-legal .legal-content ol li p {
-  margin-bottom: 10px;
+  margin-bottom: 0;
 }
 body.page-legal .legal-content ul li,
 body.page-legal .legal-content ol li {
   position: relative;
+  font-size: 16px;
+  line-height: 24px;
+  margin-bottom: 10px;
 }
 body.page-legal .legal-content ul {
   padding-left: 25px;
@@ -2943,6 +2944,11 @@ body.page-legal .legal-content a {
 body.page-legal .legal-content a:hover {
   color: #A57677;
   background-size: 100% 6px;
+}
+body.page-legal .legal-content tbody,
+body.page-legal .legal-content td,
+body.page-legal .legal-content tr {
+  display: block;
 }
 
 @media screen and (max-width: 1024px) and (min-width: 769px) {
@@ -3063,11 +3069,14 @@ body.page-legal .legal-content-col {
   }
 
   .accordion-list a {
-    padding: 21px 50px 21px 30px;
+    padding: 21px 50px 21px 50px;
+  }
+  .accordion-list a::before {
+    left: 21px;
   }
 
   .accordion-list .accordion-content .inner-wrapper {
-    padding: 0 30px 23px;
+    padding: 0 50px 23px;
   }
 
   body.page-legal .legal-content,
@@ -6148,7 +6157,7 @@ section.container .row.single-image {
   }
 
   .boost-pfs-filter-tree-mobile-style2 .boost-pfs-filter-mobile-footer {
-    top: 83vh;
+    top: 75vh;
     margin: auto !important;
     left: 0 !important;
     width: calc(100% - 105px);
@@ -6163,7 +6172,7 @@ section.container .row.single-image {
   }
   .boost-pfs-filter-tree-mobile-sticky.boost-pfs-filter-tree-mobile-style2.boost-pfs-filter-tree-v .boost-pfs-filter-tree-content {
     max-width: 83.33333vw !important;
-    height: 83vh;
+    height: 75vh;
     overflow: scroll;
     top: 60px;
     left: 0;
@@ -6869,21 +6878,6 @@ body.product .product-form .swatch .swatch-element.color label i {
   display: none;
 }
 
-.color-list a[data-color=Black],
-.color-list a[data-color=black],
-.by-Color[data-tag=Color_black] .color-icon,
-.swatch-element.black label::before {
-  background: #232222;
-}
-
-.color-list a[data-color=White],
-.color-list a[data-color=white],
-.by-Color[data-tag=Color_white] .color-icon,
-.swatch-element.white label::before {
-  background: #F1F1F1;
-  border: 1px solid #1C1E20;
-}
-
 .color-list a[data-color=White] {
   width: 15px;
   height: 15px;
@@ -6893,241 +6887,688 @@ body.product .product-form .swatch .swatch-element.color label i {
   left: -7px;
 }
 
-[data-value="Tye Light BlueDye"] label::before {
-  background: #73afef;
+.swatch-element.white label::before {
+  background: #ffffff;
 }
 
-[data-value="Light Blue"] label::before,
-[data-value="Tie Light BlueDye"] label::before,
-.color-list a[data-color=Blue],
-.color-list a[data-color=blue],
-.by-Color[data-tag=Blue] .color-icon,
-.by-Color[data-tag=blue] .color-icon,
+.swatch-element.oatmeal label::before {
+  background: #F5F1E6;
+}
+
+.swatch-element.black label::before {
+  background: #000000;
+}
+
+.swatch-element.grey label::before,
+.swatch-element.gray label::before {
+  background: #bebebe;
+}
+
+.swatch-element.dark-grey label::before,
+.swatch-element.dark-gray label::before {
+  background: #a9a9a9;
+}
+
+.swatch-element.silver label::before {
+  background: #c0c0c0;
+}
+
+.swatch-element.dark-gray label::before,
+.swatch-element.darkgray label::before {
+  background: #a9a9a9;
+}
+
+.swatch-element.light-gray label::before,
+.swatch-element.lightgray label::before {
+  background: #d3d3d3;
+}
+
+.swatch-element.slate-gray label::before,
+.swatch-element.slategray label::before {
+  background: #708090;
+}
+
+.swatch-element.light-slate-gray label::before,
+.swatch-element.lightslategray label::before {
+  background: #778899;
+}
+
+.swatch-element.dim-gray label::before,
+.swatch-element.dimgray label::before {
+  background: #696969;
+}
+
+.swatch-element.dark-slate-gray label::before,
+.swatch-element.darkslategray label::before {
+  background: #2f4f4f;
+}
+
+.swatch-element.orange label::before {
+  background: #ffa500;
+}
+
+.swatch-element.brown label::before {
+  background: #a52a2a;
+}
+
+.swatch-element.spiced-bronze label::before,
+.swatch-element.spicedbronze label::before {
+  background: #DC9B59;
+}
+
+.swatch-element.sandy-brown label::before,
+.swatch-element.sandybrown label::before {
+  background: #f4a460;
+}
+
+.swatch-element.rosy-brown label::before,
+.swatch-element.rosybrown label::before {
+  background: #bc8f8f;
+}
+
+.swatch-element.dark-orange label::before,
+.swatch-element.darkorange label::before {
+  background: #ff8c00;
+}
+
+.swatch-element.saddle-brown label::before,
+.swatch-element.saddlebrown label::before {
+  background: #8b4513;
+}
+
+.swatch-element.red label::before {
+  background: #FF0000;
+}
+
+.swatch-element.brick label::before {
+  background: #963A15;
+}
+
+.swatch-element.fire-brick label::before,
+.swatch-element.firebrick label::before {
+  background: #b22222;
+}
+
+.swatch-element.dark-red label::before,
+.swatch-element.darkred label::before {
+  background: #8b0000;
+}
+
+.swatch-element.maroon label::before {
+  background: #800000;
+}
+
+.swatch-element.crimson label::before {
+  background: #dc143c;
+}
+
+.swatch-element.pale-violet-red label::before,
+.swatch-element.palevioletred label::before {
+  background: #db7093;
+}
+
+.swatch-element.indian-red label::before,
+.swatch-element.indianred label::before {
+  background: #cd5c5c;
+}
+
+.swatch-element.medium-violet-red label::before,
+.swatch-element.mediumvioletred label::before {
+  background: #c71585;
+}
+
+.swatch-element.orangered label::before {
+  background: #ff4500;
+}
+
+.swatch-element.sienna label::before {
+  background: #a0522d;
+}
+
+.swatch-element.dark-magenta label::before,
+.swatch-element.darkmagenta label::before {
+  background: #8b008b;
+}
+
+.swatch-element.tomato label::before {
+  background: #ff6347;
+}
+
+.swatch-element.peru label::before {
+  background: #cd853f;
+}
+
+.swatch-element.chocolate label::before {
+  background: #d2691e;
+}
+
+.swatch-element.coral label::before {
+  background: #ff7f50;
+}
+
+.swatch-element.pink label::before {
+  background: #ffc0cb;
+}
+
+.swatch-element.mauve label::before {
+  background: #DE9285;
+}
+
+.swatch-element.purple label::before {
+  background: #800080;
+}
+
+.swatch-element.violet label::before {
+  background: #ee82ee;
+}
+
+.swatch-element.plum label::before {
+  background: #dda0dd;
+}
+
+.swatch-element.orchid label::before {
+  background: #da70d6;
+}
+
+.swatch-element.hot-pink label::before,
+.swatch-element.hotpink label::before {
+  background: #ff69b4;
+}
+
+.swatch-element.light-coral label::before,
+.swatch-element.lightcoral label::before {
+  background: #f08080;
+}
+
+.swatch-element.salmon label::before {
+  background: #fa8072;
+}
+
+.swatch-element.light-salmon label::before,
+.swatch-element.lightsalmon label::before {
+  background: #ffa07a;
+}
+
+.swatch-element.dark-salmon label::before,
+.swatch-element.darksalmon label::before {
+  background: #e9967a;
+}
+
+.swatch-element.light-pink label::before,
+.swatch-element.lightpink label::before {
+  background: #ffb6c1;
+}
+
+.swatch-element.fuchsia label::before {
+  background: #ff00ff;
+}
+
+.swatch-element.magenta label::before {
+  background: #ff00ff;
+}
+
+.swatch-element.medium-purple label::before,
+.swatch-element.mediumpurple label::before {
+  background: #9370db;
+}
+
+.swatch-element.dark-orchid label::before,
+.swatch-element.darkorchid label::before {
+  background: #9932cc;
+}
+
+.swatch-element.blue-violet label::before,
+.swatch-element.blueviolet label::before {
+  background: #8a2be2;
+}
+
+.swatch-element.deep-pink label::before,
+.swatch-element.deeppink label::before {
+  background: #ff1493;
+}
+
+.swatch-element.medium-orchid label::before,
+.swatch-element.mediumorchid label::before {
+  background: #ba55d3;
+}
+
+.swatch-element.dark-violet label::before,
+.swatch-element.darkviolet label::before {
+  background: #9400d3;
+}
+
+.swatch-element.peach-puff label::before,
+.swatch-element.peachpuff label::before {
+  background: #ffdab9;
+}
+
+.swatch-element.thistle label::before {
+  background: #d8bfd8;
+}
+
+.swatch-element.lavender-blush label::before,
+.swatch-element.lavenderblush label::before {
+  background: #fff0f5;
+}
+
+.swatch-element.lavender label::before {
+  background: #e6e6fa;
+}
+
+.swatch-element.misty-rose label::before {
+  background: #ffe4e1;
+}
+
+.swatch-element.yellow label::before {
+  background: #FFFF00;
+}
+
+.swatch-element.gold label::before {
+  background: #ffd700;
+}
+
+.swatch-element.goldenrod label::before {
+  background: #daa520;
+}
+
+.swatch-element.khaki label::before {
+  background: #f0d58c;
+}
+
+.swatch-element.tan label::before {
+  background: #d2b48c;
+}
+
+.swatch-element.dark-khaki label::before {
+  background: #bdb76b;
+}
+
+.swatch-element.burlywood label::before {
+  background: #deb887;
+}
+
+.swatch-element.light-goldenrod-yellow label::before,
+.swatch-element.lightgoldenrodyellow label::before {
+  background: #fafad2;
+}
+
+.swatch-element.lemon-chiffon label::before,
+.swatch-element.lemonchiffon label::before {
+  background: #fffacd;
+}
+
+.swatch-element.light-yellow label::before,
+.swatch-element.lightyellow label::before {
+  background: #ffffe0;
+}
+
+.swatch-element.pale-golden-rod label::before,
+.swatch-element.palegoldenrod label::before {
+  background: #eee8aa;
+}
+
+.swatch-element.dark-golden-rod label::before,
+.swatch-element.darkgoldenrod label::before {
+  background: #b8860b;
+}
+
+.swatch-element.corn-silk label::before,
+.swatch-element.cornsilk label::before {
+  background: #fff8dc;
+}
+
+.swatch-element.beige label::before {
+  background: #f5f5dc;
+}
+
+.swatch-element.wheat label::before {
+  background: #f5deb3;
+}
+
 .swatch-element.blue label::before {
-  background: #0940AF;
+  background: #0000FF;
 }
 
-.color-list a[data-color="light blue"],
-.color-list a[data-color="Light blue"],
-.color-list a[data-color="Light Blue"],
-.color-list a[data-color=Color_light_blue],
-.by-Color[data-tag=Color_light_blue] .color-icon,
-.swatch-element.light-blue label::before {
-  background: #B7E9F7;
+.swatch-element.iron-blue label::before,
+.swatch-element.ironblue label::before {
+  background: #414E61;
 }
 
-.color-list a[data-color="dark blue"],
-.color-list a[data-color="Dark blue"],
-.color-list a[data-color="Dark Blue"],
-.color-list a[data-color=Color_dark_blue],
-.by-Color[data-tag=Color_dark_blue] .color-icon,
-.swatch-element.dark-blue label::before {
-  background: #003366;
+.swatch-element.sky-blue label::before,
+.swatch-element.skyblue label::before {
+  background: #87ceeb;
 }
 
-.color-list a[data-color="Royal blue"],
-.color-list a[data-color="royal blue"],
-.color-list a[data-color="Royal Blue"],
-.color-list a[data-color=Color_royal_blue],
-.by-Color[data-tag=Color_royal_blue] .color-icon,
-.swatch-element.royal label::before {
+.swatch-element.aqua label::before {
+  background: #00ffff;
+}
+
+.swatch-element.cyan label::before {
+  background: #00ffff;
+}
+
+.swatch-element.light-sky-blue label::before,
+.swatch-element.lightskyblue label::before {
+  background: #87cefa;
+}
+
+.swatch-element.deep-sky-blue label::before,
+.swatch-element.deepskyblue label::before {
+  background: #00bfff;
+}
+
+.swatch-element.corn-flower-blue label::before,
+.swatch-element.corn-flower-blue label::before {
+  background: #6495ed;
+}
+
+.swatch-element.light-steel-blue label::before,
+.swatch-element.lightsteelblue label::before {
+  background: #b0c4de;
+}
+
+.swatch-element.light-blue label::before,
+.swatch-element.lightblue label::before {
+  background: #add8e6;
+}
+
+.swatch-element.powder-blue label::before,
+.swatch-element.powderblue label::before {
+  background: #b0e0e6;
+}
+
+.swatch-element.medium-slate-blue label::before,
+.swatch-element.mediumslateblue label::before {
+  background: #7b68ee;
+}
+
+.swatch-element.dodger-blue label::before,
+.swatch-element.dodgerblue label::before {
+  background: #1e90ff;
+}
+
+.swatch-element.steel-blue label::before,
+.swatch-element.steelblue label::before {
+  background: #4682b4;
+}
+
+.swatch-element.royal-blue label::before,
+.swatch-element.royalblue label::before {
   background: #4169e1;
 }
 
-.color-list a[data-color=Navy],
-.color-list a[data-color=navy],
-.color-list a[data-color=Color_navy],
-.by-Color[data-tag=Color_navy] .color-icon,
+.swatch-element.alice-blue label::before,
+.swatch-element.aliceblue label::before {
+  background: #f0f8ff;
+}
+
+.swatch-element.slate-blue label::before,
+.swatch-element.slateblue label::before {
+  background: #6a5acd;
+}
+
+.swatch-element.dark-slate-blue label::before,
+.swatch-element.darkslateblue label::before {
+  background: #483d8b;
+}
+
+.swatch-element.medium-blue label::before,
+.swatch-element.mediumblue label::before {
+  background: #0000cd;
+}
+
+.swatch-element.indigo label::before {
+  background: #4b0082;
+}
+
+.swatch-element.midnight-blue label::before,
+.swatch-element.midnightblue label::before {
+  background: #191970;
+}
+
+.swatch-element.dark-blue label::before,
+.swatch-element.darkblue label::before {
+  background: #00008b;
+}
+
 .swatch-element.navy label::before {
-  background: #002366;
+  background: #000080;
 }
 
-.color-list a[data-color=Pink],
-.color-list a[data-color=pink],
-.color-list a[data-color=Color_pink],
-.by-Color[data-tag=Color_pink] .color-icon,
-.swatch-element.pink label::before {
-  background: #A57677;
+.swatch-element.cadet-blue label::before,
+.swatch-element.cadetblue label::before {
+  background: #5f9ea0;
 }
 
-.color-list a[data-color=Green],
-.color-list a[data-color=green],
-.color-list a[data-color=Color_green],
-.by-Color[data-tag=Color_green] .color-icon,
+.swatch-element.azure label::before {
+  background: #f0ffff;
+}
+
+.swatch-element.turquoise label::before {
+  background: #40e0d0;
+}
+
+.swatch-element.medium-turquoise label::before,
+.swatch-element.mediumturquoise label::before {
+  background: #48d1cc;
+}
+
+.swatch-element.dark-turquoise label::before,
+.swatch-element.darkturquoise label::before {
+  background: #00ced1;
+}
+
+.swatch-element.pale-turquoise label::before,
+.swatch-element.paleturquoise label::before {
+  background: #afeeee;
+}
+
 .swatch-element.green label::before {
-  background: #418D13;
+  background: #008000;
 }
 
-.color-list a[data-color="kelly green"],
-.color-list a[data-color="Kelly Green"],
-.color-list a[data-color="kelly Green"],
-.color-list a[data-color=Color_kelly-green],
-.by-Color[data-tag=Color_kelly_green] .color-icon,
-.swatch-element.kelly-green label::before {
-  background: #86D589;
-}
-
-.color-list a[data-color="Forest green"],
-.color-list a[data-color="forest green"],
-.color-list a[data-color="Forest Green"],
-.color-list a[data-color=Color_forest-green],
-.by-Color[data-tag=Color_forest_green] .color-icon,
-.swatch-element.forest-green label::before {
-  background: #156518;
-}
-
-.color-list a[data-color=Charcoal],
-.color-list a[data-color=charcoal],
-.color-list a[data-color=Color_Charcoal],
-.by-Color[data-tag=Color_charcoal] .color-icon,
-.swatch-element.charcoal label::before {
-  background: #606060;
-}
-
-.color-list a[data-color=Brown],
-.color-list a[data-color=brown],
-.color-list a[data-color=Color_brown],
-.by-Color[data-tag=Color_brown] .color-icon,
-.swatch-element.brown label::before {
-  background: #814F1D;
-}
-
-.color-list a[data-color=Grey],
-.color-list a[data-color=Gray],
-.color-list a[data-color=grey],
-.color-list a[data-color=gray],
-.color-list a[data-color=Color_grey],
-.color-list a[data-color=Color_gray],
-.by-Color[data-tag=Color_grey] .color-icon,
-.by-Color[data-tag=Color_gray] .color-icon,
-.swatch-element.grey label::before,
-.swatch-element.gray label::before {
-  background: #BABABA;
-}
-
-.color-list a[data-color=Red],
-.color-list a[data-color=red],
-.color-list a[data-color=Color_red],
-.by-Color[data-tag=Color_red] .color-icon,
-.swatch-element.red label::before {
-  background: #D13939;
-}
-
-.color-list a[data-color=Tan],
-.color-list a[data-color=tan],
-.color-list a[data-color=Color_tan],
-.by-Color[data-tag=Color_tan] .color-icon,
-.swatch-element.tan label::before {
-  background: #D2B48C;
-}
-
-.color-list a[data-color=Gold],
-.color-list a[data-color=gold],
-.color-list a[data-color=Color_gold],
-.by-Color[data-tag=Color_gold] .color-icon,
-.swatch-element.gold label::before {
-  background: #F6E28A;
-}
-
-.color-list a[data-color=Khaki],
-.color-list a[data-color=khaki],
-.color-list a[data-color=Color_khaki],
-.by-Color[data-tag=Color_khaki] .color-icon,
-.swatch-element.khaki label::before {
-  background: #C3B091;
-}
-
-.color-list a[data-color=Natural],
-.color-list a[data-color=natural],
-.color-list a[data-color=Color_natural],
-.by-Color[data-tag=Color_natural] .color-icon,
-.swatch-element.natural label::before {
-  background: #F8f7ED;
-  border: 1px solid #1C1E20;
-}
-
-.color-list a[data-color=Olive],
-.color-list a[data-color=Ollive],
-.color-list a[data-color=olive],
-.color-list a[data-color=ollive],
-.color-list a[data-color=Color_olive],
-.color-list a[data-color=Color_ollive],
-.by-Color[data-tag=Color_olive] .color-icon,
-.by-Color[data-tag=Color_ollive] .color-icon,
 .swatch-element.olive label::before {
-  background: #757501;
+  background: #808000;
 }
 
-.color-list a[data-color=Yellow],
-.color-list a[data-color=yellow],
-.color-list a[data-color=Color_yellow],
-.by-Color[data-tag=Color_yellow] .color-icon,
-.swatch-element.yellow label::before {
-  background: #ffea00;
+.swatch-element.light-green label::before {
+  background: #497983;
 }
 
-.color-list a[data-color="dark grey"],
-.color-list a[data-color="dark gray"],
-.color-list a[data-color="Dark Grey"],
-.color-list a[data-color="Dark Gray"],
-.color-list a[data-color="Dark grey"],
-.color-list a[data-color="Dark gray"],
-.color-list a[data-color=Color_dark_grey],
-.color-list a[data-color=Color_dark_gray],
-.by-Color[data-tag=Color_dark-grey] .color-icon,
-.by-Color[data-tag=Color_dark-gray] .color-icon,
-.swatch-element.dark-gray label::before,
-.swatch-element.dark-grey label::before {
-  background: #807E7E;
-}
-
-.color-list a[data-color=Purple],
-.color-list a[data-color=purple],
-.color-list a[data-color=Color_purple],
-.by-Color[data-tag=Color_purple] .color-icon,
-.swatch-element.purple label::before {
-  background: #4E1D92;
-}
-
-.color-list a[data-color="Cloud Burst"],
-.color-list a[data-color="cloud burst"],
-.color-list a[data-color="Cloud burst"],
-.color-list a[data-color=Color_cloud-burst],
-.by-Color[data-tag=Color_cloud-burst] .color-icon,
-.swatch-element.cloud-burst label::before {
-  background: #1E2C55;
-}
-
-.color-list a[data-color=Orange],
-.color-list a[data-color=orange],
-.color-list a[data-color=Color_orange],
-.by-Color[data-tag=Color_orange] .color-icon,
-.swatch-element.orange label::before {
-  background: #F8650E;
-}
-
-.color-list a[data-color=Marron],
-.color-list a[data-color=marron],
-.color-list a[data-color=Color_marron],
-.by-Color[data-tag=Color_maroon] .color-icon,
-.swatch-element.maroon label::before {
-  background: #931010;
-}
-
-.color-list a[data-color=Teal],
-.color-list a[data-color=teal],
-.color-list a[data-color=Color_teal],
-.by-Color[data-tag=Color_teal] .color-icon,
 .swatch-element.teal label::before {
   background: #008080;
 }
 
-.color-list a[data-color=Turquoise],
-.color-list a[data-color=turquoise],
-.color-list a[data-color=Color_turquoise],
-.swatch-element.turquoise label::before,
-.by-Color[data-tag=Color_turquoise] .color-icon {
-  background: #00FFFF;
+.swatch-element.light-green label::before,
+.swatch-element.lightgreen label::before {
+  background: #90ee90;
+}
+
+.swatch-element.pale-green label::before,
+.swatch-element.pale-green label::before {
+  background: #98fb98;
+}
+
+.swatch-element.medium-spring-green label::before,
+.swatch-element.mediumspringgreen label::before {
+  background: #00fa9a;
+}
+
+.swatch-element.aquamarine label::before {
+  background: #7fffd4;
+}
+
+.swatch-element.medium-aquamarine label::before,
+.swatch-element.mediumaquamarine label::before {
+  background: #66cdaa;
+}
+
+.swatch-element.green-yellow label::before,
+.swatch-element.greenyellow label::before {
+  background: #adff2f;
+}
+
+.swatch-element.dark-sea-green label::before,
+.swatch-element.darkseagreen label::before {
+  background: #8fbc8f;
+}
+
+.swatch-element.chartreuse label::before {
+  background: #7fff00;
+}
+
+.swatch-element.spring-green label::before,
+.swatch-element.springgreen label::before {
+  background: #00ff7f;
+}
+
+.swatch-element.lawn-green label::before,
+.swatch-element.lawngreen label::before {
+  background: #7cfc00;
+}
+
+.swatch-element.yellow-green label::before,
+.swatch-element.yellowgreen label::before {
+  background: #9acd32;
+}
+
+.swatch-element.light-sea-green label::before,
+.swatch-element.lightseagreen label::before {
+  background: #20b2aa;
+}
+
+.swatch-element.olive-drab label::before,
+.swatch-element.olivedrab label::before {
+  background: #6b8e23;
+}
+
+.swatch-element.sea-green label::before,
+.swatch-element.seagreen label::before {
+  background: #2e8b57;
+}
+
+.swatch-element.teal label::before {
+  background: #008080;
+}
+
+.swatch-element.medium-sea-green label::before,
+.swatch-element.mediumseagreen label::before {
+  background: #3cb371;
+}
+
+.swatch-element.lime-green label::before,
+.swatch-element.limegreen label::before {
+  background: #32cd32;
+}
+
+.swatch-element.lime label::before {
+  background: #00ff00;
+}
+
+.swatch-element.dark-cyan label::before,
+.swatch-element.darkcyan label::before {
+  background: #008b8b;
+}
+
+.swatch-element.olive label::before {
+  background: #808000;
+}
+
+.swatch-element.dark-olive-green label::before,
+.swatch-element.darkolivegreen label::before {
+  background: #556b2f;
+}
+
+.swatch-element.forest-green label::before,
+.swatch-element.forestgreen label::before {
+  background: #228b22;
+}
+
+.swatch-element.dark-green label::before,
+.swatch-element.darkgreen label::before {
+  background: #006400;
+}
+
+.swatch-element.light-cyan label::before,
+.swatch-element.lightcyan label::before {
+  background: #e0ffff;
+}
+
+.swatch-element.snow label::before {
+  background: #fffafa;
+}
+
+.swatch-element.ivory label::before {
+  background: #fffff0;
+}
+
+.swatch-element.ghost-white label::before,
+.swatch-element.ghostwhite label::before {
+  background: #f8f8ff;
+}
+
+.swatch-element.floral-white label::before,
+.swatch-element.floralwhite label::before {
+  background: #fffaf0;
+}
+
+.swatch-element.white-smoke label::before,
+.swatch-element.whitesmoke label::before {
+  background: #f5f5f5;
+}
+
+.swatch-element.old-lace label::before,
+.swatch-element.oldlace label::before {
+  background: #fdf5e6;
+}
+
+.swatch-element.linen label::before {
+  background: #faf0e6;
+}
+
+.swatch-element.mint-cream label::before,
+.swatch-element.mintcream label::before {
+  background: #f5fffa;
+}
+
+.swatch-element.antique-white label::before,
+.swatch-element.antiquewhite label::before {
+  background: #faebd7;
+}
+
+.swatch-element.blanched-almond label::before,
+.swatch-element.blanchedalmond label::before {
+  background: #ffebcd;
+}
+
+.swatch-element.navajo-white label::before,
+.swatch-element.navajowhite label::before {
+  background: #ffdead;
+}
+
+.swatch-element.honey-dew label::before,
+.swatch-element.honeydew label::before {
+  background: #f0fff0;
+}
+
+.swatch-element.seashell label::before {
+  background: #fff5ee;
+}
+
+.swatch-element.papayawhip label::before {
+  background: #ffefd5;
+}
+
+.swatch-element.bisque label::before {
+  background: #ffe4c4;
+}
+
+.swatch-element.moccasin label::before {
+  background: #ffe4b5;
+}
+
+.swatch-element.gainsboro label::before {
+  background: #dcdcdc;
 }
 
 .swatch-element label {
@@ -8282,6 +8723,22 @@ button.boost-pfs-filter-clear {
   border-color: transparent;
 }
 
+.boost-pfs-filter-product-item-image:hover .boost-pfs-filter-product-item-flip-image,
+.boost-pfs-filter-product-item-image .boost-pfs-filter-product-item-flip-image,
+.row .has-bc-swap-image .boost-pfs-filter-product-item-image .boost-pfs-filter-product-item-flip-image,
+.row .has-bc-swap-image .boost-pfs-filter-product-item-image:hover .boost-pfs-filter-product-item-flip-image {
+  visibility: hidden;
+  opacity: 0;
+  display: none;
+}
+.boost-pfs-filter-product-item-image:hover img.boost-pfs-filter-product-item-main-image,
+.boost-pfs-filter-product-item-image img.boost-pfs-filter-product-item-main-image,
+.row .has-bc-swap-image .boost-pfs-filter-product-item-image img.boost-pfs-filter-product-item-main-image,
+.row .has-bc-swap-image .boost-pfs-filter-product-item-image:hover img.boost-pfs-filter-product-item-main-image {
+  visibility: visible !important;
+  z-index: 2;
+}
+
 @media screen and (max-width: 768px) {
   .full-width-slider .row {
     -moz-justify-content: center;
@@ -8396,6 +8853,12 @@ body.index .logo-main svg path {
 
 body.index .main-header .site-nav button span {
   color: #ffffff;
+}
+body.index .main-header a.site-nav__link--main::before {
+  background: #ffffff;
+}
+body.index #shopify-section-header.sticked .main-header a.site-nav__link--main::before {
+  background: #1C1E20;
 }
 body.index #shopify-section-header.sticked .site-nav button span {
   color: #1C1E20;
@@ -9036,11 +9499,8 @@ footer .subfooter-list a {
 
 .hbspt-form {
   overflow: hidden;
-  height: 2px;
-  margin-top: 1px;
-  border-top: 1px solid #1C1E20;
-  display: none;
-  visibility: hidden;
+  height: 0;
+  position: relative;
 }
 
 body.page-faq footer,
@@ -9161,6 +9621,7 @@ body.product footer::before {
   align-items: center;
 }
 
+.main-header .extra-menu__cart .cart-count,
 .main-header .extra-menu__cart #cartCount {
   position: absolute;
   font-size: 12px;
@@ -9176,6 +9637,7 @@ body.product footer::before {
   z-index: 2;
   transition: 400ms all cubic-bezier(0.165, 0.84, 0.44, 1);
 }
+.main-header .extra-menu__cart .cart-count.empty,
 .main-header .extra-menu__cart #cartCount.empty {
   opacity: 0;
 }

@@ -212,21 +212,21 @@ body.product {
   display: none;
 }
 
-.color-list a[data-color=Black],
-.color-list a[data-color=black],
-.by-Color[data-tag="Color_black"] .color-icon,
-.swatch-element.black label::before {
-  background: $color-swatch-black; 
-}
+// .color-list a[data-color=Black],
+// .color-list a[data-color=black],
+// .by-Color[data-tag="Color_black"] .color-icon,
+// .swatch-element.black label::before {
+//   background: $color-swatch-black; 
+// }
 
 // White
-.color-list a[data-color=White],
-.color-list a[data-color=white],
-.by-Color[data-tag="Color_white"] .color-icon,
-.swatch-element.white label::before {
-  background: $color-swatch-white; 
-  border: 1px solid $color-dark;
-}
+// .color-list a[data-color=White],
+// .color-list a[data-color=white],
+// .by-Color[data-tag="Color_white"] .color-icon,
+// .swatch-element.white label::before {
+//   background: $color-swatch-white; 
+//   border: 1px solid $color-dark;
+// }
 
 .color-list a[data-color=White] {
   width: 15px;
@@ -238,262 +238,993 @@ body.product {
   }
 }
 
-[data-value="Tye Light BlueDye"] label::before {
-  background: #73afef;
-}
+// [data-value="Tye Light BlueDye"] label::before {
+//   background: #73afef;
+// }
 
 // Blue
-[data-value="Light Blue"] label::before,
-[data-value="Tie Light BlueDye"] label::before,
-.color-list a[data-color=Blue],
-.color-list a[data-color=blue],
-.by-Color[data-tag="Blue"] .color-icon,
-.by-Color[data-tag="blue"] .color-icon,
-.swatch-element.blue label::before {
-  background: $color-swatch-blue; 
-}
+// [data-value="Light Blue"] label::before,
+// [data-value="Tie Light BlueDye"] label::before,
+// .color-list a[data-color=Blue],
+// .color-list a[data-color=blue],
+// .by-Color[data-tag="Blue"] .color-icon,
+// .by-Color[data-tag="blue"] .color-icon,
+// .swatch-element.blue label::before {
+//   background: $color-swatch-blue; 
+// }
 
 // Light blue
-.color-list a[data-color="light blue"],
-.color-list a[data-color="Light blue"],
-.color-list a[data-color="Light Blue"],
-.color-list a[data-color=Color_light_blue],
-.by-Color[data-tag="Color_light_blue"] .color-icon,
-.swatch-element.light-blue label::before {
-  background: $color-swatch-light-blue; 
-}
+// .color-list a[data-color="light blue"],
+// .color-list a[data-color="Light blue"],
+// .color-list a[data-color="Light Blue"],
+// .color-list a[data-color=Color_light_blue],
+// .by-Color[data-tag="Color_light_blue"] .color-icon,
+// .swatch-element.light-blue label::before {
+//   background: $color-swatch-light-blue; 
+// }
 
 // Dark blue
-.color-list a[data-color="dark blue"],
-.color-list a[data-color="Dark blue"],
-.color-list a[data-color="Dark Blue"],
-.color-list a[data-color=Color_dark_blue],
-.by-Color[data-tag="Color_dark_blue"] .color-icon,
-.swatch-element.dark-blue label::before {
-  background: $color-swatch-dark-blue; 
-}
+// .color-list a[data-color="dark blue"],
+// .color-list a[data-color="Dark blue"],
+// .color-list a[data-color="Dark Blue"],
+// .color-list a[data-color=Color_dark_blue],
+// .by-Color[data-tag="Color_dark_blue"] .color-icon,
+// .swatch-element.dark-blue label::before {
+//   background: $color-swatch-dark-blue; 
+// }
 
 // Royal blue
-.color-list a[data-color="Royal blue"],
-.color-list a[data-color="royal blue"],
-.color-list a[data-color="Royal Blue"],
-.color-list a[data-color=Color_royal_blue],
-.by-Color[data-tag="Color_royal_blue"] .color-icon,
-.swatch-element.royal label::before {
-  background: $color-swatch-royal-blue; 
-}
+// .color-list a[data-color="Royal blue"],
+// .color-list a[data-color="royal blue"],
+// .color-list a[data-color="Royal Blue"],
+// .color-list a[data-color=Color_royal_blue],
+// .by-Color[data-tag="Color_royal_blue"] .color-icon,
+// .swatch-element.royal label::before {
+//   background: $color-swatch-royal-blue; 
+// }
 
 // Navy
-.color-list a[data-color=Navy],
-.color-list a[data-color=navy],
-.color-list a[data-color=Color_navy],
-.by-Color[data-tag="Color_navy"] .color-icon, 
-.swatch-element.navy label::before {
-  background: $color-swatch-navy-blue; 
-}
+// .color-list a[data-color=Navy],
+// .color-list a[data-color=navy],
+// .color-list a[data-color=Color_navy],
+// .by-Color[data-tag="Color_navy"] .color-icon, 
+// .swatch-element.navy label::before {
+//   background: $color-swatch-navy-blue; 
+// }
 
 // Pink
-.color-list a[data-color=Pink],
-.color-list a[data-color=pink],
-.color-list a[data-color=Color_pink],
-.by-Color[data-tag="Color_pink"] .color-icon,
-.swatch-element.pink label::before {
-  background: $color-pink; 
-}
+// .color-list a[data-color=Pink],
+// .color-list a[data-color=pink],
+// .color-list a[data-color=Color_pink],
+// .by-Color[data-tag="Color_pink"] .color-icon,
+// .swatch-element.pink label::before {
+//   background: $color-pink; 
+// }
 
 // Green
-.color-list a[data-color=Green],
-.color-list a[data-color=green],
-.color-list a[data-color=Color_green],
-.by-Color[data-tag="Color_green"] .color-icon,
-.swatch-element.green label::before {
-  background: $color-swatch-green; 
-}
+// .color-list a[data-color=Green],
+// .color-list a[data-color=green],
+// .color-list a[data-color=Color_green],
+// .by-Color[data-tag="Color_green"] .color-icon,
+// .swatch-element.green label::before {
+//   background: $color-swatch-green; 
+// }
 
 // Kelly Green
-.color-list a[data-color="kelly green"],
-.color-list a[data-color="Kelly Green"],
-.color-list a[data-color="kelly Green"],
-.color-list a[data-color=Color_kelly-green],
-.by-Color[data-tag="Color_kelly_green"] .color-icon,
-.swatch-element.kelly-green label::before {
-  background: $color-swatch-kelly-green; 
-}
+// .color-list a[data-color="kelly green"],
+// .color-list a[data-color="Kelly Green"],
+// .color-list a[data-color="kelly Green"],
+// .color-list a[data-color=Color_kelly-green],
+// .by-Color[data-tag="Color_kelly_green"] .color-icon,
+// .swatch-element.kelly-green label::before {
+//   background: $color-swatch-kelly-green; 
+// }
 
 // Forest Green
-.color-list a[data-color="Forest green"],
-.color-list a[data-color="forest green"],
-.color-list a[data-color="Forest Green"],
-.color-list a[data-color=Color_forest-green],
-.by-Color[data-tag="Color_forest_green"] .color-icon,
-.swatch-element.forest-green label::before {
-  background: $color-swatch-forest-green; 
-}
+// .color-list a[data-color="Forest green"],
+// .color-list a[data-color="forest green"],
+// .color-list a[data-color="Forest Green"],
+// .color-list a[data-color=Color_forest-green],
+// .by-Color[data-tag="Color_forest_green"] .color-icon,
+// .swatch-element.forest-green label::before {
+//   background: $color-swatch-forest-green; 
+// }
 
 // Charcoal
-.color-list a[data-color="Charcoal"],
-.color-list a[data-color="charcoal"],
-.color-list a[data-color=Color_Charcoal],
-.by-Color[data-tag="Color_charcoal"] .color-icon,
-.swatch-element.charcoal label::before {
-  background: $color-swatch-charcoal; 
-}
+// .color-list a[data-color="Charcoal"],
+// .color-list a[data-color="charcoal"],
+// .color-list a[data-color=Color_Charcoal],
+// .by-Color[data-tag="Color_charcoal"] .color-icon,
+// .swatch-element.charcoal label::before {
+//   background: $color-swatch-charcoal; 
+// }
 
 // Brown
-.color-list a[data-color="Brown"],
-.color-list a[data-color="brown"],
-.color-list a[data-color=Color_brown],
-.by-Color[data-tag="Color_brown"] .color-icon,
-.swatch-element.brown label::before {
-  background: $color-swatch-brown; 
-}
+// .color-list a[data-color="Brown"],
+// .color-list a[data-color="brown"],
+// .color-list a[data-color=Color_brown],
+// .by-Color[data-tag="Color_brown"] .color-icon,
+// .swatch-element.brown label::before {
+//   background: $color-swatch-brown; 
+// }
 
 // Gray / Grey
-.color-list a[data-color=Grey],
-.color-list a[data-color=Gray],
-.color-list a[data-color=grey],
-.color-list a[data-color=gray],
-.color-list a[data-color=Color_grey],
-.color-list a[data-color=Color_gray],
-.by-Color[data-tag="Color_grey"] .color-icon,
-.by-Color[data-tag="Color_gray"] .color-icon,
-.swatch-element.grey label::before,
-.swatch-element.gray label::before {
-  background: $color-swatch-gray;
-}
+// .color-list a[data-color=Grey],
+// .color-list a[data-color=Gray],
+// .color-list a[data-color=grey],
+// .color-list a[data-color=gray],
+// .color-list a[data-color=Color_grey],
+// .color-list a[data-color=Color_gray],
+// .by-Color[data-tag="Color_grey"] .color-icon,
+// .by-Color[data-tag="Color_gray"] .color-icon,
+// .swatch-element.grey label::before,
+// .swatch-element.gray label::before {
+//   background: $color-swatch-gray;
+// }
 
 // Red
-.color-list a[data-color=Red],
-.color-list a[data-color=red],
-.color-list a[data-color=Color_red],
-.by-Color[data-tag="Color_red"] .color-icon,
-.swatch-element.red label::before {
-  background: $color-swatch-red; 
-}
+// .color-list a[data-color=Red],
+// .color-list a[data-color=red],
+// .color-list a[data-color=Color_red],
+// .by-Color[data-tag="Color_red"] .color-icon,
+// .swatch-element.red label::before {
+//   background: $color-swatch-red; 
+// }
 
 // Tan
-.color-list a[data-color=Tan],
-.color-list a[data-color=tan],
-.color-list a[data-color=Color_tan],
-.by-Color[data-tag="Color_tan"] .color-icon,
-.swatch-element.tan label::before {
-  background: $color-swatch-tan; 
-}
+// .color-list a[data-color=Tan],
+// .color-list a[data-color=tan],
+// .color-list a[data-color=Color_tan],
+// .by-Color[data-tag="Color_tan"] .color-icon,
+// .swatch-element.tan label::before {
+//   background: $color-swatch-tan; 
+// }
 
 // Gold
-.color-list a[data-color=Gold],
-.color-list a[data-color=gold],
-.color-list a[data-color=Color_gold],
-.by-Color[data-tag="Color_gold"] .color-icon,
-.swatch-element.gold label::before {
-  background: $color-swatch-gold; 
-}
+// .color-list a[data-color=Gold],
+// .color-list a[data-color=gold],
+// .color-list a[data-color=Color_gold],
+// .by-Color[data-tag="Color_gold"] .color-icon,
+// .swatch-element.gold label::before {
+//   background: $color-swatch-gold; 
+// }
 
 // Khaki
-.color-list a[data-color=Khaki],
-.color-list a[data-color=khaki],
-.color-list a[data-color=Color_khaki],
-.by-Color[data-tag="Color_khaki"] .color-icon,
-.swatch-element.khaki label::before {
-  background: $color-swatch-khaki; 
-}
+// .color-list a[data-color=Khaki],
+// .color-list a[data-color=khaki],
+// .color-list a[data-color=Color_khaki],
+// .by-Color[data-tag="Color_khaki"] .color-icon,
+// .swatch-element.khaki label::before {
+//   background: $color-swatch-khaki; 
+// }
 
 // Natural
-.color-list a[data-color=Natural],
-.color-list a[data-color=natural],
-.color-list a[data-color=Color_natural],
-.by-Color[data-tag="Color_natural"] .color-icon,
-.swatch-element.natural label::before {
-  background: $color-swatch-natural; 
-  border: 1px solid $color-dark;
-}
+// .color-list a[data-color=Natural],
+// .color-list a[data-color=natural],
+// .color-list a[data-color=Color_natural],
+// .by-Color[data-tag="Color_natural"] .color-icon,
+// .swatch-element.natural label::before {
+//   background: $color-swatch-natural; 
+//   border: 1px solid $color-dark;
+// }
 
 // Olive
-.color-list a[data-color=Olive],
-.color-list a[data-color=Ollive],
-.color-list a[data-color=olive],
-.color-list a[data-color=ollive],
-.color-list a[data-color=Color_olive],
-.color-list a[data-color=Color_ollive],
-.by-Color[data-tag="Color_olive"] .color-icon,
-.by-Color[data-tag="Color_ollive"] .color-icon,
-.swatch-element.olive label::before {
-  background: $color-swatch-olive; 
-}
+// .color-list a[data-color=Olive],
+// .color-list a[data-color=Ollive],
+// .color-list a[data-color=olive],
+// .color-list a[data-color=ollive],
+// .color-list a[data-color=Color_olive],
+// .color-list a[data-color=Color_ollive],
+// .by-Color[data-tag="Color_olive"] .color-icon,
+// .by-Color[data-tag="Color_ollive"] .color-icon,
+// .swatch-element.olive label::before {
+//   background: $color-swatch-olive; 
+// }
 
 // Yellow
-.color-list a[data-color=Yellow],
-.color-list a[data-color=yellow],
-.color-list a[data-color=Color_yellow],
-.by-Color[data-tag="Color_yellow"] .color-icon,
-.swatch-element.yellow label::before {
-  background: $color-swatch-yellow; 
-}
+// .color-list a[data-color=Yellow],
+// .color-list a[data-color=yellow],
+// .color-list a[data-color=Color_yellow],
+// .by-Color[data-tag="Color_yellow"] .color-icon,
+// .swatch-element.yellow label::before {
+//   background: $color-swatch-yellow; 
+// }
 
 // Dark Gray/Grey
-.color-list a[data-color="dark grey"],
-.color-list a[data-color="dark gray"],
-.color-list a[data-color="Dark Grey"],
-.color-list a[data-color="Dark Gray"],
-.color-list a[data-color="Dark grey"],
-.color-list a[data-color="Dark gray"],
-.color-list a[data-color=Color_dark_grey],
-.color-list a[data-color=Color_dark_gray],
-.by-Color[data-tag="Color_dark-grey"] .color-icon,
-.by-Color[data-tag="Color_dark-gray"] .color-icon,
+// .color-list a[data-color="dark grey"],
+// .color-list a[data-color="dark gray"],
+// .color-list a[data-color="Dark Grey"],
+// .color-list a[data-color="Dark Gray"],
+// .color-list a[data-color="Dark grey"],
+// .color-list a[data-color="Dark gray"],
+// .color-list a[data-color=Color_dark_grey],
+// .color-list a[data-color=Color_dark_gray],
+// .by-Color[data-tag="Color_dark-grey"] .color-icon,
+// .by-Color[data-tag="Color_dark-gray"] .color-icon,
+// .swatch-element.dark-gray label::before,
+// .swatch-element.dark-grey label::before {
+//   background: $color-light-gray;
+// }
+
+// .color-list a[data-color=Purple],
+// .color-list a[data-color=purple],
+// .color-list a[data-color=Color_purple],
+// .by-Color[data-tag="Color_purple"] .color-icon,
+// .swatch-element.purple label::before {
+//   background: $color-swatch-purple;
+// }
+
+// .color-list a[data-color="Cloud Burst"],
+// .color-list a[data-color="cloud burst"],
+// .color-list a[data-color="Cloud burst"],
+// .color-list a[data-color=Color_cloud-burst],
+// .by-Color[data-tag="Color_cloud-burst"] .color-icon,
+// .swatch-element.cloud-burst label::before {
+//   background: $color-cloud-burst;
+// }
+
+// .color-list a[data-color=Orange],
+// .color-list a[data-color=orange],
+// .color-list a[data-color=Color_orange],
+// .by-Color[data-tag="Color_orange"] .color-icon,
+// .swatch-element.orange label::before {
+//   background: $color-swatch-orange;
+// }
+
+// .color-list a[data-color=Marron],
+// .color-list a[data-color=marron],
+// .color-list a[data-color=Color_marron],
+// .by-Color[data-tag="Color_maroon"] .color-icon,
+// .swatch-element.maroon label::before {
+//   background: $color-swatch-maroon;
+// }
+
+// .color-list a[data-color=Teal],
+// .color-list a[data-color=teal],
+// .color-list a[data-color=Color_teal],
+// .by-Color[data-tag="Color_teal"] .color-icon,
+// .swatch-element.teal label::before {
+//   background: $color-swatch-teal;
+// }
+
+// .color-list a[data-color=Turquoise],
+// .color-list a[data-color=turquoise],
+// .color-list a[data-color=Color_turquoise],
+// .swatch-element.turquoise label::before,
+// .by-Color[data-tag="Color_turquoise"] .color-icon {
+//   background: $color-swatch-turquoise;
+// }
+
+// ************************
+// White
+// ************************
+.swatch-element.white label::before {
+  background: $swatch-white;
+}
+
+// ************************
+// Off White
+// ************************
+.swatch-element.oatmeal label::before {
+  background: $swatch-oatmeal;
+}
+
+// Black
+.swatch-element.black label::before {
+  background: $swatch-black;
+}
+
+// ************************
+// Gray / Gray
+// ************************
+.swatch-element.grey label::before,
+.swatch-element.gray label::before {
+  background: $swatch-gray;
+}
+
+.swatch-element.dark-grey label::before,
+.swatch-element.dark-gray label::before {
+  background: $swatch-dark-gray;
+}
+
+.swatch-element.silver label::before {
+  background: $swatch-silver;
+}
+
 .swatch-element.dark-gray label::before,
-.swatch-element.dark-grey label::before {
-  background: $color-light-gray;
+.swatch-element.darkgray label::before {
+  background: $swatch-dark-gray;
 }
 
-.color-list a[data-color=Purple],
-.color-list a[data-color=purple],
-.color-list a[data-color=Color_purple],
-.by-Color[data-tag="Color_purple"] .color-icon,
-.swatch-element.purple label::before {
-  background: $color-swatch-purple;
+.swatch-element.light-gray label::before,
+.swatch-element.lightgray label::before {
+  background: $swatch-light-grey;
 }
 
-.color-list a[data-color="Cloud Burst"],
-.color-list a[data-color="cloud burst"],
-.color-list a[data-color="Cloud burst"],
-.color-list a[data-color=Color_cloud-burst],
-.by-Color[data-tag="Color_cloud-burst"] .color-icon,
-.swatch-element.cloud-burst label::before {
-  background: $color-cloud-burst;
+.swatch-element.slate-gray label::before,
+.swatch-element.slategray label::before {
+  background: $swatch-slate-gray;
 }
 
-.color-list a[data-color=Orange],
-.color-list a[data-color=orange],
-.color-list a[data-color=Color_orange],
-.by-Color[data-tag="Color_orange"] .color-icon,
+.swatch-element.light-slate-gray label::before,
+.swatch-element.lightslategray label::before {
+  background: $swatch-light-slate-gray;
+}
+
+.swatch-element.dim-gray label::before,
+.swatch-element.dimgray label::before {
+  background: $swatch-dim-gray;
+}
+
+.swatch-element.dark-slate-gray label::before,
+.swatch-element.darkslategray label::before {
+  background: $swatch-dark-slate-gray;
+}
+// End Gray / Greys
+
+// ************************
+// Orange & Browns
+// ************************
 .swatch-element.orange label::before {
-  background: $color-swatch-orange;
+  background: $swatch-orange;
 }
 
-.color-list a[data-color=Marron],
-.color-list a[data-color=marron],
-.color-list a[data-color=Color_marron],
-.by-Color[data-tag="Color_maroon"] .color-icon,
+.swatch-element.brown label::before {
+  background: $swatch-brown;
+}
+
+.swatch-element.spiced-bronze label::before,
+.swatch-element.spicedbronze label::before {
+  background: $swatch-spiced-bronze;
+}
+
+.swatch-element.sandy-brown label::before,
+.swatch-element.sandybrown label::before {
+  background: $swatch-sandy-brown;
+}
+
+.swatch-element.rosy-brown label::before,
+.swatch-element.rosybrown label::before {
+  background: $swatch-rosy-brown;
+}
+
+.swatch-element.dark-orange label::before,
+.swatch-element.darkorange label::before {
+  background: $swatch-dark-orange;
+}
+
+.swatch-element.saddle-brown label::before,
+.swatch-element.saddlebrown label::before {
+  background: $swatch-saddle-brown;
+}
+// End Orange & Browns
+
+// ************************
+// Red
+// ************************
+.swatch-element.red label::before {
+  background: $swatch-red;
+}
+
+.swatch-element.brick label::before {
+  background: $swatch-brick;
+}
+
+.swatch-element.fire-brick label::before,
+.swatch-element.firebrick label::before {
+  background: $swatch-fire-brick;
+}
+
+.swatch-element.dark-red label::before,
+.swatch-element.darkred label::before {
+  background: $swatch-dark-red;
+}
+
 .swatch-element.maroon label::before {
-  background: $color-swatch-maroon;
+  background: $swatch-maroon;
 }
 
-.color-list a[data-color=Teal],
-.color-list a[data-color=teal],
-.color-list a[data-color=Color_teal],
-.by-Color[data-tag="Color_teal"] .color-icon,
+.swatch-element.crimson label::before {
+  background: $swatch-crimson;
+}
+
+.swatch-element.pale-violet-red label::before,
+.swatch-element.palevioletred label::before {
+  background: $swatch-pale-violet-red;
+}
+
+.swatch-element.indian-red label::before,
+.swatch-element.indianred label::before {
+  background: $swatch-indian-red;
+}
+
+.swatch-element.medium-violet-red label::before,
+.swatch-element.mediumvioletred label::before {
+  background: $swatch-medium-violet-red;
+}
+
+.swatch-element.orangered label::before {
+  background: $swatch-orangered;
+}
+
+.swatch-element.sienna label::before {
+  background: $swatch-sienna;
+}
+
+.swatch-element.dark-magenta label::before,
+.swatch-element.darkmagenta label::before {
+  background: $swatch-dark-magenta;
+}
+
+.swatch-element.tomato label::before {
+  background: $swatch-tomato;
+}
+
+.swatch-element.peru label::before {
+  background: $swatch-peru;
+}
+
+.swatch-element.chocolate label::before {
+  background: $swatch-chocolate;
+}
+
+.swatch-element.coral label::before {
+  background: $swatch-coral;
+}
+
+
+// End Red
+
+// ************************
+// Pink / Purple
+// ************************
+.swatch-element.pink label::before {
+  background: $swatch-pink;
+}
+
+.swatch-element.mauve label::before {
+  background: $swatch-mauve;
+}
+
+.swatch-element.purple label::before {
+  background: $swatch-purple;
+}
+
+.swatch-element.violet label::before {
+  background: $swatch-violet;
+}
+
+.swatch-element.plum label::before {
+  background: $swatch-plum;
+}
+
+.swatch-element.orchid label::before {
+  background: $swatch-orchid;
+}
+
+.swatch-element.hot-pink label::before,
+.swatch-element.hotpink label::before {
+  background: $swatch-hot-pink;
+}
+
+.swatch-element.light-coral label::before,
+.swatch-element.lightcoral label::before {
+  background: $swatch-light-coral;
+}
+
+.swatch-element.salmon label::before {
+  background: $swatch-salmon;
+}
+
+.swatch-element.light-salmon label::before,
+.swatch-element.lightsalmon label::before {
+  background: $swatch-light-salmon;
+}
+
+.swatch-element.dark-salmon label::before,
+.swatch-element.darksalmon label::before {
+  background: $swatch-dark-salmon;
+}
+
+.swatch-element.light-pink label::before,
+.swatch-element.lightpink label::before {
+  background: $swatch-light-pink;
+}
+
+.swatch-element.fuchsia label::before {
+  background: $swatch-fuchsia;
+}
+
+.swatch-element.magenta label::before {
+  background: $swatch-magenta;
+}
+
+.swatch-element.medium-purple label::before,
+.swatch-element.mediumpurple label::before {
+  background: $swatch-medium-purple;
+}
+
+.swatch-element.dark-orchid label::before,
+.swatch-element.darkorchid label::before {
+  background: $swatch-dark-orchid;
+}
+
+.swatch-element.blue-violet label::before,
+.swatch-element.blueviolet label::before {
+  background: $swatch-blue-violet;
+}
+
+.swatch-element.deep-pink label::before,
+.swatch-element.deeppink label::before {
+  background: $swatch-deep-pink;
+}
+
+.swatch-element.medium-orchid label::before,
+.swatch-element.mediumorchid label::before {
+  background: $swatch-medium-orchid;
+}
+
+.swatch-element.dark-violet label::before,
+.swatch-element.darkviolet label::before {
+  background: $swatch-dark-violet;
+}
+
+.swatch-element.peach-puff label::before,
+.swatch-element.peachpuff label::before {
+  background: $swatch-peach-puff;
+}
+
+.swatch-element.thistle label::before {
+  background: $swatch-thistle;
+}
+
+.swatch-element.lavender-blush label::before,
+.swatch-element.lavenderblush label::before {
+  background: $swatch-lavender-blush;
+}
+
+.swatch-element.lavender label::before {
+  background: $swatch-lavender;
+}
+
+.swatch-element.misty-rose label::before {
+  background: $swatch-misty-rose;
+}
+// End pink / purple
+
+// ************************
+// Yellow
+// ************************
+.swatch-element.yellow label::before {
+  background: $swatch-yellow;
+}
+
+.swatch-element.gold label::before {
+  background: $swatch-gold;
+}
+
+.swatch-element.goldenrod label::before {
+  background: $swatch-goldenrod;
+}
+
+.swatch-element.khaki label::before {
+  background: $swatch-khaki;
+}
+
+.swatch-element.tan label::before {
+  background: $swatch-tan;
+}
+
+.swatch-element.dark-khaki label::before {
+  background: $swatch-dark-khaki;
+}
+
+.swatch-element.burlywood label::before {
+  background: $swatch-burlywood;
+}
+
+.swatch-element.light-goldenrod-yellow label::before,
+.swatch-element.lightgoldenrodyellow label::before {
+  background: $swatch-light-goldenrod-yellow;
+}
+
+.swatch-element.lemon-chiffon label::before,
+.swatch-element.lemonchiffon label::before {
+  background: $swatch-lemon-chiffon;
+}
+
+.swatch-element.light-yellow label::before,
+.swatch-element.lightyellow label::before {
+  background: $swatch-light-yellow;
+}
+
+.swatch-element.pale-golden-rod label::before,
+.swatch-element.palegoldenrod label::before {
+  background: $swatch-pale-golden-rod;
+}
+
+.swatch-element.dark-golden-rod label::before,
+.swatch-element.darkgoldenrod label::before {
+  background: $swatch-dark-golden-rod;
+}
+
+.swatch-element.corn-silk label::before,
+.swatch-element.cornsilk label::before {
+  background: $swatch-corn-silk;
+}
+
+.swatch-element.beige label::before {
+  background: $swatch-beige;
+}
+
+.swatch-element.wheat label::before {
+  background: $swatch-wheat;
+}
+// End yellow
+
+// ************************
+// Blue 
+// ************************
+.swatch-element.blue label::before {
+  background: $swatch-blue;
+}
+
+.swatch-element.iron-blue label::before,
+.swatch-element.ironblue label::before {
+  background: $swatch-iron-blue;
+}
+
+.swatch-element.sky-blue label::before,
+.swatch-element.skyblue label::before {
+  background: $swatch-sky-blue;
+}
+.swatch-element.aqua label::before {
+  background: $swatch-aqua;
+}
+
+.swatch-element.cyan label::before {
+  background: $swatch-cyan;
+}
+
+.swatch-element.light-sky-blue label::before,
+.swatch-element.lightskyblue label::before {
+  background: $swatch-light-sky-blue;
+}
+
+.swatch-element.deep-sky-blue label::before,
+.swatch-element.deepskyblue label::before {
+  background: $swatch-deep-sky-blue;
+}
+.swatch-element.corn-flower-blue label::before,
+.swatch-element.corn-flower-blue label::before {
+  background: $swatch-corn-flower-blue;
+}
+
+.swatch-element.light-steel-blue label::before,
+.swatch-element.lightsteelblue label::before {
+  background: $swatch-light-steel-blue;
+}
+
+.swatch-element.light-blue label::before,
+.swatch-element.lightblue label::before {
+  background: $swatch-light-blue;
+}
+
+.swatch-element.powder-blue label::before,
+.swatch-element.powderblue label::before {
+  background: $swatch-powder-blue;
+}
+
+.swatch-element.medium-slate-blue label::before,
+.swatch-element.mediumslateblue label::before {
+  background: $swatch-medium-slate-blue;
+}
+
+.swatch-element.dodger-blue label::before,
+.swatch-element.dodgerblue label::before {
+  background: $swatch-dodger-blue;
+}
+
+.swatch-element.steel-blue label::before,
+.swatch-element.steelblue label::before {
+  background: $swatch-steel-blue;
+}
+
+.swatch-element.royal-blue label::before,
+.swatch-element.royalblue label::before {
+  background: $swatch-royal-blue;
+}
+
+.swatch-element.alice-blue label::before,
+.swatch-element.aliceblue label::before {
+  background: $swatch-alice-blue;
+}
+
+.swatch-element.slate-blue label::before,
+.swatch-element.slateblue label::before {
+  background: $swatch-slate-blue;
+}
+
+.swatch-element.dark-slate-blue label::before,
+.swatch-element.darkslateblue label::before {
+  background: $swatch-dark-slate-blue;
+}
+
+.swatch-element.medium-blue label::before,
+.swatch-element.mediumblue label::before {
+  background: $swatch-medium-blue;
+}
+
+.swatch-element.indigo label::before {
+  background: $swatch-indigo;
+}
+
+.swatch-element.midnight-blue label::before,
+.swatch-element.midnightblue label::before {
+  background: $swatch-midnight-blue;
+}
+.swatch-element.dark-blue label::before,
+.swatch-element.darkblue label::before {
+  background: $swatch-dark-blue;
+}
+
+.swatch-element.navy label::before {
+  background: $swatch-navy;
+}
+
+.swatch-element.cadet-blue label::before,
+.swatch-element.cadetblue label::before {
+  background: $swatch-cadet-blue;
+}
+
+.swatch-element.azure label::before {
+  background: $swatch-azure;
+}
+// End Blue
+
+// **********************
+// Turquoise
+// **********************
+.swatch-element.turquoise label::before {
+  background: $swatch-turquoise;
+}
+
+.swatch-element.medium-turquoise label::before ,
+.swatch-element.mediumturquoise label::before { 
+  background: $swatch-medium-turquoise;
+}
+
+.swatch-element.dark-turquoise label::before,
+.swatch-element.darkturquoise label::before {
+  background: $swatch-dark-turquoise;
+}
+
+.swatch-element.pale-turquoise label::before,
+.swatch-element.paleturquoise label::before {
+  background: $swatch-pale-turquoise;
+}
+// End Turquoise
+
+// ***********************
+// Green
+// ***********************
+.swatch-element.green label::before {
+  background: $swatch-green;
+}
+
+.swatch-element.olive label::before {
+  background: $swatch-olive;
+}
+
+.swatch-element.light-green label::before {
+  background: $swatch-deep-teal;
+}
+
 .swatch-element.teal label::before {
-  background: $color-swatch-teal;
+  background: $swatch-teal;
 }
 
-.color-list a[data-color=Turquoise],
-.color-list a[data-color=turquoise],
-.color-list a[data-color=Color_turquoise],
-.swatch-element.turquoise label::before,
-.by-Color[data-tag="Color_turquoise"] .color-icon {
-  background: $color-swatch-turquoise;
+.swatch-element.light-green label::before,
+.swatch-element.lightgreen label::before {
+  background: $swatch-light-green;
 }
+
+.swatch-element.pale-green label::before,
+.swatch-element.pale-green label::before {
+  background: $swatch-pale-green;
+}
+
+.swatch-element.medium-spring-green label::before,
+.swatch-element.mediumspringgreen label::before {
+  background: $swatch-medium-spring-green;
+}
+
+.swatch-element.aquamarine label::before {
+  background: $swatch-aquamarine;
+}
+
+.swatch-element.medium-aquamarine label::before,
+.swatch-element.mediumaquamarine label::before {
+  background: $swatch-medium-aquamarine;
+}
+
+.swatch-element.green-yellow label::before,
+.swatch-element.greenyellow label::before {
+  background: $swatch-green-yellow;
+}
+
+.swatch-element.dark-sea-green label::before,
+.swatch-element.darkseagreen label::before {
+  background: $swatch-dark-sea-green;
+}
+
+.swatch-element.chartreuse label::before {
+  background: $swatch-chartreuse;
+}
+
+.swatch-element.spring-green label::before,
+.swatch-element.springgreen label::before {
+  background: $swatch-spring-green;
+}
+
+.swatch-element.lawn-green label::before,
+.swatch-element.lawngreen label::before {
+  background: $swatch-lawn-green;
+}
+
+.swatch-element.yellow-green label::before,
+.swatch-element.yellowgreen label::before {
+  background: $swatch-yellow-green;
+}
+
+.swatch-element.light-sea-green label::before,
+.swatch-element.lightseagreen label::before {
+  background: $swatch-light-sea-green;
+}
+
+.swatch-element.olive-drab label::before,
+.swatch-element.olivedrab label::before {
+  background: $swatch-olive-drab;
+}
+
+.swatch-element.sea-green label::before,
+.swatch-element.seagreen label::before {
+  background: $swatch-sea-green;
+}
+
+.swatch-element.teal label::before {
+  background: $swatch-teal;
+}
+
+.swatch-element.medium-sea-green label::before,
+.swatch-element.mediumseagreen label::before {
+  background: $swatch-medium-sea-green;
+}
+
+.swatch-element.lime-green label::before,
+.swatch-element.limegreen label::before {
+  background: $swatch-lime-green;
+}
+
+.swatch-element.lime label::before {
+  background: $swatch-lime;
+}
+
+.swatch-element.dark-cyan label::before,
+.swatch-element.darkcyan label::before {
+  background: $swatch-dark-cyan;
+}
+
+.swatch-element.olive label::before {
+  background: $swatch-olive;
+}
+
+.swatch-element.dark-olive-green label::before,
+.swatch-element.darkolivegreen label::before {
+  background: $swatch-dark-olive-green;
+}
+
+.swatch-element.forest-green label::before,
+.swatch-element.forestgreen label::before {
+  background: $swatch-forest-green;
+}
+
+.swatch-element.dark-green label::before,
+.swatch-element.darkgreen label::before {
+  background: $swatch-dark-green;
+}
+
+.swatch-element.light-cyan label::before,
+.swatch-element.lightcyan label::before {
+  background: $swatch-light-cyan;
+}
+// End Green
+
+// *************************
+// Off White
+// *************************
+.swatch-element.snow label::before {
+  background: $swatch-snow;
+}
+
+.swatch-element.ivory label::before {
+  background: $swatch-ivory;
+}
+
+.swatch-element.ghost-white label::before,
+.swatch-element.ghostwhite label::before {
+  background: $swatch-ghost-white;
+}
+
+.swatch-element.floral-white label::before,
+.swatch-element.floralwhite label::before {
+  background: $swatch-floral-white;
+}
+
+.swatch-element.white-smoke label::before,
+.swatch-element.whitesmoke label::before {
+  background: $swatch-white-smoke;
+}
+
+.swatch-element.old-lace label::before,
+.swatch-element.oldlace label::before {
+  background: $swatch-old-lace;
+}
+
+.swatch-element.linen label::before {
+  background: $swatch-linen;
+}
+
+.swatch-element.mint-cream label::before,
+.swatch-element.mintcream label::before {
+  background: $swatch-mint-cream;
+}
+
+.swatch-element.antique-white label::before,
+.swatch-element.antiquewhite label::before {
+  background: $swatch-antique-white;
+}
+
+.swatch-element.blanched-almond label::before,
+.swatch-element.blanchedalmond label::before {
+  background: $swatch-blanched-almond;
+}
+
+.swatch-element.navajo-white label::before,
+.swatch-element.navajowhite label::before {
+  background: $swatch-navajo-white;
+}
+// End Off White
+
+// *************************
+// Other
+// *************************
+.swatch-element.honey-dew label::before,
+.swatch-element.honeydew label::before {
+  background: $swatch-honey-dew;
+}
+
+.swatch-element.seashell label::before {
+  background: $swatch-seashell;
+}
+
+.swatch-element.papayawhip label::before {
+  background: $swatch-papayawhip;
+}
+
+.swatch-element.bisque label::before {
+  background: $swatch-bisque;
+}
+
+.swatch-element.moccasin label::before {
+  background: $swatch-moccasin;
+}
+
+.swatch-element.gainsboro label::before {
+  background: $swatch-gainsboro;
+}
+
+// End Other
 
 .swatch-element {
   label {
@@ -1850,6 +2581,40 @@ button.boost-pfs-filter-clear {
    border-color: transparent;
  }
 
+//  .row .has-bc-swap-image .boost-pfs-filter-product-item-image:hover .boost-pfs-filter-product-item-main-image,
+//  .row .has-bc-swap-image .boost-pfs-filter-product-item-image:hover .boost-pfs-filter-product-item-main-image {
+// .has-bc-swap-image .boost-pfs-filter-product-item-flip-image {
+//   visibility: hidden;
+//   opacity: 0;
+//   display: none;
+// }
+.boost-pfs-filter-product-item-image:hover,
+.boost-pfs-filter-product-item-image,
+.row .has-bc-swap-image .boost-pfs-filter-product-item-image,
+.row .has-bc-swap-image .boost-pfs-filter-product-item-image:hover {
+  .boost-pfs-filter-product-item-flip-image {
+    visibility: hidden;
+    opacity: 0;
+    display: none;
+  }
+
+  img.boost-pfs-filter-product-item-main-image {
+    visibility: visible !important;
+    z-index: 2;
+  }
+}
+
+// .row .has-bc-swap-image .boost-pfs-filter-product-item-image:hover .boost-pfs-filter-product-item-flip-image {
+//   visibility: hidden;
+// }
+
+// .row .has-bc-swap-image .boost-pfs-filter-product-item-image:hover .boost-pfs-filter-product-item-main-image,
+// .row .has-bc-swap-image .boost-pfs-filter-product-item-image:hover .boost-pfs-filter-product-item-main-image,
+// .row .boost-pfs-filter-product-item-image-link img.boost-pfs-filter-product-item-main-image {
+//   visibility: visible !important;
+//   z-index: 2;
+// }
+ 
 @media screen and (max-width: 768px) {
   .full-width-slider .row {
     @include justify-content(center);
