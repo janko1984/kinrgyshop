@@ -30,6 +30,10 @@
 }
 
 .cart-dd {
+  &.safari-adjust .cart-row {
+    padding-bottom: 40px;
+  }
+  
   .item {
     @include flexbox;
 

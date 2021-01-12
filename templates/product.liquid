@@ -42,12 +42,14 @@
 
                           <div class="g-10 slide" data-number="{{ forloop.index0 }}">
                             <div class="row">
-                              <img 
-                                src="{{ image.src | img_url: '576x' | width }}"
-                                srcset="{{ image.src | img_url: '1440x' | width }} 1440w,
-                                {{ image.src | img_url: '1440x' | width }} 6000w,
-                                {{ image.src | img_url: '800x' | width }} 800w"
-                                alt="{{ image.src | alt }}">
+                              <figure>
+                                <img 
+                                  src="{{ image.src | img_url: '576x' | width }}"
+                                  srcset="{{ image.src | img_url: '1440x' | width }} 1440w,
+                                  {{ image.src | img_url: '1440x' | width }} 6000w,
+                                  {{ image.src | img_url: '800x' | width }} 800w"
+                                  alt="{{ image.src | alt }}">
+                              </figure>
                             </div>
                           </div>
 
@@ -236,11 +238,13 @@
 </section>
 
 
-
 {% comment %} Material and care  {% endcomment %}
-{% if product.metafields.products.material_care.show_section == true %}
-  {% section 'material-and-care' %}
+{% if product.metafields.products.material_care != null %}
+  {% section 'material-and-care-variable' %}
+{% elsif product.metafields.products.material_care  == null %}
+  {% section 'material-and-care-default' %}
 {% endif %}
+
 
 {% comment %} Related Collections {% endcomment %}
 {% section 'product-collection-slider' %}

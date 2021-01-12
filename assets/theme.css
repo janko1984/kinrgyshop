@@ -2597,6 +2597,10 @@ body.search .boost-pfs-quickview-btn {
   margin-bottom: 20px;
 }
 
+#mobile-nav {
+  height: 101vh;
+}
+
 .of-h {
   overflow: hidden;
 }
@@ -2694,7 +2698,8 @@ body.search .boost-pfs-filter-right-col {
 }
 .sidebar-menu a {
   font-size: 0.875em;
-  line-height: 3.714em;
+  line-height: 1.5em;
+  padding: 15.5px 0;
   font-family: "Klarheit Kurrent Bold";
   color: #1C1E20;
   padding-right: 30px;
@@ -3117,12 +3122,14 @@ body.search .row .no-results {
   }
 
   body.page main,
-body.page-faq main,
-body.page-legal main,
 body.product main,
 body.search main,
 body.collection main {
     padding-top: 100px;
+  }
+
+  #shopify-section-general-modal .content-col {
+    max-height: 70vh;
   }
 }
 @font-face {
@@ -5217,6 +5224,19 @@ body.product .variant-title {
   display: block;
 }
 
+.boost-pfs-filter-product-item-inner[data-product-type="KINRGY Monthly Subscription"] .boost-pfs-quickview-btn,
+.boost-pfs-filter-product-item-inner[data-product-type="Monthly Subscription"] .boost-pfs-quickview-btn,
+.boost-pfs-filter-product-item-inner[data-product-type*=Monthly] .boost-pfs-quickview-btn,
+.boost-pfs-filter-product-item-inner[data-product-type*=monthly] .boost-pfs-quickview-btn,
+.boost-pfs-filter-product-item-inner[data-product-type*=Subscription] .boost-pfs-quickview-btn,
+.boost-pfs-filter-product-item-inner[data-product-type*=subscription] .boost-pfs-quickview-btn,
+.boost-pfs-filter-product-item-inner[data-product-type*=Class] .boost-pfs-quickview-btn,
+.boost-pfs-filter-product-item-inner[data-product-type*=class] .boost-pfs-quickview-btn,
+.boost-pfs-filter-product-item-inner[data-product-type="Monthly Subscription"] .boost-pfs-quickview-btn {
+  display: none !important;
+  visibility: hidden !important;
+}
+
 body.product .with-size-guide {
   display: -moz-flex;
   display: flex;
@@ -5243,6 +5263,10 @@ body.product main .inline-single:hover::before {
 
 body.product .product-section-one {
   padding-bottom: 70px;
+}
+body.product .product-section-one .title {
+  font-size: 2.5em;
+  line-height: 1.15em;
 }
 body.product .regular-button.soldout {
   pointer-events: none;
@@ -5342,22 +5366,31 @@ figure.desktop-product-single-image,
 .material-and-care p {
   margin-bottom: 20px;
 }
+.material-and-care p strong {
+  font-family: "Klarheit Kurrent Bold";
+}
 
 .care-icons {
+  margin-top: 30px;
   display: -moz-flex;
   display: flex;
   -moz-justify-content: flex-start;
   justify-content: flex-start;
   -moz-align-items: flex-end;
   align-items: flex-end;
+  flex-wrap: wrap;
 }
 .care-icons li {
   position: relative;
   max-width: 50px;
   margin-right: 30px;
+  margin-bottom: 30px;
 }
 .care-icons li svg {
   pointer-events: none;
+}
+.care-icons li:last-of-type {
+  margin-right: 0;
 }
 
 .js-tooltips .tooltip-text {
@@ -5380,6 +5413,7 @@ figure.desktop-product-single-image,
   transform-origin: center;
   pointer-events: none;
   opacity: 0;
+  z-index: 2;
   transition: 400ms all cubic-bezier(0.165, 0.84, 0.44, 1);
   transform: translate(-50%, 0%);
 }
@@ -5721,6 +5755,14 @@ body.collection .boost-pfs-filter-products .boost-pfs-filter-product-item .boost
   .boost-pfs-filter-left-col .boost-pfs-filter-tree-v .boost-pfs-filter-option .boost-pfs-filter-option-title .boost-pfs-filter-clear {
     border: none;
   }
+
+  .boost-pfs-modal-backdrop .boost-pfs-quickview-content {
+    max-height: 100%;
+  }
+
+  .boost-pfs-modal-backdrop .boost-pfs-modal-container .boost-pfs-modal-content .boost-pfs-quickview-left {
+    min-height: auto;
+  }
 }
 @media screen and (max-width: 1024px) and (min-width: 769px) {
   .boost-pfs-filter-toolbar-top-mobile .boost-pfs-filter-tree-mobile-button {
@@ -5805,6 +5847,10 @@ body.collection .boost-pfs-filter-products .boost-pfs-filter-product-item .boost
     visibility: visible;
     display: -moz-flex;
     display: flex;
+  }
+
+  body.product .product-section-one .title {
+    font-size: 2em;
   }
 
   .boost-pfs-filter-tree .boost-pfs-filter-mobile-toolbar {
@@ -5921,10 +5967,6 @@ body.collection .sold-out.tag,
     visibility: hidden;
   }
 
-  .material-and-care [class^=col-]:last-of-type {
-    margin-top: 30px;
-  }
-
   .material-and-care {
     padding-bottom: 70px;
   }
@@ -6014,13 +6056,13 @@ body.collection .sold-out.tag,
     padding: 5px 20px;
   }
 
-  .boost-pfs-filter-wrapper .boost-pfs-filter-tree-mobile-style2 .boost-pfs-filter-mobile-footer {
+  .row .boost-pfs-filter-wrapper .boost-pfs-filter-tree-mobile-style2 .boost-pfs-filter-mobile-footer {
     position: fixed;
     display: block;
     margin: auto !important;
     right: 0;
   }
-  .boost-pfs-filter-wrapper .boost-pfs-filter-tree-mobile-style2 .boost-pfs-filter-mobile-footer .boost-pfs-filter-show-result {
+  .row .boost-pfs-filter-wrapper .boost-pfs-filter-tree-mobile-style2 .boost-pfs-filter-mobile-footer .boost-pfs-filter-show-result {
     font-weight: 400;
     font-size: 16px;
     line-height: 20px;
@@ -6029,7 +6071,7 @@ body.collection .sold-out.tag,
     padding-top: 14px;
     padding-bottom: 14px;
     background: #1C1E20;
-    width: calc(100% - 70px);
+    width: 100%;
     display: block;
     margin: auto;
     border-radius: 4px;
@@ -6087,9 +6129,9 @@ body.collection .sold-out.tag,
   }
 
   .boost-pfs-filter-wrapper.row .boost-pfs-filter-option-content .boost-pfs-filter-option-item-list.boost-pfs-filter-option-item-list-swatch .boost-pfs-filter-option-item .boost-pfs-filter-option-swatch-image {
-    top: 4px;
+    top: 1px;
     bottom: 0;
-    margin: auto;
+    margin: 0 auto;
     left: 38px;
   }
   .boost-pfs-filter-wrapper.row .boost-pfs-filter-option-content .boost-pfs-filter-option-item-list.boost-pfs-filter-option-item-list-swatch .boost-pfs-filter-option-item .boost-pfs-filter-option-swatch-image button {
@@ -6121,7 +6163,7 @@ section.container .row.single-image {
 
   figure.desktop-product-single-image,
 .desktop-product-image-list figure {
-    margin-bottom: 30px;
+    margin-bottom: 20px;
   }
 
   body.product #product-collection-slider .arrows {
@@ -6156,14 +6198,10 @@ section.container .row.single-image {
     pointer-events: all;
   }
 
-  .boost-pfs-filter-tree-mobile-style2 .boost-pfs-filter-mobile-footer {
+  .row .boost-pfs-filter-tree-mobile-style2 .boost-pfs-filter-mobile-footer {
     top: 75vh;
     margin: auto !important;
     left: 0 !important;
-    width: calc(100% - 105px);
-  }
-  .boost-pfs-filter-tree-mobile-style2 .boost-pfs-filter-mobile-footer button {
-    background: #A57677;
   }
 
   .boost-pfs-filter-tree-mobile-sticky.boost-pfs-filter-tree-mobile-style2.boost-pfs-filter-tree-v {
@@ -6419,6 +6457,17 @@ section.container .row.single-image {
     padding: 2.5px 20px 2.5px 0;
   }
 
+  .row .boost-pfs-filter-option-content .boost-pfs-filter-option-size .boost-pfs-filter-option-item-list {
+    display: -moz-flex;
+    display: flex;
+    -moz-justify-content: center;
+    justify-content: center;
+  }
+
+  .row .boost-pfs-filter-option-content .boost-pfs-filter-option-item-list .boost-pfs-filter-option-item button span.boost-pfs-filter-option-value {
+    line-height: 15px;
+  }
+
   .collection-section .row .boost-pfs-filter-option {
     padding: 0;
   }
@@ -6431,6 +6480,14 @@ section.container .row.single-image {
   .boost-pfs-filter-option-item-list li {
     width: 50%;
     padding-right: 20px;
+  }
+
+  .mobile-image-slider .slide figure {
+    padding-bottom: 127%;
+  }
+
+  .row .boost-pfs-filter-tree-mobile-style2 .boost-pfs-filter-mobile-footer {
+    width: calc(100% - 20%);
   }
 }
 @media (max-width: 576px) {
@@ -6573,6 +6630,19 @@ body.search .boost-pfs-filter-products .boost-pfs-filter-product-item .boost-pfs
 
   .boost-pfs-filter-option-item-list li {
     width: 100%;
+  }
+
+  .mobile-image-slider .slide figure {
+    padding-bottom: 124%;
+  }
+
+  figure.desktop-product-single-image,
+.desktop-product-image-list figure {
+    padding-bottom: 140%;
+  }
+
+  .row .boost-pfs-filter-tree-mobile-style2 .boost-pfs-filter-mobile-footer {
+    width: calc(100% - 22%);
   }
 }
 @media (max-width: 450px) {
@@ -9642,6 +9712,9 @@ body.product footer::before {
   opacity: 0;
 }
 
+.cart-dd.safari-adjust .cart-row {
+  padding-bottom: 40px;
+}
 .cart-dd .item {
   display: -moz-flex;
   display: flex;

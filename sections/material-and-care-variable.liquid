@@ -1,0 +1,143 @@
+{% assign care = product.metafields.products.material_care.tooltips %}
+
+<section class="container material-and-care" id="product-material-and-care">
+  <div class="row">
+    <div class="col-md-4 offset-md-1 col-sm-8">
+      <h3>{{ product.metafields.products.material_care.heading }}</h3>
+
+      {% if product.metafields.products.material_care.copy != blank %}
+        <p>{{ product.metafields.products.material_care.copy }}</p>
+      {% endif %}
+
+      {% if product.metafields.products.material_care.copy == blank %}
+        <ul>
+          {% for i in product.metafields.products.material_care.list %}
+            <li>
+                <p>{{ i }}</p>
+            </li>
+          {% endfor %}
+        </ul>
+      {% endif %}
+      
+
+    </div>
+    
+    <div class="col-md-4 offset-md-2 col-sm-8">
+      <ul class="care-icons js-tooltips">
+
+       {% comment %} No Bleach {% endcomment %}
+          {% if care.no_bleach.boolean == true %}
+            <li>
+            <div class="tooltip-icon">
+                {% include 'icon-do-not-bleach' %}
+              </div>
+              <p class="tooltip-text">{{ care.no_bleach.tool_tip }}</p>
+            </li>  
+          {% endif %}
+
+          {% comment %}  Tumble Dry {% endcomment %}
+          {% if care.tumble_dry.boolean == true %}
+            <li>
+            <div class="tooltip-icon">
+                {% include 'icon-do-not-tumble-dry' %}
+              </div>
+              <p class="tooltip-text">{{ care.tumble_dry.tool_tip }}</p>
+            </li>  
+          {% endif %}
+
+          {% comment %} Dry Clean {% endcomment %}
+          {% if care.dry_clean.boolean == true %}
+            <li>
+              <div class="tooltip-icon">
+                {% include 'icon-dry-clean' %}
+              </div>
+              <p class="tooltip-text">{{ care.dry_clean.tool_tip }}</p>
+            </li>  
+          {% endif %}
+
+          {% comment %} Forty Degrees {% endcomment %}
+          {% if care.forty_degrees.boolean == true %}
+            <li>
+            <div class="tooltip-icon">
+                {% include 'icon-forty-degrees' %}
+              </div>
+              <p class="tooltip-text">{{ care.forty_degrees.tool_tip }}</p>
+            </li>  
+          {% endif %}
+
+          {% if care.warm_wash.boolean == true %}
+            <li>
+              <div class="tooltip-icon">
+                {% include 'icon-warm-wash' %}
+              </div>
+              <p class="tooltip-text">{{ care.warm_wash.tool_tip }}</p>
+            </li>  
+          {% endif %}
+
+          {% if care.non_chlorine_bleach.boolean == true %}
+            <li>
+              <div class="tooltip-icon">
+                {% include 'icon-non-chlorine-bleach' %}
+              </div>
+              <p class="tooltip-text">{{ care.non_chlorine_bleach.tool_tip }}</p>
+            </li>  
+          {% endif %}
+
+          {% if care.dry_low.boolean == true %}
+            <li>
+              <div class="tooltip-icon">
+                {% include 'icon-dry-low' %}
+              </div>
+              <p class="tooltip-text">{{ care.dry_low.tool_tip }}</p>
+            </li>
+          {% endif %}
+            
+          {% if care.no_iron.boolean == true %}
+            <li>
+              <div class="tooltip-icon">
+                {% include 'icon-warm-iron' %}
+              </div>
+              <p class="tooltip-text">{{ care.no_iron.tool_tip }}</p>
+            </li>
+          {% endif %}
+
+          {% if care.no_dry_clean.boolean == true %}
+            <li>
+              <div class="tooltip-icon">
+                {% include 'icon-do-not-iron' %}
+              </div>
+              <p class="tooltip-text">{{ care.no_dry_clean.tool_tip }}</p>
+            </li> 
+          {% endif %} 
+
+          {% if care.normal_dry.boolean == true %}
+            <li>
+              <div class="tooltip-icon">
+                {% include 'icon-normal-dry' %}
+              </div>
+              <p class="tooltip-text">{{ care.normal_dry.tool_tip }}</p>
+            </li> 
+          {% endif %} 
+
+          {% if care.normal_wash.boolean == true %}
+            <li>
+              <div class="tooltip-icon">
+                {% include 'icon-normal-wash' %}
+              </div>
+              <p class="tooltip-text">{{ care.normal_wash.tool_tip }}</p>
+            </li> 
+          {% endif %} 
+
+          {% if care.line_dry.boolean == true %}
+            <li>
+              <div class="tooltip-icon">
+                {% include 'icon-normal-wash' %}
+              </div>
+              <p class="tooltip-text">{{ care.line_dry.tool_tip }}</p>
+            </li> 
+          {% endif %} 
+
+      </ul>
+    </div>
+  </div>
+</section>

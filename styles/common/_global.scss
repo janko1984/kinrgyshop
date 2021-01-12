@@ -579,6 +579,10 @@ body.search {
   }
 }
 
+#mobile-nav {
+  height: 101vh;
+}
+
 .of-h {
   overflow: hidden;
 }
@@ -703,7 +707,9 @@ body.search {
 
   a {
     font-size: 0.875em;
-    line-height: 3.714em;
+    // line-height: 3.714em;
+    line-height: 1.5em;
+    padding: 15.5px 0;
     font-family: $kb;
     color: $color-dark;
     padding-right: 30px;
@@ -1195,11 +1201,13 @@ body.page-legal {
   }
 
   body.page main, 
-  body.page-faq main, 
-  body.page-legal main, 
   body.product main, 
   body.search main, 
   body.collection main {
     padding-top: 100px;
+  }
+ 
+  #shopify-section-general-modal .content-col {
+    max-height: 70vh;
   }
 }

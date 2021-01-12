@@ -67,9 +67,9 @@ window.addEventListener("DOMContentLoaded", function(){
     //   xmlhttp.send();
     // }
 
-    document.addEventListener("click", event => {
-      console.log(event)
-      console.log(event.target)
+    // document.addEventListener("click", event => {
+      // console.log(event)
+      // console.log(event.target)
 
       // if (event.target.classList.contains('boost-pfs-quickview-cart-btn')) {
       //   event.preventDefault();
@@ -140,7 +140,7 @@ window.addEventListener("DOMContentLoaded", function(){
     //     event.stopPropagation();
     //     loadProducts();
     //   }
-    });
+    // });
 
     // Filter APP Edits 
     let filterButtons = document.querySelectorAll('.boost-pfs-filter-button, .boost-pfs-filter-button span');
@@ -163,7 +163,6 @@ window.addEventListener("DOMContentLoaded", function(){
     const callback = function(mutationsList, observer) {
       mutationsList.forEach(mutation => {
         // console.log(mutation)
-          // console.log(scroll)
           if (mutation.type == "attributes") {
             scroll.update()
           }
@@ -178,86 +177,23 @@ window.addEventListener("DOMContentLoaded", function(){
   }
 
 
-  // AJAX CART REQUEST
-  $(document).on('cart.requestComplete', function(event, cart) {
-    // $('#cartCount').html(cart.item_count);
-    // if (cart['item_count'] > 0) {
-    //   $('.cart-dd').addClass('active');
-    //   $('.col-form').removeClass('hidden');
-    //   $('.col-empty').addClass('hidden');
-    //   $('.cart-dd').removeClass('empty');
-    // }else{
-    //   $('.col-form').addClass('hidden');
-    //   $('.col-empty').removeClass('hidden');
-    //   $('.cart-dd').addClass('empty');
-    // }
-
-    $('#cartCount').html(cart.item_count);
-      console.log('cart',cart['item_count']);
-
-      if (cart['item_count'] > 0) {
-
-        $('.cart-count').removeClass('empty');
-        $('.cart-count').text(cart.item_count);
-
-        $('.cart-dd').addClass('active');
-        $('.col-form').removeClass('hidden');
-        $('.col-empty').addClass('hidden');
-        $('.cart-dd').removeClass('empty');
-      }else{
-        $('.cart-count').addClass('empty');
-        $('.cart-count').text(cart.item_count);
-
-        $('.col-form').addClass('hidden');
-        $('.col-empty').removeClass('hidden');
-        $('.cart-dd').addClass('empty');
-      }
-    // });
-
-    console.log(cart)
-  });
-
-  function isMobile() {
-    return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
-  }
-
-  // When cart is ready 
-  $(document).on('cart.ready', function(event, cart) {
-
-    console.log('ready',cart, cart.item_count)
-    let navBasket = document.querySelector('#cartCount');
-
-    if (cart.item_count > 0) {
-      navBasket.classList.remove('empty');
-      navBasket.textContent = cart.item_count;
-    }
-    else if (cart.item_count == 0) {
-      navBasket.classList.add('empty');
-      navBasket.textContent = cart.item_count;
-    }
-    
-    if (document.body.classList.contains('cart')) {
-      console.log(CartJS.cart)
-    }    
-  });
+  
 
   // CART DROPDOWN
-  $('.js_cart').click(function(e){
-    //console.log('woooork');
+  jQuery('.js_cart').click(function(e){
     e.preventDefault();
     e.stopPropagation();
     $('.cart-dd').toggleClass('active');
-    $('body').addClass('oh');
+    $('body').addClass('of-h');
   });
 
   $('.js-dd-close').click(function(){
     $('.cart-dd').removeClass('active');
-    $('body').removeClass('oh');
+    $('body').removeClass('of-h');
   });
 
   $('#input-quantity').on('change keyup', function() {
     var newValue = $(this).val();
-    //console.log(newValue);
     $('.js-quantity option').text(newValue);
   });
 
@@ -272,10 +208,7 @@ window.addEventListener("DOMContentLoaded", function(){
   // let pfsOverlay
 
   // Wait for app to load
-  // setTimeout(() => {
-    
-  //   console.log(pfsOverlay)
-  // }, 400);
+  // setTimeout(() => {}, 400);
 
   searchs.forEach(search => {
     search.addEventListener('click', (event) => {
@@ -302,10 +235,7 @@ window.addEventListener("DOMContentLoaded", function(){
         ease: "power1.inOut",
         onComplete: () => {
           inputCheck.focus();
-
-          if (isMobile()) {
-            inputCheck.click();
-          }
+          inputCheck.click();
         }
       })
     })
@@ -497,11 +427,7 @@ window.addEventListener("DOMContentLoaded", function(){
         header.classList.remove('open-mobile-nav');
         document.body.classList.remove('of-h');
       }
-    });
-
-    console.log(trigger, mobileNav)
-
-    
+    });    
   }
   mobileNavigation();
   mobileMenuAccordions();
@@ -649,34 +575,33 @@ window.addEventListener("DOMContentLoaded", function(){
      submit: document.querySelector('#footer-form input[type="submit"]'),
      success: document.querySelector('#footer-form .form-success'),
    }
-
-   console.log(visibleForm)
-   console.log(hubspot)
    
    // Visible form keyup - make hubspot email value match
    visibleForm.email.addEventListener('keyup', event => {
-    //  hubspot.email.value = event.target.value;
      hubspot.email.setAttribute('value', event.target.value);
-     console.log(hubspot.email.value, event.target.value)
    })
 
    // VisibleForm submit - then submit hubspot form
    visibleForm.form.addEventListener('submit', event => {
-     console.log('submit vf', event)
     event.preventDefault();
     hubspot.innerFormWrapper.classList.add('is-submitting')
-    hubspot.submit.click();
+    appendProcessingMessage(visibleForm);
+    
+    setTimeout(() => {
+      hubspot.submit.click();
+    }, 1000)
   })
 
 
    // Mutation observer - target
-   let targetNode = hubspot.innerForm;
+  //  let targetNode = hubspot.innerForm;
+   let targetNode = hubspot.form;
     
    // Mutation obbserver
    const config = { attributes: true, childList: true, subtree: true };
    const callback = function(mutationsList, observer) {
      mutationsList.forEach(mutation => {
-       console.log(mutation)
+      //  console.log(mutation)
 
       // Email error
       //  if (mutation.type == "childList" && mutation.target.classList.contains('hs_email')) {
@@ -684,24 +609,23 @@ window.addEventListener("DOMContentLoaded", function(){
       //       visibleForm.messages.innerText = mutation.addedNodes[0].innerText;
       //     }
       //  }
-
-      console.log('submit?', mutation.target.nodeName == "FORM", hubspot.innerFormWrapper.classList.contains('is-submitting'))
       
       // On submit - wait until form is sent - show success
-      if (mutation.target.nodeName == "FORM" && hubspot.innerFormWrapper.classList.contains('is-submitting')) {
+      if (mutation.target.nodeName == "IFRAME" && hubspot.innerFormWrapper.classList.contains('is-submitting')) {
+        // hubspot.innerFormWrapper.children[0].classList.add('submitted-message');
 
         // Wait for form submit
         let waitForSumbit = setInterval(() => {
 
           // If submitted
-          if (hubspot.innerFormWrapper.children[0].classList.contains('submitted-message')) {
-            console.log('should be submitting')
+          // if (hubspot.innerFormWrapper.children[0].classList.contains('submitted-message')) {
+
             // Success animation
             footerFormSuccess(visibleForm);
 
             // Clear interval
             clearInterval(waitForSumbit);
-          }
+          // }
         }, 1000)
       }
      })
@@ -716,12 +640,14 @@ window.addEventListener("DOMContentLoaded", function(){
   
   setTimeout(() => {
     footerHubspotFakeOut();
-  }, 800)
+  }, 1200)
   
   // Footer form success animation
   function footerFormSuccess(formObj) {
     let form = formObj;
     let tl = gsap.timeline();
+
+    console.log('footerFormSuccess', form)
 
     tl.to(form.formInner, {
       duration: 0.4,
@@ -746,6 +672,14 @@ window.addEventListener("DOMContentLoaded", function(){
         scroll.update();
       }
     }, '-=0.2')
+  }
+
+  function appendProcessingMessage(visibleForm) {
+    let formEl = visibleForm;
+
+    let para = document.createElement('p');
+    para.textContent = "Processing...";
+    formEl.formInner.append(para);
   }
 
 //   function announcementBar() {
@@ -782,158 +716,11 @@ window.addEventListener("DOMContentLoaded", function(){
 //   }
 
 
-
-// let colors = [
-
-// "WHITE: #FFFFFF",
-// "AZURE:	#F0FFFF",
-// "MINT-CREAM:	#F5FFFA",
-// "SNOW:	#FFFAFA",
-// "IVORY:	#FFFFF0",
-// "GHOST-WHITE:	#F8F8FF",
-// "FLORAL-WHITE:	#FFFAF0",
-// "ALICE-BLUE:	#F0F8FF",
-// "LIGHT-CYAN:	#E0FFFF",
-// "HONEY-DEW:	#F0FFF0",
-// "LIGHT-YELLOW:	#FFFFE0",
-// "SEASHELL:	#FFF5EE",
-// "LAVENDER-BLUSH:	#FFF0F5",
-// "WHITE-SMOKE:	#F5F5F5",
-// "OLD-LACE:	#FDF5E6",
-// "CORN-SILK:	#FFF8DC",
-// "LINEN:	#FAF0E6",
-// "LIGHT-GOLDENROD-YELLOW:	#FAFAD2",
-// "LEMON-CHIFFON:	#FFFACD",
-// "BEIGE:	#F5F5DC",
-// "LAVENDER:	#E6E6FA",
-// "PAPAYAWHIP:	#FFEFD5",
-// "MISTY-ROSE:	#FFE4E1",
-// "ANTIQUE-WHITE:	#FAEBD7",
-// "BLANCHED-ALMOND:	#FFEBCD",
-// "BISQUE:	#FFE4C4",
-// "PALE-TURQUOISE:	#AFEEEE",
-// "MOCCASIN:	#FFE4B5",
-// "GAINSBORO:	#DCDCDC",
-// "PEACH-PUFF:	#FFDAB9",
-// "NAVAJO-WHITE:	#FFDEAD",
-// "PALE-GOLDEN-ROD:	#EEE8AA",
-// "WHEAT:	#F5DEB3",
-// "POWDER-BLUE:	#B0E0E6",
-// "AQUA-MARINE:	#7FFFD4",
-// "LIGHT-GREY:	#D3D3D3",
-// "PINK:	#FFC0CB",
-// "LIGHT-BLUE:	#ADD8E6",
-// "THISTLE:	#D8BFD8",
-// "LIGHT-PINK:	#FFB6C1",
-// "LIGHT-SKY-BLUE:	#87CEFA",
-// "PALE-GREEN:	#98FB98",
-// "LIGHT-STEEL-BLUE:	#B0C4DE",
-// "KHAKI:	#F0D58C",
-// "SKY-BLUE:	#87CEEB",
-// "AQUA:	#00FFFF",
-// "CYAN:	#00FFFF",
-// "SILVER:	#C0C0C0",
-// "PLUM:	#DDA0DD",
-// "GRAY:	#BEBEBE",
-// "LIGHT-GREEN:	#90EE90",
-// "VIOLET:	#EE82EE",
-// "YELLOW:	#FFFF00",
-// "TURQUOISE:	#40E0D0",
-// "BURLYWOOD:	#DEB887",
-// "GREEN-YELLOW:	#ADFF2F",
-// "TAN:	#D2B48C",
-// "MEDIUM-TURQUOISE:	#48D1CC",
-// "LIGHT-SALMON:	#FFA07A",
-// "MEDIUM-AQUAMARINE:	#66CDAA",
-// "DARK-GRAY:	#A9A9A9",
-// "ORCHID:	#DA70D6",
-// "DARK-SEA-GREEN:	#8FBC8F",
-// "DEEP-SKY-BLUE:	#00BFFF",
-// "SANDY-BROWN:	#F4A460",
-// "GOLD:	#FFD700",
-// "MEDIUM-SPRING-GREEN:	#00FA9A",
-// "DARK-KHAKI:	#BDB76B",
-// "CORN-FLOWER-BLUE:	#6495ED",
-// "HOT-PINK:	#FF69B4",
-// "DARK-SALMON:	#E9967A",
-// "DARK-TURQUOISE:	#00CED1",
-// "SPRING-GREEN:	#00FF7F",
-// "LIGHT-CORAL:	#F08080",
-// "ROSY-BROWN:	#BC8F8F",
-// "SALMON:	#FA8072",
-// "CHARTREUSE:	#7FFF00",
-// "MEDIUM-PURPLE:	#9370DB",
-// "LAWN-GREEN:	#7CFC00",
-// "DODGER-BLUE:	#1E90FF",
-// "YELLOW-GREEN:	#9ACD32",
-// "PALE-VIOLET-RED:	#DB7093",
-// "MEDIUM-SLAT-EBLUE:	#7B68EE",
-// "MEDIUM-ORCHID:	#BA55D3",
-// "CORAL:	#FF7F50",
-// "CADET-BLUE:	#5F9EA0",
-// "LIGHT-SEA-GREEN:	#20B2AA",
-// "GOLDENROD:	#DAA520",
-// "ORANGE:	#FFA500",
-// "LIGHT-SLATE-GRAY:	#778899",
-// "FUCHSIA:	#FF00FF",
-// "MAGENTA:	#FF00FF",
-// "MEDIUM-SEA-GREEN:	#3CB371",
-// "PERU:	#CD853F",
-// "STEEL-BLUE:	#4682B4",
-// "ROYAL-BLUE:	#4169E1",
-// "SLATE-GRAY:	#708090",
-// "TOMATO:	#FF6347",
-// "DARK-ORANGE:	#FF8C00",
-// "SLATE-BLUE:	#6A5ACD",
-// "LIME-GREEN:	#32CD32",
-// "LIME:	#00FF00",
-// "INDIAN-RED:	#CD5C5C",
-// "DARK-ORCHID:	#9932CC",
-// "BLUE-VIOLET:	#8A2BE2",
-// "DEEP-PINK:	#FF1493",
-// "DARK-GOLDEN-ROD:	#B8860B",
-// "CHOCOLATE:	#D2691E",
-// "DARK-CYAN:	#008B8B",
-// "DIM-GRAY:	#696969",
-// "OLIVE-DRAB:	#6B8E23",
-// "SEA-GREEN:	#2E8B57",
-// "TEAL:	#008080",
-// "DARK-VIOLET:	#9400D3",
-// "MEDIUM-VIOLET-RED:	#C71585",
-// "ORANGERED:	#FF4500",
-// "OLIVE:	#808000",
-// "SIENNA:	#A0522D",
-// "DARK-SLATE-BLUE:	#483D8B",
-// "DARK-OLIVE-GREEN:	#556B2F",
-// "FOREST-GREEN:	#228B22",
-// "CRIMSON:	#DC143C",
-// "BLUE:	#0000FF",
-// "DARK-MAGENTA:	#8B008B",
-// "DARK-SLATE-GRAY:	#2F4F4F",
-// "SADDLE-BROWN:	#8B4513",
-// "BROWN:	#A52A2A",
-// "FIRE-BRICK:	#B22222",
-// "PURPLE:	#800080",
-// "GREEN:	#008000",
-// "RED:	#FF0000",
-// "MEDIUM-BLUE:	#0000CD",
-// "INDIGO:	#4B0082",
-// "MIDNIGHT-BLUE:	#191970",
-// "DARK-GREEN:	#006400",
-// "DARK-BLUE:	#00008B",
-// "NAVY:	#000080",
-// "DARK-RED:	#8B0000",
-// "MAROON:	#800000",
-// "BLACK:	#000000",
-// ]
-// let colors2 = new Array();
-
-// for (let a = 0; a < colors.length; a++) {
-//   colors2.push(colors[a].toLowerCase())
-// }
-
-// console.table(colors2)
-
+// Safari adjustment
+if (window.navigator.userAgent.toLowerCase().indexOf('iphone') > -1) {
+  let cart = document.querySelector('#cart-dd');
+  cart.classList.add('safari-adjust');
+}
 
 
 // *********************
@@ -1820,6 +1607,70 @@ class MultiItemSlider {
 //   }
 // });
 
+// AJAX CART REQUEST
+jQuery(document).on('cart.requestComplete', function(event, cart) {
+  // $('#cartCount').html(cart.item_count);
+  // if (cart['item_count'] > 0) {
+  //   $('.cart-dd').addClass('active');
+  //   $('.col-form').removeClass('hidden');
+  //   $('.col-empty').addClass('hidden');
+  //   $('.cart-dd').removeClass('empty');
+  // }else{
+  //   $('.col-form').addClass('hidden');
+  //   $('.col-empty').removeClass('hidden');
+  //   $('.cart-dd').addClass('empty');
+  // }
+
+  jQuery('#cartCount').html(cart.item_count);
+    console.log('cart', cart['item_count']);
+
+    if (cart['item_count'] > 0) {
+
+      $('.cart-count').removeClass('empty');
+      $('.cart-count').text(cart.item_count);
+
+      $('.cart-dd').addClass('active');
+      $('.col-form').removeClass('hidden');
+      $('.col-empty').addClass('hidden');
+      $('.cart-dd').removeClass('empty');
+    }else{
+      $('.cart-count').addClass('empty');
+      $('.cart-count').text(cart.item_count);
+
+      $('.col-form').addClass('hidden');
+      $('.col-empty').removeClass('hidden');
+      $('.cart-dd').addClass('empty');
+    }
+  // });
+
+  console.log(cart)
+});
+
+
+// When cart is ready 
+jQuery(document).on('cart.ready', function(event, cart) {
+  // console.log('ready',cart, cart.item_count, typeof cart.item_count, cart['item_count'])
+  
+  let navBasket = document.querySelectorAll('.main-header .js_cart .cart-count');
+
+  // hide or show cart count
+  navBasket.forEach(basket => {
+    if (cart.item_count > 0) {
+      basket.classList.remove('empty');
+      basket.textContent = cart.item_count;
+    }
+    else if (cart.item_count == 0) {
+      basket.classList.add('empty');
+      basket.textContent = cart.item_count;
+    }
+  })
+  
+  
+  if (document.body.classList.contains('cart')) {
+    console.log(CartJS.cart)
+  }    
+});
+
 // *********************
 // Quick Add to Cart
 // *********************
@@ -1907,12 +1758,17 @@ class GeneralProduct {
   constructor() {
     
     this.size;
+    this.isNumberSizing;
     if (document.querySelector('#productSize') != null) {
       this.size = document.querySelector('#productSize');
+      
+      this.isNumberSizing = this.checkIfSizeIsInteger();
+      console.log('isNumberSizing',this.isNumberSizing )
 
       this.changeSize();
     } else {
       this.size = null;
+      this.isNumberSizing == false;
     }
 
     this.colorSwatch;
@@ -1965,7 +1821,11 @@ class GeneralProduct {
   // Disabled out of stock sizes
   setVariantSizeOutOfStock() {
 
+    // If size variant
     if (this.size != null) {
+
+      // let isNumberSizing = this.checkIfSizeIsInteger();
+      // console.log('isNumberSizing',isNumberSizing )
 
       // Go through master select
       this.master.children.forEach( option => {
@@ -1989,31 +1849,68 @@ class GeneralProduct {
           this.buttonsAddToCart(this.buttons)
         }
       })
+
+      if (this.isNumberSizing == true) {
+        this.varyingSizesPerSwatch();
+      //   console.log('varyingSizesPerSwatch')
+      }
+    } 
+    // No size variant
+    else {
+      this.setVariantQuantityOutOfStock();
+
+      if (! this.master.children[this.master.selectedIndex].hasAttribute('disabled')) {
+        this.buttonsAddToCart(this.buttons)
+        this.setVariantQuantityOutOfStock();
+      }
+
     }
+
+    // if (this.size != null && this.isNumberSizing == true) {
+    //   this.varyingSizesPerSwatch();
+    // //   console.log('varyingSizesPerSwatch')
+    // }
   }
 
   // Changes quantity of current - color and size
   setVariantQuantityOutOfStock(currentSize) {
     let currentInventory = 0;
 
-    if (currentSize != '') {
-      currentSize = this.size.value;
+    if (this.size != null) {
+      if (currentSize != '') {
+        currentSize = this.size.value;
+      }
     }
+    
     
     // Go through master select
     this.master.children.forEach( option => {
       
-      // Find current size and color - get inventory
-      if (option.dataset.variantTwo === currentSize && option.dataset.variantOne === this.currentSwatch) {
-        currentInventory = Number(option.dataset.inventory);
+      if (this.size != null) {
+        // Find current size and color - get inventory
+        // console.log(option.dataset.variantTwo === currentSize, option.dataset.variantOne === this.currentSwatch,option.dataset.variantTwo, currentSize,  option.dataset.variantOne, this.currentSwatch)
+        if (option.dataset.variantTwo === currentSize && option.dataset.variantOne === this.currentSwatch) {
+          currentInventory = Number(option.dataset.inventory);
+        }
       }
-    })
+
+      // If just color
+      if (this.size == null) {
+        if (option.dataset.variantOne === this.currentSwatch) {
+          currentInventory = Number(option.dataset.inventory);
+        }
+      }
+    }) 
+  
 
     // Disabled quantity options if less then inventory
     this.quantity.children.forEach(num => {
       if (Number(num.value) > currentInventory) {
         num.setAttribute('disabled', 'disabled');
       } 
+      else {
+        num.removeAttribute('disabled');
+      }
     })
   }
 
@@ -2027,18 +1924,28 @@ class GeneralProduct {
         this.resetQuantity();
 
         if (this.size != null) {
+
+          this.resetSizeSelect();
+
           this.setVariantQuantityOutOfStock();
+
 
           // let optionValue = this.size.value + ' / ' + this.currentSwatch;
           // this.changeMasterSelect(optionValue);
+          // this.changeMasterSelectValue(optionValue);
 
           // Update Master Select
           this.changeMasterSelectValue();
 
-          this.resetSizeSelect();
+          this.setVariantSizeOutOfStock();
 
-          this.setVariantSizeOutOfStock()
-        } else {
+          
+          if (this.isNumberSizing == true) {
+            this.varyingSizesPerSwatch();
+          }
+          
+          
+        } else if (this.size == null){
 
           // Change master select color
           this.master.children.forEach((option, index) => {
@@ -2046,6 +1953,8 @@ class GeneralProduct {
               this.master.selectedIndex = index;
             }
           })
+
+          this.setVariantSizeOutOfStock()
         }
 
       })
@@ -2063,6 +1972,9 @@ class GeneralProduct {
 
       this.setVariantSizeOutOfStock()
       
+      if (this.isNumberSizing == true) {
+        this.buttonsAddToCart(this.buttons);
+      }
 
       if (this.currentSwatch != null) {
         this.setVariantQuantityOutOfStock(currentSize);
@@ -2071,7 +1983,10 @@ class GeneralProduct {
         this.changeMasterSelectValue();
       }
       
-      this.buttonsAddToCart(this.buttons);
+      // this.buttonsAddToCart(this.buttons);
+      if (this.isNumberSizing == false) {
+        this.buttonsAddToCart(this.buttons);
+      }
     })
   }
 
@@ -2088,12 +2003,33 @@ class GeneralProduct {
   // }
 
   changeMasterSelectValue() {
+    
     // Find matching - size and color variants
     this.master.children.forEach((option, index) => {
-      if (option.dataset.option == this.size.value + ' / ' + this.currentSwatch) {
+      if (option.dataset.option == this.currentSwatch + ' / ' + this.size.value) {
         this.master.selectedIndex = index;
       }
     })
+
+    if (this.isNumberSizing == true) {
+      setTimeout(() => {
+        if (this.size.children[this.size.selectedIndex].hasAttribute('disabled')) {
+          this.buttonsSoldOut(this.buttons)
+        }
+      }, 100)
+    }
+    
+  }
+
+  // Checks if size is an integer
+  checkIfSizeIsInteger() {
+    let x = parseFloat(this.size.children[0].value);
+
+    if (isNaN(x)) {
+      return false;
+    } else {
+      return true;
+    }
   }
 
   // Disable out of stock quantities
@@ -2115,6 +2051,44 @@ class GeneralProduct {
       num.removeAttribute('disabled');
     })
     console.log('reset')
+  }
+
+  // If product has different sizes for different colors
+  varyingSizesPerSwatch() {
+    let currentSizes = new Array();
+    let sizing = new Array();
+    let sizingPosition = new Array();
+
+    this.master.children.forEach( (option, index) => {
+      // Get avaliable Sizes - per color
+      if (option.dataset.variantOne === this.currentSwatch) {
+        currentSizes.push(option.dataset.variantTwo);
+      } 
+    })
+
+    // Disable and gather all sizes for product
+    this.size.children.forEach((option, index) => {
+      sizing.push(option.value);
+      option.setAttribute('disabled', 'disabled')
+    })
+
+      // let sizes = Array.from(this.size.children);
+      // let sizesTwo = sizes.values();
+
+
+      // currentSizesTwo.forEach(s => {
+        // Find the index of the current color sizes
+    currentSizes.forEach(s => {
+      let temp = sizing.findIndex(el => el === s);
+      sizingPosition.push(temp);
+    })
+
+    console.log('sizingPosition',sizingPosition)
+
+    // Make the avaliable sizes clickable
+    sizingPosition.forEach((pos, index) => {
+      this.size.children[pos].removeAttribute('disabled')
+    })
   }
 
   buttonSubmit() {

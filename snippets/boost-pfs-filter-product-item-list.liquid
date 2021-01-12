@@ -33,7 +33,7 @@
 {%- endif -%}
 
 <div class="boost-pfs-filter-product-item boost-pfs-filter-product-item-list {% if section.settings.active_image_swap and product.images[1] %} has-bc-swap-image{% endif %}  {{ sold_out_class }} {{ sale_class }}" {% if section.settings.equal_height != 'false' %}data-image-width="{{ product.featured_image.width }}" data-image-height="{{ product.featured_image.height }}" {% endif %}>
-  <div class="boost-pfs-filter-product-item-inner">
+  <div class="boost-pfs-filter-product-item-inner" data-product-type="{{ product.title }}">
     <div class="boost-pfs-filter-product-item-list-col-1">
       <div class="boost-pfs-filter-product-item-image" data-boost-image-loading-animation>
           <a href="{{ product.url | within: collection }}" class="boost-pfs-filter-product-item-image-link" style="padding-top:{% unless preview_image == blank %}{{ 1 | divided_by: preview_image.aspect_ratio | times: 100 }}%{% else %}100%{% endunless %};">
