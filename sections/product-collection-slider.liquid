@@ -1,8 +1,8 @@
 {% assign current_collection_handle = '' %}
 {% assign current_handle = product.type | handleize %}
 
-{% if product.metafields.products.related_collection.collection_handle != blank %}
-  {% assign current_collection_handle = product.metafields.products.related_collection.collection_handle %}
+{% if product.metafields.collection.related_collection_handle != blank %}
+  {% assign current_collection_handle = product.metafields.collection.related_collection_handle %}
 {% elsif collections[current_handle].products_count >= 1 %}
   {% assign current_collection_handle = current_handle %}
 {% endif %}
@@ -34,7 +34,7 @@
       </li>
     </ul>
 
-    <div class="col-12 slider-one" id="product-slider-related-one">
+    <div class="col-12 slider-one" data-handle="{{ current_collection_handle }}" id="product-slider-related-one">
       <div class="slider-one-wrap">
         <div class="slider-one-content" id="product-slider-related-content-one">
 

@@ -1,0 +1,43 @@
+{% assign flavors = product.metafields.custom.blender_flavors %}
+
+<section class="custom-blender-flavors">
+  <div class="row">
+    <div class="col-md-6 offset-md-3 col-sm-8 offset-sm-2 row-center">
+      <h2 class="f-70">{{ flavors.heading }}</h2>
+      {{ flavors.copy }}
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-4 offset-md-1">
+
+      <ul class="accordion-list">
+        {% for acc in flavors.accordions %}
+
+          <li>
+              <a class="accordion-link" href="#">
+                <h3>{{ acc.heading }}</h3>
+                {% include 'icon-green-plus' %}
+              </a>
+              <div class="accordion-content">
+                <div class="inner-wrapper">
+                  {{ acc.copy }}
+                </div>
+              </div>
+          </li>
+          
+        {% endfor %}
+      </ul>
+
+    </div>
+    <div class="col-md-5 offset-md-1">
+      <figure>
+        <img 
+          src="{{ flavors.image | file_img_url: '576x' | width }}"
+          srcset="{{ flavors.image | file_img_url: '1440x' | width }} 1440w,
+          {{ flavors.image | file_img_url: '1440x' | width }} 6000w,
+          {{ flavors.image | file_img_url: '800x' | width }} 800w"
+          alt="{{ flavors.image | alt }}" loading="lazy">
+      </figure
+    </div>
+  </div>
+</section>

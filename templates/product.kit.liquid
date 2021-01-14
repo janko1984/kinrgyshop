@@ -1,61 +1,7 @@
+
 {% assign current_variant = product.selected_or_first_available_variant %}
 
-{% comment %} If tag matches one of the default size guides {% endcomment %}
-{% assign size_guide_image = false %}
 
-{% comment %} Start Size Guide {% endcomment %}
-  {% comment %} Crop Tank {% endcomment %}
-  {% if product.tags contains "Bra" or
-        product.tags contains "bra" or
-        product.tags contains "Tank" or
-        product.tags contains "tank"
-  %}
-    {% assign size_guide_image = true %}
-
-  {% comment %} Crop Sweatshirt  {% endcomment %}
-  {% elsif product.tags contains "Crop" or
-        product.tags contains "crop" and
-        product.tags contains "Sweatshirt" or
-        product.tags contains "sweatshirt"
-  %}
-    {% assign size_guide_image = true %}
-
-  {% comment %} Long Sleeve {% endcomment %}
-  {% elsif product.tags contains "Long Sleeve" or 
-        product.tags contains "Long sleeve" or 
-        product.tags contains "long sleeve" 
-  %}
-    {% assign size_guide_image = true %}
-
-  {% comment %} Crop Tank {% endcomment %}
-  {% elsif product.tags contains "Crop" or 
-        product.tags contains "crop" and
-        product.tags contains "Tank" or
-        product.tags contains "tank"
-  %}
-    {% assign size_guide_image = true %}
-
-  {% comment %} Crop Hoodie {% endcomment %}
-  {% elsif product.tags contains "Hoodie" or 
-        product.tags contains "hoodie" and
-        product.tags contains "Crop" or 
-        product.tags contains "crop"
-  %}
-    {% assign size_guide_image = true %}
-
-  {% comment %} Hoodie {% endcomment %}
-  {% elsif product.tags contains "Hoodie" or 
-        product.tags contains "hoodie"
-  %}
-    {% assign size_guide_image = true %}
-
-  {% comment %} Sweatshirt {% endcomment %}
-  {% elsif product.tags contains "Sweatshirt" or 
-        product.tags contains "sweatshirt"
-  %}
-    {% assign size_guide_image = true %}
-  {% endif %}
-{% comment %} End Size Guide {% endcomment %}
 
 {% comment %} SVG ICON - top left of page {% endcomment %}
 {% include 'icon-product' %}
@@ -116,17 +62,6 @@
                       {% endif %}
                     </div>
                   </li>
-
-                  {% if option.name == 'Size'  %}
-                    <li class="size-guide">
-                    {% if product.metafields.products.size_guide_modal_id != blank %}
-                        <p><a href="#" class="inline-single js-modal-button" target="_self" data-modal-id="general-modal" data-content="{{ product.metafields.products.size_guide_modal_id }}">Size Guide</a></p>
-                      {% elsif size_guide_image != false %}
-                        <p><a href="#" class="inline-single js-modal-button" target="_self" data-modal-id="general-modal" data-content="size-guide-content-default">Size Guide</a></p>
-                      {% endif %}
-                      
-                    </li>
-                  {% endif %}
               </ul>
             {%endif%}
 
@@ -192,27 +127,17 @@
       </div>
 </section>
 
+{% comment %} If Vejo Blender {% endcomment %}
+{% if product.id == 6154786373825 %}
+  {% include 'custom-blender-flavors' %}
+{% endif %}
 
-{% comment %} Material and care  {% endcomment %}
-{% if product.metafields.products.material_care != null %}
-  {% section 'material-and-care-variable' %}
-{% elsif product.metafields.products.material_care  == null %}
-  {% section 'material-and-care-default' %}
+{% comment %}  If Kinrgy Kit {% endcomment %}
+{% if product.id == 6216379269313 %}
+  {% include 'custom-zig-zag' kit_information: product.metafields.custom.kit_informaton, kit_list: 'kit' %}  
+  {% include 'bonus_gift' bonus: product.metafields.custom.bonus_gift %}  
 {% endif %}
 
 
 {% comment %} Related Collections {% endcomment %}
 {% section 'product-collection-slider' %}
-
-{% comment %} Modal Content - Metafields {% endcomment %}
-<div class="modal-content-wrapper" id="modal-content-wrapper-product">
-  
-  {% if product.metafields.products.size_guide_modal_id != blank %}
-    <div id="{{ product.metafields.products.size_guide_modal_id }}">
-        {{ product.metafields.products.size_guide }}
-    </div>
-  {% else %}
-    {% section 'default-size-guide' %}
-  {% endif %}
-
-</div>

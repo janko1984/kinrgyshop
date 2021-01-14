@@ -66,12 +66,12 @@ body.page main,
 body.page-faq main,
 body.page-legal main,
 body.product main,
+body.product-kit main,
 body.search main,
 body.collection main {
   padding-top: 142px;
 }
 
-// .container-fluid,
 .container,
 #shopify-section-header {
   padding-left: 40px;
@@ -119,6 +119,7 @@ body.collection main {
 footer .inline-single,
 .main-header .site-nav__child-link .site-nav__label,
 body.product .inline-single,
+body.product-kit .inline-single,
 .menu-plain a,
 .inline-single {
   @include transition(400ms all $cubic);
@@ -136,11 +137,11 @@ body.product .inline-single,
     @include transform(scaleX(0));
   }
 
-  &:hover {
-    &::before {
-      @include transform(scaleX(1));
-    }
-  }
+  // &:hover {
+  //   &::before {
+  //     @include transform(scaleX(1));
+  //   }
+  // }
 }
 
 .inline-single {
@@ -155,7 +156,6 @@ body.product .inline-single,
 // CTAs
 // *************************
 .cta {
-  // padding-top: 120px;
   padding-top: 60px;
   padding-bottom: 60px;
   position: relative;
@@ -182,7 +182,6 @@ body.product .inline-single,
   padding-top: 120px;
 
   figure {
-    // padding-bottom: 101%;
     padding-bottom: 110.5%;
   }
 
@@ -384,7 +383,6 @@ body.search {
 // MODAL
 // **************
 #mobile-nav,
-// #shopify-section-mobile-nav,
 #SearchDrawer,
 #shopify-section-general-modal {
   position: fixed;
@@ -461,29 +459,18 @@ body.search {
 
   .content-col {
     background: $white;
-    // max-width: 83.33333%;
     width: 100%;
-    // margin-left: auto;
-    // margin-right: auto;
     padding: 30px;
     overflow-y: scroll;
     text-align: left;
     max-height: 80vh;
     position: relative;
 
-    // @include flexbox();
-    // @include justify-content(center);
-
     .row {
       margin-left: 0;
       margin-right: 0;
     }
   }
-
-  // .modal-content {
-  //   background: $color-white;
-  //   padding: 30px;
-  // }
 
   .close-row {
     position: absolute;
@@ -593,7 +580,6 @@ body.search {
 }
 
 .modal-content-wrapper {
-// .modal-content {
   display: none;
   visibility: hidden;
 }
@@ -645,7 +631,6 @@ body.index .collection-slider {
 
   .slide .row {
     padding-left: 0;
-    // padding-right: 0;
   }
 }
 
@@ -657,6 +642,33 @@ body.search {
     width: 75%;
     float: none;
     margin: auto;
+  }
+}
+
+@media screen and (min-width: 1025px) {
+  footer .inline-single,
+  .main-header .site-nav__child-link .site-nav__label,
+  body.product .inline-single,
+  body.product-kit .inline-single,
+  .menu-plain a,
+  .inline-single {
+
+    &:hover {
+      &::before {
+        @include transform(scaleX(1));
+      }
+    }
+  }
+
+  .sidebar-menu {
+    a {
+      &:hover svg,
+      &[aria-current="page"] svg {
+        opacity: 1;
+  
+        @include transform(translateX(0));
+      }
+    }
   }
 }
 
@@ -707,7 +719,6 @@ body.search {
 
   a {
     font-size: 0.875em;
-    // line-height: 3.714em;
     line-height: 1.5em;
     padding: 15.5px 0;
     font-family: $kb;
@@ -720,12 +731,12 @@ body.search {
 
     @include transition(400ms all $cubic);
 
-    &:hover svg,
-    &[aria-current="page"] svg {
-      opacity: 1;
+    // &:hover svg,
+    // &[aria-current="page"] svg {
+    //   opacity: 1;
 
-      @include transform(translateX(0));
-    }
+    //   @include transform(translateX(0));
+    // }
   }
 
   li:last-of-type a {
@@ -800,8 +811,8 @@ body.page-legal {
     @include transition(400ms all $cubic);
   }
 
-  a {
-    font-size: 0.88889em;
+  a.accordion-link {
+    font-size: 16px;
     line-height: 1.25em;
     color: $color-dark;
     font-family: $kb;
@@ -817,14 +828,19 @@ body.page-legal {
       content: counter(faq-count) ".";
       counter-increment: faq-count;
       font-size: 16px;
-      line-height: 20px;
+      // line-height: 20px;
+      line-height: 1.25em;
       font-family: $kb;
       color: $color-dark;
-      // margin-right: 16px;
       left: 31px;
-      top: 18px;
+      // top: 18px;
+      top: 21px;
 
       @include transition(400ms all $cubic);
+    }
+
+    svg polygon {
+      @include transform(scaleX(1) rotate(0deg));
     }
 
     &:hover svg {
@@ -1145,7 +1161,7 @@ body.page-legal {
     }
   }
 
-  .accordion-list a {
+  .accordion-list a.accordion-link {
     // padding: 21px 50px 21px 30px;
     padding: 21px 50px 21px 50px;
 
@@ -1169,8 +1185,6 @@ body.page-legal {
   .bws-modal .content-col-wrapper,
   #shopify-section-general-modal .content-col-wrapper {
     max-width: 83.3333333vw;
-    // margin-left: auto;
-    // margin-left: auto;
   }
 
   body.search .collection-header .no-results,
@@ -1201,6 +1215,7 @@ body.page-legal {
   }
 
   body.page main, 
+  body.product-kit main, 
   body.product main, 
   body.search main, 
   body.collection main {

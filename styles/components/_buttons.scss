@@ -119,7 +119,8 @@ body.cart .regular-button.no-border {
   @include align-items(center);
 }
 
-body.product {
+body.product,
+body.product-kit {
   .regular-button {
     line-height: 60px;
     height: 60px;
@@ -131,6 +132,27 @@ body.product {
       position: relative;
       z-index: 2;
     }
+  }
+}
+
+.accordion-list .accordion-content a,
+body.product .material-and-care a {
+  position: relative;
+  color: $color-dark;
+
+  @include inline-flex();
+
+  &::before {
+    position: absolute;
+    content: "";
+    width: 100%;
+    background: $color-dark;
+    left: 0;
+    bottom: 0;
+    height: 1px;
+    transform-origin: right;
+
+    @include transition(400ms all $cubic);
   }
 }
 
@@ -151,5 +173,12 @@ body.product {
 
   body.cart .regular-button.no-border:hover::before {
     background: #dfd6d6;
+  }
+
+  .accordion-list .accordion-content a,
+  body.product .material-and-care a {
+    &:hover::before {
+      @include transform(scaleX(0));
+    }
   }
 }

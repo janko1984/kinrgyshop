@@ -1,0 +1,140 @@
+{% assign size_guide_type = '' %}
+
+{% comment %} Crop Tank {% endcomment %}
+{% if product.tags contains "Bra" or
+      product.tags contains "bra" or
+      product.tags contains "Tank" or
+      product.tags contains "tank"
+%}
+  {% assign size_guide_type = section.settings.default_size_guide_crop_tank %}
+
+
+{% comment %} Crop Sweatshirt  {% endcomment %}
+{% elsif product.tags contains "Crop" or
+      product.tags contains "crop" and
+      product.tags contains "Sweatshirt" or
+      product.tags contains "sweatshirt"
+%}
+  {% assign size_guide_type = section.settings.default_size_guide_crop_crew %}
+
+
+{% comment %} Long Sleeve {% endcomment %}
+{% elsif product.tags contains "Long Sleeve" or 
+      product.tags contains "Long sleeve" or 
+      product.tags contains "long sleeve" 
+%}
+  {% assign size_guide_type = section.settings.default_size_guide_long_sleeves %}
+
+
+{% comment %} Crop Tank {% endcomment %}
+{% elsif product.tags contains "Crop" or 
+      product.tags contains "crop" and
+      product.tags contains "Tank" or
+      product.tags contains "tank"
+%}
+  {% assign size_guide_type = section.settings.default_size_guide_crop_tank %}
+
+
+{% comment %} Crop Hoodie {% endcomment %}
+{% elsif product.tags contains "Hoodie" or 
+      product.tags contains "hoodie" and
+      product.tags contains "Crop" or 
+      product.tags contains "crop"
+%}
+  {% assign size_guide_type = section.settings.default_size_guide_crop_hoddie %}
+
+
+{% comment %} Hoodie {% endcomment %}
+{% elsif product.tags contains "Hoodie" or 
+      product.tags contains "hoodie"
+%}
+  {% assign size_guide_type = section.settings.default_size_guide_hoodie %}
+
+
+{% comment %} Sweatshirt {% endcomment %}
+{% elsif product.tags contains "Sweatshirt" or 
+      product.tags contains "sweatshirt"
+%}
+  {% assign size_guide_type = section.settings.default_size_guide_hoodie %}
+{% endif %}
+
+<div id="size-guide-content-default">
+  <div class="modal-content content-col col-md-8 col-sm-10" data-content-width="col-md-8 col-sm-10 default-size-guide">
+    <div class="row" data-tag="{{ size_guide_type }}">
+      <div class="col-md-12 col-sm-12 row-center">
+
+        <img 
+          src="{{ size_guide_type | img_url: '576x' | width }}"
+          srcset="{{ size_guide_type | img_url: '1440x' | width }} 1440w,
+          {{ size_guide_type | img_url: '1440x' | width }} 6000w,
+          {{ size_guide_type | img_url: '800x' | width }} 800w"
+          alt="{{ size_guide_type | alt }}" loading="lazy">
+      </div>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+  {
+    "name": "Default Size Guide Images",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Crew"
+      },
+      {
+        "type": "image_picker",
+        "id": "default_size_guide_crew",
+        "label": "Crew Size"
+      },
+      {
+        "type": "image_picker",
+        "id": "default_size_guide_crop_crew",
+        "label": "Crop Crew"
+      },
+      {
+        "type": "header",
+        "content": "Hoodies"
+      },
+      {
+        "type": "image_picker",
+        "id": "default_size_guide_hoddie",
+        "label": "Hoddies"
+      },
+      {
+        "type": "image_picker",
+        "id": "default_size_guide_crop_hoddie",
+        "label": "Crop Hoddie"
+      },
+      {
+        "type": "header",
+        "content": "Tanks"
+      },
+      {
+        "type": "image_picker",
+        "id": "default_size_guide_tanks",
+        "label": "Tank Tops"
+      },
+      {
+        "type": "image_picker",
+        "id": "default_size_guide_crop_tank",
+        "label": "Crop Tank"
+      },
+      {
+        "type": "header",
+        "content": "Long Sleeves"
+      },
+      {
+        "type": "image_picker",
+        "id": "default_size_guide_long_sleeves",
+        "label": "Long Sleeves"
+      }
+    ]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

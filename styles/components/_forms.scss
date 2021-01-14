@@ -91,7 +91,8 @@ input::moz-placeholder {
   }
 }
 
-body.product {
+body.product,
+body.product-kit {
   select {
     min-height: 40px;
     line-height: 40px;
@@ -99,7 +100,7 @@ body.product {
     border-radius: 3px;
     border: 1px solid $color-dark;
     min-width: 74px;
-    background: url('https://cdn.shopify.com/s/files/1/0522/1918/3297/files/icon-select-down.svg?v=1608694525') no-repeat center center;
+    background: $color-white url('https://cdn.shopify.com/s/files/1/0522/1918/3297/files/icon-select-down.svg?v=1608694525') no-repeat center center;
     background-size:  6px 5px;
     background-position: 90% 16px;
     appearance: none;

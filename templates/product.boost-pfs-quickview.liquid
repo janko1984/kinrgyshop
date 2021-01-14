@@ -232,7 +232,16 @@
                       {%- assign variant_label_state = false -%}
                     {%- endunless -%}
                   {%- endif -%}
-                  <div data-value="{{ value | escape }}" class="boost-pfs-swatch-element {% if is_color %} boost-pfs-quickview-option-color {% endif %} {{ value | handle }} {% if variant.available %}available{% else %}boost-pfs-soldout{% endif %}">
+                
+                  {%- assign variant_available = false -%}
+                  {% for curr_variant in product.variants %}
+                  {%- if curr_variant[option_id] == value and curr_variant.available -%}
+                  {%- assign variant_available = true -%}
+                  {%- break -%}
+                  {%- endif -%}
+                  {% endfor %}
+                
+                  <div data-value="{{ value | escape }}" class="boost-pfs-swatch-element {% if is_color %} boost-pfs-quickview-option-color {% endif %} {{ value | handle }} {% if variant_available %}available{% else %}boost-pfs-soldout{% endif %}">
                     {% if is_color %}
                     <div class="boost-pfs-quickview-tooltip">{{ value }}</div>
                     {% endif %}

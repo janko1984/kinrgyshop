@@ -1,56 +1,175 @@
-<section class="container material-and-care" id="product-material-and-care">
+<section class="container material-and-care default-material-and-care" id="product-material-and-care">
   <div class="row">
     <div class="col-md-4 offset-md-1 col-sm-8">
-      <h3>Material &amp; care Default</h3>
-      <p>Morbi molestie velit quis dui iaculis molestie. Integer eleifend pharetra condimentum. Nunc egestas ante ac sagittis gravida. Suspendisse a justo nisi</p>
+      <h3>{{ section.settings.mac_heading }}</h3>
+      <p>{{ section.settings.mac_copy }}</p>
     </div>
     
     <div class="col-md-4 offset-md-2 col-sm-8">
       <ul class="care-icons js-tooltips">
 
-        <li>
-          <div class="tooltip-icon">
-            {% include 'icon-warm-wash' %}
-          </div>
-          <p class="tooltip-text">Machine wash warm, inside out, with like colors</p>
-        </li>  
+        {% if section.settings.mac_warm_wash_check == true %}
+          <li>
+            <div class="tooltip-icon">
+              {% include 'icon-warm-wash' %}
+            </div>
+            <p class="tooltip-text">{{ section.settings.mac_warm_wash_message }}</p>
+          </li>  
+        {% endif %}
 
-        <li>
-          <div class="tooltip-icon">
-            {% include 'icon-non-chlorine-bleach' %}
-          </div>
-          <p class="tooltip-text">Only non-chlorine bleach</p>
-        </li>  
+        {% if section.settings.mac_no_colorine_bleach_check == true %}
+          <li>
+            <div class="tooltip-icon">
+              {% include 'icon-non-chlorine-bleach' %}
+            </div>
+            <p class="tooltip-text">{{ section.settings.mac_no_colorine_bleach_message }}</p>
+          </li>  
+        {% endif %}
 
-        <li>
-          <div class="tooltip-icon">
-            {% include 'icon-dry-low' %}
-          </div>
-          <p class="tooltip-text">Tumble dry low</p>
-        </li>  
-        
-        <li>
-          <div class="tooltip-icon">
-            {% include 'icon-warm-iron' %}
-          </div>
-          <p class="tooltip-text">Medium iron</p>
-        </li>  
-                  
-        <li>
-          <div class="tooltip-icon">
-            {% include 'icon-do-not-iron' %}
-          </div>
-          <p class="tooltip-text">Do not iron decoration</p>
-        </li>   
+        {% if section.settings.mac_tumble_dry_low_check == true %}
+          <li>
+            <div class="tooltip-icon">
+              {% include 'icon-dry-low' %}
+            </div>
+            <p class="tooltip-text">{{ section.settings.mac_tumble_dry_low_message }}</p>
+          </li>  
+        {% endif %}
+         
+        {% if section.settings.mac_medium_iron_check == true %}
+          <li>
+            <div class="tooltip-icon">
+              {% include 'icon-warm-iron' %}
+            </div>
+            <p class="tooltip-text">{{ section.settings.mac_medium_iron_message }}</p>
+          </li>  
+        {% endif %}
 
-        <li>
-          <div class="tooltip-icon">
-            {% include 'icon-do-not-dry-clean' %}
-          </div>
-          <p class="tooltip-text">Do not dry clean</p>
-        </li>  
+        {% if section.settings.mac_do_not_iron_decoration_check == true %} 
+          <li>
+            <div class="tooltip-icon">
+              {% include 'icon-do-not-iron' %}
+            </div>
+            <p class="tooltip-text">{{ section.settings.mac_do_not_iron_decoration_message }}</p>
+          </li>   
+        {% endif %}
+
+        {% if section.settings.mac_do_not_dry_clean_check == true %}
+          <li>
+            <div class="tooltip-icon">
+              {% include 'icon-do-not-dry-clean' %}
+            </div>
+            <p class="tooltip-text">{{ section.settings.mac_do_not_dry_clean_message }}</p>
+          </li> 
+        {% endif %}
 
       </ul>
     </div>
   </div>
 </section>
+
+
+{% schema %}
+  {
+    "name": "Material & Care Default",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Title and Copy"
+      },
+      {
+        "id": "mac_heading",
+        "type": "text",
+        "label": "Heading",
+        "default": "Material & Care"
+      },
+      {
+        "id": "mac_copy",
+        "type": "html",
+        "label": "Copy",
+        "default": "<p>Morbi molestie velit quis dui iaculis molestie. Integer eleifend pharetra condimentum. Nunc egestas ante ac sagittis gravida. Suspendisse a justo nisi</p>"
+      },
+      {
+        "type": "header",
+        "content": "Icons"
+      },
+      {
+        "type": "checkbox",
+        "id": "mac_warm_wash_check",
+        "label": "Warm Wash",
+        "default": true
+      },
+      {
+        "type": "text",
+        "id": "mac_warm_wash_message",
+        "label": "Warm Wash Message",
+        "default": "Machine wash warm, inside out, with like colors"
+      },
+      {
+        "type": "checkbox",
+        "id": "mac_no_colorine_bleach_check",
+        "label": "Non chlorine bleach",
+        "default": true
+      },
+      {
+        "type": "text",
+        "id": "mac_no_colorine_bleach_message",
+        "label": "Warm Wash message",
+        "default": "Only non-chlorine bleach"
+      },
+      {
+        "type": "checkbox",
+        "id": "mac_tumble_dry_low_check",
+        "label": "tumble_dry_low",
+        "default": true
+      },
+      {
+        "type": "text",
+        "id": "mac_tumble_dry_low_message",
+        "label": "Tumbe Dry message",
+        "default": "Tumble dry low"
+      },
+      {
+        "type": "checkbox",
+        "id": "mac_medium_iron_check",
+        "label": "Medium Iron",
+        "default": true
+      },
+      {
+        "type": "text",
+        "id": "mac_medium_iron_message",
+        "label": "Medium iron message",
+        "default": "Medium iron"
+      },
+      {
+        "type": "checkbox",
+        "id": "mac_dont_iron_check",
+        "label": "Don't iron decoration",
+        "default": true
+      },
+      {
+        "type": "text",
+        "id": "mac_do_not_iron_decoration_message",
+        "label": "Do not iron decoration message",
+        "default": "Do not iron decoration"
+      },
+      {
+        "type": "checkbox",
+        "id": "mac_do_not_dry_clean_check",
+        "label": "Do not dry clean",
+        "default": true
+      },
+      {
+        "type": "text",
+        "id": "mac_do_not_dry_clean_message",
+        "label": "Do not dry clean message",
+        "default": "Do not dry clean"
+      }
+    ]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

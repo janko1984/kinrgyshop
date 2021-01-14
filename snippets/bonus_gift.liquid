@@ -1,0 +1,24 @@
+{% assign gift = bonus %}
+
+<section class="custom-bonus-gift container">
+  <div class="row">
+    <div class="col-md-10 col-sm-10">
+      <p class="tag">{{ gift.tag }}</p>
+      <h2>{{ gift.heading }}</h2>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-4 col-sm-8">
+      <figure>
+        <img 
+          src="{{ gift.image | file_img_url: '576x' | width }}"
+          srcset="{{ gift.image | file_img_url: '1440x' | width }} 1440w,
+          {{ gift.image | file_img_url: '1440x' | width }} 6000w,
+          {{ gift.image | file_img_url: '800x' | width }} 800w"
+          alt="{{ gift.image | alt }}" loading="lazy">
+      </figure>
+      {{ gift.copy }}
+    </div>
+  </div>
+</section>

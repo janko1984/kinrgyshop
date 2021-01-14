@@ -1,0 +1,42 @@
+<ul class="accordion-list">
+  {% for block in section.blocks %}
+
+    <li>
+        <a class="accordion-link" href="#">
+          {{ block.settings.accordion_question }}
+          {% include 'icon-green-plus' %}
+        </a>
+        <div class="accordion-content">
+          <div class="inner-wrapper">
+            {{ block.settings.accordion_content }}
+          </div>
+        </div>
+    </li>
+    
+  {% endfor %}
+</ul>
+
+{% schema %}
+{
+  "blocks": [
+    {
+      "type": "section",
+      "name": "Accordion",
+      "settings": [
+        {
+          "id": "accordion_question",
+          "type": "text",
+          "label": "Question",
+          "default": "Question"
+        },
+        {
+          "id": "accordion_content",
+          "type": "html",
+          "label": "Content",
+          "default": "<p>Content</p>"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

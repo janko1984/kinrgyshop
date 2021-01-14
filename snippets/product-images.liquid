@@ -1,0 +1,87 @@
+{% comment %} 
+  Product Images
+    - Single image
+    - Multiple images
+    - Mobile slider 
+{% endcomment %}
+
+{% if product.images.size > 1 %}
+
+  <ul class="desktop-product-image-list">
+    {% for image in product.images %}
+      <li>
+        <figure>
+          <img 
+            src="{{ image.src | img_url: '576x' | width }}"
+            srcset="{{ image.src | img_url: '1440x' | width }} 1440w,
+            {{ image.src | img_url: '1440x' | width }} 2000w,
+            {{ image.src | img_url: '800x' | width }} 800w"
+            alt="{{ image.alt | escape }}" loading="lazy">
+        </figure>
+      </li>
+    {% endfor %}
+  </ul>
+
+  {% comment %} Mobile Product images 1  {% endcomment %}
+  <div class="mobile-image-slider">
+    <div class="slider-row-wrapper">
+      <div class="slider-one-row" id="slider-product-row-one">
+          <div class="slider-one" id="product-slider-one">
+            <div class="slider-one-wrap">
+              <div class="slider-one-content" id="product-images-one">
+
+              {% for image in product.images %}
+
+                    <div class="g-10 slide" data-number="{{ forloop.index0 }}">
+                      <div class="row">
+                        <figure>
+                          <img 
+                            src="{{ image.src | img_url: '576x' | width }}"
+                            srcset="{{ image.src | img_url: '1440x' | width }} 1440w,
+                            {{ image.src | img_url: '1440x' | width }} 6000w,
+                            {{ image.src | img_url: '800x' | width }} 800w"
+                            alt="{{ image.src | alt }}">
+                        </figure>
+                      </div>
+                    </div>
+
+
+                {% endfor %}
+            
+            <div class="box"></div>
+          </div>
+          </div>
+          <ul class="slider-count">
+            <li class="current">
+              <p class="small">01</p>
+            </li>
+            <li class="sperator">
+              <p class="small"> - </p>
+            </li>
+            <li class="total">
+              <p class="small">01</p>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+      
+{% else %}
+
+    <div class="row single-image">
+
+      {% for image in product.images %}
+        <figure class="desktop-product-single-image">
+            <img 
+              src="{{ image.src | img_url: '576x' | width }}"
+              srcset="{{ image.src | img_url: '1440x' | width }} 1440w,
+              {{ image.src | img_url: '1440x' | width }} 2000w,
+              {{ image.src | img_url: '800x' | width }} 800w"
+              alt="{{ image.alt | escape }}" loading="lazy">
+          </figure>
+      {% endfor %}
+
+    </div>
+
+{% endif %}

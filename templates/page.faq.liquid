@@ -31,7 +31,9 @@
       </div>
       <div class="row legal-content">
 
-        {% if page.metafields.page.accordion_list != blank %}
+        {% section 'accordion-list' %}
+
+        {% comment %} {% if page.metafields.page.accordion_list != blank %}
 
           <ul class="accordion-list">
             {% for item in page.metafields.page.accordion_list.accordions %}
@@ -50,7 +52,7 @@
             {% endfor %}
           </ul>
 
-        {% endif %}
+        {% endif %} {% endcomment %}
 
       </div>
     </div>

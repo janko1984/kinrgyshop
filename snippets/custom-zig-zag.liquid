@@ -1,0 +1,69 @@
+{% comment %} Metafiled Var {% endcomment %}
+{% assign kit_json = kit_information %}
+{% assign kit_name = kit_list %}
+
+{% comment %} Left Column Classes {% endcomment %}
+{% assign left_column_one_classes = "col-lg-6 col-md-6 col-sm-8" %}
+{% assign left_column_two_classes = "col-lg-4 col-md-4 col-sm-8 offset-lg-1 offset-md-1" %}
+
+{% comment %} Right Column Classes {% endcomment %}
+{% assign right_column_one_classes = "col-lg-4 col-md-4 col-sm-8 offset-lg-1 offset-md-1" %}
+{% assign right_column_two_classes = "col-lg-6 col-md-6 col-sm-8 offset-lg-1 offset-md-1" %}
+
+<section class="custom-kit-information container">
+  
+  {% for kit in kit_information[kit_name] %}
+  
+    {% comment %} Even or odd - for column classes {% endcomment %}
+    {% assign mod = forloop.index | modulo: 2 %}
+
+      {% if mod == 0 %}
+        <div class="row if">
+
+          <div class="{{ left_column_one_classes }}">
+            <figure>
+              <img 
+                src="{{ kit.image | file_img_url: '576x' | width }}"
+                srcset="{{ kit.image | file_img_url: '1440x' | width }} 1440w,
+                {{ kit.image | file_img_url: '1440x' | width }} 6000w,
+                {{ kit.image | file_img_url: '800x' | width }} 800w"
+                alt="{{ kit.image | alt }}" loading="lazy">
+            </figure>
+            
+          </div>
+          
+          <div class="{{ right_column_one_classes }}">
+            <p class="tag">{{ kit.tag }}</p>
+            <h2>{{ kit.heading }}</h2>
+            <p>{{ kit.copy }}</p>
+          </div>
+
+        </div>
+
+      {% else %}
+
+        <div class="row else">
+          <div class="{{ left_column_two_classes }}">
+            <p class="tag">{{ kit.tag }}</p>
+            <h2>{{ kit.heading }}</h2>
+            <p>{{ kit.copy }}</p>
+          </div>
+
+          <div class="{{ right_column_two_classes }}">
+            <figure>
+              <img 
+                src="{{ kit.image | file_img_url: '576x' | width }}"
+                srcset="{{ kit.image | file_img_url: '1440x' | width }} 1440w,
+                {{ kit.image | file_img_url: '1440x' | width }} 6000w,
+                {{ kit.image | file_img_url: '800x' | width }} 800w"
+                alt="{{ kit.image | alt }}" loading="lazy">
+            </figure>
+          </div>
+
+        </div>
+
+      {% endif %}
+
+  {% endfor %}
+
+</section>

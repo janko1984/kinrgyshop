@@ -818,4 +818,13 @@ var boostPFSFilterConfig = {
 			}
 		}
 	}
+
+	ProductItem.prototype.beforeRender = function () {
+		if (!this.$element || this.$element.length == 0) {
+			if (!this.parent.isRender()) {
+				// On first load, select element from the DOM
+              this.$element = this.$productList.children('.boost-pfs-filter-product-item:not(.inner-cta)').eq(this.index);
+			}
+		}
+	}
 })();
