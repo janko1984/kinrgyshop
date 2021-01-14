@@ -1,5 +1,6 @@
 {% assign current_collection_handle = '' %}
 {% assign current_handle = product.type | handleize %}
+{% assign current_product_handle = product.handle | handleize %}
 
 {% if product.metafields.collection.related_collection_handle != blank %}
   {% assign current_collection_handle = product.metafields.collection.related_collection_handle %}
@@ -7,8 +8,8 @@
   {% assign current_collection_handle = current_handle %}
 {% endif %}
 
-{% if product.type == blank or collections[current_handle].products_count < 1 %}
-  {% assign current_collection_handle = 'all' %}
+{% if product.type == blank or collections[current_handle].products_count <= 1 %}
+  {% assign current_collection_handle = 'All' %}
 {% endif %}
 
 {% include 'icon-related-products-shape' %}
@@ -40,46 +41,52 @@
 
           {% for product in collections[current_collection_handle].products %}
               
-              <div class="slide" data-number="{{ forloop.index0 }}">
-                <a href="/products/{{ product.handle }}" target="_self" class="absolute-link" data-clickable="true"></a>
-                <div class="row">
+              {% comment %} Skips current product {% endcomment %}
+              {% if current_product_handle == product.handle %}
+                
+              {% else %}
+                <div class="slide" data-number="{{ forloop.index0 }}" data-ch="{{ current_handle }}" data-h="{{ product.handle }}">
+                  <a href="/products/{{ product.handle }}" target="_self" class="absolute-link" data-clickable="true"></a>
+                  <div class="row">
 
-                {% if product.compare_at_price_max > product.price %}
-                  <div class="sale">
-                    <span class="tag">
-                      -{{ product.compare_at_price_max | minus: product.price | times: 1000.0 | divided_by: product.compare_at_price_max | money_without_currency | times: 10 | remove: '.0'}}%
-                    </span>
-                  </div>
-                {% endif %}
-
-                 <figure>
-                    <img 
-                      src="{{ product.featured_image | img_url: '576x' | width }}"
-                      srcset="{{ product.featured_image | img_url: '1440x' | width }} 1440w,
-                      {{ product.featured_image | img_url: '1440x' | width }} 2000w,
-                      {{ product.featured_image | img_url: '800x' | width }} 800w"
-                      alt="{{ product.featured_image.alt | escape }}">
-                  </figure>
-                  
-                  <div class="copy">
-                    <p class="product-title">{{ product.title }}</p>
-                    <div class="product-price">
-                      <span>{{ product.price | money | remove: '.00' }}</span>
-                      {% if product.compare_at_price_max > product.price %}
-                          <span class="sale-wrap">
-                            <s>{{ product.compare_at_price_max | money | remove: '.0'}}</s>
-                          </span>
-                      {% endif %}
-
-                      {% if product.available == false %}
-                        <span class="soldout boost-pfs-filter-label sold-out tag">SOLD OUT</span>
-                      {% endif %}
-
+                  {% if product.compare_at_price_max > product.price %}
+                    <div class="sale">
+                      <span class="tag">
+                        -{{ product.compare_at_price_max | minus: product.price | times: 1000.0 | divided_by: product.compare_at_price_max | money_without_currency | times: 10 | remove: '.0'}}%
+                      </span>
                     </div>
-                </div>
+                  {% endif %}
 
+                  <figure>
+                      <img 
+                        src="{{ product.featured_image | img_url: '576x' | width }}"
+                        srcset="{{ product.featured_image | img_url: '1440x' | width }} 1440w,
+                        {{ product.featured_image | img_url: '1440x' | width }} 2000w,
+                        {{ product.featured_image | img_url: '800x' | width }} 800w"
+                        alt="{{ product.featured_image.alt | escape }}">
+                    </figure>
+                    
+                    <div class="copy">
+                      <p class="product-title">{{ product.title }}</p>
+                      <div class="product-price">
+                        <span>{{ product.price | money | remove: '.00' }}</span>
+                        {% if product.compare_at_price_max > product.price %}
+                            <span class="sale-wrap">
+                              <s>{{ product.compare_at_price_max | money | remove: '.0'}}</s>
+                            </span>
+                        {% endif %}
+
+                        {% if product.available == false %}
+                          <span class="soldout boost-pfs-filter-label sold-out tag">SOLD OUT</span>
+                        {% endif %}
+
+                      </div>
+                  </div>
+
+                  </div>
                 </div>
-              </div>
+            {% endif %}
+
           {% endfor %}
 
           <div class="box"></div>

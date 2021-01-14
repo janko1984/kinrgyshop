@@ -1,0 +1,32 @@
+{% assign membership = about_membership %}
+
+<section class="container custom-membership-about">
+  <div class="row">
+    <div class="col-md-8 col-sm-10">
+      <h2 class="f-70">{{ membership.heading }}</h2>
+      <p class="col-md-8 large">{{ membership.copy }}</p>
+    </div>
+  </div>
+  <div class="row images-row">
+    <div class="col-md-6 col-sm-6 col-xs-6">
+      <figure>
+        <img 
+          src="{{ membership.image_one | file_img_url: '576x' | width }}"
+          srcset="{{ membership.image_one | file_img_url: '1440x' | width }} 1440w,
+          {{ membership.image_one | file_img_url: '1440x' | width }} 6000w,
+          {{ membership.image_one | file_img_url: '800x' | width }} 800w"
+          alt="{{ membership.image_one | alt }}" loading="lazy">
+      </figure>
+    </div>
+    <div class="col-md-6 col-sm-6 col-xs-6">
+      <figure>
+        <img 
+          src="{{ membership.image_two | file_img_url: '576x' | width }}"
+          srcset="{{ membership.image_two | file_img_url: '1440x' | width }} 1440w,
+          {{ membership.image_two | file_img_url: '1440x' | width }} 6000w,
+          {{ membership.image_two | file_img_url: '800x' | width }} 800w"
+          alt="{{ membership.image_two | alt }}" loading="lazy">
+      </figure>
+    </div>
+  </div>
+</section>

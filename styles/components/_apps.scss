@@ -174,6 +174,7 @@ body {
 }
 
 body.product,
+body.product-membership,
 body.product-kit {
   section .swatch.swatch-color .header {
     @include inline-flex();
@@ -1376,6 +1377,14 @@ section.quick-view .swatch-element.one-size label,
     padding-bottom: 100vh;
   }
 
+  h1 + p {
+    margin-top: 10px;
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+  }
+
   .row {
     min-height: 100vh;
   }
@@ -1548,6 +1557,7 @@ section.quick-view .swatch-element.one-size label,
 
 body.product .collection-slider,
 body.product-kit .collection-slider,
+body.product-membership .collection-slider,
 .collection-slider {
   padding-top: 144px;
   // padding-bottom: 121px;
@@ -1600,12 +1610,14 @@ body.product-kit .collection-slider,
 
   figure {
     margin-bottom: 12px;
-    padding-bottom: 127%;
+    // padding-bottom: 127%;
+    padding-bottom: 149%;
     width: 100%;
     overflow: hidden;
     position: relative;
     // width: calc(100% - 20px);
     width: 100%;
+    border: 1px solid rgba(28, 30, 32, 0.15);
   }
 
   .row-center h2 {
@@ -2377,10 +2389,13 @@ button.boost-pfs-filter-clear {
 @media screen and (min-width: 1025px) {
   body.product .collection-slider,
   body.product-kit .collection-slider,
+  body.product-membership .collection-slider,
   .collection-slider {
     .slide,
     .slide .row {
-      max-width: 460px;
+      // max-width: 460px;
+      // max-width: 451px;
+      max-width: 459px;
     }
 
     .slide:hover img {
@@ -2400,6 +2415,7 @@ button.boost-pfs-filter-clear {
 @media screen and (max-width: 1024px) and (min-width: 769px) {
   body.product .collection-slider,
   body.product-kit .collection-slider,
+  body.product-membership .collection-slider,
   .collection-slider {
     padding-top: 40px;
     padding-bottom: 0px;
@@ -2415,7 +2431,8 @@ button.boost-pfs-filter-clear {
     // }
 
     figure {
-      padding-bottom: 123%;
+      // padding-bottom: 123%;
+      padding-bottom: 148%;
     }
   }
 }
@@ -2423,6 +2440,7 @@ button.boost-pfs-filter-clear {
 @media screen and (min-width: 769px) {
   body.product .collection-slider,
   body.product-kit .collection-slider,
+  body.product-membership .collection-slider,
   .collection-slider {
     .slider-count {
       display: none;
@@ -2440,6 +2458,7 @@ button.boost-pfs-filter-clear {
 @media screen and (max-width: 768px) {
   body.product .collection-slider, 
   body.product-kit .collection-slider, 
+  body.product-membership .collection-slider, 
   .collection-slider {
     padding-top: 40px;
     padding-bottom: 0px;
@@ -2447,6 +2466,7 @@ button.boost-pfs-filter-clear {
 
   body.product #product-collection-slider .arrows,
   body.product-kit #product-collection-slider .arrows,
+  body.product-membership #product-collection-slider .arrows,
   body.index .collection-slider .arrows {
     margin-left: 20px;
     margin-right: 20px;
@@ -2456,6 +2476,7 @@ button.boost-pfs-filter-clear {
 @media screen and (max-width: 768px) and (min-width: 577px) {
   body.product .collection-slider,
   body.product-kit .collection-slider,
+  body.product-membership .collection-slider,
   .collection-slider {
     // padding-top: 40px;
     // padding-bottom: 0px;
@@ -2469,15 +2490,16 @@ button.boost-pfs-filter-clear {
       overflow: visible;
     }
 
-    figure {
-      padding-bottom: 125%;
-    }
+    // figure {
+    //   padding-bottom: 125%;
+    // }
   }
 }
 
 @media screen and (max-width: 576px) {
   body.product .collection-slider .slider-one,
   body.product-kit .collection-slider .slider-one,
+  body.product-membership .collection-slider .slider-one,
   .collection-slider {
     .slide,
     .slide .row {
@@ -2486,15 +2508,18 @@ button.boost-pfs-filter-clear {
     }
 
     figure {
-      padding-bottom: 127%;
+      // padding-bottom: 127%;
+      padding-bottom: 149%;
     }
   }
 
   body.product .collection-slider .slider-one .slider-one-content,
   body.product-kit .collection-slider .slider-one .slider-one-content,
+  body.product-membership .collection-slider .slider-one .slider-one-content,
   .collection-slider .slider-one .slider-one-content,
   body.product .collection-slider .slider-one, 
   body.product-kit .collection-slider .slider-one, 
+  body.product-membership .collection-slider .slider-one, 
   .collection-slider .slider-one {
     overflow: visible;
   }

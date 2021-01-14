@@ -1,2 +1,11 @@
-<h1>{{ 'general.404.title' | t }}</h1>
-<p>{{ 'general.404.subtext_html' | t }}</p>
+<section class="error-page">
+  <div class="row">
+    <div class="col-md-12">
+      <h1>{{ 'general.404.title' | t }}</h1>
+      <p>{{ 'general.404.subtext_html' | t }}</p>
+        <a class="button regular-button green" href="{{ routes.root_url }}" target="_self">
+          <span class="text">TO HOME</span>
+		</a>
+    </div>
+  </div>
+</section>

@@ -44,7 +44,14 @@
 
 </head>
 
-<body class="{{ template | handleize }}">
+{%if template == '404' %}
+  <body class="page-404">
+{% elsif template contains 'product' %}
+  <body class="{{ template | handleize }} product-{{ product.handle }}">
+{% else %}
+	<body class="{{ template | handleize }}">
+{% endif %}
+
   {% section 'header' %}
 
   <div data-scroll-container class="data-scroll-container page-wrap">

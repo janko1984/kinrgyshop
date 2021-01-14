@@ -1,6 +1,7 @@
 {% assign care = product.metafields.products.material_care.tooltips %}
 
 <section class="container material-and-care" id="product-material-and-care">
+<div style="display: none; visibility: hidden;">{{ care }}</div>
   <div class="row">
     <div class="col-md-4 offset-md-1 col-sm-8">
       <h3>{{ product.metafields.products.material_care.heading }}</h3>
@@ -55,6 +56,16 @@
             </li>  
           {% endif %}
 
+          {% comment %} Dry Clean {% endcomment %}
+          {% if care.do_not_dry_clean.boolean == true %}
+            <li>
+              <div class="tooltip-icon do-not-dr-clean">
+                {% include 'icon-do-not-dry-clean' %}
+              </div>
+              <p class="tooltip-text">{{ care.do_not_dry_clean.tool_tip }}</p>
+            </li>  
+          {% endif %}
+
           {% comment %} Forty Degrees {% endcomment %}
           {% if care.forty_degrees.boolean == true %}
             <li>
@@ -62,6 +73,16 @@
                 {% include 'icon-forty-degrees' %}
               </div>
               <p class="tooltip-text">{{ care.forty_degrees.tool_tip }}</p>
+            </li>  
+          {% endif %}
+
+          {% comment %} Thirty Degrees {% endcomment %}
+          {% if care.thirty_degrees.boolean == true %}
+            <li>
+            <div class="tooltip-icon thirty-degrees">
+                {% include 'icon-thirty-degrees' %}
+              </div>
+              <p class="tooltip-text">{{ care.thirty_degrees.tool_tip }}</p>
             </li>  
           {% endif %}
 
@@ -94,21 +115,21 @@
             
           {% if care.no_iron.boolean == true %}
             <li>
-              <div class="tooltip-icon">
-                {% include 'icon-warm-iron' %}
+              <div class="tooltip-icon one">
+                {% include 'icon-do-not-iron' %}
               </div>
               <p class="tooltip-text">{{ care.no_iron.tool_tip }}</p>
             </li>
           {% endif %}
 
-          {% if care.no_dry_clean.boolean == true %}
+          {% comment %} {% if care.no_dry_clean.boolean == true %}
             <li>
-              <div class="tooltip-icon">
+              <div class="tooltip-icon two">
                 {% include 'icon-do-not-iron' %}
               </div>
               <p class="tooltip-text">{{ care.no_dry_clean.tool_tip }}</p>
             </li> 
-          {% endif %} 
+          {% endif %}  {% endcomment %}
 
           {% if care.normal_dry.boolean == true %}
             <li>
@@ -130,8 +151,8 @@
 
           {% if care.line_dry.boolean == true %}
             <li>
-              <div class="tooltip-icon">
-                {% include 'icon-normal-wash' %}
+              <div class="tooltip-icon line-dry">
+                {% include 'icon-line-dry' %}
               </div>
               <p class="tooltip-text">{{ care.line_dry.tool_tip }}</p>
             </li> 

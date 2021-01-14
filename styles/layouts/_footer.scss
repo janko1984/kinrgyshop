@@ -48,6 +48,7 @@ body.page-legal footer,
 body.collection footer,
 body.search footer,
 body.product-kit footer,
+body.product-membership footer,
 body.product footer {
   position: relative;
 
@@ -121,6 +122,7 @@ body.index footer {
   body.collection footer::before, 
   body.search footer::before, 
   body.product-kit footer::before, 
+  body.product-membership footer::before, 
   body.product footer::before {
     max-width: 100%;
   }

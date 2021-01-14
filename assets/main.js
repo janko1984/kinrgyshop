@@ -11,9 +11,9 @@ window.addEventListener("DOMContentLoaded", function(){
     let contentWrap = document.querySelector('.page-wrap')
     let countentNumber = contentWrap.getBoundingClientRect().top;
 
-    if (countentNumber <= -100) {
+    if (countentNumber <= -20) {
       header.classList.add('sticked');
-    } else if (countentNumber >= -99) {
+    } else if (countentNumber >= -19) {
       header.classList.remove('sticked');
     }
     requestAnimationFrame(loop)
@@ -1530,10 +1530,15 @@ class MultiItemSlider {
   }
  }
 
- if (document.body.classList.contains('product') || document.body.classList.contains('product-kit')) {
+//  if (document.body.classList.contains('product') || document.body.classList.contains('product-kit')) {
+//   let productJS = new GeneralProduct();
+//   console.log(productJS)
+//  }
+ 
+ if (document.body.classList.contains('product') || document.body.classList.contains('product-kit') || document.body.classList.contains('product-membership')) {
   let productJS = new GeneralProduct();
   console.log(productJS)
-
+  
     // Mobile Product Slider
     if (document.querySelector('.mobile-image-slider #product-slider-one') != null) {
       let productSliderOne = new FullWidthSlider({

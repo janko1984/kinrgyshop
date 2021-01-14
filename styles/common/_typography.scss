@@ -124,6 +124,10 @@ h6 {
   .f-80 {
     font-size: 5.6vw;
   }
+
+  body.page-404 h1 {
+    font-size: 9vw;
+  }
 } // End 1025 Min
 
 @media screen and (max-width: 1024px) and (min-width: 769px) {
@@ -147,6 +151,10 @@ h6 {
 
   .f-80 {
     font-size: 5.2vw;
+  }
+
+  body.page-404 h1 {
+    font-size: 12.5vw;
   }
 } // End 1024 Max and 769 Min
 
@@ -180,6 +188,10 @@ h6 {
   .f-80 {
     font-size: 50px;
   }
+
+  body.page-404 h1 {
+    font-size: 90px;
+  }
 } // End 768 Max and 577 Min
 
 
@@ -208,5 +220,9 @@ h6 {
 
   .f-80 {
     font-size: 30px;
+  }
+
+  body.page-404 h1 {
+    font-size: 65px;
   }
 } // End 576 Max

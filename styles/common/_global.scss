@@ -67,6 +67,7 @@ body.page-faq main,
 body.page-legal main,
 body.product main,
 body.product-kit main,
+body.product-membership main,
 body.search main,
 body.collection main {
   padding-top: 142px;
@@ -120,6 +121,7 @@ footer .inline-single,
 .main-header .site-nav__child-link .site-nav__label,
 body.product .inline-single,
 body.product-kit .inline-single,
+body.product-membership .inline-single,
 .menu-plain a,
 .inline-single {
   @include transition(400ms all $cubic);
@@ -182,7 +184,8 @@ body.product-kit .inline-single,
   padding-top: 120px;
 
   figure {
-    padding-bottom: 110.5%;
+    // padding-bottom: 110.5%;
+    padding-bottom: 112%;
   }
 
   svg {
@@ -645,11 +648,42 @@ body.search {
   }
 }
 
+// *****************************
+// 404
+// *****************************
+body.page-404 {
+  #shopify-section-header,
+  footer {
+    display: none;
+    visibility: hidden;
+  }
+}
+
+.error-page {
+  > .row  {
+    min-height: 100vh;
+
+    @include justify-content(center);
+    @include align-items(center);
+
+    [class^=col-] {
+      text-align: center;
+    }
+  }
+
+  p {
+    margin-bottom: 20px;
+    max-width: 75%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
 @media screen and (min-width: 1025px) {
   footer .inline-single,
   .main-header .site-nav__child-link .site-nav__label,
   body.product .inline-single,
-  body.product-kit .inline-single,
+  body.product-membership .inline-single,
   .menu-plain a,
   .inline-single {
 
@@ -1214,13 +1248,14 @@ body.page-legal {
     max-width: 63.33333%;
   }
 
-  body.page main, 
-  body.product-kit main, 
-  body.product main, 
-  body.search main, 
-  body.collection main {
-    padding-top: 100px;
-  }
+  // body.page main, 
+  // body.product-kit main, 
+  // body.product-membership main, 
+  // body.product main, 
+  // body.search main, 
+  // body.collection main {
+  //   padding-top: 100px;
+  // }
  
   #shopify-section-general-modal .content-col {
     max-height: 70vh;

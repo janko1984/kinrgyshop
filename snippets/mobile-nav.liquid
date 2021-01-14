@@ -106,6 +106,7 @@
                       <a href="{{ link.url }}"
                         class="site-nav__link site-nav__link--main{% if link.active %} site-nav__link--active{% endif %}"
                         {% if link.current %} aria-current="page"{% endif %}
+                        {% if link.title contains "Classes" %} target="_blank" {% endif %}
                       >
                         <span class="site-nav__label">{{ link.title | escape }}</span>
                       </a>

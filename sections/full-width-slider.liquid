@@ -17,6 +17,11 @@
                     <h1>{{ block.settings.fullslider_heading_two }}</h1>
                   {% endif %}
 
+
+                  {% if block.settings.fullslider_subtitle_two != 'Subtitle Copy' and block.settings.fullslider_subtitle_two != blank %}
+                    <p>{{ block.settings.fullslider_subtitle_two }}</p>
+                  {% endif %}
+
                   <div class="button-wrapper">
                     <a class="regular-button pink" href="{{ block.settings.fullslider_button_url }}" target="_self">
                       <span class="text">{{ block.settings.fullslider_button_text }}</span>
@@ -86,6 +91,12 @@
             "type": "text",
             "label": "Heading Line Two",
             "default": "Heading Line Two"
+          },
+          {
+            "id": "fullslider_subtitle_two",
+            "type": "text",
+            "label": "Subtitle Copy",
+            "default": "Subtitle Copy"
           },
           {
             "id": "fullslider_image",
