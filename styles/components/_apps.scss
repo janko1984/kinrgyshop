@@ -2214,17 +2214,13 @@ button.boost-pfs-filter-clear {
    top: 4px;
  }
 
-//  .boost-pfs-filter-option-content .boost-pfs-filter-option-item-list.boost-pfs-filter-option-item-list-multiple-list li .boost-pfs-check-box
  .row .boost-pfs-filter-option-clothing .boost-pfs-filter-option-item-list.boost-pfs-filter-option-item-list-multiple-list li .boost-pfs-check-box {
-//  .boost-pfs-filter-option-clothing .boost-pfs-check-box {
    position: relative;
  }
 
  .row .boost-pfs-filter-option-content .boost-pfs-filter-option-item-list.boost-pfs-filter-option-clothing .boost-pfs-check-box,
  .boost-pfs-filter-option-accessories .boost-pfs-check-box,
-//  .row .boost-pfs-filter-option-content .boost-pfs-filter-option-item-list.boost-pfs-filter-option-kinrgy-x-brands .boost-pfs-check-box {
  .boost-pfs-filter-option-kinrgy-x-brands .boost-pfs-check-box {
-  // top: 4px;
   margin-right: 10px;
   position: relative;
  }
@@ -2328,6 +2324,7 @@ button.boost-pfs-filter-clear {
    display: inline-block !important;
    width: calc(100% - 60px);
    padding-top: 0;
+   min-width: 200px;
  }
 
  .row .boost-pfs-filter-option-content .boost-pfs-filter-option-item-list.boost-pfs-filter-option-item-list-swatch.circle-grid li {
@@ -2466,6 +2463,11 @@ button.boost-pfs-filter-clear {
       display: none;
       visibility: hidden;
     }
+  }
+
+  .row .boost-pfs-filter-options-wrapper .boost-pfs-filter-option.boost-pfs-filter-option-list.boost-pfs-filter-option-clothing + .boost-pfs-filter-option-accessories,
+  .boost-pfs-filter-option-clothing + .boost-pfs-filter-option-accessories {
+    padding-bottom: 10px;
   }
 
   // body.product #product-collection-slider .arrows,

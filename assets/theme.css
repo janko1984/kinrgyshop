@@ -6040,6 +6040,11 @@ body.search .boost-pfs-filter-products .boost-pfs-filter-product-item .boost-pfs
   padding-left: 10px;
 }
 
+#collection-header-kinrgy-lululemon .f-160,
+#collection-header-kinrgy-vejo .f-160 {
+  text-transform: none;
+}
+
 @media screen and (max-width: 1200px) and (min-width: 1025px) {
   body.cart .cart-cta {
     max-width: 41.6666666667%;
@@ -9589,6 +9594,7 @@ button.boost-pfs-filter-clear {
   display: inline-block !important;
   width: calc(100% - 60px);
   padding-top: 0;
+  min-width: 200px;
 }
 
 .row .boost-pfs-filter-option-content .boost-pfs-filter-option-item-list.boost-pfs-filter-option-item-list-swatch.circle-grid li {
@@ -9698,6 +9704,11 @@ body.product-membership .collection-slider .slider-count,
 .collection-slider .slider-count {
     display: none;
     visibility: hidden;
+  }
+
+  .row .boost-pfs-filter-options-wrapper .boost-pfs-filter-option.boost-pfs-filter-option-list.boost-pfs-filter-option-clothing + .boost-pfs-filter-option-accessories,
+.boost-pfs-filter-option-clothing + .boost-pfs-filter-option-accessories {
+    padding-bottom: 10px;
   }
 }
 @media screen and (max-width: 768px) {
@@ -9964,6 +9975,10 @@ body.index #shopify-section-header.sticked .site-nav button span {
   display: flex;
   -moz-align-items: center;
   align-items: center;
+}
+.main-header .site-nav__dropdown a,
+.main-header .site-nav__dropdown span {
+  text-transform: none;
 }
 
 #shopify-section-header.sticked {
@@ -10331,6 +10346,7 @@ body.index #shopify-section-header.sticked .site-nav button span {
 #mobile-nav .site-nav__dropdown ul a span {
   font-size: 16px;
   line-height: 20px;
+  text-transform: none;
 }
 #mobile-nav .site-nav__dropdown ul li {
   opacity: 0;

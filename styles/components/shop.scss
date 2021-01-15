@@ -2298,6 +2298,10 @@ body.product-kit .mobile-image-slider,
   @include transition(400ms all $cubic);
 }
 
+// .row .boost-pfs-filter-option.boost-pfs-filter-option-list.boost-pfs-filter-option-clothing {
+//   padding-bottom: 10px;
+// }
+
 body.search .boost-pfs-filter-products .boost-pfs-filter-product-item .boost-pfs-quickview-btn,
 body.collection .boost-pfs-filter-products .boost-pfs-filter-product-item .boost-pfs-quickview-btn,
 .boost-pfs-filter-products .boost-pfs-filter-product-item.bc-al-style4 .boost-pfs-quickview-btn {
@@ -2525,6 +2529,13 @@ body.collection .boost-pfs-filter-products .boost-pfs-filter-product-item .boost
     &:last-of-type {
       padding-left: 10px;
     }
+  }
+}
+
+#collection-header-kinrgy-lululemon,
+#collection-header-kinrgy-vejo {
+  .f-160 {
+    text-transform: none;
   }
 }
 
