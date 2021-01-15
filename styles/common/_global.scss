@@ -623,6 +623,35 @@ body.search {
   }
 }
 
+.five-column {
+  @include flex(0 0 20%);
+  @include justify-content(center);
+
+  .size-list {
+    width: 20%;
+
+    li {
+      border-right: 1px solid rgba(28, 30, 32, 0.15);
+    }
+  }
+
+  .scroll-wrapper-outter {
+    width: 100%;
+  }
+
+  .scroll-wrapper {
+    width: 100%;
+
+    @include flexbox();
+  }
+}
+
+.bws-modal .content-col {
+  .row.second {
+    margin-top: 30px;
+  }
+}
+
 .bws-modal .size-list:last-of-type li {
   border-right: 1px solid transparent;
 }
@@ -740,6 +769,62 @@ body.page-404 {
       width: 100%;
       flex: 0 0 100%;
       max-width: 100%
+    }
+  }
+
+
+  .five-column {
+    overflow: hidden;
+
+    .scroll-wrapper-outter {
+      width: 650px;
+      overflow-x: scroll;
+      position: relative;
+
+      &::-webkit-scrollbar {
+        width: 10px;
+      }
+      
+      /* Track */
+      &::-webkit-scrollbar-track {
+        // background: #f1f1f1; 
+        background: $color-tan; 
+      }
+       
+      /* Handle */
+      &::-webkit-scrollbar-thumb {
+        background: $color-dark; 
+      }
+      
+      /* Handle on hover */
+      &::-webkit-scrollbar-thumb:hover {
+        background: $color-dark; 
+      }
+    }
+    
+    .scroll-wrapper {
+      width: 650px;
+
+      .size-list:first-of-type {
+        position: sticky;
+        top: 0;
+        left: 0;
+        z-index: 2;
+        box-shadow: 0 10px 13px rgba(0,0,0,0.15);
+
+        li:nth-of-type(even) {
+          background: $color-white;
+        }
+      }
+
+      // .size-list:nth-of-type(2) {
+      //   margin-left: 130px;
+      // }
+    }
+
+    .size-list,
+    .size-list li {
+      width: 130px;
     }
   }
 }
@@ -1069,6 +1154,11 @@ body.page-legal {
   .material-and-care {
     padding-bottom: 40px;
   }
+
+  #shopify-section-general-modal .content-col-wrapper.lululemon-size-guide {
+    max-width: 66.6666666667%;
+    flex: 0 0 66.6666666667%;
+  }
 }
 
 @media screen and (max-width: 768px) {
@@ -1213,6 +1303,11 @@ body.page-legal {
     padding-left: 0;
     padding-right: 0;
   }
+
+  #shopify-section-general-modal .content-col-wrapper.lululemon-size-guide {
+    max-width: 83.3333333333%;
+    flex: 0 0 83.3333333333%;
+  }
 } // End 768 Max
 
 @media screen and (max-width: 576px) {
@@ -1242,6 +1337,10 @@ body.page-legal {
         border-bottom: 1px solid rgba($color-dark, 0.15);
       }
     }
+  }
+
+  .five-column .size-list {
+    margin-bottom: 0;
   }
 
   .search-row .search-bar__interior {
