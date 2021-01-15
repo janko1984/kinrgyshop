@@ -2,3 +2,15 @@ development:
   password: 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
   theme_id: "117354856641"
   store: kinrgy-shop-v2.myshopify.com
+  ignore_files:
+  - config/settings_data.json
+  - config/settings_schema.json
+  - .env
+production:
+  password: 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
+  theme_id: "118203252913"
+  store: shopkinrgy.myshopify.com
+  ignore_files:
+  - config/settings_data.json
+  - config/settings_schema.json
+  - .env

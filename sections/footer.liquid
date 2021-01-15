@@ -70,7 +70,9 @@
         <ul class="menu-plain">
           {% for link in linklists[settings.footer_menu_column_four].links %}
             <li>
-              <a href="{{ link.url }}" target="_self">{{ link.title }}</a>
+              <a href="{{ link.url }}" 
+              {% if link.title contains "Facebook" or link.title contains "Instagram" %} target="_blank" {% else %} target="_self" {% endif %}
+              >{{ link.title }}</a>
             </li>
           {% endfor %}
         </ul>

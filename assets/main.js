@@ -1890,8 +1890,12 @@ class GeneralProduct {
       this.setVariantQuantityOutOfStock();
 
       if (! this.master.children[this.master.selectedIndex].hasAttribute('disabled')) {
+        console.log('a')
         this.buttonsAddToCart(this.buttons)
         this.setVariantQuantityOutOfStock();
+      } else if (this.master.children[this.master.selectedIndex].hasAttribute('disabled')) {
+        console.log('b')
+        this.buttonsSoldOut(this.buttons);
       }
 
     }
@@ -1938,6 +1942,7 @@ class GeneralProduct {
 
     // Disabled quantity options if less then inventory
     this.quantity.children.forEach(num => {
+      console.log(Number(num.value), currentInventory)
       if (Number(num.value) > currentInventory) {
         num.setAttribute('disabled', 'disabled');
       } 

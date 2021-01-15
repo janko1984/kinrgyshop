@@ -150,7 +150,7 @@ body.collection main {
 
 // .row .boost-pfs-filter-option-content .boost-pfs-filter-option-item-list .boost-pfs-filter-option-item button span
 .row .boost-pfs-filter-tree-v .boost-pfs-filter-option-box.boost-pfs-filter-option-size button span.boost-pfs-filter-option-value {
-  line-height: 16px;
+  line-height: 16px !important;
 }
 
 
@@ -1762,6 +1762,13 @@ body.product-kit {
   }
 }
 
+body.product-membership {
+  .paywhirl-plan-selector {
+    display: none !important;
+    visibility: hidden;
+  }
+}
+
 body.product,
 body.product-membership,
 body.product-kit {
@@ -2869,6 +2876,10 @@ body.collection .boost-pfs-filter-products .boost-pfs-filter-product-item .boost
     height: 0;
     overflow: hidden;
   }
+
+  .boost-pfs-filter-option-item-list .boost-pfs-filter-option-item .boost-pfs-check-box {
+    margin-right: 10px;
+  }
 } // End 768 Min
 
 @media (max-width: 768px) {
@@ -3580,8 +3591,15 @@ body.collection .boost-pfs-filter-products .boost-pfs-filter-product-item .boost
     @include justify-content(center);
   }
 
-  .row .boost-pfs-filter-option-content .boost-pfs-filter-option-item-list .boost-pfs-filter-option-item button span.boost-pfs-filter-option-value {
-    line-height: 15px;
+  .row .boost-pfs-filter-option-content .boost-pfs-filter-option-item-list .boost-pfs-filter-option-item button {
+    span.boost-pfs-filter-option-value {
+      // line-height: 15px;
+      line-height: 26px;
+    }
+
+    .boost-pfs-check-box {
+      margin-right: 10px;
+    }
    }
 
   .collection-section .row .boost-pfs-filter-option {

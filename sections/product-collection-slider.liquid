@@ -12,6 +12,10 @@
   {% assign current_collection_handle = 'All' %}
 {% endif %}
 
+{% if product.type == 'Device' %}
+  {% assign current_collection_handle = 'All' %}
+{% endif %}
+
 {% include 'icon-related-products-shape' %}
 <section class="collection-slider container" data-collection="{{ current_collection_handle }}" id="product-collection-slider">
 
@@ -35,7 +39,7 @@
       </li>
     </ul>
 
-    <div class="col-12 slider-one" data-handle="{{ current_collection_handle }}" id="product-slider-related-one">
+    <div class="col-12 slider-one" data-test="{{ product.type }}" data-handle="{{ current_collection_handle }}" id="product-slider-related-one">
       <div class="slider-one-wrap">
         <div class="slider-one-content" id="product-slider-related-content-one">
 

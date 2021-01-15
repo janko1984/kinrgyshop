@@ -219,6 +219,7 @@ body.product-kit {
 // ************************
 // White
 // ************************
+.swatch-element.chalk-white label::before,
 .swatch-element.white label::before {
   background: $swatch-white;
 }
@@ -235,6 +236,7 @@ body.product-kit {
 }
 
 // Black
+.swatch-element.jet-black label::before,
 .swatch-element.black label::before {
   background: $swatch-black;
 }
