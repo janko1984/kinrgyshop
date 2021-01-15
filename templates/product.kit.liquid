@@ -133,8 +133,8 @@
 {% endif %}
 
 {% comment %}  If Kinrgy Kit {% endcomment %}
-{% if product.id == 6216379269313 %}
-  {% include 'custom-zig-zag' kit_information: product.metafields.custom.kit_informaton, kit_list: 'kit' %}  
+{% if product.id == 6216379269313  or product.id == 6127900852401 %}
+  {% include 'custom-zig-zag' kit_information: product.metafields.custom.kit_information, kit_list: 'kit' %}  
   {% include 'bonus_gift' bonus: product.metafields.custom.bonus_gift %}  
 {% endif %}
 

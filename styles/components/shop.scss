@@ -41,6 +41,8 @@ body.collection main {
   .circle {
     width: 65px;
     height: 65px;
+    min-width: 65px;
+    min-height: 65px;
     border-radius: 50%;
     position: relative;
     border: 1px solid $color-dark;
@@ -2777,6 +2779,8 @@ body.collection .boost-pfs-filter-products .boost-pfs-filter-product-item .boost
   .collection-header .circle {
     width: 45px;
     height: 45px;
+    min-width: 45px;
+    min-height: 45px;
   }
 
   .boost-pfs-filter-left-col .boost-pfs-filter-tree-v .boost-pfs-filter-option .boost-pfs-filter-option-title .boost-pfs-filter-clear {

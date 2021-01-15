@@ -12,7 +12,7 @@
   {% assign current_collection_handle = 'All' %}
 {% endif %}
 
-{% if product.type == 'Device' %}
+{% if product.type == 'Device' or product.type == 'Bundle' %}
   {% assign current_collection_handle = 'All' %}
 {% endif %}
 

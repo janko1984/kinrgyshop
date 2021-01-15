@@ -1890,11 +1890,9 @@ class GeneralProduct {
       this.setVariantQuantityOutOfStock();
 
       if (! this.master.children[this.master.selectedIndex].hasAttribute('disabled')) {
-        console.log('a')
         this.buttonsAddToCart(this.buttons)
         this.setVariantQuantityOutOfStock();
       } else if (this.master.children[this.master.selectedIndex].hasAttribute('disabled')) {
-        console.log('b')
         this.buttonsSoldOut(this.buttons);
       }
 
@@ -1915,7 +1913,6 @@ class GeneralProduct {
         currentSize = this.size.value;
       }
     }
-    
     
     // Go through master select
     this.master.children.forEach( option => {

@@ -3664,6 +3664,8 @@ body.collection main svg#icon-shape-two-01 {
 .collection-header .circle {
   width: 65px;
   height: 65px;
+  min-width: 65px;
+  min-height: 65px;
   border-radius: 50%;
   position: relative;
   border: 1px solid #1C1E20;
@@ -6195,6 +6197,8 @@ body.collection .boost-pfs-filter-products .boost-pfs-filter-product-item .boost
   .collection-header .circle {
     width: 45px;
     height: 45px;
+    min-width: 45px;
+    min-height: 45px;
   }
 
   .boost-pfs-filter-left-col .boost-pfs-filter-tree-v .boost-pfs-filter-option .boost-pfs-filter-option-title .boost-pfs-filter-clear {
@@ -9549,7 +9553,7 @@ body.product-membership .collection-slider .slide .row,
 body.product-kit .collection-slider figure,
 body.product-membership .collection-slider figure,
 .collection-slider figure {
-    padding-bottom: 148%;
+    padding-bottom: 132%;
   }
 }
 @media screen and (min-width: 769px) {
@@ -9611,7 +9615,7 @@ body.product-membership .collection-slider .slider-one .slide .row,
 body.product-kit .collection-slider .slider-one figure,
 body.product-membership .collection-slider .slider-one figure,
 .collection-slider figure {
-    padding-bottom: 149%;
+    padding-bottom: 132%;
   }
 
   body.product .collection-slider .slider-one .slider-one-content,
