@@ -25,6 +25,46 @@ input::moz-placeholder {
   }
 }
 
+
+#mobile-nav .search-drawer-inline,
+.search-drawer-inline {
+  .search-row .search-bar__submit svg {
+    width: 24px;
+    height: 24px;
+    opacity: 1;
+
+    path {
+      fill: $color-dark;
+    }
+  }
+
+  input {
+    font-family: $kr;
+    font-size: 20px;
+    line-height: 24px;
+    padding: 13px 0;
+    
+    &[type="text"] {
+      max-width: calc(100% - 35px);
+    }
+  }
+}
+
+.search-drawer-inline input::placeholder {
+  font-family: $kr;
+  color: rgba($color-dark, 0.5);
+}
+
+.search-drawer-inline input:-webkit-input-placeholder {
+  font-family: $kr;
+  color: rgba($color-dark, 0.5);
+}
+
+.search-drawer-inline input::moz-placeholder {
+    font-family: $kr;
+    color: rgba($color-dark, 0.5);
+  }
+
 .email-and-submit {
   position: relative;
   border-bottom: 1px solid $color-dark;

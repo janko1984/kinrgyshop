@@ -16,6 +16,9 @@
       <div class="row">
         <div class="col-12">
 
+            <div class="mobile-nav-search">
+              {% include 'search-drawer-inline' %}
+            </div>
             <ul class="mobile-navigation">
 
                 {% for link in linklists.main-menu.links %}
@@ -83,15 +86,15 @@
                                 class="site-nav__link site-nav__child-link{% if forloop.last %} site-nav__link--last{% endif %}"
                                 {% if childlink.current %} aria-current="page"{% endif %}
                               >
-                                  {% comment %} {% assign subnav_link = childlink.title | escape %}
+                                  {% assign subnav_link = childlink.title | escape %}
                                   {% case subnav_link %}
-                                    {% when 'Kinrgy x Lululemon' %}
-                                      <i><img src="{{ 'lululemon-logo.png' | asset_url }}" width="45px"></i>
-                                    {% when 'Kinrgy x Vejo' %}
-                                      <i><img src="{{ 'vejo-logo.png' | asset_url }}" width="61px"></i>
-                                    {% when 'Kinrgy x Guru nanda' %}
-                                      <i><img src="{{ 'guru-nanda-logo.png' | asset_url }}" width="59px"></i>
-                                  {% endcase %} {% endcomment %}
+                                    {% when 'Kinrgy / Lululemon' %}
+                                      <i class="lululemon-logo"><img src="{{ 'lululemon-logo.png' | asset_url }}" width="36px" height="36px"></i>
+                                    {% when 'Kinrgy / Vejo' %}
+                                      <i><img src="{{ 'vejo-logo.png' | asset_url }}" width="50px" height="23px"></i>
+                                    {% when 'Kinrgy / Guru nanda' %}
+                                      <i><img src="{{ 'guru-nanda-logo.png' | asset_url }}" width="50px" height="27px"></i>
+                                  {% endcase %}
                                   
                                   <span class="site-nav__label">{{ childlink.title | escape }}</span>
                                 </a>
@@ -114,13 +117,23 @@
                   {% endif %}
                 {% endfor %}
 
-              <li>
+              {% comment %} <li>
                 <a class="js_search mobile-nav-search green" data-modal-id="SearchDrawer" href="#">
                   <span class="text">Search</span>
                   {% include 'icon-search' %}
                 </a>
-              </li>
+              </li> {% endcomment %}
 
+            </ul>
+
+            <ul class="menu-plain">
+              {% for link in linklists['footer-social'].links %}
+                <li>
+                  <a href="{{ link.url }}" 
+                  {% if link.title contains "Facebook" or link.title contains "Instagram" %} target="_blank" {% else %} target="_self" {% endif %}
+                  >{{ link.title }}</a>
+                </li>
+              {% endfor %}
             </ul>
 
         </div>

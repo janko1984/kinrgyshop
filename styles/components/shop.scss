@@ -3652,6 +3652,15 @@ body.collection .boost-pfs-filter-products .boost-pfs-filter-product-item .boost
     padding-bottom: 180%;
   }
 
+  body.collection .collection-header,
+  body.search .collection-header {
+    padding-top: 0;
+
+    .f-160 .circle.small {
+      left: 6px;
+    }
+  }
+
   .boost-pfs-modal-backdrop .boost-pfs-quickview-slider {
     width: 100%;
   }
