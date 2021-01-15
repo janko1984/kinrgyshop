@@ -196,7 +196,16 @@ window.addEventListener("DOMContentLoaded", function(){
       mutationsList.forEach(mutation => {
         // console.log(mutation)
           if (mutation.type == "attributes") {
-            scroll.update()
+            scroll.update();
+          }
+
+          // If filter elements
+          if (mutation.target.classList.contains('boost-pfs-filter-button') ||
+              mutation.target.classList.contains('boost-pfs-filter-option-swatch-image') ||
+              mutation.target.classList.contains('boost-pfs-check-box') ||
+              mutation.target.classList.contains('boost-pfs-filter-option-value')
+          ) {
+            scroll.update();
           }
       })
     }
@@ -207,9 +216,6 @@ window.addEventListener("DOMContentLoaded", function(){
     // Start observing the target node for configured mutations
     observer.observe(targetNode, config);
   }
-
-
-  
 
   // CART DROPDOWN
   jQuery('.js_cart').click(function(e){
