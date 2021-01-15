@@ -10180,6 +10180,18 @@ body.index #shopify-section-header.sticked .site-nav button span {
   transform: rotate(-45deg) translate(2.5px, -3.5px);
 }
 
+@media screen and (min-width: 1101px) {
+  .mobile-nav-buttons {
+    display: none;
+    visibility: hidden;
+  }
+}
+@media screen and (max-width: 1100px) {
+  .main-header .desktop-nav {
+    display: none !important;
+    visibility: hidden;
+  }
+}
 @media screen and (min-width: 1025px) {
   .main-header .site-nav a.site-nav__link--main {
     position: relative;

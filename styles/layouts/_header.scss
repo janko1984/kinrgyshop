@@ -808,6 +808,20 @@ body.index {
   }
 }
 
+@media screen and (min-width: 1101px) {
+  .mobile-nav-buttons {
+    display: none;
+    visibility: hidden;
+  }
+}
+
+@media screen and (max-width: 1100px) {
+  .main-header .desktop-nav {
+    display: none !important;
+    visibility: hidden;
+  }
+}
+
 @media screen and (min-width: 1025px) {
   .main-header .site-nav a.site-nav__link--main {
     position: relative;
