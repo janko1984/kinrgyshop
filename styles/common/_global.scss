@@ -623,16 +623,20 @@ body.search {
   }
 }
 
+.three-column .size-list {
+  width: 33.333333%;
+}
+.five-column .size-list {
+  width: 20%;
+}
+
+.three-column,
 .five-column {
   @include flex(0 0 20%);
   @include justify-content(center);
 
-  .size-list {
-    width: 20%;
-
-    li {
-      border-right: 1px solid rgba(28, 30, 32, 0.15);
-    }
+  .size-list li {
+    border-right: 1px solid rgba(28, 30, 32, 0.15);
   }
 
   .scroll-wrapper-outter {
@@ -774,10 +778,35 @@ body.page-404 {
 
 
   .five-column {
+    .scroll-wrapper,
+    .scroll-wrapper-outter {
+      width: 650px;
+    }
+
+    .size-list,
+    .size-list li {
+      width: 130px;
+    }
+  }
+
+  // .three-column {
+  //   .scroll-wrapper,
+  //   .scroll-wrapper-outter {
+  //     width: 390px;
+  //   }
+
+  //   .size-list,
+  //   .size-list li {
+  //     width: 130px;
+  //   }
+  // }
+
+  // .three-column,
+  .five-column {
     overflow: hidden;
 
     .scroll-wrapper-outter {
-      width: 650px;
+      // width: 650px;
       overflow-x: scroll;
       position: relative;
 
@@ -803,7 +832,7 @@ body.page-404 {
     }
     
     .scroll-wrapper {
-      width: 650px;
+      // width: 650px;
 
       .size-list:first-of-type {
         position: sticky;
@@ -822,10 +851,10 @@ body.page-404 {
       // }
     }
 
-    .size-list,
-    .size-list li {
-      width: 130px;
-    }
+    // .size-list,
+    // .size-list li {
+    //   width: 130px;
+    // }
   }
 }
 
@@ -1358,5 +1387,56 @@ body.page-legal {
  
   #shopify-section-general-modal .content-col {
     max-height: 70vh;
+  }
+
+  .three-column {
+    overflow: hidden;
+
+    .scroll-wrapper-outter {
+      // width: 650px;
+      width: 390px;
+      overflow-x: scroll;
+      position: relative;
+
+      &::-webkit-scrollbar {
+        width: 10px;
+      }
+      
+      /* Track */
+      &::-webkit-scrollbar-track {
+        // background: #f1f1f1; 
+        background: $color-tan; 
+      }
+       
+      /* Handle */
+      &::-webkit-scrollbar-thumb {
+        background: $color-dark; 
+      }
+      
+      /* Handle on hover */
+      &::-webkit-scrollbar-thumb:hover {
+        background: $color-dark; 
+      }
+    }
+    
+    .scroll-wrapper {
+      width: 390px;
+
+      .size-list {
+        margin-bottom: 0;
+      }
+
+      .size-list:first-of-type {
+        position: sticky;
+        top: 0;
+        left: 0;
+        z-index: 2;
+        box-shadow: 0 10px 13px rgba(0,0,0,0.15);
+
+        li:nth-of-type(even) {
+          background: $color-white;
+        }
+      }
+    }
   }
 }

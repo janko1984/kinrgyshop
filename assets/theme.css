@@ -2647,21 +2647,30 @@ body.search .boost-pfs-quickview-btn {
   font-family: "Klarheit Kurrent Regular";
 }
 
+.three-column .size-list {
+  width: 33.333333%;
+}
+
+.five-column .size-list {
+  width: 20%;
+}
+
+.three-column,
 .five-column {
   -moz-flex: 0 0 20%;
   flex: 0 0 20%;
   -moz-justify-content: center;
   justify-content: center;
 }
-.five-column .size-list {
-  width: 20%;
-}
+.three-column .size-list li,
 .five-column .size-list li {
   border-right: 1px solid rgba(28, 30, 32, 0.15);
 }
+.three-column .scroll-wrapper-outter,
 .five-column .scroll-wrapper-outter {
   width: 100%;
 }
+.three-column .scroll-wrapper,
 .five-column .scroll-wrapper {
   width: 100%;
   display: -moz-flex;
@@ -2754,11 +2763,19 @@ body.product-membership .inline-single:hover::before,
     max-width: 100%;
   }
 
+  .five-column .scroll-wrapper,
+.five-column .scroll-wrapper-outter {
+    width: 650px;
+  }
+  .five-column .size-list,
+.five-column .size-list li {
+    width: 130px;
+  }
+
   .five-column {
     overflow: hidden;
   }
   .five-column .scroll-wrapper-outter {
-    width: 650px;
     overflow-x: scroll;
     position: relative;
     /* Track */
@@ -2777,9 +2794,6 @@ body.product-membership .inline-single:hover::before,
   .five-column .scroll-wrapper-outter::-webkit-scrollbar-thumb:hover {
     background: #1C1E20;
   }
-  .five-column .scroll-wrapper {
-    width: 650px;
-  }
   .five-column .scroll-wrapper .size-list:first-of-type {
     position: -webkit-sticky;
     position: sticky;
@@ -2790,10 +2804,6 @@ body.product-membership .inline-single:hover::before,
   }
   .five-column .scroll-wrapper .size-list:first-of-type li:nth-of-type(even) {
     background: #ffffff;
-  }
-  .five-column .size-list,
-.five-column .size-list li {
-    width: 130px;
   }
 }
 .sidebar-menu {
@@ -3240,6 +3250,47 @@ body.search .row .no-results {
 
   #shopify-section-general-modal .content-col {
     max-height: 70vh;
+  }
+
+  .three-column {
+    overflow: hidden;
+  }
+  .three-column .scroll-wrapper-outter {
+    width: 390px;
+    overflow-x: scroll;
+    position: relative;
+    /* Track */
+    /* Handle */
+    /* Handle on hover */
+  }
+  .three-column .scroll-wrapper-outter::-webkit-scrollbar {
+    width: 10px;
+  }
+  .three-column .scroll-wrapper-outter::-webkit-scrollbar-track {
+    background: #F2EDED;
+  }
+  .three-column .scroll-wrapper-outter::-webkit-scrollbar-thumb {
+    background: #1C1E20;
+  }
+  .three-column .scroll-wrapper-outter::-webkit-scrollbar-thumb:hover {
+    background: #1C1E20;
+  }
+  .three-column .scroll-wrapper {
+    width: 390px;
+  }
+  .three-column .scroll-wrapper .size-list {
+    margin-bottom: 0;
+  }
+  .three-column .scroll-wrapper .size-list:first-of-type {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+    left: 0;
+    z-index: 2;
+    box-shadow: 0 10px 13px rgba(0, 0, 0, 0.15);
+  }
+  .three-column .scroll-wrapper .size-list:first-of-type li:nth-of-type(even) {
+    background: #ffffff;
   }
 }
 @font-face {
