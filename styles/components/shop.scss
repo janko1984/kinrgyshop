@@ -3065,10 +3065,21 @@ body.collection .boost-pfs-filter-products .boost-pfs-filter-product-item .boost
     line-height: 20px;
   }
 
+  .row .boost-pfs-filter-tree-mobile-style2.boost-pfs-filter-tree-v .boost-pfs-filter-option .boost-pfs-filter-option-content .boost-pfs-filter-option-content-inner {
+    overflow: hidden;
+  }
+
+  .boost-pfs-filter-mobile-toolbar-items, .boost-pfs-filter-left-col .boost-pfs-filter-tree-mobile-style2 .boost-pfs-filter-mobile-toolbar .boost-pfs-filter-mobile-toolbar-items {
+    min-height: 68px;
+    line-height: 14px;
+  }
+
   .boost-pfs-filter-mobile-toolbar-items,
   .boost-pfs-filter-left-col .boost-pfs-filter-tree-mobile-style2 .boost-pfs-filter-mobile-toolbar .boost-pfs-filter-mobile-toolbar-items {
-    margin-top: 10px;
-    padding-top: 10px;
+    // margin-top: 10px;
+    margin-top: 0;
+    // padding-top: 10px;
+    padding-top: 45px;
 
     @include flexbox();
     @include flex-direction(row);
@@ -3093,8 +3104,10 @@ body.collection .boost-pfs-filter-products .boost-pfs-filter-product-item .boost
     padding: 2.5px 20px 2.5px 0;
   }
 
-  .boost-pfs-filter-mobile-toolbar-items, .boost-pfs-filter-left-col .boost-pfs-filter-tree-mobile-style2 .boost-pfs-filter-mobile-toolbar .boost-pfs-filter-mobile-toolbar-items {
-    margin-top: 10px;
+  .boost-pfs-filter-mobile-toolbar-items, 
+  .boost-pfs-filter-left-col .boost-pfs-filter-tree-mobile-style2 .boost-pfs-filter-mobile-toolbar .boost-pfs-filter-mobile-toolbar-items {
+    // margin-top: 10px;
+    margin-top: 0;
   }
 
   .boost-pfs-filter-tree-mobile-style2.boost-pfs-filter-tree-v .boost-pfs-filter-option .boost-pfs-filter-option-content {
@@ -3172,7 +3185,7 @@ body.collection .boost-pfs-filter-products .boost-pfs-filter-product-item .boost
   }
 
   .boost-pfs-filter-wrapper.row .boost-pfs-filter-option-content .boost-pfs-filter-option-item-list.boost-pfs-filter-option-item-list-swatch .boost-pfs-filter-option-item .boost-pfs-filter-option-swatch-image {
-    top: 1px;
+    top: 5px;
     bottom: 0;
     margin: 0 auto;
     left: 38px;
@@ -3285,6 +3298,10 @@ body.collection .boost-pfs-filter-products .boost-pfs-filter-product-item .boost
       max-width: 90%;
     }
   }
+
+  .row .boost-pfs-filter-option-color .boost-pfs-filter-option-content .boost-pfs-filter-option-item-list .boost-pfs-filter-option-item button span.boost-pfs-filter-option-value {
+    margin-left: 30px;
+  }
 } // End 768 Max
 
 @media (max-width: 768px) and (min-width: 768px) {
@@ -3332,6 +3349,7 @@ body.collection .boost-pfs-filter-products .boost-pfs-filter-product-item .boost
       max-width: 83.33333vw !important;
       height: 75vh;
       overflow: scroll;
+      -webkit-overflow: scroll;
       top: 60px;
       left: 0;
       right: 0;
@@ -3409,13 +3427,15 @@ body.collection .boost-pfs-filter-products .boost-pfs-filter-product-item .boost
 
   .boost-pfs-filter-wrapper .boost-pfs-filter-left-col .boost-pfs-filter-tree-mobile-style2 .boost-pfs-filter-mobile-toolbar .boost-pfs-filter-close {
     border-radius: 50%;
-    background: $color-white;
-    border: 1px solid $color-dark;
+    // background: $color-white;
+    // border: 1px solid $color-dark;
     width: 48px;
     height: 48px;
-    right: -22px;
+    // right: -22px;
     position: absolute;
     text-indent: -9999px;
+    right: 0;
+    top: 60px;
   }
 
   .boost-pfs-filter-left-col .boost-pfs-filter-tree-mobile-style2 .boost-pfs-filter-mobile-toolbar .boost-pfs-filter-mobile-toolbar-top,
@@ -3613,6 +3633,18 @@ body.collection .boost-pfs-filter-products .boost-pfs-filter-product-item .boost
   .custom-bonus-gift {
     padding-bottom: 71px;
   }
+
+  .row .boost-pfs-filter-tree-mobile-style2 .boost-pfs-filter-mobile-footer::before {
+    width: 100%;
+    height: 60px;
+    position: absolute;
+    content: "";
+    background: $color-tan;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: -1;
+  }
 } // End 768px Max
 
 @media screen and (max-width: 768px) and (min-width: 577px) {
@@ -3631,6 +3663,7 @@ body.collection .boost-pfs-filter-products .boost-pfs-filter-product-item .boost
 
   .row .boost-pfs-filter-tree-mobile-style2 .boost-pfs-filter-mobile-footer {
     width: calc(100% - 20%);
+
   }
 
   .boost-pfs-modal-backdrop .boost-pfs-quickview-slider .boost-pfs-quickview-slider-inner .boost-pfs-quickview-featured-image-wrapper .boost-pfs-quickview-featured-image {

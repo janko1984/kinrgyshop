@@ -214,61 +214,7 @@
 
 
 
-{%- endpaginate -%}
-
-{% comment %} {{ collection.metafields.collections.cta_two | json }} {% endcomment %}
-
-
-{% comment %} CTA Two & Three - added by JS {% endcomment %}
-<div class="hidden-el" id="collectionCtaHolder">
-
-  {% if collection.handle == 'all' and collection.metafields.collections.cta_two.background_url != blank %}
-    <div id="ctaTwoWrap">
-      <div class="inner-cta collection boost-pfs-filter-grid-width-6 boost-pfs-filter-product-item">
-        <div class="cta-inner-wrapper">  
-          <a class="absolute-link" href="{{ collection.metafields.collections.cta_two.button_url }}" target="_self"></a>
-          <div class="background-wrapper">
-            <div class="background" style="background: url({{ collection.metafields.collections.cta_two.background_url | file_img_url: '1008x' | width }}) no-repeat center center; background-size: cover;">
-            </div>
-            <div class="button-wrapper">
-                <a class="regular-button pink" href="{{ collection.metafields.collections.cta_two.button_url }}" target="_self">
-                  <span class="text">{{ collection.metafields.collections.cta_two.button_copy }}</span>
-                </a>
-              </div>
-          </div>
-        </div>  
-      </div>
-    </div>
-  {% endif %}
-
-  {% if collection.handle == 'all' and collection.metafields.collections.cta_three.background_url != blank %}
-    <div id="ctaThreeWrap">
-      <div class="inner-cta collection boost-pfs-filter-grid-width-6 boost-pfs-filter-product-item">
-        <div class="cta-inner-wrapper">  
-          <a class="absolute-link" href="{{ collection.metafields.collections.cta_three.button_url }}" target="_self"></a>
-          <div class="background-wrapper">
-            <div class="background" style="background: url({{ collection.metafields.collections.cta_three.background_url | file_img_url: '1008x' | width }}) no-repeat center center; background-size: cover;">
-            </div>
-            <div class="button-wrapper">
-                <a class="regular-button pink" href="{{ collection.metafields.collections.cta_three.button_url }}" target="_self">
-                  <span class="text">{{ collection.metafields.collections.cta_three.button_copy }}</span>
-                </a>
-              </div>
-          </div>
-        </div>  
-      </div>
-    </div>
-  {% endif %}
-
-</div>
-
-<script id="allCtaTwo">
-  let ctaTwoContent = {{ collection.metafields.collections.cta_two | json }}
-</script>
-<script id="allCtaThree">
-  let ctaThreeContent = {{ collection.metafields.collections.cta_three | json }}
-</script>
-        
+{%- endpaginate -%}  
 
 <script>
   // Declare boostPFSThemeConfig variable

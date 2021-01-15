@@ -6537,10 +6537,19 @@ body.collection .sold-out.tag,
     line-height: 20px;
   }
 
+  .row .boost-pfs-filter-tree-mobile-style2.boost-pfs-filter-tree-v .boost-pfs-filter-option .boost-pfs-filter-option-content .boost-pfs-filter-option-content-inner {
+    overflow: hidden;
+  }
+
+  .boost-pfs-filter-mobile-toolbar-items, .boost-pfs-filter-left-col .boost-pfs-filter-tree-mobile-style2 .boost-pfs-filter-mobile-toolbar .boost-pfs-filter-mobile-toolbar-items {
+    min-height: 68px;
+    line-height: 14px;
+  }
+
   .boost-pfs-filter-mobile-toolbar-items,
 .boost-pfs-filter-left-col .boost-pfs-filter-tree-mobile-style2 .boost-pfs-filter-mobile-toolbar .boost-pfs-filter-mobile-toolbar-items {
-    margin-top: 10px;
-    padding-top: 10px;
+    margin-top: 0;
+    padding-top: 45px;
     display: -moz-flex;
     display: flex;
     -moz-flex-direction: row;
@@ -6572,8 +6581,9 @@ body.collection .sold-out.tag,
     padding: 2.5px 20px 2.5px 0;
   }
 
-  .boost-pfs-filter-mobile-toolbar-items, .boost-pfs-filter-left-col .boost-pfs-filter-tree-mobile-style2 .boost-pfs-filter-mobile-toolbar .boost-pfs-filter-mobile-toolbar-items {
-    margin-top: 10px;
+  .boost-pfs-filter-mobile-toolbar-items,
+.boost-pfs-filter-left-col .boost-pfs-filter-tree-mobile-style2 .boost-pfs-filter-mobile-toolbar .boost-pfs-filter-mobile-toolbar-items {
+    margin-top: 0;
   }
 
   .boost-pfs-filter-tree-mobile-style2.boost-pfs-filter-tree-v .boost-pfs-filter-option .boost-pfs-filter-option-content {
@@ -6653,7 +6663,7 @@ body.collection .sold-out.tag,
   }
 
   .boost-pfs-filter-wrapper.row .boost-pfs-filter-option-content .boost-pfs-filter-option-item-list.boost-pfs-filter-option-item-list-swatch .boost-pfs-filter-option-item .boost-pfs-filter-option-swatch-image {
-    top: 1px;
+    top: 5px;
     bottom: 0;
     margin: 0 auto;
     left: 38px;
@@ -6755,6 +6765,10 @@ body.product-kit #product-collection-slider .arrows {
     font-size: 16px;
     max-width: 90%;
   }
+
+  .row .boost-pfs-filter-option-color .boost-pfs-filter-option-content .boost-pfs-filter-option-item-list .boost-pfs-filter-option-item button span.boost-pfs-filter-option-value {
+    margin-left: 30px;
+  }
 }
 @media (max-width: 768px) and (min-width: 768px) {
   .row .boost-pfs-filter-tree-mobile-sticky .boost-pfs-filter-option-item-list.boost-pfs-filter-option-item-list-multiple-list {
@@ -6797,6 +6811,7 @@ body.product-kit #product-collection-slider .arrows {
     max-width: 83.33333vw !important;
     height: 75vh;
     overflow: scroll;
+    -webkit-overflow: scroll;
     top: 60px;
     left: 0;
     right: 0;
@@ -6871,13 +6886,12 @@ body.product-kit #product-collection-slider .arrows {
 
   .boost-pfs-filter-wrapper .boost-pfs-filter-left-col .boost-pfs-filter-tree-mobile-style2 .boost-pfs-filter-mobile-toolbar .boost-pfs-filter-close {
     border-radius: 50%;
-    background: #ffffff;
-    border: 1px solid #1C1E20;
     width: 48px;
     height: 48px;
-    right: -22px;
     position: absolute;
     text-indent: -9999px;
+    right: 0;
+    top: 60px;
   }
 
   .boost-pfs-filter-left-col .boost-pfs-filter-tree-mobile-style2 .boost-pfs-filter-mobile-toolbar .boost-pfs-filter-mobile-toolbar-top,
@@ -7062,6 +7076,18 @@ body.product-kit #product-collection-slider .arrows {
 
   .custom-bonus-gift {
     padding-bottom: 71px;
+  }
+
+  .row .boost-pfs-filter-tree-mobile-style2 .boost-pfs-filter-mobile-footer::before {
+    width: 100%;
+    height: 60px;
+    position: absolute;
+    content: "";
+    background: #F2EDED;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: -1;
   }
 }
 @media screen and (max-width: 768px) and (min-width: 577px) {
