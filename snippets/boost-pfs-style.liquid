@@ -105,11 +105,16 @@ fMobileButtonBackgroundColor
         background: {{ boost_shop_metafields.fOptionTextColor | replace: '"','' | replace: '||',',' | strip | strip_html }};
       }
 
+      .boost-pfs-filter-toolbar-top-mobile {
+        background: transparent;
+      }
+      
       .boost-pfs-filter-tree-mobile-button button,
       .boost-pfs-filter-top-sorting-mobile button {
         {%- if boost_shop_metafields.fMobileButtonTextColor != nil and boost_shop_metafields.fMobileButtonTextColor != blank -%}
           color: {{ boost_shop_metafields.fMobileButtonTextColor | replace: '"','' | replace: '||',',' | strip | strip_html }} !important;
         {%- endif -%}
+        background: transparent;
 
         {%- if boost_shop_metafields.fMobileButtonFontSize != nil and boost_shop_metafields.fMobileButtonFontSize != blank -%}
           font-size: {{ boost_shop_metafields.fMobileButtonFontSize | strip | strip_html }}px !important;

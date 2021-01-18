@@ -20,6 +20,14 @@
   %}
     {% assign size_guide_image = true %}
 
+  {% comment %} Unity Crop Sweatshirt  {% endcomment %}
+  {% elsif product.tags contains "Crewneck" or
+        product.tags contains "crewneck" and
+        product.tags contains "Sweatshirt" or
+        product.tags contains "sweatshirt"
+  %}
+    {% assign size_guide_image = true %}
+
   {% comment %} Long Sleeve {% endcomment %}
   {% elsif product.tags contains "Long Sleeve" or 
         product.tags contains "Long sleeve" or 
@@ -87,7 +95,7 @@
             {% for option in product.options_with_values %}
               {% if option.name == 'Color' %}
 
-                <label class="variant-title">Color</label>
+                <label class="variant-title">Color: <span id="colorName">{{ option.values[0] }}</span></label>
 
                 {% include 'swatch' with 'Color' %}
               {% endif %}
@@ -118,7 +126,7 @@
                   </li>
 
                   {% if option.name == 'Size'  %}
-                    <li class="size-guide">
+                    <li class="size-guide" data-tags="{{ product.tags }}">
                     {% if product.metafields.products.size_guide_modal_id != blank %}
                         <p><a href="#" class="inline-single js-modal-button" target="_self" data-modal-id="general-modal" data-content="{{ product.metafields.products.size_guide_modal_id }}">Size Guide</a></p>
                       {% elsif size_guide_image != false %}
@@ -192,7 +200,7 @@
       </div>
 </section>
 
-
+{% comment %} If product is an accessory - don't display material and care section below {% endcomment %}
 {% assign if_accessory = true %}
 {% for tag in product.tags %}
   {% if product.tags contains "Accessories" or product.tags contains "accessories" %}

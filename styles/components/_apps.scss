@@ -254,6 +254,17 @@ body.product-kit {
   background-image: none !important;
 }
 
+.boost-pfs-filter-option-swatch-image[title="Sage Grey"],
+.boost-pfs-filter-option-swatch-image[title="Sage Gray"],
+.boost-pfs-swatch-element.boost-pfs-quickview-option-color label[for="ProductSelect-option-color-Sage Grey"],
+.boost-pfs-swatch-element.boost-pfs-quickview-option-color label[for="ProductSelect-option-color-Sage Gray"],
+.swatch-element.sage-grey label::before,
+.swatch-element.sage-gray label::before {
+  background: $swatch-sage-gray;
+  background-color: $swatch-sage-gray !important;
+  background-image: none !important;
+}
+
 .boost-pfs-filter-option-swatch-image[title="Dark Grey"],
 .boost-pfs-swatch-element.boost-pfs-quickview-option-color label[for="ProductSelect-option-color-Dark Grey"],
 .boost-pfs-swatch-element.boost-pfs-quickview-option-color label[for="ProductSelect-option-color-Dark Gray"],
@@ -2209,8 +2220,8 @@ button.boost-pfs-filter-clear {
    display: block;
  }
 
- .row .boost-pfs-filter-option-content .boost-pfs-filter-option-item-list.boost-pfs-filter-option-clothing .boost-pfs-check-box,
- .boost-pfs-filter-option-accessories .boost-pfs-check-box {
+ .row .boost-pfs-filter-option-content .boost-pfs-filter-option-item-list.boost-pfs-filter-option-clothing .boost-pfs-check-box {
+//  .boost-pfs-filter-option-accessories .boost-pfs-check-box {
    top: 4px;
  }
 
@@ -2374,6 +2385,7 @@ button.boost-pfs-filter-clear {
 @media screen and (max-width: 768px) {
   .full-width-slider .row {
     @include justify-content(center);
+    // @include justify-content(flex-start);
   }
 
   .full-width-slider .slide .row {
@@ -2381,6 +2393,7 @@ button.boost-pfs-filter-clear {
     padding-right: 30px;
     text-align: center;
     padding-top: 120px;
+    // padding-top: 35vh;
   }
 
   .collection-slider .dots,

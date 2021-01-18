@@ -65,7 +65,7 @@
         </span>
         {%- endif -%}
         {%- if on_sale and section.settings.show_sale_label -%}
-        <span class="sale boost-pfs-filter-label">
+        <span class="sale boost-pfs-filter-label testing-1">
           {{ sale_text }}
         </span>
         {%- endif -%}
@@ -109,7 +109,7 @@
 
       <div class="boost-pfs-filter-product-item-list-col-3">
         {%- if section.settings.show_price -%}
-        <p class="boost-pfs-filter-product-item-price">
+        <p class="boost-pfs-filter-product-item-price test-2">
           {%- if on_sale -%}
           <span class="boost-pfs-filter-product-item-sale-price">{{ product.price | money }}</span>
           <s>{{ product.compare_at_price | money }}</s>

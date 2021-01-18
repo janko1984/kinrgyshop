@@ -58,7 +58,12 @@
 <span class="soldout boost-pfs-filter-label"> {{ section.settings.soldout_label }} </span>
 
 {%- when 'saleLabelHtml' -%}
-<span class="sale boost-pfs-filter-label"> {{ section.settings.sale_label }} </span>
+{% comment %} <span class="sale boost-pfs-filter-label"> {{ section.settings.sale_label }} </span> {% endcomment %}
+
+<span class="sale red boost-pfs-filter-label">
+  <span class="sale-percent tag">SALE</span>
+</span>
+
 
 {%- when 'tagLabelHtml' -%}
 <span class="tag boost-pfs-filter-label [[labelTag]]" >[[labelTag]]</span>

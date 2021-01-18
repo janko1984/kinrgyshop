@@ -3772,6 +3772,10 @@ body.collection main svg#icon-shape-two-01 {
   right: 20px;
   bottom: 20px;
   z-index: 2;
+  pointer-events: none;
+}
+.inner-cta.collection .button-wrapper .regular-button .text {
+  text-transform: none;
 }
 .inner-cta.collection .background-wrapper {
   position: relative;
@@ -5307,6 +5311,15 @@ body.product-kit .price {
   margin-bottom: 28px;
   display: -moz-flex;
   display: flex;
+  -moz-justify-content: flex-start;
+  justify-content: flex-start;
+  -moz-align-items: center;
+  align-items: center;
+}
+body.product .price.with-dealer-logo,
+body.product-membership .price.with-dealer-logo,
+body.product-kit .price.with-dealer-logo {
+  margin-top: 28px;
 }
 body.product .price .sale,
 body.product-membership .price .sale,
@@ -5524,6 +5537,11 @@ body.product-kit .variant-title {
   margin-bottom: 9px;
   display: block;
 }
+body.product .variant-title #colorName,
+body.product-membership .variant-title #colorName,
+body.product-kit .variant-title #colorName {
+  font-family: "Klarheit Kurrent Regular";
+}
 
 .boost-pfs-filter-product-item-inner[data-product-type="KINRGY Monthly Subscription"] .boost-pfs-quickview-btn,
 .boost-pfs-filter-product-item-inner[data-product-type="Monthly Subscription"] .boost-pfs-quickview-btn,
@@ -5584,6 +5602,17 @@ body.product-membership .regular-button.soldout,
 body.product-kit .regular-button.soldout {
   pointer-events: none;
   opacity: 0.5;
+}
+body.product .price .dealer-logo,
+body.product-membership .price .dealer-logo,
+body.product-kit .price .dealer-logo {
+  margin-left: 30px;
+}
+body.product .price .dealer-logo.lululemon,
+body.product-membership .price .dealer-logo.lululemon,
+body.product-kit .price .dealer-logo.lululemon {
+  max-width: 110px;
+  max-height: 35px;
 }
 
 .hidden-item {
@@ -6043,6 +6072,11 @@ body.search .boost-pfs-filter-products .boost-pfs-filter-product-item .boost-pfs
 #collection-header-kinrgy-lululemon .f-160,
 #collection-header-kinrgy-vejo .f-160 {
   text-transform: none;
+}
+
+.row .boost-pfs-filter-option-accessories.boost-pfs-filter-option .boost-pfs-filter-option-content .boost-pfs-filter-option-item-list.boost-pfs-filter-option-item-list-multiple-list li .boost-pfs-check-box {
+  position: relative;
+  top: 0px;
 }
 
 @media screen and (max-width: 1200px) and (min-width: 1025px) {
@@ -7717,6 +7751,17 @@ body.product-kit .product-form .swatch .swatch-element.color label i {
 .swatch-element.gray label::before {
   background: #bebebe;
   background-color: #bebebe !important;
+  background-image: none !important;
+}
+
+.boost-pfs-filter-option-swatch-image[title="Sage Grey"],
+.boost-pfs-filter-option-swatch-image[title="Sage Gray"],
+.boost-pfs-swatch-element.boost-pfs-quickview-option-color label[for="ProductSelect-option-color-Sage Grey"],
+.boost-pfs-swatch-element.boost-pfs-quickview-option-color label[for="ProductSelect-option-color-Sage Gray"],
+.swatch-element.sage-grey label::before,
+.swatch-element.sage-gray label::before {
+  background: #878D81;
+  background-color: #878D81 !important;
   background-image: none !important;
 }
 
@@ -9489,8 +9534,7 @@ button.boost-pfs-filter-clear {
   display: block;
 }
 
-.row .boost-pfs-filter-option-content .boost-pfs-filter-option-item-list.boost-pfs-filter-option-clothing .boost-pfs-check-box,
-.boost-pfs-filter-option-accessories .boost-pfs-check-box {
+.row .boost-pfs-filter-option-content .boost-pfs-filter-option-item-list.boost-pfs-filter-option-clothing .boost-pfs-check-box {
   top: 4px;
 }
 

@@ -1536,14 +1536,11 @@ class MultiItemSlider {
   }
  }
 
-//  if (document.body.classList.contains('product') || document.body.classList.contains('product-kit')) {
-//   let productJS = new GeneralProduct();
-//   console.log(productJS)
-//  }
  
  if (document.body.classList.contains('product') || document.body.classList.contains('product-kit') || document.body.classList.contains('product-membership')) {
-  let productJS = new GeneralProduct();
-  console.log(productJS)
+    let productJS = new GeneralProduct();
+    console.log(productJS)
+  
   
     // Mobile Product Slider
     if (document.querySelector('.mobile-image-slider #product-slider-one') != null) {
@@ -1795,11 +1792,14 @@ class GeneralProduct {
     
     this.size;
     this.isNumberSizing;
+    this.colorName;
     if (document.querySelector('#productSize') != null) {
       this.size = document.querySelector('#productSize');
       
       this.isNumberSizing = this.checkIfSizeIsInteger();
       console.log('isNumberSizing',this.isNumberSizing )
+
+      this.colorName = document.querySelector('#colorName');
 
       this.changeSize();
     } else {
@@ -1825,6 +1825,9 @@ class GeneralProduct {
     this.master = document.querySelector('#masterSelect');
     this.buttons = document.querySelectorAll('.product-section-one form .regular-button');
 
+    // Products that can sell past zero stock
+    this.sellThorughZero = ['product-vejo-kinrgy-starter-kit', 'product-first-edition-limited-kinrgy-kit-2']
+
     this.buttonSubmit();
 
     this.checkInitalValues();
@@ -1846,7 +1849,14 @@ class GeneralProduct {
         }
       }
 
-      this.setQuantityOutOfStock();
+      // If item can be sold through zero 
+      if (document.body.classList.contains(this.sellThorughZero[0]) ||
+          document.body.classList.contains(this.sellThorughZero[1])) {
+        this.resetQuantity();
+      } else if (! document.body.classList.contains(this.sellThorughZero[0]) ||
+                ! document.body.classList.contains(this.sellThorughZero[1])) {
+        this.setQuantityOutOfStock();
+      }
 
       this.buttonsSoldOut(this.buttons);
     }
@@ -1893,11 +1903,28 @@ class GeneralProduct {
     } 
     // No size variant
     else {
-      this.setVariantQuantityOutOfStock();
+
+      // If item can be sold through zero 
+      if (document.body.classList.contains(this.sellThorughZero[0]) ||
+          document.body.classList.contains(this.sellThorughZero[1])) {
+        this.resetQuantity();
+      } else if (! document.body.classList.contains(this.sellThorughZero[0]) ||
+                ! document.body.classList.contains(this.sellThorughZero[1])) {
+        this.setQuantityOutOfStock();
+      }
 
       if (! this.master.children[this.master.selectedIndex].hasAttribute('disabled')) {
         this.buttonsAddToCart(this.buttons)
-        this.setVariantQuantityOutOfStock();
+
+        // If item can be sold through zero 
+        if (document.body.classList.contains(this.sellThorughZero[0]) ||
+            document.body.classList.contains(this.sellThorughZero[1])) {
+          this.resetQuantity();
+        } else if (! document.body.classList.contains(this.sellThorughZero[0]) ||
+                  ! document.body.classList.contains(this.sellThorughZero[1])) {
+          this.setQuantityOutOfStock();
+        }
+
       } else if (this.master.children[this.master.selectedIndex].hasAttribute('disabled')) {
         this.buttonsSoldOut(this.buttons);
       }
@@ -1943,16 +1970,19 @@ class GeneralProduct {
       }
     }) 
 
-    // Disabled quantity options if less then inventory
-    this.quantity.children.forEach(num => {
-      console.log(Number(num.value), currentInventory)
-      if (Number(num.value) > currentInventory) {
-        num.setAttribute('disabled', 'disabled');
-      } 
-      else {
-        num.removeAttribute('disabled');
-      }
-    })
+    if (! document.body.classList.contains(this.sellThorughZero[0]) ||
+        ! document.body.classList.contains(this.sellThorughZero[1])) {
+        // Disabled quantity options if less then inventory
+        this.quantity.children.forEach(num => {
+          console.log(Number(num.value), currentInventory)
+          if (Number(num.value) > currentInventory) {
+            num.setAttribute('disabled', 'disabled');
+          } 
+          else {
+            num.removeAttribute('disabled');
+          }
+        })
+    }
   }
 
   // Change swatch on click
@@ -1961,6 +1991,9 @@ class GeneralProduct {
       swatch.addEventListener('click', event => {
         
         this.currentSwatch = event.target.value;
+
+        // Update color name
+        this.colorName.textContent = this.currentSwatch
 
         this.resetQuantity();
 
@@ -2089,7 +2122,6 @@ class GeneralProduct {
     this.quantity.children.forEach(num => {
       num.removeAttribute('disabled');
     })
-    console.log('reset')
   }
 
   // If product has different sizes for different colors

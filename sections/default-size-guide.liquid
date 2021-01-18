@@ -1,59 +1,60 @@
 {% assign size_guide_type = '' %}
 
 {% comment %} Crop Tank {% endcomment %}
-{% if product.tags contains "Bra" or
-      product.tags contains "bra" or
-      product.tags contains "Tank" or
-      product.tags contains "tank"
+{% if product.tags contains "Bra" or 
+      product.tags contains "Tank"
 %}
   {% assign size_guide_type = section.settings.default_size_guide_crop_tank %}
 
 
 {% comment %} Crop Sweatshirt  {% endcomment %}
-{% elsif product.tags contains "Crop" or
-      product.tags contains "crop" and
-      product.tags contains "Sweatshirt" or
-      product.tags contains "sweatshirt"
+{% elsif product.tags contains "Crop" and
+      product.tags contains "Sweatshirt" 
 %}
   {% assign size_guide_type = section.settings.default_size_guide_crop_crew %}
 
+{% comment %} Unity Crew Sweatshirt  {% endcomment %}
+{% elsif product.tags contains "Crewneck" and
+      product.tags contains "Sweatshirt"
+%}
+  {% assign size_guide_type = section.settings.default_size_guide_crew %}
+
 
 {% comment %} Long Sleeve {% endcomment %}
-{% elsif product.tags contains "Long Sleeve" or 
-      product.tags contains "Long sleeve" or 
-      product.tags contains "long sleeve" 
+{% elsif product.tags contains "Long Sleeve"
 %}
   {% assign size_guide_type = section.settings.default_size_guide_long_sleeves %}
 
 
 {% comment %} Crop Tank {% endcomment %}
-{% elsif product.tags contains "Crop" or 
-      product.tags contains "crop" and
-      product.tags contains "Tank" or
-      product.tags contains "tank"
+{% elsif product.tags contains "Crop" and
+      product.tags contains "Tank"
 %}
   {% assign size_guide_type = section.settings.default_size_guide_crop_tank %}
 
 
-{% comment %} Crop Hoodie {% endcomment %}
-{% elsif product.tags contains "Hoodie" or 
+{% comment %} Hoodie {% endcomment %}
+{% comment %} {% elsif product.tags contains "Hoodie" or 
       product.tags contains "hoodie" and
-      product.tags contains "Crop" or 
-      product.tags contains "crop"
+      product.tags contains "Sweatshirt" or 
+      product.tags contains "sweatshirt"
+%}
+  {% assign size_guide_type = section.settings.default_size_guide_hoodie %} {% endcomment %}
+
+{% comment %} Crop Hoodie {% endcomment %}
+{% elsif product.tags contains "Hoodie" and
+      product.tags contains "Crop"
 %}
   {% assign size_guide_type = section.settings.default_size_guide_crop_hoddie %}
 
 
 {% comment %} Hoodie {% endcomment %}
-{% elsif product.tags contains "Hoodie" or 
-      product.tags contains "hoodie"
+{% elsif product.tags contains "Hoodie"
 %}
-  {% assign size_guide_type = section.settings.default_size_guide_hoodie %}
-
+  {% assign size_guide_type = section.settings.default_size_guide_hoddie %}
 
 {% comment %} Sweatshirt {% endcomment %}
-{% elsif product.tags contains "Sweatshirt" or 
-      product.tags contains "sweatshirt"
+{% elsif product.tags contains "Sweatshirt"
 %}
   {% assign size_guide_type = section.settings.default_size_guide_hoodie %}
 {% endif %}

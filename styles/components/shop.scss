@@ -88,6 +88,11 @@ body.collection main {
     right: 20px;
     bottom: 20px;
     z-index: 2;
+    pointer-events: none;
+
+    .regular-button .text {
+      text-transform: none;
+    }
   }
 
   .background-wrapper {
@@ -1736,6 +1741,12 @@ body.product-kit {
     margin-bottom: 28px;
 
     @include flexbox();
+    @include justify-content(flex-start);
+    @include align-items(center);
+
+    &.with-dealer-logo {
+      margin-top: 28px;
+    }
   }
 
   .price .sale {
@@ -1938,6 +1949,10 @@ body.product-kit {
     font-family: $kb;
     margin-bottom: 9px;
     display: block;  
+
+    #colorName {
+      font-family: $kr;
+    }
   }
 }
 
@@ -2004,6 +2019,16 @@ body.product-kit {
   .regular-button.soldout {
     pointer-events: none;
     opacity: 0.5;
+  }
+
+  .price .dealer-logo {
+    margin-left: 30px;
+
+    &.lululemon {
+      max-width: 110px;
+      max-height: 35px;
+      // 140 50
+    }
   }
 }
 
@@ -2537,6 +2562,11 @@ body.collection .boost-pfs-filter-products .boost-pfs-filter-product-item .boost
   .f-160 {
     text-transform: none;
   }
+}
+
+.row .boost-pfs-filter-option-accessories.boost-pfs-filter-option .boost-pfs-filter-option-content .boost-pfs-filter-option-item-list.boost-pfs-filter-option-item-list-multiple-list li .boost-pfs-check-box {
+  position: relative;
+  top: 0px;
 }
 
 @media screen and (max-width: 1200px) and (min-width: 1025px) {
