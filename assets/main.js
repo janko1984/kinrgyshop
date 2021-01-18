@@ -194,7 +194,18 @@ window.addEventListener("DOMContentLoaded", function(){
     const config = { attributes: true, childList: true, subtree: true };
     const callback = function(mutationsList, observer) {
       mutationsList.forEach(mutation => {
-        // console.log(mutation)
+          // console.log(mutation)
+
+          // If filter tree is observed - desktop
+          if (mutation.target.id == "boost-pfs-filter-tree" && ! mutation.target.classList.contains('boost-pfs-filter-tree-mobile-open')) {
+            addBackCollectionFilterCLearButton('desktop');
+          }
+
+          // If mobile filter is observed
+          if (mutation.target.id == "boost-pfs-filter-tree" && mutation.target.classList.contains('boost-pfs-filter-tree-mobile-open')) {
+            addBackCollectionFilterCLearButton('mobile');
+          }
+
           if (mutation.type == "attributes") {
             scroll.update();
           }
@@ -215,6 +226,54 @@ window.addEventListener("DOMContentLoaded", function(){
 
     // Start observing the target node for configured mutations
     observer.observe(targetNode, config);
+  }
+
+  /*
+    Changes made to filter and search app
+      when collections are filtered it removes the clear button. This will bring it back (desktop/mobile)
+  */
+  function addBackCollectionFilterCLearButton(deviceSize) {
+    let currentUrl = window.location.href;
+    let filterCollectionsItems = new Array();
+
+    if (currentUrl.indexOf('/collections/kinrgy-vejo') > -1 ||  currentUrl.indexOf('/collections/kinrgy-lululemon') > -1 ) {
+      setTimeout(() => {
+
+        if (deviceSize == "desktop") {
+          filterCollectionsItems = document.querySelectorAll('.boost-pfs-filter-option-list');
+          filterCollectionsItems.forEach(item => {
+
+          let title = item.querySelector('.boost-pfs-filter-option-title .boost-pfs-filter-option-title-text');
+
+          if (title != null) {
+            if (title.textContent.indexOf("KINRGY / BRANDS") > -1) {
+              let clearButton = item.querySelector('.boost-pfs-filter-clear')
+              clearButton.setAttribute('style', '');
+              clearButton.addEventListener('click', event => { filterClearButton(event) });
+            }  
+          } 
+        })
+      }
+      else if (deviceSize == "mobile") {
+        let clearButtons = document.querySelectorAll('.boost-pfs-filter-tree-mobile-open .boost-pfs-filter-clear');
+
+        clearButtons.forEach(button => {
+          button.setAttribute('style', '');
+          button.addEventListener('click', event => { filterClearButton(event) });   
+        })
+      
+      }
+      }, 500)
+    }
+  }
+  addBackCollectionFilterCLearButton();
+
+  // Clears collection fitler to collection all
+  function filterClearButton(event) {
+    event.preventDefault();
+    event.stopPropagation();
+      
+    window.location.href = window.origin + '/collections/all';
   }
 
   // CART DROPDOWN

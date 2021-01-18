@@ -254,6 +254,12 @@ body.product-kit {
   background-image: none !important;
 }
 
+.boost-pfs-filter-option-swatch-image[title="Grey Sage"],
+.boost-pfs-filter-option-swatch-image[title="Gray Sage"],
+.boost-pfs-swatch-element.boost-pfs-quickview-option-color label[for="ProductSelect-option-color-Grey Sage"],
+.boost-pfs-swatch-element.boost-pfs-quickview-option-color label[for="ProductSelect-option-color-Gray Sage"],
+.swatch-element.grey-sage label::before,
+.swatch-element.gray-sage label::before,
 .boost-pfs-filter-option-swatch-image[title="Sage Grey"],
 .boost-pfs-filter-option-swatch-image[title="Sage Gray"],
 .boost-pfs-swatch-element.boost-pfs-quickview-option-color label[for="ProductSelect-option-color-Sage Grey"],
@@ -2049,7 +2055,8 @@ section .boost-pfs-container-default {
   }
 }
 
-.row .boost-pfs-filter-option-content .boost-pfs-filter-option-item-list .boost-pfs-filter-option-item button, .boost-pfs-filter-option-content .boost-pfs-filter-option-item-list .boost-pfs-filter-option-item a {
+.row .boost-pfs-filter-option-content .boost-pfs-filter-option-item-list .boost-pfs-filter-option-item button, 
+.boost-pfs-filter-option-content .boost-pfs-filter-option-item-list .boost-pfs-filter-option-item a {
 // .boost-pfs-filter-option-item a.boost-pfs-filter-button {
   display: flex;
   justify-content: flex-start;

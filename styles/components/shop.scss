@@ -582,6 +582,15 @@ body.collection,
     font-family: $kb;
     color: $color-dark;
     margin-bottom: 0;
+    text-transform: none;
+  }
+
+  .boost-pfs-filter-product-item-sale-price > .money {
+    color: $color-dark;
+  }
+
+  .boost-pfs-filter-product-item-label .tag {
+    background: $color-green;
   }
 
   .boost-pfs-filter-product-item-price,
@@ -2564,9 +2573,20 @@ body.collection .boost-pfs-filter-products .boost-pfs-filter-product-item .boost
   }
 }
 
-.row .boost-pfs-filter-option-accessories.boost-pfs-filter-option .boost-pfs-filter-option-content .boost-pfs-filter-option-item-list.boost-pfs-filter-option-item-list-multiple-list li .boost-pfs-check-box {
+.row .boost-pfs-filter-option-accessories.boost-pfs-filter-option .boost-pfs-filter-option-content .boost-pfs-filter-option-item-list.boost-pfs-filter-option-item-list-multiple-list li .boost-pfs-check-box,
+.row .boost-pfs-filter-option-kinrgy-brands.boost-pfs-filter-option .boost-pfs-filter-option-content .boost-pfs-filter-option-item-list.boost-pfs-filter-option-item-list-multiple-list li .boost-pfs-check-box {
   position: relative;
   top: 0px;
+}
+
+.boost-pfs-filter-option-kinrgy-brands a.boost-pfs-filter-button {
+  font-size: 14px;
+  line-height: 32px;
+}
+
+.boost-pfs-filter-option-kinrgy-brands .boost-pfs-filter-option-content .boost-pfs-filter-option-item-list .boost-pfs-filter-option-item a,
+.boost-pfs-filter-option-kinrgy-brands a.boost-pfs-filter-button {
+  @include flexbox();
 }
 
 @media screen and (max-width: 1200px) and (min-width: 1025px) {
@@ -3209,6 +3229,7 @@ body.collection .boost-pfs-filter-products .boost-pfs-filter-product-item .boost
 
   .row .boost-pfs-filter-option-content .boost-pfs-filter-option-item-list:not(.boost-pfs-filter-option-item-list-multiple-list) .boost-pfs-check-box,
   .row .boost-pfs-filter-option-content .boost-pfs-filter-option-item-list.boost-pfs-filter-option-clothing .boost-pfs-check-box, 
+  .boost-pfs-filter-option-kinrgy-brands .boost-pfs-check-box,
   .boost-pfs-filter-option-accessories .boost-pfs-check-box {
     top: 0;
   }
@@ -3422,8 +3443,8 @@ body.collection .boost-pfs-filter-products .boost-pfs-filter-product-item .boost
   .boost-pfs-filter-left-col .boost-pfs-filter-back-btn,
   .boost-pfs-filter-left-col .boost-pfs-filter-close,
   .boost-pfs-filter-wrapper .boost-pfs-filter-left-col .boost-pfs-filter-tree-mobile-style2 .boost-pfs-filter-mobile-toolbar .boost-pfs-filter-close span {
-    width: 48px;
-    height: 48px;
+    width: 28px;
+    height: 28px;
   }
 
   .boost-pfs-filter-mobile-toolbar-items {
@@ -3665,6 +3686,10 @@ body.collection .boost-pfs-filter-products .boost-pfs-filter-product-item .boost
     .boost-pfs-check-box {
       margin-right: 10px;
     }
+   }
+
+   .boost-pfs-filter-option-kinrgy-brands .boost-pfs-filter-option-item-list .boost-pfs-filter-option-item .boost-pfs-check-box {
+     margin-right: 10px;
    }
 
   .collection-section .row .boost-pfs-filter-option {
