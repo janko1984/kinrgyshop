@@ -160,6 +160,9 @@
                   data-variant-one="{{ variant.option1 }}"  
                 {% endif %}
 
+                data-inventory-policy="{{ variant.inventory_policy }}"
+                data-inventory-management="{{ variant.inventory_management }}"
+
                 {% if variant.option2 != blank %}
                   data-variant-two="{{ variant.option2 }}"  
                 {% endif %}

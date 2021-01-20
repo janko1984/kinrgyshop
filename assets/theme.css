@@ -3847,13 +3847,25 @@ body.product .material-and-care a::before {
 }
 
 @media screen and (min-width: 1025px) {
-  .regular-button.green:hover::before {
+  body.product #shopify-section-header .main-header .regular-button.nav.green:hover::before,
+#shopify-section-header .main-header .regular-button.nav.green:hover::before,
+body.index #shopify-section-header.sticked .main-header .regular-button.nav.green:hover::before,
+#shopify-section-header.sticked .main-header .regular-button.nav.green:hover::before,
+.regular-button.green:hover::before {
     background: #35524F;
   }
-  .regular-button.pink:hover::before {
+  body.product #shopify-section-header .main-header .regular-button.nav.pink:hover::before,
+#shopify-section-header .main-header .regular-button.nav.pink:hover::before,
+body.index #shopify-section-header.sticked .main-header .regular-button.nav.pink:hover::before,
+#shopify-section-header.sticked .main-header .regular-button.nav.pink:hover::before,
+.regular-button.pink:hover::before {
     background: #915F60;
   }
-  .regular-button:hover::before {
+  body.product #shopify-section-header .main-header .regular-button.nav:hover::before,
+#shopify-section-header .main-header .regular-button.nav:hover::before,
+body.index #shopify-section-header.sticked .main-header .regular-button.nav:hover::before,
+#shopify-section-header.sticked .main-header .regular-button.nav:hover::before,
+.regular-button:hover::before {
     transform: scale(1.03, 1.06);
   }
 
@@ -10053,11 +10065,17 @@ body.index .main-header .site-nav button span {
 body.index .main-header a.site-nav__link--main::before {
   background: #ffffff;
 }
+body.index .main-header a.regular-button.green.nav::before {
+  background: #486966;
+}
 body.index #shopify-section-header.sticked .main-header a.site-nav__link--main::before {
   background: #1C1E20;
 }
 body.index #shopify-section-header.sticked .site-nav button span {
   color: #1C1E20;
+}
+body.index #shopify-section-header.sticked .main-header a.regular-button.green.nav::before {
+  background: #486966;
 }
 
 .full-width-slider {
@@ -10111,7 +10129,7 @@ body.index #shopify-section-header.sticked .site-nav button span {
 }
 
 .main-header .extra-menu {
-  margin-left: 40px;
+  margin-left: 10px;
   display: -moz-flex;
   display: flex;
 }
@@ -10260,6 +10278,44 @@ body.index #shopify-section-header.sticked .site-nav button span {
   transform: translate(0, 23px);
 }
 
+body.product #shopify-section-header .main-header .regular-button.nav,
+#shopify-section-header .main-header .regular-button.nav {
+  padding: 17px 45px;
+  border-radius: 25px;
+  min-width: 116px;
+  height: 50px;
+  display: -moz-inline-flex;
+  display: inline-flex;
+  -moz-justify-content: center;
+  justify-content: center;
+  -moz-align-items: center;
+  align-items: center;
+}
+body.product #shopify-section-header .main-header .regular-button.nav::before,
+#shopify-section-header .main-header .regular-button.nav::before {
+  content: "";
+  transform-origin: center;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  border-radius: 25px;
+  background: #486966;
+  transition: 400ms all cubic-bezier(0.165, 0.84, 0.44, 1);
+  transform: scale(1);
+}
+body.product #shopify-section-header .main-header .regular-button.nav span,
+#shopify-section-header .main-header .regular-button.nav span {
+  font-size: 0.875em;
+  line-height: 1.286em;
+}
+body.product #shopify-section-header .main-header .regular-button.nav.green::before,
+#shopify-section-header .main-header .regular-button.nav.green::before {
+  background-position: #486966;
+}
+
 #shopify-section-header .main-header .site-nav__dropdown a {
   font-size: 1.25em;
   line-height: 1.2em;
@@ -10345,10 +10401,11 @@ body.index #shopify-section-header.sticked .site-nav button span {
 }
 #shopify-section-header .site-nav li {
   display: inline-block;
-  margin: 0 17.5px;
+  margin: 0 17px;
 }
 #shopify-section-header .site-nav li:last-of-type {
   padding-right: 0;
+  margin-right: 0;
 }
 @media (max-width: 1024.98px) {
   #shopify-section-header .site-nav li {
@@ -10366,6 +10423,11 @@ body.index #shopify-section-header.sticked .site-nav button span {
   #shopify-section-header .site-nav li a {
     font-size: 18px;
   }
+}
+#shopify-section-header .site-nav li.li-cta {
+  margin-left: 23px;
+  line-height: 50px;
+  height: 50px;
 }
 #shopify-section-header .extra-menu .search-bar {
   transition: all 0.5s ease;

@@ -242,7 +242,6 @@ window.addEventListener("DOMContentLoaded", function(){
         if (deviceSize == "desktop") {
           filterCollectionsItems = document.querySelectorAll('.boost-pfs-filter-option-list');
           filterCollectionsItems.forEach(item => {
-            console.log('item', item)
           let title = item.querySelector('.boost-pfs-filter-option-title .boost-pfs-filter-option-title-text');
 
           if (title != null) {
@@ -887,7 +886,6 @@ class FullWidthSlider {
   }
 
   init() {
-    // console.log('a104')
     this.slidePositions = new Array();
 
     // Get slide widths
@@ -978,8 +976,6 @@ class FullWidthSlider {
               dotsList[this.active].classList.add('active')
             }
           }
-
-          // console.log(nextSlide)
           
           return nextSlide;
         }
@@ -1698,14 +1694,11 @@ class MultiItemSlider {
       MultiItemSlider.quickAddFromMultiItemSlider = () => {
         let quickAddButtons = document.querySelectorAll('.slider-one a.quick-add');
 
-        console.log(quickAddButtons)
-
         quickAddButtons.forEach(button => {
           button.addEventListener('click', event => { quickAddToCart(event) })
         })
       }
 
-      // console.log()
       MultiItemSlider.quickAddFromMultiItemSlider();
     }
   }
@@ -1727,17 +1720,6 @@ class MultiItemSlider {
 
 // AJAX CART REQUEST
 jQuery(document).on('cart.requestComplete', function(event, cart) {
-  // $('#cartCount').html(cart.item_count);
-  // if (cart['item_count'] > 0) {
-  //   $('.cart-dd').addClass('active');
-  //   $('.col-form').removeClass('hidden');
-  //   $('.col-empty').addClass('hidden');
-  //   $('.cart-dd').removeClass('empty');
-  // }else{
-  //   $('.col-form').addClass('hidden');
-  //   $('.col-empty').removeClass('hidden');
-  //   $('.cart-dd').addClass('empty');
-  // }
 
   jQuery('#cartCount').html(cart.item_count);
     console.log('cart', cart['item_count']);
@@ -1759,7 +1741,6 @@ jQuery(document).on('cart.requestComplete', function(event, cart) {
       $('.col-empty').removeClass('hidden');
       $('.cart-dd').addClass('empty');
     }
-  // });
 
   console.log(cart)
 });
@@ -1767,8 +1748,6 @@ jQuery(document).on('cart.requestComplete', function(event, cart) {
 
 // When cart is ready 
 jQuery(document).on('cart.ready', function(event, cart) {
-  // console.log('ready',cart, cart.item_count, typeof cart.item_count, cart['item_count'])
-  
   let navBasket = document.querySelectorAll('.main-header .js_cart .cart-count');
 
   // hide or show cart count
@@ -1844,14 +1823,6 @@ function quickAddToCart(event) {
   } else {
     sellingPlan = '';
   }
-
-  // console.log('===========')
-  // console.log('final pId', productId)
-  // console.log('final q', quantity)
-  // console.log('final s', size)
-  // console.log('final c', color)
-  // console.log('final sp', sellingPlan)
-  // console.log('===========')
 
   // Add to cart
   if (sellingPlan != '') {
@@ -1993,14 +1964,11 @@ class GeneralProduct {
     
     this.size;
     this.isNumberSizing;
-    this.colorName;
+    
     if (document.querySelector('#productSize') != null) {
       this.size = document.querySelector('#productSize');
       
       this.isNumberSizing = this.checkIfSizeIsInteger();
-      console.log('isNumberSizing',this.isNumberSizing )
-
-      this.colorName = document.querySelector('#colorName');
 
       this.changeSize();
     } else {
@@ -2008,6 +1976,7 @@ class GeneralProduct {
       this.isNumberSizing == false;
     }
 
+    this.colorName;
     this.colorSwatch;
     this.currentSwatch;
     this.colorSwatchInputs;
@@ -2015,6 +1984,7 @@ class GeneralProduct {
       this.colorSwatch = document.querySelector('#swatchSelect');
       this.currentSwatch = document.querySelector('#productCurrentSwatch .current-color').textContent; 
       this.colorSwatchInputs = document.querySelectorAll('#swatchSelect input'); 
+      this.colorName = document.querySelector('#colorName');
 
       this.changeSwatch();
     } else {
@@ -2024,10 +1994,11 @@ class GeneralProduct {
 
     this.quantity = document.querySelector('#productQuantity');
     this.master = document.querySelector('#masterSelect');
+
     this.buttons = document.querySelectorAll('.product-section-one form .regular-button');
 
     // Products that can sell past zero stock
-    this.sellThorughZero = ['product-vejo-kinrgy-starter-kit', 'product-first-edition-limited-kinrgy-kit-2']
+    // this.sellThorughZero = ['product-vejo-kinrgy-starter-kit', 'product-first-edition-limited-kinrgy-kit-2']
 
     this.buttonSubmit();
 
@@ -2036,108 +2007,22 @@ class GeneralProduct {
 
   checkInitalValues() {
 
-    // If first varriant is sold out
-    if (this.master.children[0].hasAttribute('disabled')) {
+    if (this.size != null && this.currentSwatch != null) {
 
-      // If color swatch - add sold out
-      if (this.colorSwatch != null) {
-        this.colorSwatch.children[1].classList.add('soldout');
+      // Sets avaliable quantity  of current Size
+      this.setVariantQuantityOutOfStock();
 
-        console.log(this.colorSwatch.children.length)
-        if (this.colorSwatch.children.length > 2) {
-          // CHanges to next color - chanages current color value
-          console.log(this.colorSwatchInputs)
-          this.currentSwatch = this.colorSwatchInputs[1].value;
-          this.colorSwatchInputs[1].setAttribute('checked', '');
-        }
-      }
-
-      // If item can be sold through zero 
-      if (document.body.classList.contains(this.sellThorughZero[0]) ||
-          document.body.classList.contains(this.sellThorughZero[1])) {
-        this.resetQuantity();
-      } else if (! document.body.classList.contains(this.sellThorughZero[0]) ||
-                ! document.body.classList.contains(this.sellThorughZero[1])) {
-        this.setQuantityOutOfStock();
-      }
-
-      this.buttonsSoldOut(this.buttons);
+      // Show current color avaliable sizes
+      this.setVariantSizeOutOfStock();
     }
+    else if (this.size == null && this.currentSwatch != null) {
 
-    this.setVariantSizeOutOfStock();
-  }
+      // Sets avaliable quantity of current Size
+      this.setVariantQuantityOutOfStock();
 
-  // Disabled out of stock sizes
-  setVariantSizeOutOfStock() {
-
-    // If size variant
-    if (this.size != null) {
-
-      // let isNumberSizing = this.checkIfSizeIsInteger();
-      // console.log('isNumberSizing',isNumberSizing )
-
-      // Go through master select
-      this.master.children.forEach( option => {
-        // Get sizes
-        let sizes = Array.from(this.size.children);
-
-        // If not instock and current color
-        if (option.dataset.inventory == 0 && option.dataset.variantOne == this.currentSwatch) {
-          
-          // Find matching sizes and disable
-          sizes.forEach(size => {
-            if (size.value == option.dataset.variantTwo) {
-              size.setAttribute('disabled', 'disabled');
-            } 
-          })
-        }
-
-        if (this.size.children[this.size.selectedIndex].hasAttribute('disabled')) {
-          this.buttonsSoldOut(this.buttons)
-        } else if (! this.size.children[this.size.selectedIndex].hasAttribute('disabled')) {
-          this.buttonsAddToCart(this.buttons)
-        }
-      })
-
-      if (this.isNumberSizing == true) {
-        this.varyingSizesPerSwatch();
-      //   console.log('varyingSizesPerSwatch')
-      }
-    } 
-    // No size variant
-    else {
-
-      // If item can be sold through zero 
-      if (document.body.classList.contains(this.sellThorughZero[0]) ||
-          document.body.classList.contains(this.sellThorughZero[1])) {
-        this.resetQuantity();
-      } else if (! document.body.classList.contains(this.sellThorughZero[0]) ||
-                ! document.body.classList.contains(this.sellThorughZero[1])) {
-        this.setQuantityOutOfStock();
-      }
-
-      if (! this.master.children[this.master.selectedIndex].hasAttribute('disabled')) {
-        this.buttonsAddToCart(this.buttons)
-
-        // If item can be sold through zero 
-        if (document.body.classList.contains(this.sellThorughZero[0]) ||
-            document.body.classList.contains(this.sellThorughZero[1])) {
-          this.resetQuantity();
-        } else if (! document.body.classList.contains(this.sellThorughZero[0]) ||
-                  ! document.body.classList.contains(this.sellThorughZero[1])) {
-          this.setQuantityOutOfStock();
-        }
-
-      } else if (this.master.children[this.master.selectedIndex].hasAttribute('disabled')) {
-        this.buttonsSoldOut(this.buttons);
-      }
-
+      // Show current color avaliable sizes
+      this.setVariantSizeOutOfStock();
     }
-
-    // if (this.size != null && this.isNumberSizing == true) {
-    //   this.varyingSizesPerSwatch();
-    // //   console.log('varyingSizesPerSwatch')
-    // }
   }
 
   // Changes quantity of current - color and size
@@ -2171,20 +2056,75 @@ class GeneralProduct {
       if (this.size == null && this.currentSwatch == null) {
         currentInventory = Number(option.dataset.inventory);
       }
-    }) 
+    })
 
-    if (! document.body.classList.contains(this.sellThorughZero[0]) ||
-        ! document.body.classList.contains(this.sellThorughZero[1])) {
-        // Disabled quantity options if less then inventory
-        this.quantity.children.forEach(num => {
-          console.log(Number(num.value), currentInventory)
-          if (Number(num.value) > currentInventory) {
-            num.setAttribute('disabled', 'disabled');
-          } 
-          else {
-            num.removeAttribute('disabled');
+    // Disabled quantity options if less then inventory
+    this.quantity.children.forEach(num => {
+      if (Number(num.value) > currentInventory) {
+        num.setAttribute('disabled', 'disabled');
+      } 
+      else {
+        num.removeAttribute('disabled');
+      }
+    })
+  }
+
+  setVariantSizeOutOfStock() {
+
+    // If size variant
+    if (this.size != null) {
+
+      // Go through master select
+      this.master.children.forEach( option => {
+        // Get sizes
+        let sizes = Array.from(this.size.children);
+
+        // If not instock and current color
+        if (option.dataset.inventory == 0 && option.dataset.variantOne == this.currentSwatch) {
+          
+          // Find matching sizes and disable
+          sizes.forEach(size => {
+            if (size.value == option.dataset.variantTwo) {
+              size.setAttribute('disabled', 'disabled');
+            } 
+          })
+        }
+
+        if (this.size.children[this.size.selectedIndex].hasAttribute('disabled')) {
+          this.buttonsSoldOut(this.buttons)
+        } else if (! this.size.children[this.size.selectedIndex].hasAttribute('disabled')) {
+          this.buttonsAddToCart(this.buttons)
+        }
+      })
+
+      if (this.isNumberSizing == true) {
+        this.varyingSizesPerSwatch();
+      }
+    }
+    else if (this.size == null) {
+      
+      // If can sell past zero
+      let sellthorugh = false;
+
+      this.master.children.forEach( option => {
+
+        // If not instock and current color
+        if (option.dataset.inventoryPolicy == 'continue' && option.dataset.variantOne == this.currentSwatch) {
+          sellthorugh = true;
+          
+        }
+
+        if (sellthorugh == false) {
+          if (this.quantity.children[0].hasAttribute('disabled')) {
+            this.buttonsSoldOut(this.buttons)
+          } else if (! this.quantity.children[0].hasAttribute('disabled')) {
+            this.buttonsAddToCart(this.buttons)
           }
-        })
+        }
+        else if (sellthorugh) {
+          this.buttonsAddToCart(this.buttons)
+        }
+      })
     }
   }
 
@@ -2194,6 +2134,7 @@ class GeneralProduct {
       swatch.addEventListener('click', event => {
         
         this.currentSwatch = event.target.value;
+        console.log(this.currentSwatch, event.target.value, this.colorName);
 
         // Update color name
         this.colorName.textContent = this.currentSwatch
@@ -2230,6 +2171,7 @@ class GeneralProduct {
           })
 
           this.setVariantSizeOutOfStock()
+          this.setVariantQuantityOutOfStock();
         }
 
       })
@@ -2265,20 +2207,7 @@ class GeneralProduct {
     })
   }
 
-  // changeMasterSelect(optionValue) {
-  //   this.master.children.forEach(option => {
-  //     if (optionValue == option.dataset.option) {
-  //       if (option.hasAttribute('disabled')) {
-  //         this.buttonsSoldOut(this.buttons)
-  //       } else if (! option.hasAttribute('disabled')) {
-  //         this.buttonsAddToCart(this.buttons);
-  //       }
-  //     } 
-  //   })
-  // }
-
   changeMasterSelectValue() {
-    
     // Find matching - size and color variants
     this.master.children.forEach((option, index) => {
       if (option.dataset.option == this.currentSwatch + ' / ' + this.size.value) {
@@ -2292,8 +2221,7 @@ class GeneralProduct {
           this.buttonsSoldOut(this.buttons)
         }
       }, 100)
-    }
-    
+    } 
   }
 
   // Checks if size is an integer
@@ -2401,7 +2329,6 @@ class GeneralProduct {
 
           if (document.querySelector('.paywhirl-plan-selector-plan select') != null) {
             sellingPlan = document.querySelector('.paywhirl-plan-selector-plan select').value;
-            console.log('hi',sellingPlan.value)
           } else {
             sellingPlan = "";
           }
@@ -2518,8 +2445,6 @@ class Modal {
       contentId = _contentId;
       modalId = _modalId;
     }
-
-    console.log(contentId, modalId)
     
     document.body.classList.add('of-h');
     document.documentElement.classList.add('of-h');
@@ -2552,16 +2477,12 @@ class Modal {
     // Find the modal content div - clone it
     let copy;
 
-    console.log('a',_copyId, contentId)
-
     if (event != undefined) {
       copy = this.modalCopy.querySelector(`#${ contentId }`);
     }
     else if (event == undefined) {
       copy = document.querySelector(`#${ _copyId + ' #' + contentId}`);
     }
-
-    console.log(_copyId, copy)
 
     let cloneCopy = copy.children[0].cloneNode(true);
 
@@ -2576,7 +2497,6 @@ class Modal {
     // Go over children and clone them - then ad to modal
     cloneCopy.children.forEach(div => {
       let currentChild = div.cloneNode(true);
-      console.log(currentChild)
       modalContent.append(currentChild);
     })
 

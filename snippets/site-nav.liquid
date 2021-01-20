@@ -93,13 +93,13 @@
         </div>
       </li>
     {% else %}
-      <li {% if link.active %} class="site-nav--active"{% endif %}>
+      <li class="{% if link.active %}site-nav--active {% endif %}{% if link.title contains 'Join' %}li-cta{% endif %}">
         <a href="{{ link.url }}"
-          class="site-nav__link site-nav__link--main{% if link.active %} site-nav__link--active{% endif %}"
+          class="site-nav__link site-nav__link--main{% if link.active %} site-nav__link--active{% endif %} {% if link.title contains 'Join' %}regular-button green nav{% endif %}"
           {% if link.current %} aria-current="page"{% endif %}
-          {% if link.title contains "Classes" %} target="_blank" {% endif %}
+          {% if link.title contains "Classes" or link.title contains "Join" %} target="_blank" {% endif %}
         >
-          <span class="site-nav__label">{{ link.title | escape }}</span>
+          <span class="site-nav__label {% if link.title contains 'Join' %} text {% endif %}">{{ link.title | escape }}</span>
         </a>
       </li>
     {% endif %}

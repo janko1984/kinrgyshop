@@ -16,6 +16,10 @@ body.index {
     background: $color-white;
   }
 
+  .main-header a.regular-button.green.nav::before {
+    background: $color-green;
+  }
+
   #shopify-section-header.sticked {
     .main-header a.site-nav__link--main::before {
       background: $color-dark;
@@ -23,6 +27,10 @@ body.index {
 
     .site-nav button span {
       color: $color-dark;
+    }
+
+    .main-header a.regular-button.green.nav::before {
+      background: $color-green;
     }
   }
 }
@@ -82,7 +90,7 @@ body.index {
 }
 
 .main-header .extra-menu {
-  margin-left: 40px;
+  margin-left: 10px;
 
   @include flexbox();
 
@@ -255,6 +263,43 @@ body.index {
   }
 }
 
+body.product #shopify-section-header .main-header .regular-button.nav,
+#shopify-section-header .main-header .regular-button.nav {
+  padding: 17px 45px;
+  border-radius: 25px;
+  min-width: 116px;
+  height: 50px;
+
+  @include inline-flexbox();
+  @include justify-content(center);
+  @include align-items(center);
+
+  &::before {
+    content: "";
+    transform-origin: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    border-radius: 25px;
+    background: $color-green;
+
+    @include transition(400ms all $cubic);
+    @include transform(scale(1));
+  }
+
+  span {
+    font-size: 0.875em;
+    line-height: 1.286em;
+  }
+
+  &.green::before {
+    background-position: $color-green;
+  }
+}
+
 #shopify-section-header {
   .main-header .site-nav__dropdown {
     a {
@@ -361,11 +406,13 @@ body.index {
     // margin-right: -30px;
     li {
       display: inline-block;
-      // padding: 0 17.5px;
-      margin: 0 17.5px;
+      // padding: 0 17px;
+      // margin: 0 20px;
+      margin: 0 17px;
 
       &:last-of-type {
         padding-right: 0;
+        margin-right: 0;
       }
 
       @include media-breakpoint-down(md) {
@@ -388,95 +435,56 @@ body.index {
         //   color: $color-orange;
         // }
       }
+
+      &.li-cta {
+        margin-left: 23px;
+        line-height: 50px;
+        height: 50px;
+      }
     }
   }
 
   .extra-menu {
-    // position: relative;
+    .search-bar {
+      @include transition(all 0.5s ease);
 
-    // li {
-      // display: inline-block;
-      // padding: 0 4px;
+      position: fixed;
+      top: 21px;
+      right: -100%;
+      width: 330px;
+      height: 57px;
+      z-index: 5;
 
-      // a {
-      //   @include flexbox;
-      //   @include justify-content(center);
-      //   @include align-items(center);
+      input[type=text] {
+        background-color: white;
+        border: 1px solid $color-gray-2;
+        border-radius: 0;
+        outline: none;
+        padding: 0 80px 0 15px;
+        width: 100%;
+        height: 57px
+      }
 
-      //   border: 1px solid $color-gray-2;
-      //   border-radius: 50%;
-      //   position: relative;
-      //   width: 55px;
-      //   height: 55px;
+      .search-bar__submit {
+        background-color: transparent;
+        border: 0;
+        border-radius: 0;
+        cursor: pointer;
+        outline: none;
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 55px;
+        height: 57px;
+      }
+    }
 
-      //   @include media-breakpoint-down(md) {
-      //     width: 42px;
-      //     height: 42px;
-
-      //     svg {
-      //       width: 18px;
-      //     }
-      //   }
-    
-        // #cartCount {
-          // font-size: 12px;
-          // position: absolute;
-          // top: 5px;
-          // right: 9px;
-
-          // @include media-breakpoint-down(md) {
-            // top: 1px;
-            // right: 7px;
-          // }
-        // }
-
-        .search-bar {
-          @include transition(all 0.5s ease);
-
-          position: fixed;
-          top: 21px;
-          right: -100%;
-          width: 330px;
-          height: 57px;
-          z-index: 5;
-
-          input[type=text] {
-            background-color: white;
-            border: 1px solid $color-gray-2;
-            border-radius: 0;
-            outline: none;
-            padding: 0 80px 0 15px;
-            width: 100%;
-            height: 57px
-          }
-
-          .search-bar__submit {
-            background-color: transparent;
-            border: 0;
-            border-radius: 0;
-            cursor: pointer;
-            outline: none;
-            position: absolute;
-            top: 0;
-            right: 0;
-            width: 55px;
-            height: 57px;
-          }
-        }
-
-        &.js_search.active {
-          #SearchDrawer {
-            right: 20px;
-          }
-        }
-      // }
-    // }
+    &.js_search.active {
+      #SearchDrawer {
+        right: 20px;
+      }
+    }
   }
-
-  // &.sticked {
-  //   background-color: white;
-  //   border-bottom: 1px solid $color-gray-2;
-  // }
 }
 
 .hamburger {

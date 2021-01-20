@@ -158,6 +158,10 @@ body.product .material-and-care a {
 }
 
 @media screen and (min-width: 1025px) {
+  body.product #shopify-section-header .main-header .regular-button.nav,
+  #shopify-section-header .main-header .regular-button.nav,
+  body.index #shopify-section-header.sticked .main-header .regular-button.nav,
+  #shopify-section-header.sticked .main-header .regular-button.nav,
   .regular-button {
     &.green:hover::before {
       background: $color-green-hover;
