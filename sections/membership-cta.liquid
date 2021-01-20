@@ -1,20 +1,60 @@
-<section class="cta membership container text-light" id="cta-shop-{{ section.settings.membership_cta_id }}">
+{% comment %} Assign blocks to variables {% endcomment %}
+{% assign membership_one = section.blocks[0].settings %}
+{% assign membership_two = section.blocks[1].settings %}
+
+<section class="cta membership with-toggle container text-light" id="cta-shop-{{ section.settings.membership_cta_id }}">
   <div class="row">
   <div class="background" style="background: url({{ section.settings.membership_cta_image | img_url: '1440x' }}) no-repeat center center; background-size: cover;"></div>
     <div class="col-sm-12">
         <p class="subtitle">{{ section.settings.membership_cta_subtitle }}</p>
         <h2 class="h1">{{ section.settings.membership_cta_heading_line_one }}</h2>
         <h2 class="f-160">{{ section.settings.membership_cta_heading_line_two }}</h2>
-        <h2 class="h1">{{ section.settings.membership_cta_heading_line_three }}</h2>
 
-        <div class="button-wrapper align-center">
-          <a class="regular-button pink" href="{{ section.settings.membership_cta_button_url }}" target="_self">
-            <span class="text">{{ section.settings.membership_cta_button_text }}</span>
-          </a>
-        </div>
-
+        <div class="subscription-box" id="home-subscription-box">
+          <h3>Choose Your Plan</h3>
+          <ul class="toggle-switch-list">
+            <li>
+              <p class="toggle subtitle">{{ membership_one.membership_toggle_title_one }}</p>
+            </li>
+            <li>
+              <div class="toggle-switch toggle">
+                <div class="toggle-circle"></div>
+              </div>
+            </li>
+            <li>
+              <p class="subtitle toggle disabled">{{ membership_two.membership_toggle_title_one }}</p>
+            </li>
+          </ul>
+          <div class="with-toggle-tabs">
+            <div class="with-toggle-tabs-wrapper">
+              <div class="tab">
+              <p class="subtitle">{{ membership_one.membership_product_subtitle_one }}</p>
+              <p class="product-price">{{ all_products[section.blocks[0].settings.membership_product].price | money | remove: '.00' }}/{{ membership_one.membership_price_label }}</p>
+              <p class="subtitle">{{ membership_one.membership_product_subtitle_two }}</p>
+              <div class="button-wrapper align-center">
+                <a class="regular-button pink" href="/products/{{ membership_one.membership_product }}" target="_self">
+                  <span class="text">{{ membership_one.membership_button_text }}</span>
+                </a>
+              </div>
+              <p class="button-subtitle subtitle">{{ membership_one.membership_button_subtitle }} <a href="{{ membership_one.membership_button_subtitle_link_url }}" target="_blank" class="inline-single">{{ membership_one.membership_button_subtitle_link_copy }}</a></p>
+            </div>
+            <div class="tab">
+              <p class="subtitle">{{ membership_two.membership_product_subtitle_one }}</p>
+              <p class="product-price">{{ all_products[section.blocks[1].settings.membership_product].price | money | remove: '.00' }}/{{ membership_two.membership_price_label }}</p>
+              <p class="subtitle">{{ membership_two.membership_product_subtitle_two }}</p>
+              <div class="button-wrapper align-center">
+                <a class="regular-button pink" href="/products/{{ membership_two.membership_product }}" target="_self">
+                  <span class="text">{{ membership_two.membership_button_text }}</span>
+                </a>
+              </div>
+              <p class="button-subtitle subtitle">{{ membership_two.membership_button_subtitle }} <a href="{{ membership_two.membership_button_subtitle_link_url }}" target="_blank" class="inline-single">{{ membership_two.membership_button_subtitle_link_copy }}</a></p>
+            </div>
+            </div>
+          </div>
+      </div>
     </div>
   </div>
+
 </section>
 
 {% schema %}
@@ -47,26 +87,69 @@
         "default": "heading"
       },
       {
-        "id": "membership_cta_heading_line_three",
-        "type": "text",
-        "label": "Heading Line Three",
-        "default": "heading"
-      },
-      {
-        "id": "membership_cta_button_text",
-        "type": "text",
-        "label": "Button Text",
-        "default": "shop"
-      },
-      {
-        "id": "membership_cta_button_url",
-        "type": "url",
-        "label": "Button Url"
-      },
-      {
         "id": "membership_cta_image",
         "type": "image_picker",
         "label": "Image"
+      }
+    ],
+    "blocks": [
+      {
+        "name": "Membership",
+        "type": "section",
+        "settings": [
+          {
+            "id": "membership_product",
+            "type": "product",
+            "label": "Membership"
+          },
+          {
+            "id": "membership_toggle_title_one",
+            "type": "text",
+            "label": "Toggle Title",
+            "default": "Yearly"
+          },
+          {
+            "id": "membership_product_subtitle_one",
+            "type": "text",
+            "label": "Subtitle One",
+            "default": "Unlimited classes for"
+          },
+          {
+            "id": "membership_price_label",
+            "type": "text",
+            "label": "Price Label",
+            "default": "year"
+          },
+          {
+            "id": "membership_product_subtitle_two",
+            "type": "text",
+            "label": "Subtitle Two",
+            "default": "Save $60 against monthly subscription"
+          },
+          {
+            "id": "membership_button_text",
+            "type": "text",
+            "label": "Button Copy",
+            "default": "join today"
+          },
+          {
+            "id": "membership_button_subtitle",
+            "type": "text",
+            "label": "Button Subtitle",
+            "default": "Already have an account?"
+          },
+          {
+            "id": "membership_button_subtitle_link_copy",
+            "type": "text",
+            "label": "Button Link Copy",
+            "default": "Log in"
+          },
+           {
+            "id": "membership_button_subtitle_link_url",
+            "type": "url",
+            "label": "Button Url"
+          }
+        ]
       }
     ]
   }

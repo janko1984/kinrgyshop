@@ -2240,6 +2240,124 @@ body.product-membership .inline-single::before,
   line-height: 0.85em;
 }
 
+.subscription-box {
+  background: #FAFAFA;
+  padding: 40px 30px;
+  color: #1C1E20;
+  overflow: hidden;
+  position: relative;
+}
+.subscription-box h3 {
+  font-size: 2em;
+  line-height: 1.1875em;
+  margin-bottom: 22px;
+  text-transform: none;
+}
+.subscription-box .product-price {
+  font-size: 40px;
+  line-height: 50px;
+  margin-top: 0;
+  text-transform: none;
+}
+.subscription-box .subtitle {
+  margin-top: 0;
+  margin-bottom: 0;
+  text-transform: none;
+  line-height: 19px;
+}
+.subscription-box .button-wrapper {
+  margin-top: 40px;
+}
+.subscription-box .button-subtitle {
+  margin-top: 6px;
+}
+.subscription-box .inline-single {
+  position: relative;
+  font-family: "Klarheit Kurrent Bold";
+}
+.subscription-box .inline-single::before {
+  height: 2px;
+  bottom: -2px;
+  transform-origin: right;
+  transform: scaleX(1);
+}
+.subscription-box .with-toggle-tabs {
+  position: relative;
+}
+.subscription-box .with-toggle-tabs .with-toggle-tabs-wrapper {
+  position: relative;
+  width: 820px;
+  display: -moz-flex;
+  display: flex;
+}
+.subscription-box .with-toggle-tabs .tab {
+  position: relative;
+  width: 440px;
+  padding-right: 30px;
+}
+.subscription-box .with-toggle-tabs .tab.active {
+  position: relative;
+}
+
+.subscription-box .toggle-switch-list p {
+  text-transform: uppercase;
+}
+
+.toggle-switch-list {
+  margin-bottom: 14px;
+  display: -moz-flex;
+  display: flex;
+  -moz-justify-content: center;
+  justify-content: center;
+  -moz-align-items: center;
+  align-items: center;
+}
+.toggle-switch-list li {
+  margin: 0 5px;
+  display: -moz-inline-flex;
+  display: inline-flex;
+}
+.toggle-switch-list p {
+  font-family: "Klarheit Kurrent Bold";
+  margin: 0;
+  text-transform: uppercase;
+  transition: 400ms all cubic-bezier(0.86, 0, 0.07, 1);
+}
+.toggle-switch-list p.subtitle {
+  margin: 0;
+}
+.toggle-switch-list p.disabled {
+  opacity: 0.3;
+}
+.toggle-switch-list .toggle-switch {
+  width: 60px;
+  height: 32px;
+  border-radius: 18px;
+  background: #486966;
+  position: relative;
+}
+.toggle-switch-list .toggle-switch.right .toggle-circle {
+  transform: translateX(26px);
+}
+.toggle-switch-list .toggle-circle {
+  width: 26px;
+  height: 26px;
+  background: #F2EDED;
+  position: absolute;
+  left: 4px;
+  top: 3px;
+  bottom: 3px;
+  border-radius: 50%;
+  pointer-events: none;
+  transition: 600ms all cubic-bezier(0.86, 0, 0.07, 1);
+  transform: translateX(0);
+}
+
+body.index .membership.with-toggle .subscription-box {
+  max-width: 440px;
+  margin: 30px auto;
+}
+
 .search-row {
   background: #ffffff;
   padding-top: 59px;
@@ -2743,6 +2861,10 @@ body.product-membership .inline-single:hover::before,
     opacity: 1;
     transform: translateX(0);
   }
+
+  .membership.with-toggle .inline-single:hover::before {
+    transform: scaleX(0);
+  }
 }
 @media screen and (max-width: 1024px) {
   .search-row .search-bar__submit svg {
@@ -3220,6 +3342,13 @@ body.page-legal .legal-content-col .row {
     max-width: 83.3333333333%;
     flex: 0 0 83.3333333333%;
   }
+
+  .cta.membership.with-toggle .subtitle {
+    margin-bottom: 0;
+  }
+  .cta.membership.with-toggle .button-subtitle {
+    margin-top: 8px;
+  }
 }
 @media screen and (max-width: 576px) {
   .bws-modal .content-col-wrapper,
@@ -3318,6 +3447,26 @@ body.search .row .no-results {
   }
   .four-column .scroll-wrapper {
     width: 540px;
+  }
+
+  body.index .membership.with-toggle .subscription-box {
+    max-width: 85%;
+  }
+
+  .subscription-box .with-toggle-tabs .tab {
+    width: 69vw;
+  }
+
+  .subscription-box .product-price {
+    font-size: 35px;
+  }
+
+  .toggle-switch-list {
+    margin-bottom: 24px;
+  }
+
+  .subscription-box .with-toggle-tabs .with-toggle-tabs-wrapper {
+    width: 137vw;
   }
 }
 @font-face {
@@ -5391,6 +5540,7 @@ body.product-kit .singe-image {
   padding-right: 15px;
 }
 
+body.product-membership .quantity-wrap,
 body.product-membership .paywhirl-plan-selector {
   display: none !important;
   visibility: hidden;
@@ -6129,6 +6279,10 @@ body.search .boost-pfs-filter-products .boost-pfs-filter-product-item .boost-pfs
 .boost-pfs-filter-option-kinrgy-brands a.boost-pfs-filter-button {
   display: -moz-flex;
   display: flex;
+}
+.boost-pfs-filter-option-kinrgy-brands .boost-pfs-filter-option-content .boost-pfs-filter-option-item-list .boost-pfs-filter-option-item a span,
+.boost-pfs-filter-option-kinrgy-brands a.boost-pfs-filter-button span {
+  text-transform: none;
 }
 
 @media screen and (max-width: 1200px) and (min-width: 1025px) {

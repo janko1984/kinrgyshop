@@ -1785,6 +1785,7 @@ body.product-kit {
 }
 
 body.product-membership {
+  .quantity-wrap,
   .paywhirl-plan-selector {
     display: none !important;
     visibility: hidden;
@@ -2587,6 +2588,10 @@ body.collection .boost-pfs-filter-products .boost-pfs-filter-product-item .boost
 .boost-pfs-filter-option-kinrgy-brands .boost-pfs-filter-option-content .boost-pfs-filter-option-item-list .boost-pfs-filter-option-item a,
 .boost-pfs-filter-option-kinrgy-brands a.boost-pfs-filter-button {
   @include flexbox();
+
+  span {
+    text-transform: none;
+  }
 }
 
 @media screen and (max-width: 1200px) and (min-width: 1025px) {

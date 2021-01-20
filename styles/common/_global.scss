@@ -239,6 +239,146 @@ body.product-membership .inline-single,
   }
 }
 
+.subscription-box {
+  background: $color-light-tan;
+  padding: 40px 30px;
+  color: $color-dark;
+  overflow: hidden;
+  position: relative;
+
+  h3 {
+    font-size: 2em;
+    line-height: 1.1875em;
+    margin-bottom: 22px;
+    text-transform: none;
+  }
+
+  .product-price {
+    font-size: 40px;
+    line-height: 50px;
+    margin-top: 0;
+    text-transform: none;
+  }
+
+  .subtitle {
+    margin-top: 0;
+    margin-bottom: 0;
+    text-transform: none;
+    line-height: 19px;
+  }
+
+  .button-wrapper {
+    margin-top: 40px;
+  }
+
+  .button-subtitle {
+    margin-top: 6px;
+  }
+
+  .inline-single {
+    position: relative;
+    font-family: $kb;
+
+    &::before {
+      height: 2px;
+      bottom: -2px;
+      transform-origin: right;
+
+      @include transform(scaleX(1));
+    }
+  }
+
+  .with-toggle-tabs {
+    position: relative;
+
+    .with-toggle-tabs-wrapper {
+      position: relative;
+      width: 820px;
+
+      @include flexbox();
+    }
+
+    .tab {
+      position: relative;
+      // width: 380px;
+      width: 440px;
+      padding-right: 30px;
+
+      &.active {
+        position: relative;
+      }
+    }
+  }
+}
+
+.subscription-box .toggle-switch-list p {
+  text-transform: uppercase;
+}
+
+.toggle-switch-list {
+  margin-bottom: 14px;
+
+  @include flexbox();
+  @include justify-content(center);
+  @include align-items(center);
+
+  li {
+    margin: 0 5px;
+
+    @include inline-flexbox();
+    // @include justify-content(center);
+    // @include align-items(center);
+  }
+  
+  p {
+    font-family: $kb;
+    margin: 0;
+    text-transform: uppercase;
+
+    &.subtitle {
+      margin: 0;
+    }
+
+    @include transition(400ms all $cubic_2);
+
+    &.disabled {
+      opacity: 0.3;
+    }
+  }
+
+  .toggle-switch {
+    width: 60px;
+    height: 32px;
+    border-radius: 18px;
+    background: $color-green;
+    position: relative;
+
+    &.right .toggle-circle {
+      @include transform(translateX(26px));
+    }
+  }
+
+  .toggle-circle {
+    width: 26px;
+    height: 26px;
+    background: $color-tan;
+    position: absolute;
+    left: 4px;
+    top: 3px;
+    bottom: 3px;
+    border-radius: 50%;
+    pointer-events: none;
+
+    @include transition(600ms all $cubic_2);
+    @include transform(translateX(0));
+  }
+}
+
+body.index .membership.with-toggle .subscription-box {
+  max-width: 440px;
+  margin: 30px auto;
+}
+
 
 // **************
 // Search
@@ -741,6 +881,10 @@ body.page-404 {
         @include transform(translateX(0));
       }
     }
+  }
+
+  .membership.with-toggle .inline-single:hover::before {
+    @include transform(scaleX(0));
   }
 }
 
@@ -1329,6 +1473,16 @@ body.page-legal {
     max-width: 83.3333333333%;
     flex: 0 0 83.3333333333%;
   }
+
+  .cta.membership.with-toggle {
+    .subtitle {
+      margin-bottom: 0;
+    }
+
+    .button-subtitle {
+      margin-top: 8px;
+    }
+  }
 } // End 768 Max
 
 @media screen and (max-width: 576px) {
@@ -1447,5 +1601,25 @@ body.page-legal {
     .scroll-wrapper {
       width: 540px;
     }
+  }
+
+  body.index .membership.with-toggle .subscription-box {
+    max-width: 85%;
+  }
+
+  .subscription-box .with-toggle-tabs .tab {
+    width: 69vw;
+  }
+
+  .subscription-box .product-price {
+    font-size: 35px;
+  }
+
+  .toggle-switch-list {
+    margin-bottom: 24px;
+  }
+
+  .subscription-box .with-toggle-tabs .with-toggle-tabs-wrapper {
+    width: 137vw;
   }
 }

@@ -236,13 +236,13 @@ window.addEventListener("DOMContentLoaded", function(){
     let currentUrl = window.location.href;
     let filterCollectionsItems = new Array();
 
-    if (currentUrl.indexOf('/collections/kinrgy-vejo') > -1 ||  currentUrl.indexOf('/collections/kinrgy-lululemon') > -1 ) {
+    if (currentUrl.indexOf('/collections/kinrgy-vejo') > -1 ||  currentUrl.indexOf('/collections/kinrgy-lululemon') > -1  || currentUrl.indexOf('/collections/kinrgy-kit') > -1 ) {
       setTimeout(() => {
 
         if (deviceSize == "desktop") {
           filterCollectionsItems = document.querySelectorAll('.boost-pfs-filter-option-list');
           filterCollectionsItems.forEach(item => {
-
+            console.log('item', item)
           let title = item.querySelector('.boost-pfs-filter-option-title .boost-pfs-filter-option-title-text');
 
           if (title != null) {
@@ -275,6 +275,30 @@ window.addEventListener("DOMContentLoaded", function(){
       
     window.location.href = window.origin + '/collections/all';
   }
+
+  
+  
+  function changeCaseofLululemon() {
+    // If collections page
+    if (window.location.href.indexOf('/collections/') > -1) {
+      setTimeout(() => {
+
+        // If sidebar has brands filter
+        if (document.querySelector('.boost-pfs-filter-option-kinrgy-brands .boost-pfs-filter-option-title-text') != null) {
+          let brands = document.querySelector('.boost-pfs-filter-option-kinrgy-brands .boost-pfs-filter-option-title-text');
+
+          // If brands filter is KINRGY / BRANDS
+          if (brands.innerText == "KINRGY / BRANDS")  {
+            // Update lululemon text
+            if (document.querySelector('.boost-pfs-filter-option-kinrgy-brands a[href="/collections/kinrgy-lululemon"] .boost-pfs-filter-option-value') != null) {
+              document.querySelector('.boost-pfs-filter-option-kinrgy-brands a[href="/collections/kinrgy-lululemon"] .boost-pfs-filter-option-value').textContent = "KINRGY / lululemon";
+            }
+          }
+        }
+      }, 1000)
+    }
+  }
+  changeCaseofLululemon();
 
   // CART DROPDOWN
   jQuery('.js_cart').click(function(e){
@@ -1573,6 +1597,8 @@ class MultiItemSlider {
         }
       });
     }
+
+    toggleTabs();
  }
 
 
@@ -1662,7 +1688,7 @@ class MultiItemSlider {
       }
     });
 
-    console.log(sliderFeatured)
+    // console.log(sliderFeatured)
     setTimeout(() => {
       scroll.update()
     }, 200)
@@ -1844,6 +1870,122 @@ function quickAddToCart(event) {
 }
 
 // *********************
+// Toggle Tags
+  // *********************
+  function toggleTabs() {
+    if (document.querySelector('.cta.membership.with-toggle') != null) {
+      let section = document.querySelector('.cta.membership.with-toggle');
+      let toggleList = section.querySelectorAll('.toggle-switch-list .toggle');
+      let tabWrapper = section.querySelector('.with-toggle-tabs-wrapper');
+      // let tabs = section.querySelectorAll('.with-toggle-tabs-wrapper .tab');
+      // let active = 0;
+
+      // Left and right text click - change membership offer
+      toggleList[0].addEventListener('click', event => { changeToggleTab(event, toggleList, tabWrapper) });
+      toggleList[2].addEventListener('click', event => { changeToggleTab(event, toggleList, tabWrapper) });
+
+      // Toggle switch
+      toggleList[1].addEventListener('click', event => {
+        event.preventDefault();
+        let activeToggle = 0;
+
+        // find current active
+        toggleList.forEach((item, index) => {
+          if (item.classList.contains('active')) {
+            activeToggle = index;
+          }
+        })
+
+        // CHange slide direction
+        if (activeToggle == 0) {
+          changeToggleRight(toggleList, tabWrapper);
+        }
+        else if (activeToggle == 2) {
+          changeToggleLeft(toggleList, tabWrapper);
+        }
+      })
+    }
+  }
+
+
+  // function changeToggleTab(event, el) {
+  function changeToggleTab(event, toggleList, tabWrapper) {
+    event.preventDefault();
+
+    let list = Array.from(toggleList);
+    let current = list.indexOf(event.target);
+    let active = 0;
+
+    // If left or gith text - change slide
+    if (current === 0 || current === 2) {
+      if (! list[current].classList.contains('active')) {
+
+        active = current;
+        if (current === 0) {
+          changeToggleLeft(toggleList, tabWrapper);
+        } 
+        if (current === 2) {  
+          changeToggleRight(toggleList, tabWrapper);
+        }
+
+        active = current;
+      }
+    }
+  }
+
+  // Slide to the left
+  function changeToggleLeft(toggleList, tabWrapper) {
+    list = Array.from(toggleList);
+
+    // Right side
+    list[2].classList.remove('active')
+    list[2].classList.add('disabled')
+
+    // Left side
+    list[0].classList.remove('disabled')
+    list[0].classList.add('active')
+
+    list[1].classList.remove('right')
+
+    // Move slide Wrapper
+    gsap.to(tabWrapper, {
+      duration: 0.6,
+      ease: 'power1.inOut',
+      x: '0%',
+      immediaterender: true,
+      onComplete: () => {
+        scroll.update();
+      }
+    })
+  }
+
+  // Slide to the Right
+  function changeToggleRight(toggleList, tabWrapper) {
+    list = Array.from(toggleList);
+
+    // Left side
+    list[0].classList.remove('active')
+    list[0].classList.add('disabled')
+
+    // Right side
+    list[2].classList.remove('disabled')
+    list[2].classList.add('active')
+
+    list[1].classList.add('right')
+
+    // Move slide Wrapper
+    gsap.to(tabWrapper, {
+      duration: 0.6,
+      ease: 'power1.inOut',
+      x: '-50%',
+      immediaterender: true,
+      onComplete: () => {
+        scroll.update();
+      }
+    })
+  }
+
+// *********************
 // PRODUCT JS
 // *********************
 class GeneralProduct {
@@ -1901,8 +2043,10 @@ class GeneralProduct {
       if (this.colorSwatch != null) {
         this.colorSwatch.children[1].classList.add('soldout');
 
+        console.log(this.colorSwatch.children.length)
         if (this.colorSwatch.children.length > 2) {
           // CHanges to next color - chanages current color value
+          console.log(this.colorSwatchInputs)
           this.currentSwatch = this.colorSwatchInputs[1].value;
           this.colorSwatchInputs[1].setAttribute('checked', '');
         }
