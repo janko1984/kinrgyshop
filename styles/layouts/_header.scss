@@ -613,7 +613,11 @@ body.product #shopify-section-header .main-header .regular-button.nav,
     position: relative;
     padding-left: 22px;
 
-    // @include flexbox();
+    @include transition(all $cubic_2 400ms);
+
+    &.hide-message {
+      opacity: 0;
+    }
   }
 
   .dark {
@@ -986,6 +990,23 @@ body.product #shopify-section-header .main-header .regular-button.nav,
   #shopify-section-header .container-fluid {
     margin-left: 0;
     margin-right: 0;
+  }
+
+  #shopify-section-announcement-bar .announcement-bar {
+    .shipping-message,
+    .shipping-message.hide-message {
+      opacity: 1;
+    }
+
+    .message {
+      display: none;
+      visibility: hidden;
+
+      &.display-me {
+        display: block;
+        visibility: visible;
+      }
+    }
   }
 }
 

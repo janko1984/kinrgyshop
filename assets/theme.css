@@ -2936,6 +2936,17 @@ body.product-membership .inline-single:hover::before,
     background: #ffffff;
   }
 
+  #shopify-section-announcement-bar.hidden-bar {
+    height: 0;
+    overflow: hidden;
+    display: none;
+    visibility: hidden;
+  }
+  #shopify-section-announcement-bar.hidden-bar .row {
+    display: none;
+    visibility: hidden;
+  }
+
   #shopify-section-announcement-bar .row {
     -moz-flex-direction: column;
     flex-direction: column;
@@ -2949,8 +2960,6 @@ body.product-membership .inline-single:hover::before,
   #shopify-section-announcement-bar .row .message,
 #shopify-section-announcement-bar .row .shipping-message {
     text-align: center;
-    margin-top: 5px;
-    margin-bottom: 3px;
   }
 }
 .sidebar-menu {
@@ -10582,6 +10591,10 @@ body.product #shopify-section-header .main-header .regular-button.nav.green::bef
   padding-right: 40px;
   position: relative;
   padding-left: 22px;
+  transition: all cubic-bezier(0.86, 0, 0.07, 1) 400ms;
+}
+.announcement-bar .shipping-message.hide-message {
+  opacity: 0;
 }
 .announcement-bar .dark {
   color: #9B9B9D;
@@ -10888,6 +10901,19 @@ body.product #shopify-section-header .main-header .regular-button.nav.green::bef
   #shopify-section-header .container-fluid {
     margin-left: 0;
     margin-right: 0;
+  }
+
+  #shopify-section-announcement-bar .announcement-bar .shipping-message,
+#shopify-section-announcement-bar .announcement-bar .shipping-message.hide-message {
+    opacity: 1;
+  }
+  #shopify-section-announcement-bar .announcement-bar .message {
+    display: none;
+    visibility: hidden;
+  }
+  #shopify-section-announcement-bar .announcement-bar .message.display-me {
+    display: block;
+    visibility: visible;
   }
 }
 @media screen and (max-width: 1024px) and (min-width: 769px) {

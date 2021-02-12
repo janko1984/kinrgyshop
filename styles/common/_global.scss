@@ -993,6 +993,18 @@ body.page-404 {
     // }
   }
 
+  #shopify-section-announcement-bar.hidden-bar {
+    height: 0;
+    overflow: hidden;
+    display: none;
+    visibility: hidden;
+
+    .row {
+      display: none;
+      visibility: hidden;
+    }
+  }
+
   #shopify-section-announcement-bar .row {
     @include flex-direction(column);
 
@@ -1006,8 +1018,6 @@ body.page-404 {
     .message,
     .shipping-message {
       text-align: center;
-      margin-top: 5px;
-      margin-bottom: 3px;
     }
   }
 } // End 1024 Max

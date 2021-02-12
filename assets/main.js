@@ -1868,7 +1868,13 @@ let startShippingPrice = 150;
 
 // Remove shipping message - just display announcement bar
 function clearShippingMessage(shipping) {
-  shipping.row.innerHTML = `<div class="col-md-12"><p class="message align-center">${ shipping.message }</p></div>`;
+  if (window.innerWidth > 1025) {
+    shipping.row.innerHTML = `<div class="col-md-12"><p class="message align-center">${ shipping.message }</p></div>`;
+  } else if (window.innerWidth < 1025) {
+    document.querySelector('#shopify-section-announcement-bar').classList.add('hidden-bar');
+    document.querySelector('#shopify-section-announcement-bar').classList.remove('active-bar');
+    document.querySelector('#shopify-section-header').setAttribute('style', '')
+  }
 }
 
 // Update shipping offer in announcment bar on load
@@ -1929,6 +1935,20 @@ function initCartShippingMessageUpdate() {
   }
 }
 
+// Show or hide until free shipping message - in the announcement bar
+function ifAnnouncementBarShipping(classAddOrRemove) {
+  if (document.querySelector('#shopify-section-announcement-bar .announcement-bar') != null) {
+    let bar = document.querySelector('#shopify-section-announcement-bar');
+    let message = bar.querySelector('.shipping-message');
+    
+    if (classAddOrRemove == 'add') {
+      message.classList.add('hide-message');
+    } else if (classAddOrRemove == 'remove') {
+      message.classList.remove('hide-message');
+    }
+  }
+}
+
 
 // When cart is ready 
 jQuery(document).on('cart.ready', function(event, cart) {
@@ -1939,10 +1959,14 @@ jQuery(document).on('cart.ready', function(event, cart) {
     if (cart.item_count > 0) {
       basket.classList.remove('empty');
       basket.textContent = cart.item_count;
+
+      ifAnnouncementBarShipping('remove')
     }
     else if (cart.item_count == 0) {
       basket.classList.add('empty');
       basket.textContent = cart.item_count;
+
+      ifAnnouncementBarShipping('add')
     }
   })
   
@@ -2009,6 +2033,7 @@ function updateShippingMessage(shipping, membershipStatus) {
     if (membershipStatus == false) {
       if (shippingPrice > 0) {
         // Update difference
+        shipping.el.classList.remove('hide-message');
         shipping.el.innerHTML = shipping.updated['start'] + shippingPrice + shipping.updated['end'];
       } else if (shippingPrice <= 0)  {
         shipping.el.innerHTML = shipping.free;
@@ -2060,6 +2085,8 @@ $(document).ajaxComplete(function(event, jqxhr, settings) {
     else if (CartJS.cart.item_count == 0) {
       let membershipStatus = false;
       updateShippingMessage(shipping, membershipStatus);
+
+      shipping.el.classList.add('hide-message');
     }
     
   }
