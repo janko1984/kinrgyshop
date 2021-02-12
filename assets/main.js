@@ -1,3 +1,5 @@
+
+
 // SMOOTH SCROLL
 let scroll;
 
@@ -45,6 +47,12 @@ window.addEventListener("DOMContentLoaded", function(){
   if (document.querySelectorAll('.js-modal-button').length > 0) {
     let modalButton = new Modal();
   }
+
+  // If announcement bar is selected in settings
+  if (document.querySelector('.announcement-bar') != null || document.querySelector('.announcement-bar') != undefined) {
+    announcementBar();
+  }
+  
 
   if (document.body.classList.contains('collection')) {
     // AJAX LOAD MORE
@@ -305,11 +313,13 @@ window.addEventListener("DOMContentLoaded", function(){
     e.stopPropagation();
     $('.cart-dd').toggleClass('active');
     $('body').addClass('of-h');
+    // $('#shopify-section-header').addClass('adjust-z-index');
   });
 
   $('.js-dd-close').click(function(){
     $('.cart-dd').removeClass('active');
     $('body').removeClass('of-h');
+    // $('#shopify-section-header').removeClass('adjust-z-index');
   });
 
   $('#input-quantity').on('change keyup', function() {
@@ -1718,32 +1728,206 @@ class MultiItemSlider {
 //   }
 // });
 
-// AJAX CART REQUEST
-jQuery(document).on('cart.requestComplete', function(event, cart) {
 
-  jQuery('#cartCount').html(cart.item_count);
-    console.log('cart', cart['item_count']);
+// Adjust product info in desktop - if larger than window height
+function adjustStickyProduct() {
+  let bar = document.querySelector('#shopify-section-announcement-bar .announcement-bar');
 
-    if (cart['item_count'] > 0) {
+  // If announcmenbar
+  if (bar == null) {
+    bar = 0; 
+  } else if (bar != null) {
+    bar = bar.getBoundingClientRect().height;
+  }
 
-      $('.cart-count').removeClass('empty');
-      $('.cart-count').text(cart.item_count);
+  let header = document.querySelector('#shopify-section-header');
+  let el = document.querySelector('#pinSection');
+  let stickyContainer = document.querySelector('#pinSection .sticky-wrapper');
+  let amount, amountTwo;
 
-      $('.cart-dd').addClass('active');
-      $('.col-form').removeClass('hidden');
-      $('.col-empty').addClass('hidden');
-      $('.cart-dd').removeClass('empty');
-    }else{
-      $('.cart-count').addClass('empty');
-      $('.cart-count').text(cart.item_count);
+  // Window minus sticky product info
+  heightDifference = stickyContainer.getBoundingClientRect().height - window.innerHeight;
 
-      $('.col-form').addClass('hidden');
-      $('.col-empty').removeClass('hidden');
-      $('.cart-dd').addClass('empty');
+  // If product sticky is larger than window height
+  if (stickyContainer.getBoundingClientRect().height > (window.innerHeight - bar - header.getBoundingClientRect().height)) {
+
+    if (bar != null) {
+      amount = bar + header.getBoundingClientRect().height;
+      amountTwo = heightDifference + amount + 35;
+    } else {
+      amount = header.getBoundingClientRect().height;
+      amountTwo = heightDifference + amount + 35;
     }
 
-  console.log(cart)
+    if (el.getAttribute('style') == null || el.getAttribute('style') == '') {
+      gsap.to(el, {
+        duration: 0.4,
+        ease: "sine.out",
+        y: -amountTwo,
+      })
+    } else if (el.getAttribute('style') != null) {
+      gsap.to(el, {
+        duration: 0.4,
+        ease: "sine.out",
+        y: 0,
+        onComplete: () => {
+          gsap.set(el, { clearProps: 'all' });
+        }
+      })
+    }
+  }
+}
+
+if (document.body.classList.contains('product') || 
+    document.body.classList.contains('product-membership') || 
+    document.body.classList.contains('product-kit')) {
+  setTimeout(() => {
+    scroll.on('call', func => {
+      console.log('call c',func)
+      if (func == 'adjustSticky') {
+        if (window.innerWidth > 768) {
+          adjustStickyProduct();
+        } else if (window.innerWidth < 769) {
+          gsap.set('#pinSection', { clearProps: 'all' });
+        }
+      }
+    });
+  }, 400)
+}
+
+
+// Starts annocement bar
+function announcementBar() {
+  let announcementBar = document.querySelector('.announcement-bar');
+  let header = document.querySelector('#shopify-section-header');
+  let main = document.querySelector('main');
+    
+  setTimeout(() => {
+    // makes the announcemnt bar active
+    startAnnouncementBar(announcementBar, header, main)
+  }, 400)
+  
+}
+
+// Make announcement bar active
+function startAnnouncementBar(announcementBar, header, main, footer) {
+    announcementBar.classList.add('active');
+    header.classList.add('sticked-announcement');
+    announcementBar.parentElement.classList.add('active-bar')
+    header.style.transform = `translateY(${announcementBar.getBoundingClientRect().height - 20 }px)`;
+    
+    scroll.update();
+
+    // Adjust product sticky start point
+    if (document.body.classList.contains('product') || 
+        document.body.classList.contains('product-membership') || 
+        document.body.classList.contains('product-kit')) {
+          let stickyContainer = document.querySelector('#product-section-top .sticky-wrapper');
+          stickyContainer.dataset.scrollTarget ="#product-section-top";
+          stickyContainer.dataset.scrollId ="#product-section-top";
+          scroll.update();
+    }
+
+    // Adjust letgal sticky menu
+    if (document.body.classList.contains('page-legal') && window.innerWidth > 768) {
+      let sidebar = document.querySelector('#pinSection');
+      let sidebarMenu = document.querySelector('#pinSection .sidebar-menu');
+
+      if (window.innerWidth < 1024 && window.innerWidth > 768) {
+        sidebar.style.marginTop = '30px';
+      }
+
+      sidebarMenu.dataset.scrollId = '#legal-section-top'
+      sidebarMenu.dataset.scrollTarget = '#legal-section-top'
+      scroll.update();
+    }
+}
+
+window.addEventListener('resize', (event) => {
+	resizeAnnouncementBar();
 });
+
+function resizeAnnouncementBar() {
+  if (document.querySelector('.announcement-bar') != null) {
+    let announcementBar = document.querySelector('.announcement-bar');
+    let header = document.querySelector('#shopify-section-header');
+    let main = document.querySelector('main');
+
+    if (announcementBar.classList.contains('active')) {
+      header.style.transform = `translateY(${announcementBar.getBoundingClientRect().height - 20 }px)`;
+
+      scroll.update();
+	  }
+  }
+}
+
+// See if announcemnt bar is active
+let shippingPrice, shipping;
+let aBarBool = false;
+let startShippingPrice = 150;
+
+// Remove shipping message - just display announcement bar
+function clearShippingMessage(shipping) {
+  shipping.row.innerHTML = `<div class="col-md-12"><p class="message align-center">${ shipping.message }</p></div>`;
+}
+
+// Update shipping offer in announcment bar on load
+function initCartShippingMessageUpdate() {
+  // If announcement bar is active
+  if (aBarBool) {
+
+    // See if Membership is in the cart
+    let membership = false;
+    for (let a = 0; a < CartJS.cart.items.length; a++) {
+      if (checkIfMembership(CartJS.cart.items[a].handle)) {
+        membership = true;
+        break; 
+      }
+    }
+
+    // Get original shipping message
+    let startmessage = document.querySelector('#shopify-section-announcement-bar .announcement-bar .shipping-message').innerHTML;
+
+    // Seperate it at the price
+    startmessage = startmessage.split(startShippingPrice)
+
+    // Set pricing minus minimum shipping
+    shippingPrice = startShippingPrice - (CartJS.cart.total_price / 100);
+
+    // Setup shipping Object
+    shipping = {
+      start: {
+        // start: '<i></i> Spend another $<span class="remaining-price">',
+        // end: '</span> <span class="dark">to get your</span> free shipping'
+        start: startmessage[0],
+        end: startmessage[1]
+      },
+      updated: {
+        start: startmessage[0],
+        end: startmessage[1]
+      },
+      free: 'You have free shipping!',
+      el: document.querySelector('#shopify-section-announcement-bar .announcement-bar .shipping-message'),
+      message: document.querySelector('#shopify-section-announcement-bar .announcement-bar .message').innerHTML,
+      row: document.querySelector('#shopify-section-announcement-bar .announcement-bar .row'),
+    }
+
+
+    if (membership) {
+      // If membership just display shipping notice
+      clearShippingMessage(shipping);
+    } else {
+      
+      // if not no membership is in the cart
+      if (shippingPrice > 0) {
+        // Update difference
+        shipping.el.innerHTML = shipping.updated['start'] + shippingPrice + shipping.updated['end'];
+      } else if (shippingPrice <= 0)  {
+        shipping.el.innerHTML = shipping.free;
+      }
+    }
+  }
+}
 
 
 // When cart is ready 
@@ -1762,10 +1946,123 @@ jQuery(document).on('cart.ready', function(event, cart) {
     }
   })
   
+  if (document.querySelector('#shopify-section-announcement-bar .announcement-bar') != null) {
+    aBarBool = true;
+    initCartShippingMessageUpdate();
+  }
+  
   
   if (document.body.classList.contains('cart')) {
     console.log(CartJS.cart)
   }    
+});
+
+// AJAX CART REQUEST
+jQuery(document).on('cart.requestComplete', function(event, cart) {
+
+  jQuery('#cartCount').html(cart.item_count);
+    console.log('cart', cart['item_count']);
+
+    if (cart['item_count'] > 0) {
+      console.log('complete > 0', aBarBool)
+
+      $('.cart-count').removeClass('empty');
+      $('.cart-count').text(cart.item_count);
+
+      $('.cart-dd').addClass('active');
+      $('.col-form').removeClass('hidden');
+      $('.col-empty').addClass('hidden');
+      $('.cart-dd').removeClass('empty');
+      
+      
+      
+    }else{
+      $('.cart-count').addClass('empty');
+      $('.cart-count').text(cart.item_count);
+
+      $('.col-form').addClass('hidden');
+      $('.col-empty').removeClass('hidden');
+      $('.cart-dd').addClass('empty');
+    }
+});
+
+// Checks if product handle contains text used for memberships
+function checkIfMembership(productHandle) {
+  if (productHandle.indexOf('subscription') > -1) {
+    return true;
+  }
+  else if (productHandle.indexOf('monthly') > -1) {
+    return true;
+  }
+  else if (productHandle.indexOf('unlimited') > -1) {
+    return true;
+  }
+  else if (productHandle.indexOf('membership') > -1) {
+    return true;
+  } else {
+    return false;
+  }
+}
+
+function updateShippingMessage(shipping, membershipStatus) {
+  if (aBarBool) {
+    if (membershipStatus == false) {
+      if (shippingPrice > 0) {
+        // Update difference
+        shipping.el.innerHTML = shipping.updated['start'] + shippingPrice + shipping.updated['end'];
+      } else if (shippingPrice <= 0)  {
+        shipping.el.innerHTML = shipping.free;
+      }
+    } else if (membershipStatus) {
+      // If membership just display shipping notice
+      clearShippingMessage(shipping);
+      adjustHeaderIfMembershipInCart();
+    }
+  }
+}
+
+function adjustHeaderIfMembershipInCart() {
+  if (aBarBool) {
+    let header = document.querySelector('#shopify-section-header');
+    let bar = document.querySelector('#shopify-section-announcement-bar');
+    header.style.transform = `translateY(${bar.getBoundingClientRect().height - 20 }px)`;
+  }
+}
+
+$(document).ajaxComplete(function(event, jqxhr, settings) {
+
+  if (jqxhr.status == 200 && settings.url.indexOf('/cart') > -1) {
+
+    // Update shipping difference
+    shippingPrice = startShippingPrice - CartJS.cart.total_price / 100;
+
+    // If cart updated (cart/change.js)
+    if (settings.data != undefined && CartJS.cart.item_count != 0) {
+
+      // Find changed cart item index
+      let changeIndex = settings.data;
+      changeIndex = changeIndex.split('=');
+      changeIndex = changeIndex[1];
+      changeIndex = changeIndex.split('&');
+      changeIndex = Number(changeIndex[0]) - 1;
+      
+      let membershipStatus = checkIfMembership(CartJS.cart.items[changeIndex].handle);
+      updateShippingMessage(shipping, membershipStatus);
+    } 
+
+    // If new item is added to the cart
+    else if (settings.data == undefined && CartJS.cart.item_count != 0) {
+      let membershipStatus = checkIfMembership(CartJS.cart.items[0].handle);
+      updateShippingMessage(shipping, membershipStatus);
+    } 
+    
+    // If the cart is empty
+    else if (CartJS.cart.item_count == 0) {
+      let membershipStatus = false;
+      updateShippingMessage(shipping, membershipStatus);
+    }
+    
+  }
 });
 
 // *********************
@@ -1838,6 +2135,12 @@ function quickAddToCart(event) {
       "color": color
     }, { })
   }
+
+  
+  // Adjust scroll after add
+  setTimeout(() => {
+    scroll.update();
+  }, 1000)
 }
 
 // *********************

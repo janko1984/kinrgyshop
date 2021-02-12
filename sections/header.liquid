@@ -1,4 +1,10 @@
+
+
 <div class="container-fluid main-header">
+
+{% comment %} {%- if section.settings.announcement_bar_toggle == true and section.settings.announcement_bar_message_one != blank -%}
+  {% include 'announcement-bar' %}
+{% endif %} {% endcomment %}
   
   <div class="row"> 
     <div class="col-lg-3 col-md-3 col-sm-5 logo-w">
@@ -28,13 +34,13 @@
   </div>
   
 
-  <div class="row">
+  {% comment %} <div class="row">
     <div class="col-md-12">
       {% if template != 'cart' %}
         {% include 'cart_dropdown' %}
     {% endif %}
     </div>
-  </div>
+  </div> {% endcomment %}
 
   {% include 'mobile-nav' %}
 
@@ -50,8 +56,16 @@
   "name": "Header",
   "settings": [
     {
-      "type": "header",
-      "content": "Announcement bar"
+      "type": "checkbox",
+      "id": "announcement_bar_toggle",
+      "label": "Announcement Bar Toggle",
+      "default": false
+      },
+	  {
+      "type": "textarea",
+      "id": "announcement_bar_message_one",
+      "label": "Announcement Bar Message",
+		 "placeholder": "Text"
     }
   ]
 }

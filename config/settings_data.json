@@ -117,6 +117,13 @@
         "type": "footer",
         "settings": {
         }
+      },
+      "announcement-bar": {
+        "type": "announcement-bar",
+        "settings": {
+          "announcement_bar_toggle": true,
+          "announcement_bar_message_one": "FREE SHIPPING — ON ALL ORDERS ABOVE $150"
+        }
       }
     },
     "content_for_index": [

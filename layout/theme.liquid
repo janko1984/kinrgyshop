@@ -63,6 +63,7 @@
 	<body class="{{ template | handleize }}">
 {% endif %}
 
+  {% section 'announcement-bar' %}
   {% section 'header' %}
 
   <div data-scroll-container class="data-scroll-container page-wrap">
@@ -99,5 +100,11 @@
   {% include 'boost-pfs' %}
 <!--end-boost-pfs-js-->
   {% render 'paywhirl-main' %}
+
+  
+  {% if template != 'cart' %}
+    {% include 'cart_dropdown' %}
+  {% endif %}
+
 </body>
 </html>

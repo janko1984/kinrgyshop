@@ -992,7 +992,25 @@ body.page-404 {
     //   width: 130px;
     // }
   }
-}
+
+  #shopify-section-announcement-bar .row {
+    @include flex-direction(column);
+
+    [class^=col-] {
+      flex: 0 0 100%;
+      max-width: 100%;
+      text-align: center;
+      margin-left: 0;
+    }
+
+    .message,
+    .shipping-message {
+      text-align: center;
+      margin-top: 5px;
+      margin-bottom: 3px;
+    }
+  }
+} // End 1024 Max
 
 // ****************************
 // Legal Page

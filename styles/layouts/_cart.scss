@@ -30,6 +30,15 @@
 }
 
 .cart-dd {
+  z-index: 10;
+  position: fixed;
+  top: 0;
+  pointer-events: none;
+  
+  &.active {
+    pointer-events: all;
+  }
+
   &.safari-adjust .cart-row {
     padding-bottom: 40px;
   }
