@@ -993,6 +993,8 @@ body.product #shopify-section-header .main-header .regular-button.nav,
   }
 
   #shopify-section-announcement-bar .announcement-bar {
+    padding: 11px 20px;
+    
     .shipping-message,
     .shipping-message.hide-message {
       opacity: 1;
@@ -1007,6 +1009,10 @@ body.product #shopify-section-header .main-header .regular-button.nav,
         visibility: visible;
       }
     }
+  }
+
+  .announcement-bar .shipping-message {
+    padding: 0;
   }
 }
 

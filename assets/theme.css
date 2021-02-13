@@ -10903,6 +10903,9 @@ body.product #shopify-section-header .main-header .regular-button.nav.green::bef
     margin-right: 0;
   }
 
+  #shopify-section-announcement-bar .announcement-bar {
+    padding: 11px 20px;
+  }
   #shopify-section-announcement-bar .announcement-bar .shipping-message,
 #shopify-section-announcement-bar .announcement-bar .shipping-message.hide-message {
     opacity: 1;
@@ -10914,6 +10917,10 @@ body.product #shopify-section-header .main-header .regular-button.nav.green::bef
   #shopify-section-announcement-bar .announcement-bar .message.display-me {
     display: block;
     visibility: visible;
+  }
+
+  .announcement-bar .shipping-message {
+    padding: 0;
   }
 }
 @media screen and (max-width: 1024px) and (min-width: 769px) {
