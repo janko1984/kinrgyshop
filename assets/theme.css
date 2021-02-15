@@ -6135,6 +6135,10 @@ body.search .boost-pfs-filter-products .boost-pfs-filter-product-item .boost-pfs
   transform: translate(0, 0);
 }
 
+.boost-pfs-filter-products.bc-al-style4 .boost-pfs-action-list-enabled .boost-pfs-action-list-wrapper.boost-pfs-action-extend {
+  pointer-events: none;
+}
+
 .boost-pfs-filter-products .boost-pfs-action-list-wrapper .boost-pfs-addtocart-product-form {
   margin-left: 0px;
   display: inline-block;
@@ -10617,7 +10621,7 @@ body.product #shopify-section-header .main-header .regular-button.nav.green::bef
   margin-left: 0;
   margin-right: 0;
 }
-#mobile-nav .site-nav--has-dropdown button.site-nav__link {
+#mobile-nav.active .site-nav--has-dropdown button.site-nav__link {
   pointer-events: all;
 }
 #mobile-nav .menu-plain,
@@ -11220,6 +11224,59 @@ body.product footer::before {
 .cart-dd.active {
   opacity: 1;
   visibility: visible;
+}
+
+body.cart .total,
+.cart-dd .total {
+  flex-wrap: wrap;
+}
+body.cart .total li:first-of-type,
+body.cart .total li:nth-of-type(2),
+.cart-dd .total li:first-of-type,
+.cart-dd .total li:nth-of-type(2) {
+  width: 50%;
+  display: -moz-flex;
+  display: flex;
+}
+body.cart .total li:nth-of-type(2),
+.cart-dd .total li:nth-of-type(2) {
+  -moz-justify-content: flex-end;
+  justify-content: flex-end;
+  -moz-align-items: flex-end;
+  align-items: flex-end;
+}
+body.cart .total .cart-free-shipping p,
+.cart-dd .total .cart-free-shipping p {
+  font-size: 14px;
+  line-height: 24px;
+}
+body.cart .total .cart-free-shipping,
+.cart-dd .total .cart-free-shipping {
+  width: 100%;
+  -moz-flex-direction: column;
+  flex-direction: column;
+}
+body.cart .total .cart-free-shipping.hide-message,
+.cart-dd .total .cart-free-shipping.hide-message {
+  display: none;
+  visibility: hidden;
+}
+body.cart .total .cart-free-shipping span,
+body.cart .total .cart-free-shipping p span,
+body.cart .total .cart-free-shipping p,
+.cart-dd .total .cart-free-shipping span,
+.cart-dd .total .cart-free-shipping p span,
+.cart-dd .total .cart-free-shipping p {
+  font-size: 14px;
+  line-height: 24px;
+  color: #486966;
+  font-family: "Klarheit Kurrent Bold";
+}
+body.cart .total .cart-free-shipping span.remaining-price,
+body.cart .total .cart-free-shipping span.dark,
+.cart-dd .total .cart-free-shipping span.remaining-price,
+.cart-dd .total .cart-free-shipping span.dark {
+  line-height: 24px;
 }
 
 body.cart .extra-menu li:last-of-type,

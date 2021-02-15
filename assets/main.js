@@ -1865,15 +1865,19 @@ function resizeAnnouncementBar() {
 let shippingPrice, shipping;
 let aBarBool = false;
 let startShippingPrice = 150;
+let cartPageBool = document.body.classList.contains('cart');
 
 // Remove shipping message - just display announcement bar
 function clearShippingMessage(shipping) {
   if (window.innerWidth > 1025) {
     shipping.row.innerHTML = `<div class="col-md-12"><p class="message align-center">${ shipping.message }</p></div>`;
+    shipping.cart.el.classList.add('hide-message');
+
   } else if (window.innerWidth < 1025) {
     document.querySelector('#shopify-section-announcement-bar').classList.add('hidden-bar');
     document.querySelector('#shopify-section-announcement-bar').classList.remove('active-bar');
     document.querySelector('#shopify-section-header').setAttribute('style', '')
+    shipping.cart.el.classList.add('hide-message');    
   }
 }
 
@@ -1891,11 +1895,20 @@ function initCartShippingMessageUpdate() {
       }
     }
 
-    // Get original shipping message
+    // Get original shipping messages
     let startmessage = document.querySelector('#shopify-section-announcement-bar .announcement-bar .shipping-message').innerHTML;
+    let cartStartmessage;
+
+    if (!cartPageBool) {
+      cartStartmessage = document.querySelector('#cart-dd .cart-free-shipping p').innerHTML;
+    } 
+    else if (cartPageBool) {
+      cartStartmessage = document.querySelector('.cart-content .cart-free-shipping p').innerHTML;
+    } 
 
     // Seperate it at the price
     startmessage = startmessage.split(startShippingPrice)
+    cartStartmessage = cartStartmessage.split(startShippingPrice)
 
     // Set pricing minus minimum shipping
     shippingPrice = startShippingPrice - (CartJS.cart.total_price / 100);
@@ -1903,8 +1916,6 @@ function initCartShippingMessageUpdate() {
     // Setup shipping Object
     shipping = {
       start: {
-        // start: '<i></i> Spend another $<span class="remaining-price">',
-        // end: '</span> <span class="dark">to get your</span> free shipping'
         start: startmessage[0],
         end: startmessage[1]
       },
@@ -1912,24 +1923,49 @@ function initCartShippingMessageUpdate() {
         start: startmessage[0],
         end: startmessage[1]
       },
-      free: 'You have free shipping!',
+      free: 'Congrats, you have free shipping!',
       el: document.querySelector('#shopify-section-announcement-bar .announcement-bar .shipping-message'),
       message: document.querySelector('#shopify-section-announcement-bar .announcement-bar .message').innerHTML,
       row: document.querySelector('#shopify-section-announcement-bar .announcement-bar .row'),
     }
 
+    // If not cart page
+    if (!cartPageBool) {
+      shipping.cart = {
+        start: cartStartmessage[0],
+        end: cartStartmessage[1],
+        el: document.querySelector('#cart-dd .cart-free-shipping'),
+        p: document.querySelector('#cart-dd .cart-free-shipping p')
+      }
+    }
+
+    // If cart page
+    else if (cartPageBool) {
+      shipping.cart = {
+        start: cartStartmessage[0],
+        end: cartStartmessage[1],
+        el: document.querySelector('.cart-content .cart-free-shipping'),
+        p: document.querySelector('.cart-content .cart-free-shipping p')
+      }
+    }
 
     if (membership) {
       // If membership just display shipping notice
       clearShippingMessage(shipping);
     } else {
-      
+
+      // Show cart shipping
+      shipping.cart.el.classList.remove('hide-message');
+
       // if not no membership is in the cart
       if (shippingPrice > 0) {
         // Update difference
         shipping.el.innerHTML = shipping.updated['start'] + shippingPrice + shipping.updated['end'];
+        shipping.cart.p.innerHTML = shipping.cart.start + shippingPrice + shipping.cart.end;
+
       } else if (shippingPrice <= 0)  {
         shipping.el.innerHTML = shipping.free;
+        shipping.cart.p.innerHTML = shipping.free;
       }
     }
   }
@@ -1940,11 +1976,22 @@ function ifAnnouncementBarShipping(classAddOrRemove) {
   if (document.querySelector('#shopify-section-announcement-bar .announcement-bar') != null) {
     let bar = document.querySelector('#shopify-section-announcement-bar');
     let message = bar.querySelector('.shipping-message');
-    
+
+    let cartShipping;
+    if (!cartPageBool) {
+      cartShipping = document.querySelector('#cart-dd .cart-free-shipping');
+    } else if (cartPageBool) {
+      cartShipping = document.querySelector('.cart-content .cart-free-shipping');
+    }
+     
+  
+
     if (classAddOrRemove == 'add') {
       message.classList.add('hide-message');
+      cartShipping.classList.add('hide-message');
     } else if (classAddOrRemove == 'remove') {
       message.classList.remove('hide-message');
+      cartShipping.classList.remove('hide-message');
     }
   }
 }
@@ -2035,8 +2082,18 @@ function updateShippingMessage(shipping, membershipStatus) {
         // Update difference
         shipping.el.classList.remove('hide-message');
         shipping.el.innerHTML = shipping.updated['start'] + shippingPrice + shipping.updated['end'];
+        
+        // if (!cartPageBool) {
+          shipping.cart.el.classList.remove('hide-message');
+          shipping.cart.p.innerHTML = shipping.cart.start + shippingPrice + shipping.cart.end;
+        // }
+
       } else if (shippingPrice <= 0)  {
         shipping.el.innerHTML = shipping.free;
+
+        // if (!cartPageBool) {
+          shipping.cart.p.innerHTML = shipping.free;
+        // }
       }
     } else if (membershipStatus) {
       // If membership just display shipping notice

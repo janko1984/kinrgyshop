@@ -2375,6 +2375,10 @@ body.collection .boost-pfs-filter-products .boost-pfs-filter-product-item .boost
     @include transform(translate(0, 0));
   }
 
+  .boost-pfs-filter-products.bc-al-style4 .boost-pfs-action-list-enabled .boost-pfs-action-list-wrapper.boost-pfs-action-extend {
+    pointer-events: none;
+  }
+
   .boost-pfs-filter-products .boost-pfs-action-list-wrapper .boost-pfs-addtocart-product-form {
     margin-left: 0px;
     display: inline-block;

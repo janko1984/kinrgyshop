@@ -659,7 +659,7 @@ body.product #shopify-section-header .main-header .regular-button.nav,
     margin-right: 0;
   }
 
-  .site-nav--has-dropdown button.site-nav__link {
+  &.active .site-nav--has-dropdown button.site-nav__link {
     pointer-events: all;
   }
 
