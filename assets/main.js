@@ -426,6 +426,12 @@ window.addEventListener("DOMContentLoaded", function(){
       let liSubMenu = document.querySelectorAll('#shopify-section-header .site-nav__dropdown ul');
       let header = document.querySelector('#shopify-section-header');
 
+      let announcementBar = false;
+
+      if ((document.querySelector('#shopify-section-announcement-bar .announcement-bar') != null)) {
+        announcementBar = true;
+      }
+
       liWithSubMenu.forEach(li => {
         li.addEventListener('mouseenter', (event) => {
           event.target.classList.add('active-hover');
@@ -437,12 +443,24 @@ window.addEventListener("DOMContentLoaded", function(){
           
           // If leaving the top of the li - header sticked or not
           if ( ! header.classList.contains('sticked')) {
-            if (event.pageY <= 35) {
-              event.target.classList.remove('active-hover')
+            if (announcementBar == false) {
+              if (event.pageY <= 35) {
+                event.target.classList.remove('active-hover')
+              }
+            } else if (announcementBar) {
+              if (event.pageY <= 50) {
+                event.target.classList.remove('active-hover')
+              }
             }
           } else if (header.classList.contains('sticked')) {
-            if (event.pageY <= 10) {
-              event.target.classList.remove('active-hover')
+            if (announcementBar == false) {
+              if (event.pageY <= 10) {
+                event.target.classList.remove('active-hover')
+              }
+            } else if (announcementBar) {
+              if (event.pageY <= 50) {
+                event.target.classList.remove('active-hover')
+              }
             }
           } 
 
@@ -1630,7 +1648,6 @@ class MultiItemSlider {
  
  if (document.body.classList.contains('product') || document.body.classList.contains('product-kit') || document.body.classList.contains('product-membership')) {
     let productJS = new GeneralProduct();
-    console.log(productJS)
   
   
     // Mobile Product Slider
@@ -1783,7 +1800,7 @@ if (document.body.classList.contains('product') ||
     document.body.classList.contains('product-kit')) {
   setTimeout(() => {
     scroll.on('call', func => {
-      console.log('call c',func)
+      // console.log('call c',func)
       if (func == 'adjustSticky') {
         if (window.innerWidth > 768) {
           adjustStickyProduct();
