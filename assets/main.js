@@ -1689,45 +1689,45 @@ class MultiItemSlider {
 
   if (document.body.classList.contains('cart')) {
     // Product Slider One
-    let sliderFeatured = new MultiItemSlider({
-      slider: document.querySelector('#cart-slider'),
-      rowId: 'main-cart-section',
-      counter: true,
-      dots: false,
-      arrows: true,
-      toSlide: {
-        desktop: {
-          width: 769,
-          move: 1,
-        },
-        tablet: {
-          width: 768,
-          move: 1,
-        },
-        mobile: {
-          width: 576,
-          move: 1,
-        }
-      }
-    });
+    // let sliderFeatured = new MultiItemSlider({
+    //   slider: document.querySelector('#cart-slider'),
+    //   rowId: 'main-cart-section',
+    //   counter: true,
+    //   dots: false,
+    //   arrows: true,
+    //   toSlide: {
+    //     desktop: {
+    //       width: 769,
+    //       move: 1,
+    //     },
+    //     tablet: {
+    //       width: 768,
+    //       move: 1,
+    //     },
+    //     mobile: {
+    //       width: 576,
+    //       move: 1,
+    //     }
+    //   }
+    // });
 
     // console.log(sliderFeatured)
     setTimeout(() => {
       scroll.update()
     }, 200)
 
-    if (document.querySelector('.slider-one') != null) {
-      // quickAddFromMultiItemSlider();
-      MultiItemSlider.quickAddFromMultiItemSlider = () => {
-        let quickAddButtons = document.querySelectorAll('.slider-one a.quick-add');
+    // if (document.querySelector('.slider-one') != null) {
+    //   // quickAddFromMultiItemSlider();
+    //   MultiItemSlider.quickAddFromMultiItemSlider = () => {
+    //     let quickAddButtons = document.querySelectorAll('.slider-one a.quick-add');
 
-        quickAddButtons.forEach(button => {
-          button.addEventListener('click', event => { quickAddToCart(event) })
-        })
-      }
+    //     quickAddButtons.forEach(button => {
+    //       button.addEventListener('click', event => { quickAddToCart(event) })
+    //     })
+    //   }
 
-      MultiItemSlider.quickAddFromMultiItemSlider();
-    }
+    //   MultiItemSlider.quickAddFromMultiItemSlider();
+    // }
   }
 });
 
@@ -2040,9 +2040,9 @@ jQuery(document).on('cart.ready', function(event, cart) {
   }
   
   
-  if (document.body.classList.contains('cart')) {
-    console.log(CartJS.cart)
-  }    
+  // if (document.body.classList.contains('cart')) {
+  //   console.log(CartJS.cart)
+  // }    
 });
 
 // AJAX CART REQUEST
@@ -2169,6 +2169,7 @@ $(document).ajaxComplete(function(event, jqxhr, settings) {
 // *********************
 // Quick Add to Cart
 // *********************
+/*
 function quickAddToCart(event) {
   event.preventDefault();
 
@@ -2243,6 +2244,7 @@ function quickAddToCart(event) {
     scroll.update();
   }, 1000)
 }
+*/
 
 // *********************
 // Toggle Tags
