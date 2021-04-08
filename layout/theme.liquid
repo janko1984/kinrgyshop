@@ -109,9 +109,12 @@
   {% if template != 'cart' %}
     {% include 'cart_dropdown' %}
   {% endif %}
-
-  <script type="text/javascript" async 
+      
+      <script type="text/javascript" async 
  src="https://static.klaviyo.com/onsite/js/klaviyo.js?company_id=WMApDg"></script>
 
 </body>
 </html>
+
+{{ 'idme-theme-style.css' | asset_url | stylesheet_tag }}
+{{ 'idme-theme-template.js' | asset_url | script_tag }}

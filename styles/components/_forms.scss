@@ -158,17 +158,21 @@ body.product-kit {
 }
 
 footer #footer-form {
+  .form-failed p,
+  .form-failed svg
   .form-success p,
   .form-success svg {
     @include inline-flex();
   }
   
+  .form-failed svg,
   .form-success svg {
     width: 45px;
     height: 45px;
     margin-right: 20px;
   }
 
+  .form-failed,
   .form-success {
     position: relative;
     height: 0;

@@ -711,7 +711,7 @@ window.addEventListener("DOMContentLoaded", function(){
   // *************************
   // Footer Form - Hubspot
   // *************************
-
+/*
   // Hubspot Submit - footer
   function footerHubspotFakeOut() {
 
@@ -800,13 +800,106 @@ window.addEventListener("DOMContentLoaded", function(){
   setTimeout(() => {
     footerHubspotFakeOut();
   }, 1200)
+  */
+
+  // Format footer form submission
+  function formatFooterData(event) {
+    let form_id = event.target.id;
+  
+    // Get form data
+    const form_data = new FormData(event.target);
+
+    // Remove to re-add email
+    let email = form_data.get('email');
+
+    // Klaviyo Data - list id = g
+    form_data.set("g", "SZWxZJ")
+    form_data.set("email", email)
+    form_data.set("$fields", "Page")
+    form_data.set("Page", window.location.href)
+    form_data.set("source", "Footer Subscribe");
+
+    /*
+      // Test Form Data
+      for(var pair of form_data.entries()) {
+        console.log(pair[0]+ ', '+ pair[1]);
+    }
+    */
+
+    return form_data;
+  }
+  
+  // Footer Form
+  let footerSubscribeForm = document.querySelector('#footer-form');
+
+  // Footer Form Submit
+  footerSubscribeForm.addEventListener('submit', event => {
+    event.preventDefault();
+    event.stopImmediatePropagation();
+
+    // Get formatted form data for Klaviyo
+    let formInfo = formatFooterData(event);
+
+    const queryString = new URLSearchParams(formInfo).toString();
+
+    // Get form elements for response animation
+    let form_elements = {
+      form: document.querySelector('#footer-form'),
+      formInner: document.querySelector('#footer-form .form-inner'),
+      email: document.querySelector('#footer-form input[type="email"]'),
+      submit: document.querySelector('#footer-form input[type="submit"]'),
+      success: document.querySelector('#footer-form .form-success'),
+      failed: document.querySelector('#footer-form .form-failed'),
+    }
+
+    // Fetch options
+    let options = {
+      meathod: 'POST',
+      mode: 'cors',
+      headers: {
+        "content-type": "application/x-www-form-urlencoded",
+        "cache-control": "no-cache"
+      },
+    }
+
+    // Add data to endpoint url
+    let endPoint = "https://manage.kmail-lists.com/ajax/subscriptions/subscribe" + '?' + queryString;
+
+    // Processing Message
+    appendProcessingMessage(form_elements);
+
+    // Fetch - Klaviyo
+    fetch(endPoint, options)
+    .then((data) => {
+      console.log(data)
+        // 200 Success: Request was successful.
+        // 400 BAD REQUEST: The email address used already exists in Klaviyo.
+        
+      if (data.status == 200 || data.status == 400) {
+        footerFormResponse(form_elements, 'success');
+      } else {
+        footerFormResponse(form_elements, 'failed');
+      }
+    })
+    .catch((error) => {
+      // eslint-disable-next-line
+      console.log(error)
+    });
+  });
+  
   
   // Footer form success animation
-  function footerFormSuccess(formObj) {
+  function footerFormResponse(formObj, responseType) {
     let form = formObj;
     let tl = gsap.timeline();
 
-    console.log('footerFormSuccess', form)
+    // Animate Success or Failed
+    let response;
+    if (responseType == 'success') {
+      response = form.success;
+    } else if (responseType == 'failed') {
+      response = form.failed;
+    }
 
     tl.to(form.formInner, {
       duration: 0.4,
@@ -818,12 +911,12 @@ window.addEventListener("DOMContentLoaded", function(){
       ease: "power.inOut",
       height: 0,
     }, '-=0.3')
-    tl.to(form.success, {
+    tl.to(response, {
       duration: 0.4,
       ease: "power.inOut",
       height: 'auto'
     }, '-=0.5')
-    tl.to(form.success.children[0], {
+    tl.to(response.children[0], {
       duration: 0.4,
       ease: "power.inOut",
       alpha: 1,

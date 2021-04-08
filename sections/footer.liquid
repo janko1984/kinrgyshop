@@ -3,14 +3,14 @@
     <div class="row">
       <div class="col-xl-4 col-lg-4 col-md-8 col-sm-10 form-col">
         <h3>{{ settings.footer_title_one }}</h3>
-        <form id="footer-form">
+        <form meathod="post" enctype="application/x-www-form-urlencoded" id="footer-form">
           <div class="form-wrapper">
             <div class="form-inner">
               <div class="form-row email-and-submit">
 
-                <input type="email" placeholder="Your email" required>
+                <input type="email" placeholder="Your email" name="email" required>
                 <div class="submit-wrapper">
-                  <input type="submit">
+                  <input type="submit" name="submit">
 
                   {% include 'icon-arrow-right' %}
                 </div>
@@ -23,6 +23,12 @@
                 <p>Thank you for subscribing!</p>
               </div>
             </div>
+            <div class="form-failed">
+              <div class="inner">
+                {% include 'icon-sadface' %}
+                <p>Something went wrong. Please refresh and try again.</p>
+              </div>
+            </div>
 
           </div>
         </form>
@@ -32,13 +38,13 @@
       <![endif]-->
 
 
-      <script charset="utf-8" type="text/javascript" src="//js.hsforms.net/forms/v2.js"></script>
+      {% comment %} <script charset="utf-8" type="text/javascript" src="//js.hsforms.net/forms/v2.js"></script>
       <script>
         hbspt.forms.create({
         portalId: "7407431",
         formId: "5350ad3d-a459-4c6c-bb8c-3202ff3affc1"
       });
-      </script>
+      </script> {% endcomment %}
         
       </div>
       <div class="col-xl-2 col-lg-2 col-md-4 col-sm-6 offset-xl-1 offset-lg-1">
