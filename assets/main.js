@@ -48,10 +48,9 @@ window.addEventListener("DOMContentLoaded", function(){
 
   // Start Class
   let links = new SplitTextNav({
-    navLinks: document.querySelectorAll('#siteNav a'),
+    navLinks: document.querySelectorAll('#siteNav a, #siteNav .site-nav--has-dropdown'),
+    // navLinks: document.querySelectorAll('#siteNav a, #siteNav button'),
   })
-
-  console.log(links)
 
   // If announcement bar is selected in settings
   if (document.querySelector('.announcement-bar') != null || document.querySelector('.announcement-bar') != undefined) {
@@ -3091,8 +3090,11 @@ class SplitTextNav {
     this.navLinks.forEach(link => {
       let text = link.textContent;
 
+      // console.log(link)
+
       // Sub nav 
       if (link.classList.contains('site-nav__child-link')) {
+        
         // adjust sub nav text
         if (text.indexOf('lululemon') > -1 || text.indexOf('Lululemon') > -1) {
           text = 'KINRGY / lululemon';
@@ -3114,8 +3116,25 @@ class SplitTextNav {
           <div class="hover" style="transform: translateY(100%);">${ text }</div>
         </div>`;
       } 
+
+      
+      if (link.classList.contains('site-nav--has-dropdown')) {
+        text = link.children[0].textContent;
+
+        // console.log(link)
+        link.children[0].innerHTML = '';
+        link.children[0].innerHTML = `<div class="placeholder">${ text }</div>
+        <div class="wrap">
+          <div class="initial">${ text }</div>
+        </div>
+        <div class="wrap">
+          <div class="hover" style="transform: translateY(100%);">${ text }</div>
+        </div>`;
+      }
+
       // Regular nav
-      if ( ! link.classList.contains('regular-button') && ! link.classList.contains('site-nav__child-link')) {
+      // if ( ! link.classList.contains('regular-button') && ! link.classList.contains('site-nav__child-link')) {
+      if ( ! link.classList.contains('regular-button') && ! link.classList.contains('site-nav--has-dropdown') && ! link.classList.contains('site-nav__child-link')) {
         // Update link text
         link.innerHTML = 
         `<div class="placeholder">${ text }</div>
@@ -3136,7 +3155,8 @@ class SplitTextNav {
     gsap.registerPlugin(SplitText);
 
     this.navLinks.forEach(link => {
-      link.addEventListener('mouseenter', event => {        
+      link.addEventListener('mouseenter', event => {      
+
         let $text1 = new SplitText(event.target.querySelector('.initial'), {type:"words,chars"}), 
           chars1 = $text1.chars;
         let	$text2 = new SplitText(event.target.querySelector('.hover'), {type:"words,chars"}), 
@@ -3146,8 +3166,9 @@ class SplitTextNav {
         .staggerTo(chars1, 0.3, {yPercent: -100, ease:  "Power3.easeInOut"}, 0.03)
         .staggerTo(chars2, 0.3, {yPercent: -100, ease:  "Power3.easeInOut"}, 0.03,.1);
       })
-    
-      link.addEventListener('mouseout', event => {     
+   
+      link.addEventListener('mouseleave', event => {    
+
         let $text1 = new SplitText(event.target.querySelector('.initial'), {type:"words,chars"}), 
           chars1 = $text1.chars;
         let	$text2 = new SplitText(event.target.querySelector('.hover'), {type:"words,chars"}), 

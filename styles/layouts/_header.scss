@@ -1002,12 +1002,23 @@ body.product #shopify-section-header .main-header .regular-button.nav,
   // }
 }
 
-.desktop-nav .site-nav__dropdown .site-nav__child-link {
-  padding-bottom: 0;
+.desktop-nav {
+  button.site-nav__link {
+    line-height: 17px;
+    padding-bottom: 17px;
+  }
 
-  .wrap {
-    left: 135px;
-    text-transform: none;
+  // .site-nav--has-dropdown:hover .site-nav__dropdown {
+  //   opacity: 1;
+  // }
+
+  .site-nav__dropdown .site-nav__child-link {
+    padding-bottom: 0;
+
+    .wrap {
+      left: 135px;
+      text-transform: none;
+    }
   }
 }
 

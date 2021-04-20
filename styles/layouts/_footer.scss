@@ -144,9 +144,59 @@ body.index footer {
   }
 }
 
+footer {
+  .subfooter-list a {
+    color: $color-dark;
+  }
+
+  .buzz-site .bs {
+    display: inline-block;
+    position: relative;
+  }
+
+  .bs {
+    line-height: 1.5;
+  }
+
+  .bs span {
+    transition: all 400ms cubic-bezier(0.230, 1.000, 0.320, 1.000);
+    will-change: transform;
+    display: inline-block;
+  }
+
+  .bs-logo {
+    width: 2.7em;
+    height: 2.7em;
+    position: absolute;
+    top: 50%;
+    right: 0;
+    transform: translateY(-50%) rotate(90deg) scale(0);
+  }
+
+  .bs-logo svg {
+    width: 100%;
+    height: auto;
+
+    path {
+      fill: #231F20;
+    }
+  }
+}
+
 @media screen and (min-width: 1025px) {
   .subfooter-list li:last-of-type {
     padding-right: 50px;
+  }
+
+  footer {
+    .bs:hover .label {
+      transform: translateY(150%);
+      opacity: 0;
+    }
+  
+    .bs:hover .bs-logo {
+      transform: translateY(-50%) rotate(0deg) scale(1);
+    }
   }
 }
 
