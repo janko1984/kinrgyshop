@@ -57,7 +57,8 @@
               <a href="{{ link.url }}" 
               
               {% if settings.footer_menu_column_two == "footer-kinrgy" %} target="_blank" {% else %} target="_self {% endif %}
-              ">{{ link.title }}</a>
+              "><span>{{ link.title }}</span>
+                <i>{% include 'icon-menu-arrow-green' %}</i></a>
             </li>
           {% endfor %}
         </ul>
@@ -68,7 +69,10 @@
         <ul class="menu-plain">
           {% for link in linklists[settings.footer_menu_column_three].links %}
             <li>
-              <a href="{{ link.url }}" target="_self">{{ link.title }}</a>
+              <a href="{{ link.url }}" target="_self">
+                <span>{{ link.title }}</span>
+                <i>{% include 'icon-menu-arrow-green' %}</i>
+              </a>
             </li>
           {% endfor %}
         </ul>
@@ -81,7 +85,9 @@
             <li>
               <a href="{{ link.url }}" 
               {% if link.title contains "Facebook" or link.title contains "Instagram" %} target="_blank" {% else %} target="_self" {% endif %}
-              >{{ link.title }}</a>
+              ><span>{{ link.title }}</span>
+                <i>{% include 'icon-menu-arrow-green' %}</i>
+              </a>
             </li>
           {% endfor %}
         </ul>

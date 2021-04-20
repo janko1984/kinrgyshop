@@ -1,5 +1,3 @@
-
-
 // SMOOTH SCROLL
 let scroll;
 
@@ -47,6 +45,13 @@ window.addEventListener("DOMContentLoaded", function(){
   if (document.querySelectorAll('.js-modal-button').length > 0) {
     let modalButton = new Modal();
   }
+
+  // Start Class
+  let links = new SplitTextNav({
+    navLinks: document.querySelectorAll('#siteNav a'),
+  })
+
+  console.log(links)
 
   // If announcement bar is selected in settings
   if (document.querySelector('.announcement-bar') != null || document.querySelector('.announcement-bar') != undefined) {
@@ -802,6 +807,7 @@ window.addEventListener("DOMContentLoaded", function(){
   }, 1200)
   */
 
+
   // Format footer form submission
   function formatFooterData(event) {
     let form_id = event.target.id;
@@ -812,13 +818,6 @@ window.addEventListener("DOMContentLoaded", function(){
     // Remove to re-add email
     let email = form_data.get('email');
 
-    // Klaviyo Data - list id = g
-    form_data.set("g", "SZWxZJ")
-    form_data.set("email", email)
-    form_data.set("$fields", "Page")
-    form_data.set("Page", window.location.href)
-    form_data.set("source", "Footer Subscribe");
-
     /*
       // Test Form Data
       for(var pair of form_data.entries()) {
@@ -826,7 +825,19 @@ window.addEventListener("DOMContentLoaded", function(){
     }
     */
 
-    return form_data;
+    let data = {
+      "g": "SZWxZJ",
+      "$fields": "Page",
+      "email": email,
+      "$source": "Footer Subscribe",
+      "Page": window.location.href,
+    }
+
+    if (data.Page == "/") {
+      data.Page == window.origin;
+    }
+
+    return data;
   }
   
   // Footer Form
@@ -840,7 +851,7 @@ window.addEventListener("DOMContentLoaded", function(){
     // Get formatted form data for Klaviyo
     let formInfo = formatFooterData(event);
 
-    const queryString = new URLSearchParams(formInfo).toString();
+    // const queryString = new URLSearchParams(formInfo).toString();
 
     // Get form elements for response animation
     let form_elements = {
@@ -852,41 +863,37 @@ window.addEventListener("DOMContentLoaded", function(){
       failed: document.querySelector('#footer-form .form-failed'),
     }
 
-    // Fetch options
-    let options = {
-      meathod: 'POST',
-      mode: 'cors',
-      headers: {
-        "content-type": "application/x-www-form-urlencoded",
-        "cache-control": "no-cache"
-      },
-    }
-
-    // Add data to endpoint url
-    let endPoint = "https://manage.kmail-lists.com/ajax/subscriptions/subscribe" + '?' + queryString;
-
     // Processing Message
     appendProcessingMessage(form_elements);
 
-    // Fetch - Klaviyo
-    fetch(endPoint, options)
-    .then((data) => {
-      console.log(data)
-        // 200 Success: Request was successful.
-        // 400 BAD REQUEST: The email address used already exists in Klaviyo.
-        
-      if (data.status == 200 || data.status == 400) {
+    var settings = {
+      "async": true,
+      "crossDomain": true,
+      "url": "https://manage.kmail-lists.com/ajax/subscriptions/subscribe",
+      "method": "POST",
+      "headers": {
+        "content-type": "application/x-www-form-urlencoded",
+        "cache-control": "no-cache"
+      },
+      "data": {
+        "g": "SZWxZJ",
+        "$fields": "Page, $source",
+        "email": formInfo.email,
+        "Page": formInfo.Page,
+        "$source": "Shop Footer Subscribe"
+      }
+    }
+    
+    $.ajax(settings).done(function (response) {
+      console.log(response);
+
+      if (response.success) {
         footerFormResponse(form_elements, 'success');
       } else {
         footerFormResponse(form_elements, 'failed');
       }
-    })
-    .catch((error) => {
-      // eslint-disable-next-line
-      console.log(error)
     });
-  });
-  
+});
   
   // Footer form success animation
   function footerFormResponse(formObj, responseType) {
@@ -3068,4 +3075,89 @@ class Modal {
 
 */
 
+
+
+class SplitTextNav {
+  constructor({ navLinks }) {
+    this.navLinks = Array.from(navLinks);
+    this.mySplitText;
+    this.chars;
+
+    this.formatLinks();
+  }
+  
+  // Take textContent - append new divs to animate 
+  formatLinks() {
+    this.navLinks.forEach(link => {
+      let text = link.textContent;
+
+      // Sub nav 
+      if (link.classList.contains('site-nav__child-link')) {
+        // adjust sub nav text
+        if (text.indexOf('lululemon') > -1 || text.indexOf('Lululemon') > -1) {
+          text = 'KINRGY / lululemon';
+        }
+        if (text.indexOf('vejo') > -1 || text.indexOf('Vejo') > -1) {
+          text = 'KINRGY / Vejo';
+        }
+
+        let icon = link.querySelector('i');
+        icon = icon.cloneNode(true);
+        link.innerHTML = '';
+        link.append(icon); 
+        link.innerHTML += 
+        `<div class="placeholder">${ text }</div>
+        <div class="wrap">
+          <div class="initial">${ text }</div>
+        </div>
+        <div class="wrap">
+          <div class="hover" style="transform: translateY(100%);">${ text }</div>
+        </div>`;
+      } 
+      // Regular nav
+      if ( ! link.classList.contains('regular-button') && ! link.classList.contains('site-nav__child-link')) {
+        // Update link text
+        link.innerHTML = 
+        `<div class="placeholder">${ text }</div>
+        <div class="wrap">
+          <div class="initial">${ text }</div>
+        </div>
+        <div class="wrap">
+          <div class="hover" style="transform: translateY(100%);">${ text }</div>
+        </div>`;
+      }
+    });
+
+    // Create Split text - add mouse events
+    this.onHover();
+  }
+
+  onHover() {
+    gsap.registerPlugin(SplitText);
+
+    this.navLinks.forEach(link => {
+      link.addEventListener('mouseenter', event => {        
+        let $text1 = new SplitText(event.target.querySelector('.initial'), {type:"words,chars"}), 
+          chars1 = $text1.chars;
+        let	$text2 = new SplitText(event.target.querySelector('.hover'), {type:"words,chars"}), 
+          chars2 = $text2.chars;
+
+        let tlHover = gsap.timeline()
+        .staggerTo(chars1, 0.3, {yPercent: -100, ease:  "Power3.easeInOut"}, 0.03)
+        .staggerTo(chars2, 0.3, {yPercent: -100, ease:  "Power3.easeInOut"}, 0.03,.1);
+      })
+    
+      link.addEventListener('mouseout', event => {     
+        let $text1 = new SplitText(event.target.querySelector('.initial'), {type:"words,chars"}), 
+          chars1 = $text1.chars;
+        let	$text2 = new SplitText(event.target.querySelector('.hover'), {type:"words,chars"}), 
+          chars2 = $text2.chars;
+
+        let tlHover = gsap.timeline()
+        .staggerTo(chars1, 0.3, {yPercent: 100, ease: "Power3.easeInOut"}, 0.05)
+        .staggerTo(chars2, 0.3, {yPercent: 100, ease: "Power3.easeInOut"}, 0.05,0);
+      })
+    })
+  }
+}
 

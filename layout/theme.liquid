@@ -85,9 +85,13 @@
   {{ 'gsap.js' | asset_url | script_tag }}
   {{ 'InteriaPlugin.js' | asset_url | script_tag }}
   {{ 'Draggable.js' | asset_url | script_tag }}
+  {{ 'SplitText.min.js' | asset_url | script_tag }}
+  {% comment %} {{ 'test.js' | asset_url | script_tag }} {% endcomment %}
+  {% comment %} <script src="{{ 'SplitText.min.js' | asset_url }}"></script> {% endcomment %}
+  
 
   <!-- main files -->
-  {{ 'main.js' | asset_url | script_tag }}
+  {{ 'main.js' | asset_url | script_tag | module }}
 
   {% comment %} {% if template | handleize == 'collection' %}
     <div class="modal-filter">
@@ -110,8 +114,8 @@
     {% include 'cart_dropdown' %}
   {% endif %}
       
-      <script type="text/javascript" async 
- src="https://static.klaviyo.com/onsite/js/klaviyo.js?company_id=WMApDg"></script>
+  <script type="text/javascript" async src="https://static.klaviyo.com/onsite/js/klaviyo.js?company_id=WMApDg"></script>
+  <script type="text/javascript" src="//www.klaviyo.com/media/js/public/klaviyo_subscribe.js"></script>
 
 </body>
 </html>
