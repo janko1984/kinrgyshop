@@ -10916,7 +10916,7 @@ body.product #shopify-section-header .main-header .regular-button.nav.green::bef
   visibility: hidden;
 }
 
-body:not(.index) .main-header li.site-nav--has-dropdown button.site-nav__link {
+body:not(.index) .main-header .site-nav--has-dropdown button.site-nav__link {
   color: #1C1E20;
 }
 
