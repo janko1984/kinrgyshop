@@ -10916,6 +10916,10 @@ body.product #shopify-section-header .main-header .regular-button.nav.green::bef
   visibility: hidden;
 }
 
+body:not(.index) .main-header li.site-nav--has-dropdown button.site-nav__link {
+  color: #1C1E20;
+}
+
 @media screen and (min-width: 1101px) {
   .mobile-nav-buttons {
     display: none;
