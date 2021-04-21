@@ -1039,7 +1039,7 @@ body.product #shopify-section-header .main-header .regular-button.nav,
 }
 
 body:not(.index) {
-  .main-header li.site-nav--has-dropdown button.site-nav__link {
+  .main-header .site-nav--has-dropdown button.site-nav__link {
     color: $color-dark;
   }
 }
