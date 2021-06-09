@@ -10563,6 +10563,10 @@ body.product #shopify-section-header .main-header .regular-button.nav.green::bef
   z-index: 7;
   position: relative;
 }
+.announcement-bar .row {
+  -moz-align-items: center;
+  align-items: center;
+}
 .announcement-bar p {
   margin-bottom: 0;
   font-size: 12px;
@@ -10596,7 +10600,7 @@ body.product #shopify-section-header .main-header .regular-button.nav.green::bef
 }
 .announcement-bar .message {
   text-transform: uppercase;
-  text-align: right;
+  text-align: center;
 }
 .announcement-bar .message.align-center {
   text-align: center;
@@ -10959,8 +10963,7 @@ body:not(.index) .main-header .site-nav--has-dropdown button.site-nav__link {
     opacity: 1;
   }
   #shopify-section-announcement-bar .announcement-bar .message {
-    display: none;
-    visibility: hidden;
+    margin-bottom: 5px;
   }
   #shopify-section-announcement-bar .announcement-bar .message.display-me {
     display: block;

@@ -6,6 +6,7 @@ development:
   - config/settings_data.json
   - config/settings_schema.json
   - .env
+  - layout/theme.liquid
 production:
   password: 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
   theme_id: "118203252913"
@@ -14,3 +15,4 @@ production:
   - config/settings_data.json
   - config/settings_schema.json
   - .env
+  - layout/theme.liquid

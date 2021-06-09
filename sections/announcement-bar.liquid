@@ -8,17 +8,18 @@
       </svg>
     </a> {% endcomment %}
     <div class="row">
-      <div class="col-md-5 offset-md-2">
+      <!-- <div class="col-md-5 offset-md-2"> -->
+      <div class="col-md-7 offset-md-2">
         <p class="message">{{- section.settings.announcement_bar_message_one -}}</p>
       </div>
-      <div class="col-md-5">
+      <!-- <div class="col-md-5"> -->
+      <div class="col-md-3">
         <p class="shipping-message hide-message" data-free-shipping="{{ section.settings.free_shipping_amount }}"><i></i> Spend $<span class="remaining-price">150</span> <span class="dark">more to get </span> free shipping</p>
       </div>
     </div>
   </div>
 
 {%- endif -%}
-
 
 {% schema %}
   {

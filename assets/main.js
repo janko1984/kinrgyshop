@@ -2572,6 +2572,10 @@ class GeneralProduct {
         num.removeAttribute('disabled');
       }
     })
+
+    if (currentInventory == 0) {
+      this.buttonsSoldOut(this.buttons)
+    }
   }
 
   setVariantSizeOutOfStock() {
@@ -2616,7 +2620,6 @@ class GeneralProduct {
         // If not instock and current color
         if (option.dataset.inventoryPolicy == 'continue' && option.dataset.variantOne == this.currentSwatch) {
           sellthorugh = true;
-          
         }
 
         if (sellthorugh == false) {
@@ -2637,7 +2640,9 @@ class GeneralProduct {
   changeSwatch() {
     this.colorSwatchInputs.forEach(swatch => {
       swatch.addEventListener('click', event => {
-        
+
+        console.log('changeSwatch', this);
+
         this.currentSwatch = event.target.value;
         console.log(this.currentSwatch, event.target.value, this.colorName);
 

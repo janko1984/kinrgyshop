@@ -578,6 +578,10 @@ body.product #shopify-section-header .main-header .regular-button.nav,
   z-index: 7;
   position: relative;
 
+  .row {
+    @include align-items(center);
+  }
+
   p {
     margin-bottom: 0;
     font-size: 12px;
@@ -615,7 +619,8 @@ body.product #shopify-section-header .main-header .regular-button.nav,
 
   .message {
     text-transform: uppercase;
-    text-align: right;
+    // text-align: right;
+    text-align: center;
 
     &.align-center {
       text-align: center;
@@ -1105,8 +1110,9 @@ body:not(.index) {
     }
 
     .message {
-      display: none;
-      visibility: hidden;
+      // display: none;
+      // visibility: hidden;
+      margin-bottom: 5px;
 
       &.display-me {
         display: block;
