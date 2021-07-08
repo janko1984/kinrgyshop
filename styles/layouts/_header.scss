@@ -582,6 +582,13 @@ body.product #shopify-section-header .main-header .regular-button.nav,
     @include align-items(center);
   }
 
+  .wrapper {
+    @include flexbox();
+    @include justify-content(center);
+    @include align-items(center);
+  }
+
+  .wrapper,
   p {
     margin-bottom: 0;
     font-size: 12px;
@@ -1188,6 +1195,19 @@ body:not(.index) {
   #shopify-section-header {
     padding-left: 20px;
     padding-right: 20px;
+  }
+
+  .announcement-bar {
+    .wrapper {
+      margin-bottom: 10px;
+      text-align: left;
+      padding-left: 5px;
+      padding-right: 5px;
+
+      .button-wrapper {
+        white-space: nowrap;
+      }
+    }
   }
 }
 

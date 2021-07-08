@@ -181,6 +181,31 @@ body.product .material-and-care a {
   background-image: linear-gradient( transparent 2px, $color-pink 2px, $color-pink 3px, transparent 3px ), linear-gradient( transparent 2px, $color-white 2px, $color-white 3px, transparent 3px );
 }
 
+.announcement-bar {
+  .button-wrapper {
+    margin-left: 10px;
+
+    @include inline-flex();
+
+    .regular-button {
+      min-width: 80px;
+      padding: 0 14px;
+      line-height: 30px;
+      height: 30px;
+
+      .text {
+        line-height: 30px;
+      }
+    }
+  }
+
+  [class^=col-]:first-of-type {
+    @include flexbox();
+    @include align-items(center);
+    @include justify-content(center);
+  }
+}
+
 @media screen and (min-width: 1025px) {
   body.product #shopify-section-header .main-header .regular-button.nav,
   #shopify-section-header .main-header .regular-button.nav,
