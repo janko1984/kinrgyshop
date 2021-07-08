@@ -2140,6 +2140,7 @@ footer .inline-single,
 body.product .inline-single,
 body.product-kit .inline-single,
 body.product-membership .inline-single,
+.announcement-bar .inline-single,
 .menu-plain a,
 .inline-single {
   transition: 400ms all cubic-bezier(0.165, 0.84, 0.44, 1);
@@ -2149,6 +2150,7 @@ footer .inline-single::before,
 body.product .inline-single::before,
 body.product-kit .inline-single::before,
 body.product-membership .inline-single::before,
+.announcement-bar .inline-single::before,
 .menu-plain a::before,
 .inline-single::before {
   position: absolute;
@@ -2167,6 +2169,18 @@ body.product-membership .inline-single::before,
 }
 .inline-single::before {
   background: #1C1E20;
+}
+
+#shopify-section-announcement-bar .announcement-bar .message .inline-single,
+.announcement-bar .message .inline-single {
+  color: #ffffff;
+  position: relative;
+}
+#shopify-section-announcement-bar .announcement-bar .message .inline-single::before,
+.announcement-bar .message .inline-single::before {
+  background: #ffffff;
+  transform-origin: right;
+  transform: scaleX(1);
 }
 
 .cta {
@@ -2862,7 +2876,9 @@ body.product-membership .inline-single:hover::before,
     transform: translateX(0);
   }
 
-  .membership.with-toggle .inline-single:hover::before {
+  #shopify-section-announcement-bar .announcement-bar .message a.inline-single:hover::before,
+.announcement-bar .message .inline-single:hover::before,
+.membership.with-toggle .inline-single:hover::before {
     transform: scaleX(0);
   }
 }
@@ -3872,6 +3888,28 @@ body.product .material-and-care a::before {
   transition: 400ms all cubic-bezier(0.165, 0.84, 0.44, 1);
 }
 
+.inline-link {
+  background-image: linear-gradient(transparent 2px, #A57677 2px, #A57677 3px, transparent 3px), linear-gradient(transparent 2px, #1C1E20 2px, #1C1E20 3px, transparent 3px);
+  font-weight: 600;
+  position: relative;
+  z-index: 1;
+  color: #1C1E20;
+  text-decoration: none;
+  background-size: 0% 8px, 100% 8px;
+  background-position: 0 bottom, 0 bottom;
+  background-repeat: no-repeat;
+  padding-bottom: 6px;
+  border-bottom: 6px solid transparent;
+  word-break: break-word;
+  transition: 300ms all cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+.inline-link.light,
+.announcement-bar .inline-link {
+  color: #ffffff;
+  background-image: linear-gradient(transparent 2px, #A57677 2px, #A57677 3px, transparent 3px), linear-gradient(transparent 2px, #ffffff 2px, #ffffff 3px, transparent 3px);
+}
+
 @media screen and (min-width: 1025px) {
   body.product #shopify-section-header .main-header .regular-button.nav.green:hover::before,
 #shopify-section-header .main-header .regular-button.nav.green:hover::before,
@@ -3893,6 +3931,12 @@ body.index #shopify-section-header.sticked .main-header .regular-button.nav:hove
 #shopify-section-header.sticked .main-header .regular-button.nav:hover::before,
 .regular-button:hover::before {
     transform: scale(1.03, 1.06);
+  }
+
+  .inline-link:hover,
+.announcement-bar .inline-link:hover {
+    color: #A57677;
+    background-size: 100% 8px;
   }
 
   body.cart .regular-button.no-border:hover::before {

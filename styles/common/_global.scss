@@ -122,6 +122,7 @@ footer .inline-single,
 body.product .inline-single,
 body.product-kit .inline-single,
 body.product-membership .inline-single,
+.announcement-bar .inline-single,
 .menu-plain a,
 .inline-single {
   @include transition(400ms all $cubic);
@@ -151,6 +152,19 @@ body.product-membership .inline-single,
 
   &::before {
     background: $color-dark;
+  }
+}
+
+#shopify-section-announcement-bar .announcement-bar .message .inline-single,
+.announcement-bar .message .inline-single {
+  color: $color-white;
+  position: relative;
+
+  &::before {
+    background: $color-white;
+    transform-origin: right;
+
+    @include transform(scaleX(1));
   }
 }
 
@@ -883,6 +897,8 @@ body.page-404 {
     }
   }
 
+  #shopify-section-announcement-bar .announcement-bar .message a.inline-single:hover::before,
+  .announcement-bar .message .inline-single:hover::before,
   .membership.with-toggle .inline-single:hover::before {
     @include transform(scaleX(0));
   }
